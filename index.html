@@ -7,114 +7,184 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#2563eb;--bg:#f8f9fa;--card:#ffffff;--text:#1f2937;--muted:#6b7280;
+  --blue:#2563eb;--orange:#f97316;--bg:#fff7f0;--card:#ffffff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg);color:var(--text)}
+body{background:linear-gradient(180deg,#fff7f0 0%, #ffffff 100%);min-height:100vh;color:var(--text)}
+.hid{display:none !important}
 
-/* TOP NAV */
-.nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 20px;background:var(--card);position:sticky;top:0;
-  border-bottom:1px solid #e5e7eb;
-}
+/* LANDING - STEP 1 */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border)}
 .logo{font-size:18px;font-weight:800;color:var(--blue)}
 .nav-btns{display:flex;gap:8px}
-.btn{
-  padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;
-  cursor:pointer;border:1.5px solid var(--blue);transition:0.2s
-}
+.btn{padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;border:1.5px solid var(--blue)}
 .btn-outline{background:white;color:var(--blue)}
-.btn-primary{background:var(--blue);color:white;border:1.5px solid var(--blue)}
-
-/* MAIN CONTENT */
+.btn-primary{background:var(--blue);color:white}
 .container{padding:20px;max-width:500px;margin:0 auto}
-.feature-card{
-  background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;
-  text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05)
-}
-.icon{
-  width:50px;height:50px;margin:0 auto 14px;
-  display:flex;align-items:center;justify-content:center;
-  background:#eff6ff;border-radius:12px;font-size:28px
-}
+.feature-card{background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.icon{width:50px;height:50px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:#eff6ff;border-radius:12px;font-size:28px}
 .feature-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
 .feature-card p{font-size:14px;color:var(--muted);line-height:1.5}
 
-/* AUTH MODAL */
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:100}
-.modal.active{display:flex}
-.modal-box{background:var(--card);padding:28px;border-radius:16px;width:90%;max-width:400px}
-.input-group{margin-bottom:14px}
-.input-group label{font-size:13px;font-weight:500;margin-bottom:6px;display:block}
-.input-group input{width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px}
+/* AUTH PAGES - STEP 2 */
+.auth-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.auth-logo{width:70px;height:70px;margin-bottom:20px}
+.auth-logo img{width:100%}
+.auth-title{font-size:26px;font-weight:700;margin-bottom:6px;text-align:center}
+.auth-sub{color:var(--muted);font-size:14px;margin-bottom:24px;text-align:center}
+.auth-card{background:var(--card);border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.input-group{margin-bottom:18px}
+.input-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block}
+.input-box{position:relative}
+.input-box input{
+  width:100%;padding:14px 14px 14px 42px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:14px;background:#f9fafb
+}
+.input-box .icon-left{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.input-box .icon-right{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);cursor:pointer}
+.forgot{text-align:right;font-size:13px;color:var(--orange);font-weight:600;margin-top:-10px;margin-bottom:20px;cursor:pointer}
+.btn-orange{
+  width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;
+  font-weight:700;font-size:15px;cursor:pointer
+}
+.btn-orange:disabled{background:#fed7aa;color:#9a3412}
+.switch{text-align:center;margin-top:20px;font-size:14px;color:var(--muted)}
+.switch a{color:var(--orange);font-weight:700;text-decoration:none}
+.footer-links{text-align:center;margin-top:30px;font-size:12px;color:var(--muted)}
+.footer-links a{color:var(--muted);text-decoration:none;margin:0 6px}
+.support-btn{
+  position:fixed;bottom:20px;right:20px;width:55px;height:55px;border-radius:50%;
+  background:#22c55e;display:flex;align-items:center;justify-content:center;color:white;font-size:24px;box-shadow:0 4px 10px rgba(0,0,0,0.2)
+}
 </style>
 </head>
 <body>
 
-<!-- TOP NAV -->
-<div class="nav">
-  <div class="logo">CASHFLOW BANK</div>
-  <div class="nav-btns">
-    <button class="btn btn-outline" onclick="openAuth('signup')">Create Account</button>
-    <button class="btn btn-primary" onclick="openAuth('login')">Login</button>
-  </div>
-</div>
-
-<!-- MAIN CARDS -->
-<div class="container">
-  
-  <!-- CARD 1 -->
-  <div class="feature-card">
-    <div class="icon">🌍</div>
-    <h3>Global Transfers</h3>
-    <p>Send and receive money anywhere in the world in seconds with low fees and real-time tracking.</p>
-  </div>
-
-  <!-- CARD 2 -->
-  <div class="feature-card">
-    <div class="icon">📱</div>
-    <h3>24/7 Mobile Banking</h3>
-    <p>Manage your account anytime, anywhere from your phone. We are available 24 hours, 7 days a week.</p>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="feature-card">
-    <div class="icon">🔒</div>
-    <h3>Bank Level Security</h3>
-    <p>Your transactions are protected with 256-bit encryption and 4-digit payment PIN for extra safety.</p>
-  </div>
-
-</div>
-
-<!-- AUTH MODAL -->
-<div id="authModal" class="modal">
-  <div class="modal-box">
-    <h2 id="authTitle" style="margin-bottom:16px">Login</h2>
-    <div id="signupFields" style="display:none">
-      <div class="input-group"><label>Full Name</label><input id="su"></div>
+<!-- PAGE 1: LANDING -->
+<div id="landing">
+  <div class="nav">
+    <div class="logo">CASHFLOW BANK</div>
+    <div class="nav-btns">
+      <button class="btn btn-outline" onclick="showPage('signup')">Create Account</button>
+      <button class="btn btn-primary" onclick="showPage('login')">Login</button>
     </div>
-    <div class="input-group"><label>Email</label><input id="se" type="email"></div>
-    <div class="input-group"><label>Password</label><input id="sp" type="password"></div>
-    <button class="btn btn-primary" style="width:100%" onclick="handleAuth()">Continue</button>
-    <p style="text-align:center;margin-top:14px;font-size:13px">
-      <a href="#" onclick="toggleAuth()" style="color:var(--blue);font-weight:600">Switch to Sign Up</a>
-    </p>
-    <button onclick="closeAuth()" style="margin-top:8px;background:none;border:none;color:var(--muted);width:100%">Cancel</button>
   </div>
+  <div class="container">
+    <div class="feature-card">
+      <div class="icon">🌍</div>
+      <h3>Global Transfers</h3>
+      <p>Send and receive money anywhere in the world in seconds with low fees and real-time tracking.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📱</div>
+      <h3>24/7 Mobile Banking</h3>
+      <p>Manage your account anytime, anywhere from your phone. We are available 24 hours, 7 days a week.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔒</div>
+      <h3>Bank Level Security</h3>
+      <p>Your transactions are protected with 256-bit encryption and 4-digit payment PIN for extra safety.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: LOGIN -->
+<div id="loginPage" class="auth-page hid">
+  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>
+  <h1 class="auth-title">Welcome Back! 👋</h1>
+  <p class="auth-sub">Sign in to your account to continue</p>
+  
+  <div class="auth-card">
+    <div class="input-group">
+      <label>Email or Username</label>
+      <div class="input-box">
+        <span class="icon-left">✉️</span>
+        <input id="loginEmail" placeholder="Enter your email or username">
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <div class="input-box">
+        <span class="icon-left">🔒</span>
+        <input id="loginPass" type="password" placeholder="Enter your password">
+        <span class="icon-right" onclick="togglePass('loginPass')">👁️</span>
+      </div>
+    </div>
+    <div class="forgot">Forgot Password?</div>
+    <button class="btn-orange" onclick="doLogin()">Sign In</button>
+  </div>
+  
+  <p class="switch">Don't have an account? <a href="#" onclick="showPage('signup')">Sign Up</a></p>
+  <div class="footer-links">
+    <a href="#">Contact Support</a> · <a href="#">Privacy Policy</a>
+  </div>
+  <div class="support-btn">💬</div>
+</div>
+
+<!-- PAGE 3: SIGNUP -->
+<div id="signupPage" class="auth-page hid">
+  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>
+  <h1 class="auth-title">Create Account ✨</h1>
+  <p class="auth-sub">Join us and start banking smarter</p>
+  
+  <div class="auth-card">
+    <div class="input-group">
+      <label>Full Name</label>
+      <div class="input-box">
+        <span class="icon-left">👤</span>
+        <input id="suName" placeholder="Enter your full name">
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Email</label>
+      <div class="input-box">
+        <span class="icon-left">✉️</span>
+        <input id="suEmail" type="email" placeholder="Enter your email">
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <div class="input-box">
+        <span class="icon-left">🔒</span>
+        <input id="suPass" type="password" placeholder="Create password">
+        <span class="icon-right" onclick="togglePass('suPass')">👁️</span>
+      </div>
+    </div>
+    <button class="btn-orange" onclick="doSignup()">Create Account</button>
+  </div>
+  
+  <p class="switch">Already have an account? <a href="#" onclick="showPage('login')">Sign In</a></p>
+  <div class="footer-links">
+    <a href="#">Contact Support</a> · <a href="#">Privacy Policy</a>
+  </div>
+  <div class="support-btn">💬</div>
 </div>
 
 <script>
-let authMode='login';
-function openAuth(mode){
-  authMode=mode;
-  document.getElementById('authModal').classList.add('active');
-  document.getElementById('authTitle').innerText=mode==='login'?'Login':'Create Account';
-  document.getElementById('signupFields').style.display=mode==='login'?'none':'block';
+function showPage(page){
+  document.getElementById('landing').classList.add('hid');
+  document.getElementById('loginPage').classList.add('hid');
+  document.getElementById('signupPage').classList.add('hid');
+  document.getElementById(page+'Page').classList.remove('hid');
 }
-function closeAuth(){document.getElementById('authModal').classList.remove('active')}
-function toggleAuth(){openAuth(authMode==='login'?'signup':'login')}
-function handleAuth(){alert('Step 2 go connect this one to dashboard');closeAuth()}
+function togglePass(id){
+  let x=document.getElementById(id);
+  x.type = x.type==='password'?'text':'password';
+}
+function doSignup(){
+  let n=suName.value,e=suEmail.value,p=suPass.value;
+  if(!n||!e||!p){alert('Fill all fields');return}
+  localStorage.setItem('cfUser',JSON.stringify({n,e,p}));
+  alert('Account created! Please login.');
+  showPage('login');
+}
+function doLogin(){
+  let e=loginEmail.value,p=loginPass.value;
+  let s=JSON.parse(localStorage.getItem('cfUser'));
+  if(!s || ((e!=s.n && e!=s.e) || p!=s.p)){alert('Invalid login');return}
+  alert('Login Success! Step 3: Dashboard go come next');
+  // Step 3 we go load dashboard here
+}
 </script>
 
 </body>
