@@ -5,249 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CITI BANK</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#f8faff}
-.nav{background:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:sticky;top:0}
-.logo{font-size:22px;font-weight:900;color:#0047AB;display:flex;align-items:center;gap:8px}
-.logo::before{content:"🏦";font-size:26px}
-.btn{padding:10px 20px;border:none;border-radius:25px;font-weight:600;cursor:pointer}
-.btn-blue{background:#0047AB;color:white}
-.btn-white{padding:8px 18px;background:white;color:#0047AB;border:2px solid #0047AB;border-radius:25px;font-weight:600;cursor:pointer;margin-right:10px}
-.hero{background:#0047AB;padding:40px 20px 60px;min-height:85vh}
-.hero-box{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
-.hero-text h1{color:white;font-size:38px;line-height:1.2;margin:15px 0}
-.hero-text p{color:#D6E7FF;font-size:15px;margin-bottom:25px}
-.trust{display:flex;align-items:center;gap:12px;margin-bottom:15px}
-.avatars img{width:35px;height:35px;border-radius:50%;border:2px solid white;margin-left:-10px}
-.stars{color:#FFD700;font-size:13px}
-.trust-text{color:white;font-size:14px}
-.phone{background:#000;border-radius:35px;padding:10px;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
-.phone-screen{background:white;border-radius:25px;width:270px;height:520px;overflow:hidden}
-.phone-top{background:#0047AB;color:white;padding:14px;text-align:center;font-weight:700}
-.bal{background:#0047AB;margin:15px;border-radius:15px;padding:18px;color:white}
-.bal small{opacity:0.8;font-size:12px}
-.bal b{font-size:22px}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0047AB;z-index:1000;align-items:center;justify-content:center;padding:20px}
-.box{background:white;padding:35px 25px;border-radius:18px;width:100%;max-width:400px}
-.box h2{text-align:center;margin-bottom:6px;color:#222}
-.box .sub{text-align:center;color:#666;margin-bottom:20px;font-size:14px}
-.field{margin-bottom:16px}
-.field label{display:block;font-weight:600;margin-bottom:6px;color:#222}
-.field input{width:100%;padding:13px 13px 13px 42px;border:2px solid #e5e7eb;border-radius:10px;background:#f8faff}
-.wrap{position:relative}
-.wrap .ic{position:absolute;left:14px;top:50%;transform:translateY(-50%)}
-.bigbtn{width:100%;padding:14px;background:#0047AB;color:white;border:none;border-radius:10px;font-weight:700;font-size:16px}
-.page{display:none;background:#0d1117;min-height:100vh;color:#e6e6e6}
-.dnav{display:flex;justify-content:space-between;padding:14px 16px;background:#161b22}
-.container{max-width:500px;margin:0 auto;padding:16px}
-.greet{background:#161b22;padding:18px;border-radius:12px;margin-bottom:16px}
-.greet h2{color:#fff}
-.greet p{color:#8b949e;font-size:14px;margin:6px 0 12px}
-.btn2{background:#21262d;color:#c9d1d9;padding:10px 16px;border:none;border-radius:8px}
-.balance{background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:22px;border-radius:16px;margin-bottom:16px;color:#fff}
-.tx{background:#161b22;border:1px solid #30363d;padding:14px;border-radius:10px;margin:10px 0;display:flex;justify-content:space-between}
-.green{color:#3fb950;font-weight:800}
-.red{color:#f85149;font-weight:800}
-.hid{display:none}
-
-/* TRANSFER INPUTS */
-.dfield{margin-bottom:16px}
-.dfield label{color:#8b949e;font-size:13px;margin-bottom:6px;display:block;font-weight:600}
-.dfield input{width:100%;padding:14px;background:#161b22;border:1px solid #30363d;border-radius:10px;color:#fff;font-size:15px}
-.dfield input:focus{border-color:#0047AB;outline:none}
-
-@media(max-width:900px){.hero-box{grid-template-columns:1fr;text-align:center}}
+body{margin:0;font-family:Arial;background:#0d1117;color:#fff}
+.nav{background:#161b22;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.container{max-width:480px;margin:0 auto;padding:20px}
+h1{text-align:center;font-size:20px;margin:20px 0}
+.blue{color:#3b82f6;text-align:center;font-weight:700;margin-bottom:20px}
+label{color:#8b949e;font-size:13px;margin-bottom:5px;display:block}
+input{width:100%;padding:14px;background:#161b22;border:1px solid #30363d;border-radius:8px;color:#fff;margin-bottom:16px;font-size:15px}
+.btn{width:100%;padding:14px;background:#2563eb;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-bottom:10px}
+.btn2{width:100%;padding:14px;background:#21262d;border:none;border-radius:8px;color:#aaa;font-weight:700;cursor:pointer}
+.page{display:none}
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
-<div id="landing">
-  <div class="nav">
-    <div class="logo">CITI BANK</div>
-    <div><button class="btn-white" onclick="openSignup()">Create Account</button><button class="btn btn-blue" onclick="openLogin()">Login</button></div>
-  </div>
-  <div class="hero">
-    <div class="hero-box">
-      <div class="hero-text">
-        <div class="trust">
-          <div class="avatars">
-            <img src="https://i.pravatar.cc/35?1">
-            <img src="https://i.pravatar.cc/35?2">
-          </div>
-          <div>
-            <div class="stars">★★★</div>
-            <div class="trust-text">Trusted by <b>50,000+</b> customers</div>
-          </div>
-        </div>
-        <h1>Your<br>Money.<br>Your<br>Bank.<br>Anywhere.</h1>
-        <p>Send, receive and manage your funds globally in seconds.</p>
-        <button class="btn" style="background:white;color:#0047AB;padding:14px 28px" onclick="openSignup()">Start Banking Free</button>
-      </div>
-      <div style="display:flex;justify-content:center">
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-top">CITI BANK</div>
-            <div class="bal">
-              <small>Available Balance</small>
-              <div><b>USD 8,360</b></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LOGIN -->
-<div id="loginModal" class="modal">
-  <div class="box">
-    <div class="logo" style="justify-content:center;margin-bottom:10px">CITI BANK</div>
-    <h2>Welcome Back 👋</h2><p class="sub">Sign in to continue</p>
-    <div class="field"><label>Email or Username</label><div class="wrap"><span class="ic">✉️</span><input id="lu" placeholder="Enter email"></div></div>
-    <div class="field"><label>Password</label><div class="wrap"><span class="ic">🔒</span><input id="lp" type="password" placeholder="Enter password"></div></div>
-    <button class="bigbtn" onclick="login()">Sign In</button>
-    <button class="btn2" style="width:100%;margin-top:10px" onclick="closeLogin()">Cancel</button>
-  </div>
-</div>
-
-<!-- SIGNUP -->
-<div id="signupModal" class="modal">
-  <div class="box">
-    <div class="logo" style="justify-content:center;margin-bottom:10px">CITI BANK</div>
-    <h2>Create Account ✨</h2><p class="sub">Join us today</p>
-    <div class="field"><label>Username</label><div class="wrap"><span class="ic">👤</span><input id="su" placeholder="Choose username"></div></div>
-    <div class="field"><label>Email</label><div class="wrap"><span class="ic">✉️</span><input id="se" type="email" placeholder="Enter email"></div></div>
-    <div class="field"><label>Password</label><div class="wrap"><span class="ic">🔒</span><input id="sp" type="password" placeholder="Create password"></div></div>
-    <div class="field"><label>4-Digit PIN</label><div class="wrap"><span class="ic">🔑</span><input id="spin" type="password" maxlength="4" placeholder="1234"></div></div>
-    <button class="bigbtn" onclick="signup()">Create Account</button>
-    <button class="btn2" style="width:100%;margin-top:10px" onclick="closeSignup()">Cancel</button>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="dash" class="page">
-  <div class="dnav"><div>☰</div><div style="font-weight:800">CITI BANK</div><div>👤</div></div>
+<!-- TRANSFER PAGE LIKE YOUR SCREENSHOT -->
+<div id="t" class="page" style="display:block">
+  <div class="nav"><div>☰</div><div>CITI BANK</div><div>👤</div></div>
   <div class="container">
-    <div class="greet">
-      <h2>Good morning <span id="n">User</span></h2>
-      <p>At a glance summary of your account!</p>
-      <button class="btn-blue">Deposit →</button><button class="btn2" onclick="show('t')">Transfer Fund</button>
-      <button class="btn2" onclick="logout()" style="background:#da3633;color:white;margin-top:10px">Logout</button>
-    </div>
-    <h3 style="color:#fff;margin:16px 0 10px">Overview</h3>
-    <div class="balance">
-      <div style="color:#93c5fd;font-size:12px">Available balance</div>
-      <div style="font-size:28px;font-weight:900;margin:4px 0">USD <span id="bal">8,360,200</span></div>
-      <div style="color:#93c5fd">Anthony Trimble D</div>
-    </div>
-    <h3 style="color:#fff;margin:16px 0 10px">Recent Transactions</h3>
-    <div id="tlist"></div>
-  </div>
-</div>
-
-<!-- TRANSFER WITH AMOUNT INPUT -->
-<div id="t" class="page">
-  <div class="dnav"><div>☰</div><div style="font-weight:800">CITI BANK</div><div>👤</div></div>
-  <div class="container">
-    <h1 style="color:#fff;text-align:center;font-size:22px;margin:16px 0">CITI BANK Online<br>Banking Transfer.</h1>
+    <h1>CITI BANK Online<br>Banking Transfer.</h1>
     
-    <div class="dfield">
-      <label>Amount to Transfer (USD):</label>
-      <input id="tamt" type="number" placeholder="Enter amount e.g 5000">
-    </div>
-
-    <div class="dfield"><label>Bank name:</label><input id="bn" placeholder="Citi Bank"></div>
-    <div class="dfield"><label>Account Number:</label><input id="an" placeholder="1234567890"></div>
-    <div class="dfield"><label>Account holder:</label><input id="ah" placeholder="Carson"></div>
-    <div class="dfield"><label>Description:</label><input id="ds" placeholder="Payment for..."></div>
+    <label>Amount to Transfer (USD):</label>
+    <input id="tamt" type="number" placeholder="Enter amount">
     
-    <button class="btn-blue" style="width:100%;padding:15px" onclick="showPin()">Continue to next step</button>
-    <button class="btn2" style="width:100%;margin-top:10px" onclick="show('dash')">Back</button>
-  </div>
-</div>
-
-<!-- PIN -->
-<div id="pinModal" class="modal" style="background:rgba(0,0,0,.8)">
-  <div class="box">
-    <h2>Enter Payment PIN</h2><p class="sub">Enter your 4-digit PIN</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0">
-      <input id="p1" maxlength="1" style="height:55px;text-align:center;font-size:22px">
-      <input id="p2" maxlength="1" style="height:55px;text-align:center;font-size:22px">
-      <input id="p3" maxlength="1" style="height:55px;text-align:center;font-size:22px">
-      <input id="p4" maxlength="1" style="height:55px;text-align:center;font-size:22px">
-    </div>
-    <button class="bigbtn" onclick="verifyPin()">Confirm Transfer</button>
-    <button class="btn2" style="width:100%;margin-top:10px" onclick="closePin()">Cancel</button>
-  </div>
-</div>
-
-<!-- SUCCESS -->
-<div id="s" class="page">
-  <div class="dnav"><div>☰</div><div style="font-weight:800">CITI BANK</div><div>👤</div></div>
-  <div class="container" style="text-align:center;padding:40px 16px">
-    <div style="width:80px;height:80px;background:#3fb950;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:40px">✓</div>
-    <h1 style="color:#fff">Transaction successful!</h1>
-    <p style="color:#8b949e;margin:15px 0">You sent <b id="sa">0</b> USD to <b id="sto">Carson</b></p>
-    <button class="btn-blue" style="width:100%;margin-top:20px" onclick="show('dash')">Back to Dashboard</button>
+    <label>Bank name:</label>
+    <input id="bn" placeholder="Citi Bank">
+    
+    <label>Account Number:</label>
+    <input id="an" placeholder="1234567890">
+    
+    <label>Account holder:</label>
+    <input id="ah" placeholder="Carson">
+    
+    <label>Description:</label>
+    <input id="ds" placeholder="Payment for...">
+    
+    <button class="btn" onclick="send()">Continue to next step</button>
+    <button class="btn2" onclick="alert('Back')">Back</button>
   </div>
 </div>
 
 <script>
-let balance=8360200,currentUser=null;
-let tx=[{r:'ELI/LCO3NJQEL-0626',d:'16 Jun 2026, 5:13 pm',s:'Initial payment',a:2700000,t:'green'},{r:'ELI/ETEHME31V-0626',d:'16 Jun 2026, 4:10 pm',s:'Salary',a:300000,t:'green'},{r:'ELI/NAJYATY0Z-0626',d:'16 Jun 2026, 1:45 am',s:'Food supply',a:187000,t:'red'}];
-
-function openSignup(){signupModal.style.display='flex'}
-function closeSignup(){signupModal.style.display='none'}
-function openLogin(){loginModal.style.display='flex'}
-function closeLogin(){loginModal.style.display='none'}
-
-function signup(){
-  let u=su.value,e=se.value,p=sp.value,pin=spin.value;
-  if(!u||!e||!p||!pin){alert('Fill all fields');return}
-  if(pin.length!=4){alert('PIN must be 4 digits');return}
-  localStorage.setItem('citi',JSON.stringify({u,e,pin}));
-  alert('Account created!');closeSignup();openLogin();
-}
-
-function login(){
-  let u=lu.value,p=lp.value,s=JSON.parse(localStorage.getItem('citi'));
-  if(!s){alert('No account');return}
-  if(u!=s.u&&u!=s.e||p!=s.p){alert('Wrong login');return}
-  currentUser=s;n.innerText=s.u;closeLogin();landing.classList.add('hid');show('dash');
-}
-
-function logout(){currentUser=null;landing.classList.remove('hid');document.querySelectorAll('.page').forEach(x=>x.style.display='none')}
-function show(id){document.querySelectorAll('.page').forEach(x=>x.style.display='none');document.getElementById(id).style.display='block';if(id=='dash')load()}
-
-function showPin(){
+function send(){
   let amt = document.getElementById('tamt').value;
+  let bn = document.getElementById('bn').value;
+  let an = document.getElementById('an').value;
+  let ah = document.getElementById('ah').value;
+  
   if(!amt || amt <= 0){alert('Please enter amount');return}
-  if(!bn.value||!an.value||!ah.value){alert('Fill all fields');return}
-  if(parseInt(amt) > balance){alert('Insufficient Funds. Your balance: '+balance.toLocaleString());return}
-  pinModal.style.display='flex';
-  p1.value=p2.value=p3.value=p4.value='';p1.focus();
-}
-function closePin(){pinModal.style.display='none'}
-
-function verifyPin(){
-  let pin=p1.value+p2.value+p3.value+p4.value;
-  if(pin!=currentUser.pin){alert('Wrong PIN');return}
-  closePin();
+  if(!bn || !an || !ah){alert('Please fill all fields');return}
   
-  let amt=parseInt(document.getElementById('tamt').value);
-  balance-=amt;
-  
-  document.getElementById('sa').innerText=amt.toLocaleString();
-  document.getElementById('sto').innerText=ah.value;
-  
-  tx.unshift({r:'ELI/'+Math.random().toString(36).substr(2,6).toUpperCase()+'-0626',d:new Date().toLocaleString(),s:ds.value,a:amt,t:'red'});
-  show('s');
-}
-
-function load(){
-  let h='';tx.forEach(x=>h+=`<div class="tx"><div><div style="color:#fff;font-weight:700">${x.r}</div><div style="color:#8b949e;font-size:12px">${x.d}</div><div style="color:#58a6ff">${x.s}</div></div><div class="${x.t}">${x.t=='green'?'+':'-'} USD ${x.a.toLocaleString()}</div></div>`);
-  tlist.innerHTML=h;bal.innerText=balance.toLocaleString();
+  alert('Transfer of USD '+parseInt(amt).toLocaleString()+' to '+ah+' successful!');
+  document.getElementById('tamt').value='';
 }
 </script>
 </body>
