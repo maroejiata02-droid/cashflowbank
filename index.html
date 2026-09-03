@@ -6,12 +6,12 @@
 <title>CASHFLOW BANK</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--muted:#8b949e;--blue:#2563eb;--green:#10b981;--red:#ef4444;--border:#30363d}
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2128;--text:#c9d1d9;--muted:#8b949e;--blue:#2563eb;--green:#10b981;--red:#ef4444;--border:#30363d}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
-/* HEADER LIKE ELITE RIFF */
+/* HEADER */
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#010409;border-bottom:1px solid var(--border)}
 .menu-icon{font-size:24px;cursor:pointer}
 .brand{font-size:14px;font-weight:600;color:var(--muted)}
@@ -22,8 +22,7 @@ body{background:var(--bg);color:var(--text)}
 .success-icon{width:80px;height:80px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .success-icon svg{width:40px;height:40px;stroke:white;stroke-width:3}
 .success-title{font-size:22px;font-weight:700;margin-bottom:10px}
-.success-desc{color:var(--muted);font-size:14px;margin-bottom:20px;line-height:1.6}
-
+.success-desc{color:var(--muted);font-size:14px;margin-bottom:20px}
 .details-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0}
 .detail-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)}
 .detail-row:last-child{border-bottom:none}
@@ -61,8 +60,36 @@ body{background:var(--bg);color:var(--text)}
 .tx-desc{color:var(--blue);font-size:13px}
 .btn-view{background:#21262d;border:1px solid var(--border);color:var(--blue);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer}
 
+/* PROFILE PAGE - NEW */
+.profile-page{padding:20px;background:linear-gradient(180deg, #1e3a8a 0%, #0d1117 100%);min-height:100vh}
+.page-header{display:flex;align-items:center;gap:12px;padding-bottom:20px}
+.back-btn{font-size:24px;cursor:pointer;color:var(--text)}
+.page-title{font-size:18px;font-weight:700}
+.profile-center{text-align:center;padding:30px 0}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;margin:0 auto 12px}
+.profile-name{font-size:20px;font-weight:700}
+.profile-email{color:var(--muted);font-size:14px}
+.settings-card{background:var(--card2);border-radius:12px;padding:4px;margin-top:20px}
+.setting-item{display:flex;justify-content:space-between;align-items:center;padding:16px;cursor:pointer}
+.setting-item:hover{background:#21262d;border-radius:8px}
+.setting-left{display:flex;flex-direction:column}
+.setting-title{font-weight:600;font-size:15px}
+.setting-sub{font-size:12px;color:var(--muted)}
+.arrow{color:var(--muted)}
+
+/* SETTINGS PAGE - NEW */
+.settings-page{padding:20px}
+.settings-title{text-align:center;font-size:18px;font-weight:700;padding:12px 0 20px}
+.settings-group{background:var(--card2);border-radius:12px;padding:4px;margin-bottom:16px}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer}
+.setting-row svg{width:20px;height:20px;stroke:var(--green)}
+.setting-row-right{display:flex;align-items:center;gap:8px}
+.not-set{color:#fbbf24;font-size:12px}
+.btn-signout{width:100%;padding:14px;background:var(--card2);color:var(--text);border:none;border-radius:8px;font-weight:600;font-size:16px;cursor:pointer;margin-top:10px}
+
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:12px;border-top:1px solid var(--border)}
 .nav-btn{color:var(--muted);font-size:12px;text-align:center;cursor:pointer}
+.nav-btn.active{color:var(--blue)}
 </style>
 </head>
 <body>
@@ -71,7 +98,7 @@ body{background:var(--bg);color:var(--text)}
 <div class="top-bar">
   <div class="menu-icon">☰</div>
   <div class="brand">CASHFLOW BANK</div>
-  <div class="profile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+  <div class="profile-icon" onclick="showPage('profilePage')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
 </div>
 
 <!-- 1. TRANSFER FORM PAGE -->
@@ -79,106 +106,122 @@ body{background:var(--bg);color:var(--text)}
   <div class="transfer-title">CASHFLOW BANK Online Banking Transfer.</div>
   <div class="amount-label">AMOUNT TO TRANSFER: USD<span id="transferAmt">27,800</span></div>
   
-  <div class="form-group">
-    <label>Bank name:</label>
-    <div class="input-wrap">
-      <input id="bankName" value="Citi Bank">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label>Account Number:</label>
-    <div class="input-wrap">
-      <input id="accNumber" placeholder="Enter account number">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/></svg>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label>Account holder:</label>
-    <div class="input-wrap">
-      <input id="accHolder" value="Carson">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label>Description(optional):</label>
-    <div class="input-wrap">
-      <input id="desc" value="Payment for shipping">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    </div>
-  </div>
-
+  <div class="form-group"><label>Bank name:</label><div class="input-wrap"><input id="bankName" value="Citi Bank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div></div>
+  <div class="form-group"><label>Account Number:</label><div class="input-wrap"><input id="accNumber" placeholder="Enter account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/></svg></div></div>
+  <div class="form-group"><label>Account holder:</label><div class="input-wrap"><input id="accHolder" value="Carson"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+  <div class="form-group"><label>Description(optional):</label><div class="input-wrap"><input id="desc" value="Payment for shipping"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
   <button class="btn-primary" onclick="doTransfer()">Continue to next step</button>
 </div>
 
 <!-- 2. SUCCESS PAGE -->
 <div id="successPage" class="success-page hid">
-  <div class="success-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
-  </div>
+  <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></div>
   <div class="success-title">Transaction successful!</div>
   <div class="success-desc" id="successText">You have successfully transfered 270000 USD to Chris Wood.</div>
-  
   <div class="details-card">
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Amount Debited</div>
-      <div class="detail-right" id="debitedAmt">USD 270,000</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Transaction refrence:</div>
-      <div class="detail-right" id="txRef">ELI/K9ATY3YVH-0626</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Account holder:</div>
-      <div class="detail-right" id="txHolder">Chris Wood</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Bank Name:</div>
-      <div class="detail-right" id="txBank">PNC bank</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Date:</div>
-      <div class="detail-right" id="txDate">19 Jun 2026, 4:27 am</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Available Balance:</div>
-      <div class="detail-right">USD 7,890,200</div>
-    </div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Amount Debited</div><div class="detail-right" id="debitedAmt">USD 270,000</div></div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Transaction refrence:</div><div class="detail-right" id="txRef">CFB/ABC123-0626</div></div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Account holder:</div><div class="detail-right" id="txHolder">Chris Wood</div></div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Bank Name:</div><div class="detail-right" id="txBank">PNC bank</div></div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Date:</div><div class="detail-right" id="txDate">19 Jun 2026, 4:27 am</div></div>
+    <div class="detail-row"><div class="detail-left"><div class="check-small"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Available Balance:</div><div class="detail-right">USD 7,890,200</div></div>
   </div>
-  
   <button class="btn-primary" style="margin-top:20px" onclick="showPage('txPage')">View Transactions</button>
 </div>
 
 <!-- 3. TRANSACTIONS PAGE -->
 <div id="txPage" class="tx-page hid">
-  <div class="tx-header">
-    <div class="tx-title">Recent Transaction Activities</div>
-    <div class="tx-all">All</div>
-  </div>
-
+  <div class="tx-header"><div class="tx-title">Recent Transaction Activities</div><div class="tx-all">All</div></div>
   <div id="txList"></div>
 </div>
 
+<!-- 4. PROFILE PAGE - NEW -->
+<div id="profilePage" class="profile-page hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('transferPage')">←</span><div class="page-title">Profile</div></div>
+  <div class="profile-center">
+    <div class="profile-avatar">S</div>
+    <div class="profile-name">Sun</div>
+    <div class="profile-email">sun@email.com</div>
+  </div>
+  <div class="settings-card">
+    <div class="setting-item" onclick="showPage('changePinPage')">
+      <div class="setting-left"><div class="setting-title">Change Payment PIN</div><div class="setting-sub">Update your 4-digit transfer PIN</div></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="setting-item" onclick="resetBalance()">
+      <div class="setting-left"><div class="setting-title">Reset Balance</div></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="setting-item" onclick="showPage('settingsPage')">
+      <div class="setting-left"><div class="setting-title">Settings</div></div>
+      <div class="arrow">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. SETTINGS PAGE - NEW -->
+<div id="settingsPage" class="settings-page hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('profilePage')">←</span><div class="settings-title">Settings</div></div>
+  
+  <div class="settings-group">
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Payment Settings</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.5 7.5L12 13l1 1 1.5-1.5M3 21l2-2m3.5-3.5L9 15l1 1 1.5-1.5"/></svg>Login Settings</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-2H5a2 2 0 0 0-2 2z"/></svg>Savings Settings</div><div>›</div></div>
+  </div>
+
+  <div class="settings-group">
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Homepage Settings</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/></svg>Security Questions</div><div class="setting-row-right"><span class="not-set">Not Set</span><span>›</span></div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>SMS Alert Settings</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Access to Clipboard</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>Themes</div><div>›</div></div>
+  </div>
+
+  <div class="settings-group">
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Center</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Feedback and Suggestions</div><div>›</div></div>
+  </div>
+
+  <div class="settings-group">
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>close account</div><div>›</div></div>
+    <div class="setting-row"><div style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>about</div><div>›</div></div>
+  </div>
+  <button class="btn-signout" onclick="alert('Signed out')">Sign Out</button>
+</div>
+
+<!-- CHANGE PIN PAGE -->
+<div id="changePinPage" class="transfer-page hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('profilePage')">←</span><div class="page-title">Change Payment PIN</div></div>
+  <div class="form-group"><label>Current PIN</label><input id="currentPin" type="password" maxlength="4" placeholder="Enter current PIN"></div>
+  <div class="form-group"><label>New PIN</label><input id="newPin" type="password" maxlength="4" placeholder="Enter new 4-digit PIN"></div>
+  <div class="form-group"><label>Confirm New PIN</label><input id="confirmPin" type="password" maxlength="4" placeholder="Confirm new PIN"></div>
+  <button class="btn-primary" onclick="updatePin()">Update PIN</button>
+</div>
+
 <div class="bottom-nav">
-  <div class="nav-btn" onclick="showPage('transferPage')">Transfer</div>
+  <div class="nav-btn active" onclick="showPage('transferPage')">Transfer</div>
   <div class="nav-btn" onclick="showPage('txPage')">History</div>
+  <div class="nav-btn" onclick="showPage('profilePage')">Profile</div>
 </div>
 
 <script>
 let balance = 7890200;
+let savedPin = localStorage.getItem('cashflowPin') || '1234';
 let transactions = [
-  {ref:"ELI/LCO3NJQEL-0626", amt:2700000, type:"Credit", date:"16 Jun 2026, 5:13 pm", desc:"Initial payment", status:"Completed"},
-  {ref:"ELI/ETE HME31V-0626", amt:300000, type:"Credit", date:"16 Jun 2026, 4:10 pm", desc:"Initial payment", status:"Completed"},
-  {ref:"ELI/NAJYATY0Z-0626", amt:-187000, type:"Debit", date:"16 Jun 2026, 1:45 am", desc:"Food supply", status:"Completed"},
-  {ref:"ELI/OE8KRNSDI-0626", amt:-27800, type:"Debit", date:"15 Jun 2026, 12:19 pm", desc:"Payment for shipping", status:"Completed"},
-  {ref:"ELI/D5TCOBXLQ-0626", amt:-10000, type:"Debit", date:"11 Jun 2026, 1:01 am", desc:"Payment", status:"Completed"}
+  {ref:"CFB/LCO3NJQEL-0626", amt:2700000, type:"Credit", date:"16 Jun 2026, 5:13 pm", desc:"Initial payment", status:"Completed"},
+  {ref:"CFB/ETE HME31V-0626", amt:300000, type:"Credit", date:"16 Jun 2026, 4:10 pm", desc:"Initial payment", status:"Completed"},
+  {ref:"CFB/NAJYATY0Z-0626", amt:-187000, type:"Debit", date:"16 Jun 2026, 1:45 am", desc:"Food supply", status:"Completed"},
+  {ref:"CFB/OE8KRNSDI-0626", amt:-27800, type:"Debit", date:"15 Jun 2026, 12:19 pm", desc:"Payment for shipping", status:"Completed"},
+  {ref:"CFB/D5TCOBXLQ-0626", amt:-10000, type:"Debit", date:"11 Jun 2026, 1:01 am", desc:"Payment", status:"Completed"}
 ];
 
 function showPage(page){
-  ['transferPage','successPage','txPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(page=='transferPage') document.querySelector('.nav-btn:nth-child(1)').classList.add('active');
+  if(page=='txPage') document.querySelector('.nav-btn:nth-child(2)').classList.add('active');
+  if(page=='profilePage') document.querySelector('.nav-btn:nth-child(3)').classList.add('active');
+  ['transferPage','successPage','txPage','profilePage','settingsPage','changePinPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
   document.getElementById(page).classList.remove('hid');
   if(page=='txPage') loadTransactions();
 }
@@ -193,28 +236,16 @@ function doTransfer(){
   let holder = document.getElementById('accHolder').value;
   let desc = document.getElementById('desc').value;
   let amt = parseFloat(document.getElementById('transferAmt').innerText.replace(',',''));
-  
   if(!acc){alert('Enter account number');return}
-  
   balance -= amt;
-  
-  let newTx = {
-    ref: generateRef(),
-    amt: -amt,
-    type: "Debit",
-    date: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),
-    desc: desc,
-    status: "Completed"
-  };
+  let newTx = {ref: generateRef(), amt: -amt, type: "Debit", date: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}), desc: desc, status: "Completed"};
   transactions.unshift(newTx);
-  
   document.getElementById('successText').innerText = `You have successfully transfered ${amt.toLocaleString()} USD to ${holder}.`;
   document.getElementById('debitedAmt').innerText = `USD ${amt.toLocaleString()}`;
   document.getElementById('txRef').innerText = newTx.ref;
   document.getElementById('txHolder').innerText = holder;
   document.getElementById('txBank').innerText = bank;
   document.getElementById('txDate').innerText = newTx.date;
-  
   showPage('successPage');
 }
 
@@ -223,23 +254,34 @@ function loadTransactions(){
   transactions.forEach(tx=>{
     let amtClass = tx.amt > 0 ? 'credit' : 'debit';
     let amtSign = tx.amt > 0 ? '+' : '';
-    html += `
-    <div class="tx-card">
-      <div class="tx-top">
-        <div class="tx-ref">${tx.ref}</div>
-        <div class="tx-amount ${amtClass}">${amtSign}${Math.abs(tx.amt).toLocaleString()} USD</div>
-      </div>
-      <div class="tx-mid">
-        <div class="tx-date">${tx.date}</div>
-        <div class="tx-status">${tx.status}</div>
-      </div>
-      <div class="tx-bot">
-        <div class="tx-desc">${tx.desc}</div>
-        <button class="btn-view">View Details</button>
-      </div>
-    </div>`;
+    html += `<div class="tx-card"><div class="tx-top"><div class="tx-ref">${tx.ref}</div><div class="tx-amount ${amtClass}">${amtSign}${Math.abs(tx.amt).toLocaleString()} USD</div></div><div class="tx-mid"><div class="tx-date">${tx.date}</div><div class="tx-status">${tx.status}</div></div><div class="tx-bot"><div class="tx-desc">${tx.desc}</div><button class="btn-view">View Details</button></div></div>`;
   });
   document.getElementById('txList').innerHTML = html;
+}
+
+function updatePin(){
+  let current = document.getElementById('currentPin').value;
+  let newP = document.getElementById('newPin').value;
+  let confirm = document.getElementById('confirmPin').value;
+  if(current !== savedPin){alert('Current PIN is incorrect');return}
+  if(newP.length !== 4){alert('PIN must be 4 digits');return}
+  if(newP !== confirm){alert('New PINs do not match');return}
+  localStorage.setItem('cashflowPin', newP);
+  savedPin = newP;
+  alert('Payment PIN updated successfully!');
+  document.getElementById('currentPin').value='';
+  document.getElementById('newPin').value='';
+  document.getElementById('confirmPin').value='';
+  showPage('profilePage');
+}
+
+function resetBalance(){
+  if(confirm('Reset balance to $7,890,200?')){
+    balance = 7890200;
+    transactions = [];
+    alert('Balance reset!');
+    showPage('transferPage');
+  }
 }
 
 loadTransactions();
