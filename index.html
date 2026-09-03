@@ -18,9 +18,10 @@ body{background:#0047AB;color:white}
 .btn-white{padding:8px 18px;background:white;color:#0047AB;border:2px solid #0047AB;border-radius:25px;font-weight:600;cursor:pointer}
 .hamburger{display:none;font-size:26px;color:#0047AB;cursor:pointer}
 
-/* SIDEBAR */
+/* SIDEBAR MENU */
 .sidebar{height:100%;width:0;position:fixed;top:0;right:0;background:#0047AB;overflow-x:hidden;transition:0.4s;padding-top:60px;z-index:1000}
-.sidebar a{padding:15px 25px;text-decoration:none;font-size:18px;color:white;display:block}
+.sidebar a{padding:16px 25px;text-decoration:none;font-size:18px;color:white;display:block;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sidebar a:hover{background:#003380}
 .sidebar .closebtn{position:absolute;top:10px;right:20px;font-size:35px;color:white;cursor:pointer}
 .overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999}
 
@@ -37,7 +38,7 @@ body{background:#0047AB;color:white}
 .bal{background:linear-gradient(135deg,#0047AB,#0066ff);margin:15px;border-radius:15px;padding:20px;color:white}
 .bal b{font-size:24px}
 
-/* MODAL POPUP */
+/* MODAL */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1001;align-items:center;justify-content:center;padding:20px}
 .box{background:white;color:#222;padding:35px 25px;border-radius:18px;width:100%;max-width:400px}
 .box h2{text-align:center;margin-bottom:6px}
@@ -57,13 +58,17 @@ body{background:#0047AB;color:white}
   .hero{grid-template-columns:1fr;text-align:center}
   .btn-white,.btn-blue{display:none}
   .hamburger{display:block}
+}
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
+<!-- SIDEBAR MENU WITH 5 ITEMS -->
 <div id="sidebar" class="sidebar">
   <span class="closebtn" onclick="closeMenu()">×</span>
+  <a href="#" onclick="closeMenu()">Home</a>
+  <a href="#" onclick="alert('About Page - Coming Soon');closeMenu()">About</a>
+  <a href="#" onclick="alert('Services Page - Coming Soon');closeMenu()">Services</a>
   <a href="#" onclick="openLogin();closeMenu()">Login</a>
   <a href="#" onclick="openSignup();closeMenu()">Create Account</a>
 </div>
@@ -150,7 +155,7 @@ function signup(){
   let u=su.value,e=se.value,p=sp.value,pin=spin.value;
   if(!u||!e||!p||!pin){alert('Please fill all fields');return}
   if(pin.length!=4){alert('PIN must be 4 digits');return}
-  localStorage.setItem('citiUser',JSON.stringify({u,e,p,pin}));
+  localStorage.setItem('citiUser',JSON.stringify({u,e,pin}));
   alert('Account created successfully! Now login.');
   closeSignup();openLogin();
 }
@@ -163,7 +168,6 @@ function login(){
   if(u!=s.u && u!=s.e || p!=s.p){alert('Wrong username/email or password');return}
   alert('Login Successful! Welcome '+s.u);
   closeLogin();
-  // Next step we go go dashboard
 }
 </script>
 
