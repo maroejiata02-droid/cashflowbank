@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CashflowBank - Transfer</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+  
+  body {
+    background: linear-gradient(135deg, #ffffff 0%, #ffeb 100%);
+    min-height: 100vh;
+    color: #333;
+  }
+  
+  .header {
+    background: #d40000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(212,0,0,0.3);
+  }
+  
+  .container {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(212,0,0,0.15);
+    border: 2px solid #d40000;
+  }
+  
+  .balance {
+    text-align: center;
+    background: linear-gradient(135deg, #d40000, #ff0000);
+    color: white;
+    border: none;
+  }
+  
+  .balance h2 { font-size: 14px; opacity: 0.9; }
+  .balance h1 { font-size: 28px; font-weight: bold; margin-top: 5px; }
+  
+  .btn {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-red { background: #d40000; color: white; }
+  .btn-red:hover { background: #a30000; }
+  .btn-white { background: white; color: #d40000; border: 2px solid #d40000; }
+  .btn-white:hover { background: #ffeb; }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  input:focus { border-color: #d40000; outline: none; }
+  
+  .hidden { display: none; }
+  
+  .success {
+    background: #00c851;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>🏦 CashflowBank</h1>
+  </div>
+
+  <div class="container">
+    
+    <!-- HOME PAGE -->
+    <div id="homePage">
+      <div class="card balance">
+        <h2>AVAILABLE BALANCE</h2>
+        <h1 id="balance">$1,670,281.92</h1>
+      </div>
+      
+      <div class="card">
+        <button class="btn btn-red" onclick="showTransfer()">Send Money</button>
+        <button class="btn btn-white">Add Money</button>
+        <button class="btn btn-white">Transaction History</button>
+      </div>
+    </div>
+
+    <!-- TRANSFER PAGE -->
+    <div id="transferPage" class="hidden">
+      <div class="card">
+        <h2 style="color:#d40000; margin-bottom:15px;">Transfer Money</h2>
+        <input type="text" id="recipient" placeholder="Recipient Name">
+        <input type="text" id="account" placeholder="Account Number">
+        <input type="text" id="bank" placeholder="Bank Name">
+        <input type="number" id="amount" placeholder="Amount $" step="0.01">
+        <button class="btn btn-red" onclick="sendMoney()">Send Now</button>
+        <button class="btn btn-white" onclick="showHome()">Back to Home</button>
+      </div>
+      <div id="successMsg"></div>
+    </div>
+    
+  </div>
+
+<script>
+  let balance = 1670281.92;
+
+  function showTransfer() {
+    document.getElementById('homePage').classList.add('hidden');
+    document.getElementById('transferPage').classList.remove('hidden');
+  }
+  
+  function showHome() {
+    document.getElementById('transferPage').classList.add('hidden');
+    document.getElementById('homePage').classList.remove('hidden');
+    document.getElementById('successMsg').innerHTML = '';
+  }
+  
+  function sendMoney() {
+    let name = document.getElementById('recipient').value;
+    let acc = document.getElementById('account').value;
+    let amt = parseFloat(document.getElementById('amount').value);
+    
+    if(!name || !acc || !amt) {
+      alert('Please fill all fields');
+      return;
+    }
+    
+    if(amt > balance) {
+      alert('Insufficient Funds');
+      return;
+    }
+    
+    balance = balance - amt;
+    document.getElementById('balance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
+    
+    document.getElementById('successMsg').innerHTML = 
+      `<div class="success">✅ $${amt.toLocaleString()} Sent to ${name} Successfully!</div>`;
+    
+    document.getElementById('recipient').value = '';
+    document.getElementById('account').value = '';
+    document.getElementById('bank').value = '';
+    document.getElementById('amount').value = '';
+  }
+</script>
+
+</body>
+</html>
