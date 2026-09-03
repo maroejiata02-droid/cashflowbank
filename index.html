@@ -7,15 +7,11 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 body{background:#f8faff}
-
-/* NAV */
 .nav{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999}
 .logo{font-size:24px;font-weight:900;color:#0047AB;display:flex;align-items:center;gap:8px}
 .logo::before{content:"🏦";font-size:28px}
 .btn{background:#0047AB;color:white;border:none;padding:10px 20px;border-radius:25px;font-weight:600;cursor:pointer}
 .btn-outline{background:white;color:#0047AB;border:2px solid #0047AB;padding:8px 18px;border-radius:25px;font-weight:600;cursor:pointer;margin-right:10px}
-
-/* HERO SECTION */
 .hero{background:linear-gradient(135deg,#0047AB 0%,#0066ff 100%);padding:50px 20px 80px;position:relative;overflow:hidden}
 .hero-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .hero-text h1{color:white;font-size:42px;line-height:1.2;margin-bottom:15px}
@@ -26,8 +22,6 @@ body{background:#f8faff}
 .stars{color:#FFD700;font-size:14px}
 .trust-text{color:white;font-size:14px}
 .trust-text b{color:#FFD700}
-
-/* PHONE MOCKUP */
 .phone-wrap{position:relative;display:flex;justify-content:center}
 .phone{background:#111;border-radius:40px;padding:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
 .phone-screen{background:white;border-radius:30px;width:280px;height:550px;overflow:hidden;position:relative}
@@ -40,14 +34,10 @@ body{background:#f8faff}
 .service{ text-align:center }
 .service-icon{width:45px;height:45px;background:#F0F5FF;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:20px}
 .service-name{font-size:10px;color:#666}
-
-/* FLOATING TAGS */
 .tag{position:absolute;background:white;padding:10px 15px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.15);font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}
 .tag1{top:10%;left:5%}
 .tag2{top:30%;right:5%}
 .tag3{bottom:20%;left:10%}
-
-/* FEATURES */
 .content{max-width:1100px;margin:60px auto;padding:0 20px}
 .section-title{text-align:center;font-size:32px;color:#222;margin-bottom:10px}
 .section-desc{text-align:center;color:#666;margin-bottom:50px}
@@ -56,14 +46,11 @@ body{background:#f8faff}
 .card .icon{font-size:35px;margin-bottom:15px}
 .card h3{color:#222;margin-bottom:10px;font-size:18px}
 .card p{color:#666;line-height:1.6}
-
 .security{background:#0a1a3a;color:white;padding:60px 20px;text-align:center}
 .security h2{font-size:30px;margin-bottom:15px}
 .security p{color:#B0C4DE;max-width:600px;margin:0 auto}
-
 .cta{background:#0047AB;color:white;padding:60px 20px;text-align:center}
 .cta h2{font-size:32px;margin-bottom:15px}
-
 .footer{background:#061428;color:white;padding:40px 20px;text-align:center}
 .footer a{color:#94a3b8;text-decoration:none;margin:0 10px;font-size:14px}
 
@@ -85,16 +72,27 @@ body{background:#f8faff}
 .forgot a{color:#0047AB;font-size:13px;font-weight:600;text-decoration:none}
 .auth-btn{width:100%;background:linear-gradient(135deg,#0047AB,#0066ff);color:white;border:none;padding:15px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;margin-bottom:20px}
 .auth-switch{text-align:center;color:#666;font-size:14px}
-.auth-switch a{color:#0047AB;font-weight:700;text-decoration:none}
+.auth-switch a{color:#0047AB;font-weight:700;text-decoration:none;cursor:pointer}
 .secure-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:25px;color:#10b981;font-size:13px}
 .page{display:none;background:#0f1419;color:#e0e0e0;min-height:100vh}
 .dnav{background:#1a1f2e;padding:15px 20px;display:flex;justify-content:space-between}
 .dcon{max-width:500px;margin:0 auto;padding:20px}
 .greet{background:#1a1f2e;padding:20px;border-radius:10px;margin-bottom:20px}
+.greet h2{color:white}
+.greet p{color:#aaa;font-size:14px;margin:5px 0 15px}
 .btn2{background:#2a3441;color:#aaa;border:none;padding:12px 20px;border-radius:8px;font-weight:600;margin-left:10px;cursor:pointer}
 .balance{background:linear-gradient(135deg,#1e3a8a,#1e40af);padding:25px;border-radius:15px;margin-bottom:20px}
-.tx{background:#1a1f2e;padding:15px;border-radius:10px;margin:10px 0;display:flex;justify-content:space-between}
-.c{color:#10b981;font-weight:700}.d{color:#ef4444;font-weight:700}
+
+/* FIXED TRANSACTION STYLES */
+.tx{background:#1a1f2e;padding:15px;border-radius:10px;margin:10px 0;display:flex;justify-content:space-between;border:1px solid #2a3441}
+.tx:hover{background:#232b3e}
+.tx-ref{color:white;font-weight:600;font-size:13px}
+.tx-date{color:#aaa;font-size:11px}
+.tx-desc{color:#60a5fa;font-size:12px}
+.tx-amt{font-weight:800;font-size:16px}
+.c{color:#10b981}
+.d{color:#ef4444}
+
 .hid{display:none}
 
 @media(max-width:900px){
@@ -116,7 +114,6 @@ body{background:#f8faff}
     </div>
   </div>
 
-  <!-- HERO WITH PHONE MOCKUP -->
   <div class="hero">
     <div class="hero-container">
       <div class="hero-text">
@@ -168,7 +165,6 @@ body{background:#f8faff}
     </div>
   </div>
 
-  <!-- FEATURES -->
   <div class="content">
     <h2 class="section-title">Banking Features You'll Love</h2>
     <p class="section-desc">Everything you need for modern banking, in one secure platform</p>
@@ -212,7 +208,7 @@ body{background:#f8faff}
   </div>
 </div>
 
-<!-- NEW LOGIN MODAL -->
+<!-- LOGIN MODAL -->
 <div id="loginModal" class="modal">
   <div class="auth-box">
     <div class="auth-logo">
@@ -254,7 +250,7 @@ body{background:#f8faff}
   </div>
 </div>
 
-<!-- NEW SIGNUP MODAL -->
+<!-- SIGNUP MODAL -->
 <div id="signupModal" class="modal">
   <div class="auth-box">
     <div class="auth-logo">
@@ -310,7 +306,7 @@ body{background:#f8faff}
 
 <!-- DASHBOARD -->
 <div id="dash" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div style="width:40px;height:40px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#aaa;font-weight:700">CITI BANK</div><div style="width:40px;height:40px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div></div>
   <div class="dcon">
     <div class="greet">
       <h2>Good morning <span id="n">User</span></h2>
@@ -331,12 +327,12 @@ body{background:#f8faff}
 
 <!-- TRANSFER -->
 <div id="t" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div>👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#aaa;font-weight:700">CITI BANK</div><div>👤</div></div>
   <div class="dcon">
     <h1 style="color:white;text-align:center;margin:20px 0">CITI BANK Online<br>Banking Transfer.</h1>
     <div style="color:#3b82f6;font-size:14px;font-weight:700;margin-bottom:20px;text-align:center">AMOUNT TO TRANSFER: USD<span id="tamt">27,800</span></div>
     <div style="margin-bottom:20px;position:relative"><label style="position:absolute;top:-10px;left:15px;background:#0f1419;padding:0 5px;font-size:12px;color:#888">Bank name:</label><input id="bn" placeholder="Citi Bank" style="width:100%;background:#1a1f2e;border:1px solid #2a3441;border-radius:10px;padding:18px 15px;color:white"></div>
-    <div style="margin-bottom:20px;position:relative"><label style="position:absolute;top:-10px;left:15px;background:#0f1419;padding:0 5px;font-size:12px;color:#888">Account Number:</label><input id="an" placeholder="1234567890" style="width:100%;background:#1a1f2e;border:1px solid #2a3441;border-radius:10px;padding:18px 15px;color:white"></div>
+    <div style="margin-bottom:20px;position:relative"><label style="position:absolute;top:-10px;left:15px;background:#0f1419;padding:0 5px;font-size:12px;color:#888">Account Number:</label><input id="an" placeholder="1234567890" style="width:100%;background:#1a1f2e;border:1px solid #2a3441;border-radius:10px;color:white"></div>
     <div style="margin-bottom:20px;position:relative"><label style="position:absolute;top:-10px;left:15px;background:#0f1419;padding:0 5px;font-size:12px;color:#888">Account holder:</label><input id="ah" placeholder="Carson" style="width:100%;background:#1a1f2e;border:1px solid #2a3441;border-radius:10px;padding:18px 15px;color:white"></div>
     <button class="btn" style="width:100%" onclick="showPin()">Continue to next step</button>
     <button class="btn2" style="width:100%;margin-top:10px" onclick="show('dash')">Back</button>
@@ -345,16 +341,16 @@ body{background:#f8faff}
 
 <!-- PIN MODAL -->
 <div id="pinModal" class="modal" style="background:rgba(0,0,0,0.7)">
-  <div class="box" style="background:#1a1f2e;padding:30px;border-radius:15px;width:90%;max-width:400px">
-    <h2 style="color:white;text-align:center">Enter Payment PIN</h2>
-    <button class="btn" style="width:100%;margin-top:20px" onclick="verifyPin()">Confirm Transfer</button>
+  <div class="auth-box">
+    <h2>Enter Payment PIN</h2>
+    <button class="auth-btn" onclick="verifyPin()">Confirm Transfer</button>
     <button class="btn2" style="width:100%;margin-top:10px" onclick="closePin()">Cancel</button>
   </div>
 </div>
 
 <!-- SUCCESS -->
 <div id="s" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div>👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#aaa;font-weight:700">CITI BANK</div><div>👤</div></div>
   <div class="dcon">
     <div style="width:80px;height:80px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:30px auto;font-size:40px">✓</div>
     <h1 style="color:white;text-align:center">Transaction successful!</h1>
@@ -364,7 +360,11 @@ body{background:#f8faff}
 
 <script>
 let balance=8360200;let currentUser=null;
-let tx=[{r:'ELI/LCO3NJQEL-0626',d:'16 Jun 2026, 5:13 pm',s:'Initial payment',a:2700000,t:'c'}];
+let tx=[
+  {r:'ELI/LCO3NJQEL-0626',d:'16 Jun 2026, 5:13 pm',s:'Initial payment',a:2700000,t:'c'},
+  {r:'ELI/ETEHME31V-0626',d:'16 Jun 2026, 4:10 pm',s:'Salary Deposit',a:300000,t:'c'},
+  {r:'ELI/NAJYATY0Z-0626',d:'16 Jun 2026, 1:45 am',s:'Food supply',a:187000,t:'d'}
+];
 
 function openSignup(){document.getElementById('signupModal').style.display='flex'}
 function closeSignup(){document.getElementById('signupModal').style.display='none'}
@@ -396,7 +396,24 @@ function show(id){document.querySelectorAll('.page').forEach(p=>p.style.display=
 function showPin(){document.getElementById('pinModal').style.display='flex'}
 function closePin(){document.getElementById('pinModal').style.display='none'}
 function verifyPin(){closePin();alert('Transfer Complete!')}
-function load(){document.getElementById('bal').innerText=balance.toLocaleString()}
+
+function load(){
+  let h='';
+  tx.forEach(x=>{
+    h+=`<div class="tx">
+      <div>
+        <div class="tx-ref">${x.r}</div>
+        <div class="tx-date">${x.d}</div>
+        <div class="tx-desc">${x.s}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="tx-amt ${x.t}">${x.t=='c'?'+':'-'} USD ${x.a.toLocaleString()}</div>
+      </div>
+    </div>`
+  });
+  document.getElementById('tlist').innerHTML=h;
+  document.getElementById('bal').innerText=balance.toLocaleString()
+}
 </script>
 </body>
 </html>
