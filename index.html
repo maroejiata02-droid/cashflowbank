@@ -11,11 +11,24 @@
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
-/* LOADING */
+/* LOADING PAGE - EXACTLY LIKE YOUR SCREENSHOT */
 .loading-page{min-height:100vh;padding:20px;padding-bottom:80px;background:#fff8f0;color:#000}
-.logo{font-size:26px;font-weight:900}.logo .cashflow{color:var(--orange)}.logo .bank{color:#475569}
+.loading-header{padding:20px 0}
+.logo{font-size:26px;font-weight:900;letter-spacing:-0.5px}
+.logo .cashflow{color:var(--orange)}
+.logo .bank{color:#475569}
+.feature-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.feature-icon{width:40px;height:40px;border-radius:12px;background:#fff7ed;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.feature-icon svg{stroke:var(--orange);width:20px;height:20px}
+.feature-card h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px}
+.feature-card p{font-size:13px;color:#64748b;line-height:1.5}
+.section-title{text-align:center;font-size:20px;font-weight:800;color:#1e293b;margin:24px 0 16px}
 .cta-box{background:var(--orange);border-radius:16px;padding:24px;text-align:center;color:#fff}
-.btn-create{background:#fff;color:var(--orange);border:none;padding:12px 20px;border-radius:50px;font-weight:700;cursor:pointer}
+.cta-box h2{font-size:20px;font-weight:800;margin-bottom:14px}
+.btn-create{background:#fff;color:var(--orange);border:none;padding:12px 20px;border-radius:50px;font-weight:700;font-size:14px;cursor:pointer}
+.login-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px;text-align:center;border-top:1px solid #e2e8f0;font-size:14px}
+.login-bottom span{color:#64748b}
+.login-bottom a{color:var(--orange);font-weight:700;text-decoration:none;cursor:pointer}
 
 /* PIN MODAL */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
@@ -29,9 +42,9 @@ body{background:var(--bg);color:var(--text)}
 /* APP */
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#010409;border-bottom:1px solid var(--border)}
 .dashboard{padding:20px;padding-bottom:100px}
-.balance-card{background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);padding:24px;border-radius:16px;margin:16px 0;color:white}
 .limit-bar{background:var(--card2);padding:12px;border-radius:8px;margin:12px 0;font-size:12px}
 .limit-bar .used{color:var(--orange);font-weight:700}
+.balance-card{background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);padding:24px;border-radius:16px;margin:16px 0;color:white}
 .balance-card h1{font-size:28px;font-weight:800;margin:8px 0}
 .actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .action-btn{background:var(--card);padding:16px 8px;border-radius:12px;text-align:center;cursor:pointer;border:1px solid var(--border)}
@@ -69,11 +82,34 @@ body{background:var(--bg);color:var(--text)}
   </div>
 </div>
 
-<!-- LOADING PAGE -->
+<!-- 1. LOADING PAGE - WITH LOGIN BOTTOM -->
 <div id="loadingPage" class="loading-page">
-  <div style="padding:20px 0"><div class="logo"><span class="cashflow">CASHFLOW</span><span class="bank">BANK</span></div></div>
-  <div class="cta-box"><h2>Daily Limit: $1,000,000</h2><button class="btn-create" onclick="showPage('dashboardPage')">Get Started →</button></div>
-  <div style="position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px;text-align:center">Default PIN: <b>0000</b></div>
+  <div class="loading-header"><div class="logo"><span class="cashflow">CASHFLOW</span><span class="bank">BANK</span></div></div>
+  
+  <div class="feature-card">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div>
+    <h3>24/7 Support</h3>
+    <p>Our support team is always here to help you.</p>
+  </div>
+  
+  <div class="feature-card">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+    <h3>Best Rates</h3>
+    <p>We offer the best exchange rates with zero hidden fees.</p>
+  </div>
+
+  <h2 class="section-title">Get Started in 3 Simple Steps</h2>
+
+  <div class="cta-box">
+    <h2>Ready to Get Started?</h2>
+    <button class="btn-create" onclick="showPage('dashboardPage')">Get Started →</button>
+  </div>
+
+  <!-- LOGIN BOTTOM - BROUGHT BACK -->
+  <div class="login-bottom">
+    <span>Already have an account? </span>
+    <a onclick="showPage('dashboardPage')">Login</a>
+  </div>
 </div>
 
 <!-- DASHBOARD -->
@@ -85,7 +121,6 @@ body{background:var(--bg);color:var(--text)}
       <small>Available Balance</small>
       <h1 id="mainBalance">USD 7,890,200</h1>
     </div>
-    <!-- DAILY LIMIT BAR -->
     <div class="limit-bar">
       Daily Transfer Limit: <span class="used" id="usedLimit">$0</span> / $1,000,000
     </div>
@@ -110,17 +145,11 @@ body{background:var(--bg);color:var(--text)}
 <div id="transferPage" class="transfer-page hid">
   <div onclick="showPage('dashboardPage')">← Back</div>
   <div style="text-align:center;font-size:20px;font-weight:700;margin:20px 0">CASHFLOW BANK Online Banking Transfer.</div>
-  
-  <div class="form-group">
-    <label>Amount to Transfer (USD):</label>
-    <input id="transferAmount" type="number" placeholder="Max 1,000,000 per day">
-  </div>
-
+  <div class="form-group"><label>Amount to Transfer (USD):</label><input id="transferAmount" type="number" placeholder="Max 1,000,000 per day"></div>
   <div class="form-group"><label>Bank name:</label><input id="bankName" value="Citi Bank"></div>
   <div class="form-group"><label>Account Number:</label><input id="accNumber" placeholder="Enter account number"></div>
   <div class="form-group"><label>Account holder:</label><input id="accHolder" placeholder="Enter account name"></div>
   <div class="form-group"><label>Description(optional):</label><input id="desc" placeholder="Payment for..."></div>
-
   <button class="btn-primary" id="sendBtn" onclick="initiateTransfer()">Continue to next step</button>
 </div>
 
@@ -157,15 +186,14 @@ body{background:var(--bg);color:var(--text)}
 
 <script>
 let balance = 7890200;
-let DAILY_LIMIT = 1000000; // 1 MILLION LIMIT
+let DAILY_LIMIT = 1000000;
 let savedPin = localStorage.getItem('cashflowPin') || '0000';
 let transferData = {};
 
-// Load daily usage from localStorage
 let today = new Date().toDateString();
 let dailyData = JSON.parse(localStorage.getItem('cashflowDaily')) || {date: today, used: 0};
 if(dailyData.date !== today){
-  dailyData = {date: today, used: 0}; // Reset for new day
+  dailyData = {date: today, used: 0};
 }
 
 let transactions = JSON.parse(localStorage.getItem('cashflowTransactions')) || [];
@@ -208,19 +236,12 @@ function initiateTransfer(){
   let amt = parseFloat(document.getElementById('transferAmount').value);
   let name = document.getElementById('accHolder').value;
   let acc = document.getElementById('accNumber').value;
-  
   if(!amt || amt <= 0){alert('Enter valid amount');return}
   if(amt > balance){alert('Insufficient balance');return}
-  
   let remaining = DAILY_LIMIT - dailyData.used;
-  if(amt > remaining){
-    alert(`Daily limit exceeded! You can only transfer $${remaining.toLocaleString()} more today.`);
-    return;
-  }
-  
+  if(amt > remaining){alert(`Daily limit exceeded! You can only transfer $${remaining.toLocaleString()} more today.`);return}
   if(!acc){alert('Enter account number');return}
   if(!name){alert('Enter account holder name');return}
-  
   transferData = {name: name, amount: amt};
   document.getElementById('modalDesc').innerText = `Send $${amt.toLocaleString()} to ${name}?`;
   document.getElementById('transferModal').classList.remove('hid');
@@ -240,29 +261,21 @@ function closeModal(){
 function confirmTransfer(){
   let pin = Array.from(document.querySelectorAll('.pin-inputs input')).map(i=>i.value).join('');
   if(pin !== savedPin){alert('Wrong PIN! Default is 0000');return}
-  
   balance -= transferData.amount;
-  dailyData.used += transferData.amount; // ADD TO DAILY USAGE
-  
+  dailyData.used += transferData.amount;
   let newTx = {ref: 'CFB/'+Math.random().toString(36).substring(2,10).toUpperCase()+'-0626', amt: -transferData.amount, date: new Date().toLocaleDateString(), desc: document.getElementById('desc').value || "Transfer"};
   transactions.unshift(newTx);
-  
-  // Save to localStorage
   localStorage.setItem('cashflowDaily', JSON.stringify(dailyData));
   localStorage.setItem('cashflowTransactions', JSON.stringify(transactions));
-  
   document.getElementById('successText').innerText = `You have successfully transfered ${transferData.amount.toLocaleString()} USD to ${transferData.name}.`;
   updateBalance();
   updateLimitDisplay();
   loadRecentTx();
   closeModal();
-  
-  // Clear form
   document.getElementById('transferAmount').value = '';
   document.getElementById('accNumber').value = '';
   document.getElementById('accHolder').value = '';
   document.getElementById('desc').value = '';
-  
   showPage('successPage');
 }
 
