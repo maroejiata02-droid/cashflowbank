@@ -12,7 +12,7 @@ body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
 /* NEW LOADING PAGE - OTPSUITE STYLE */
-.loading-page{background:#fff8f0;min-height:100vh;padding:20px;color:#000}
+.loading-page{background:#fff8f0;min-height:100vh;padding:20px;color:#000;padding-bottom:100px}
 .loading-header{display:flex;justify-content:space-between;align-items:center;padding:10px 0;margin-bottom:20px}
 .loading-logo{height:32px}
 .loading-menu{font-size:24px;cursor:pointer}
@@ -29,8 +29,12 @@ body{background:var(--bg);color:var(--text)}
 .section-title{text-align:center;font-size:22px;font-weight:800;margin:30px 0 10px}
 .section-subtitle{text-align:center;color:#6b7280;font-size:14px;margin-bottom:20px}
 
-.footer-note{background:#0a1128;color:#94a3b8;padding:20px;border-radius:16px;text-align:center;font-size:13px;line-height:1.6}
+.footer-note{background:#0a1128;color:#94a3b8;padding:20px;border-radius:16px;text-align:center;font-size:13px;line-height:1.6;margin-bottom:16px}
 .footer-logo{height:28px;margin-bottom:10px}
+
+.login-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px 20px;text-align:center;border-top:1px solid #e5e7eb}
+.login-bottom span{color:#6b7280;font-size:14px}
+.login-bottom a{color:#f97316;font-weight:700;text-decoration:none;cursor:pointer}
 
 /* AUTH + APP STYLES */
 .auth-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#fff}
@@ -130,6 +134,12 @@ body{background:var(--bg);color:var(--text)}
     <img src="logo.png" class="footer-logo" onerror="this.style.display='none'">
     <p>Send money to 200+ countries and pay all your bills using one reliable, affordable and secure wallet.</p>
   </div>
+
+  <!-- LOGIN BOTTOM BUTTON -->
+  <div class="login-bottom">
+    <span>Already have an account? </span>
+    <a onclick="document.getElementById('loadingPage').classList.add('hid');document.getElementById('loginPage').classList.remove('hid')">Login</a>
+  </div>
 </div>
 
 <!-- 2. LOGIN PAGE -->
@@ -170,7 +180,7 @@ body{background:var(--bg);color:var(--text)}
   </div>
 </div>
 
-<!-- OTHER PAGES: TRANSFER, BILLS, CARDS, PAYMENTS, PROFILE, CHANGE PIN, CHANGE PASSWORD -->
+<!-- OTHER PAGES -->
 <div id="transferPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Send Money</div></div><div class="page-form"><div class="form-group"><label>Recipient Name</label><input id="recipientName" placeholder="Enter recipient name"></div><div class="form-group"><label>Account Number</label><input id="recipientAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="transferAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="sendMoney()">Send Money</button></div></div>
 <div id="billsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Pay Bills</div></div><div class="page-form"><div class="form-group"><label>Bill Type</label><select id="billType"><option>Electricity</option><option>Water</option><option>Internet</option><option>TV</option></select></div><div class="form-group"><label>Account Number</label><input id="billAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="billAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="payBill()">Pay Bill</button></div></div>
 <div id="cardsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">My Cards</div></div><div class="page-form"><div style="background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px"><div style="display:flex;justify-content:space-between">VISA <div>💳</div></div><div style="font-size:18px;letter-spacing:2px;margin:16px 0">**** **** 4567</div><div style="display:flex;justify-content:space-between"><div>SUN<br>12/28</div></div></div><button class="btn-blue" onclick="alert('New card requested!')">Request New Card</button></div></div>
