@@ -3,73 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CITI BANK - Your Trusted Bank</title>
+<title>CITI BANK</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#0047AB;color:white;overflow-x:hidden}
+body{background:#0047AB;color:white}
 
 /* NAVBAR */
-.nav{background:#ffffff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:99}
+.nav{background:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
 .logo{font-size:22px;font-weight:900;color:#0047AB;display:flex;align-items:center;gap:8px}
 .logo::before{content:"🏦";font-size:26px}
 .nav-right{display:flex;align-items:center;gap:10px}
 .btn{padding:10px 20px;border:none;border-radius:25px;font-weight:600;cursor:pointer}
 .btn-blue{background:#0047AB;color:white}
 .btn-white{padding:8px 18px;background:white;color:#0047AB;border:2px solid #0047AB;border-radius:25px;font-weight:600;cursor:pointer}
+.hamburger{display:none;font-size:26px;color:#0047AB;cursor:pointer}
 
-/* HAMBURGER */
-.hamburger{display:none;font-size:26px;color:#0047AB;cursor:pointer;padding:5px}
-
-/* SIDEBAR MENU */
+/* SIDEBAR */
 .sidebar{height:100%;width:0;position:fixed;top:0;right:0;background:#0047AB;overflow-x:hidden;transition:0.4s;padding-top:60px;z-index:1000}
-.sidebar a{padding:15px 25px;text-decoration:none;font-size:18px;color:white;display:block;transition:0.3s}
-.sidebar a:hover{background:#003380}
+.sidebar a{padding:15px 25px;text-decoration:none;font-size:18px;color:white;display:block}
 .sidebar .closebtn{position:absolute;top:10px;right:20px;font-size:35px;color:white;cursor:pointer}
 .overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999}
 
-/* HERO SECTION */
+/* HERO */
 .hero{padding:60px 20px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;min-height:80vh}
-.hero-text h1{font-size:44px;line-height:1.2;margin:15px 0;font-weight:800}
-.hero-text p{color:#D6E7FF;font-size:16px;margin-bottom:30px}
+.hero h1{font-size:44px;line-height:1.2;margin:15px 0;font-weight:800}
+.hero p{color:#D6E7FF;font-size:16px;margin-bottom:30px}
 .trust{display:flex;align-items:center;gap:15px;margin-bottom:20px}
 .avatars img{width:38px;height:38px;border-radius:50%;border:2px solid white;margin-left:-12px}
 .stars{color:#FFD700}
-
-.phone-wrap{display:flex;justify-content:center}
 .phone{background:#000;border-radius:40px;padding:12px}
-.phone-screen{background:white;border-radius:30px;width:280px;height:540px;overflow:hidden;color:#222}
+.phone-screen{background:white;border-radius:30px;width:280px;height:540px;color:#222}
 .phone-top{background:#0047AB;color:white;padding:15px;text-align:center;font-weight:700}
 .bal{background:linear-gradient(135deg,#0047AB,#0066ff);margin:15px;border-radius:15px;padding:20px;color:white}
 .bal b{font-size:24px}
 
-/* FEATURES */
-.features{background:white;color:#222;padding:70px 20px;text-align:center}
-.features h2{font-size:32px;color:#0047AB;margin-bottom:10px}
-.grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
-.card{background:#F8FAFF;padding:30px;border-radius:16px;border-left:4px solid #0047AB;text-align:left}
-.card .icon{font-size:35px;margin-bottom:15px}
+/* MODAL POPUP */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1001;align-items:center;justify-content:center;padding:20px}
+.box{background:white;color:#222;padding:35px 25px;border-radius:18px;width:100%;max-width:400px}
+.box h2{text-align:center;margin-bottom:6px}
+.box .sub{text-align:center;color:#666;margin-bottom:20px;font-size:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:600;margin-bottom:6px}
+.field input{width:100%;padding:13px;border:2px solid #e5e7eb;border-radius:10px;background:#f8faff;font-size:15px}
+.bigbtn{width:100%;padding:14px;background:#0047AB;color:white;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer}
+.btn2{width:100%;padding:12px;background:#f1f5f9;border:none;border-radius:10px;font-weight:600;margin-top:10px;cursor:pointer}
+.close-x{float:right;font-size:24px;cursor:pointer;color:#999}
 
-.footer{background:#061428;color:white;padding:30px 20px;text-align:center}
+.features{background:white;color:#222;padding:70px 20px;text-align:center}
+.features h2{color:#0047AB}
+.footer{background:#061428;color:white;padding:30px;text-align:center}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;text-align:center}
-  .hero-text h1{font-size:32px}
   .btn-white,.btn-blue{display:none}
   .hamburger{display:block}
-}
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR MENU -->
+<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar">
   <span class="closebtn" onclick="closeMenu()">×</span>
-  <a href="#" onclick="alert('Home')">Home</a>
-  <a href="#" onclick="alert('About Us')">About</a>
-  <a href="#" onclick="alert('Services')">Services</a>
-  <a href="#" onclick="alert('Contact')">Contact</a>
-  <a href="#" onclick="alert('Login coming Step 2')">Login</a>
-  <a href="#" onclick="alert('Signup coming Step 2')">Create Account</a>
+  <a href="#" onclick="openLogin();closeMenu()">Login</a>
+  <a href="#" onclick="openSignup();closeMenu()">Create Account</a>
 </div>
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
@@ -77,66 +73,97 @@ body{background:#0047AB;color:white;overflow-x:hidden}
 <div class="nav">
   <div class="logo">CITI BANK</div>
   <div class="nav-right">
-    <button class="btn-white" onclick="alert('Create Account - Coming Step 2')">Create Account</button>
-    <button class="btn btn-blue" onclick="alert('Login - Coming Step 2')">Login</button>
+    <button class="btn-white" onclick="openSignup()">Create Account</button>
+    <button class="btn btn-blue" onclick="openLogin()">Login</button>
     <div class="hamburger" onclick="openMenu()">☰</div>
   </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-text">
+  <div>
     <div class="trust">
       <div class="avatars">
         <img src="https://i.pravatar.cc/38?img=1">
         <img src="https://i.pravatar.cc/38?img=2">
       </div>
-      <div>
-        <div class="stars">★★★</div>
-        <div>Trusted by <b>50,000+</b> customers worldwide</div>
-      </div>
+      <div><div class="stars">★★★</div><div>Trusted by <b>50,000+</b> customers</div></div>
     </div>
     <h1>Your<br>Money.<br>Your<br>Bank.<br>Anywhere.</h1>
-    <p>Send, receive and manage your funds globally in seconds. Bank-level security with 24/7 support.</p>
-    <button class="btn" style="background:white;color:#0047AB;padding:14px 30px" onclick="alert('Create Account - Coming Step 2')">Start Banking Free</button>
+    <p>Send, receive and manage your funds globally in seconds.</p>
+    <button class="btn" style="background:white;color:#0047AB;padding:14px 30px" onclick="openSignup()">Start Banking Free</button>
   </div>
-  
-  <div class="phone-wrap">
-    <div class="phone">
-      <div class="phone-screen">
-        <div class="phone-top">CITI BANK</div>
-        <div class="bal">
-          <small>Available Balance</small>
-          <div><b>USD 8,360,200</b></div>
-        </div>
-      </div>
-    </div>
+  <div style="display:flex;justify-content:center">
+    <div class="phone"><div class="phone-screen">
+      <div class="phone-top">CITI BANK</div>
+      <div class="bal"><small>Available Balance</small><div><b>USD 8,360,200</b></div></div>
+    </div></div>
   </div>
 </div>
 
-<!-- FEATURES -->
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="box">
+    <span class="close-x" onclick="closeLogin()">×</span>
+    <div class="logo" style="justify-content:center;margin-bottom:10px">CITI BANK</div>
+    <h2>Welcome Back 👋</h2><p class="sub">Sign in to continue</p>
+    <div class="field"><label>Email or Username</label><input id="lu" placeholder="Enter email or username"></div>
+    <div class="field"><label>Password</label><input id="lp" type="password" placeholder="Enter password"></div>
+    <button class="bigbtn" onclick="login()">Sign In</button>
+    <button class="btn2" onclick="closeLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="modal">
+  <div class="box">
+    <span class="close-x" onclick="closeSignup()">×</span>
+    <div class="logo" style="justify-content:center;margin-bottom:10px">CITI BANK</div>
+    <h2>Create Account ✨</h2><p class="sub">Join us today</p>
+    <div class="field"><label>Username</label><input id="su" placeholder="Choose username"></div>
+    <div class="field"><label>Email</label><input id="se" type="email" placeholder="Enter email"></div>
+    <div class="field"><label>Password</label><input id="sp" type="password" placeholder="Create password"></div>
+    <div class="field"><label>4-Digit Transaction PIN</label><input id="spin" type="password" maxlength="4" placeholder="1234"></div>
+    <button class="bigbtn" onclick="signup()">Create Account</button>
+    <button class="btn2" onclick="closeSignup()">Cancel</button>
+  </div>
+</div>
+
 <div class="features">
   <h2>Banking Features You'll Love</h2>
-  <div class="grid">
-    <div class="card"><div class="icon">🌍</div><h3>Global Money Transfer</h3><p>Send money to 200+ countries in seconds.</p></div>
-    <div class="card"><div class="icon">🕐</div><h3>24/7 Banking Access</h3><p>Access your account anytime, any day.</p></div>
-    <div class="card"><div class="icon">🛡️</div><h3>Military-Grade Security</h3><p>256-bit encryption to keep your money safe.</p></div>
-  </div>
 </div>
-
-<div class="footer">
-  <div class="logo" style="color:white;justify-content:center">CITI BANK</div>
-  <p style="color:#64748b;font-size:12px;margin-top:10px">© 2026 CITI BANK. All rights reserved.</p>
-</div>
+<div class="footer">© 2026 CITI BANK. All rights reserved.</div>
 
 <script>
-function openMenu(){
-  document.getElementById("sidebar").style.width = "250px";
-  document.getElementById("overlay").style.display = "block";
+// MENU
+function openMenu(){document.getElementById("sidebar").style.width = "250px";document.getElementById("overlay").style.display = "block"}
+function closeMenu(){document.getElementById("sidebar").style.width = "0";document.getElementById("overlay").style.display = "none"}
+
+// MODALS
+function openLogin(){document.getElementById('loginModal').style.display='flex'}
+function closeLogin(){document.getElementById('loginModal').style.display='none'}
+function openSignup(){document.getElementById('signupModal').style.display='flex'}
+function closeSignup(){document.getElementById('signupModal').style.display='none'}
+
+// SAVE ACCOUNT
+function signup(){
+  let u=su.value,e=se.value,p=sp.value,pin=spin.value;
+  if(!u||!e||!p||!pin){alert('Please fill all fields');return}
+  if(pin.length!=4){alert('PIN must be 4 digits');return}
+  localStorage.setItem('citiUser',JSON.stringify({u,e,p,pin}));
+  alert('Account created successfully! Now login.');
+  closeSignup();openLogin();
 }
-function closeMenu(){
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("overlay").style.display = "none";
+
+// LOGIN
+function login(){
+  let u=lu.value,p=lp.value;
+  let s=JSON.parse(localStorage.getItem('citiUser'));
+  if(!s){alert('No account found. Please create account first.');return}
+  if(u!=s.u && u!=s.e || p!=s.p){alert('Wrong username/email or password');return}
+  alert('Login Successful! Welcome '+s.u);
+  closeLogin();
+  // Next step we go go dashboard
 }
 </script>
 
