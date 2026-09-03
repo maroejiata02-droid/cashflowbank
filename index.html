@@ -4,63 +4,95 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CASHFLOW BANK</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#2563eb;--orange:#f97316;--bg:#fff7f0;--card:#ffffff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;
+  --blue:#2563eb;--orange:#f97316;--bg:#f8fafc;--card:#ffffff;--text:#0f172a;--muted:#64748b;--green:#16a34a;--red:#dc2626;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:linear-gradient(180deg,#fff7f0 0%, #ffffff 100%);min-height:100vh;color:var(--text)}
-.hid{display:none !important}
+body{background:var(--bg);color:var(--text)}
+.hid{display:none!important}
 
-/* LANDING - STEP 1 */
-.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:var(--card);border-bottom:1px solid var(--border)}
+/* LANDING + AUTH - Same as Step 2 */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:var(--card);border-bottom:1px solid #e5e7eb}
 .logo{font-size:18px;font-weight:800;color:var(--blue)}
 .nav-btns{display:flex;gap:8px}
 .btn{padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;border:1.5px solid var(--blue)}
 .btn-outline{background:white;color:var(--blue)}
 .btn-primary{background:var(--blue);color:white}
 .container{padding:20px;max-width:500px;margin:0 auto}
-.feature-card{background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.feature-card{background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
 .icon{width:50px;height:50px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:#eff6ff;border-radius:12px;font-size:28px}
-.feature-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.feature-card p{font-size:14px;color:var(--muted);line-height:1.5}
-
-/* AUTH PAGES - STEP 2 */
 .auth-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .auth-logo{width:70px;height:70px;margin-bottom:20px}
-.auth-logo img{width:100%}
 .auth-title{font-size:26px;font-weight:700;margin-bottom:6px;text-align:center}
 .auth-sub{color:var(--muted);font-size:14px;margin-bottom:24px;text-align:center}
-.auth-card{background:var(--card);border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.auth-card{background:var(--card);border-radius:20px;padding:28px;width:100%;max-width:420px}
 .input-group{margin-bottom:18px}
 .input-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block}
 .input-box{position:relative}
-.input-box input{
-  width:100%;padding:14px 14px 14px 42px;border:1.5px solid var(--border);border-radius:12px;
-  font-size:14px;background:#f9fafb
-}
-.input-box .icon-left{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.input-box .icon-right{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);cursor:pointer}
-.forgot{text-align:right;font-size:13px;color:var(--orange);font-weight:600;margin-top:-10px;margin-bottom:20px;cursor:pointer}
-.btn-orange{
-  width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;
-  font-weight:700;font-size:15px;cursor:pointer
-}
-.btn-orange:disabled{background:#fed7aa;color:#9a3412}
+.input-box input{width:100%;padding:14px 14px 14px 42px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:14px;background:#f9fafb}
+.input-box.icon-left{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.btn-orange{width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
 .switch{text-align:center;margin-top:20px;font-size:14px;color:var(--muted)}
 .switch a{color:var(--orange);font-weight:700;text-decoration:none}
-.footer-links{text-align:center;margin-top:30px;font-size:12px;color:var(--muted)}
-.footer-links a{color:var(--muted);text-decoration:none;margin:0 6px}
-.support-btn{
-  position:fixed;bottom:20px;right:20px;width:55px;height:55px;border-radius:50%;
-  background:#22c55e;display:flex;align-items:center;justify-content:center;color:white;font-size:24px;box-shadow:0 4px 10px rgba(0,0,0,0.2)
+
+/* DASHBOARD - NEW COOKED DESIGN */
+.app-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--card)}
+.user-info{display:flex;align-items:center;gap:10px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+.bell{font-size:20px;position:relative}
+.bell::after{content:"";position:absolute;top:0;right:0;width:8px;height:8px;background:var(--red);border-radius:50%}
+
+.dashboard{padding:20px;max-width:600px;margin:0 auto}
+
+/* BALANCE CARD */
+.balance-card{
+  background:linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color:white;padding:24px;border-radius:20px;margin-bottom:20px
 }
+.balance-card small{opacity:0.8;font-size:12px}
+.balance-card h1{font-size:32px;font-weight:800;margin:8px 0}
+.account-info{display:flex;gap:12px;margin-top:16px;font-size:12px}
+.account-info div{background:rgba(255,255,255,0.15);padding:8px 12px;border-radius:8px}
+
+/* QUICK ACTIONS */
+.actions-title{font-weight:700;margin-bottom:12px}
+.actions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.action-btn{
+  background:var(--card);padding:14px 8px;border-radius:14px;text-align:center;
+  cursor:pointer;border:1px solid #e5e7eb;transition:0.2s
+}
+.action-btn:hover{transform:translateY(-2px)}
+.action-icon{font-size:24px;margin-bottom:6px}
+.action-btn small{font-size:11px;font-weight:500;color:var(--muted)}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
+.stat-card{background:var(--card);padding:16px;border-radius:14px;border:1px solid #e5e7eb}
+.stat-card small{color:var(--muted);font-size:12px}
+.stat-card h3{font-size:20px;font-weight:700;margin-top:4px}
+.stat-card.up{color:var(--green);font-size:12px}
+
+/* TRANSACTIONS */
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-header h3{font-weight:700}
+.section-header a{color:var(--blue);font-size:13px;font-weight:600;text-decoration:none}
+.tx-list{background:var(--card);border-radius:14px;padding:8px;border:1px solid #e5e7eb}
+.tx-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #f1f5f9}
+.tx-item:last-child{border-bottom:none}
+.tx-left{display:flex;align-items:center;gap:12px}
+.tx-icon{width:40px;height:40px;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:18px}
+.tx-name{font-weight:600;font-size:14px}
+.tx-date{font-size:12px;color:var(--muted)}
+.tx-amount{font-weight:700;font-size:15px}
+.amount-out{color:var(--red)}
+.amount-in{color:var(--green)}
 </style>
 </head>
 <body>
 
-<!-- PAGE 1: LANDING -->
+<!-- LANDING -->
 <div id="landing">
   <div class="nav">
     <div class="logo">CASHFLOW BANK</div>
@@ -70,107 +102,139 @@ body{background:linear-gradient(180deg,#fff7f0 0%, #ffffff 100%);min-height:100v
     </div>
   </div>
   <div class="container">
-    <div class="feature-card">
-      <div class="icon">🌍</div>
-      <h3>Global Transfers</h3>
-      <p>Send and receive money anywhere in the world in seconds with low fees and real-time tracking.</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">📱</div>
-      <h3>24/7 Mobile Banking</h3>
-      <p>Manage your account anytime, anywhere from your phone. We are available 24 hours, 7 days a week.</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">🔒</div>
-      <h3>Bank Level Security</h3>
-      <p>Your transactions are protected with 256-bit encryption and 4-digit payment PIN for extra safety.</p>
-    </div>
+    <div class="feature-card"><div class="icon">🌍</div><h3>Global Transfers</h3><p>Send and receive money anywhere in the world in seconds</p></div>
+    <div class="feature-card"><div class="icon">📱</div><h3>24/7 Mobile Banking</h3><p>Manage your account anytime, anywhere from your phone</p></div>
+    <div class="feature-card"><div class="icon">🔒</div><h3>Bank Level Security</h3><p>Protected with 256-bit encryption and 4-digit PIN</p></div>
   </div>
 </div>
 
-<!-- PAGE 2: LOGIN -->
+<!-- LOGIN -->
 <div id="loginPage" class="auth-page hid">
-  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>
+  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="70"></div>
   <h1 class="auth-title">Welcome Back! 👋</h1>
   <p class="auth-sub">Sign in to your account to continue</p>
-  
   <div class="auth-card">
-    <div class="input-group">
-      <label>Email or Username</label>
-      <div class="input-box">
-        <span class="icon-left">✉️</span>
-        <input id="loginEmail" placeholder="Enter your email or username">
-      </div>
-    </div>
-    <div class="input-group">
-      <label>Password</label>
-      <div class="input-box">
-        <span class="icon-left">🔒</span>
-        <input id="loginPass" type="password" placeholder="Enter your password">
-        <span class="icon-right" onclick="togglePass('loginPass')">👁️</span>
-      </div>
-    </div>
-    <div class="forgot">Forgot Password?</div>
+    <div class="input-group"><label>Email or Username</label><div class="input-box"><span class="icon-left">✉️</span><input id="loginEmail" placeholder="Enter your email"></div></div>
+    <div class="input-group"><label>Password</label><div class="input-box"><span class="icon-left">🔒</span><input id="loginPass" type="password" placeholder="Enter password"></div></div>
     <button class="btn-orange" onclick="doLogin()">Sign In</button>
   </div>
-  
   <p class="switch">Don't have an account? <a href="#" onclick="showPage('signup')">Sign Up</a></p>
-  <div class="footer-links">
-    <a href="#">Contact Support</a> · <a href="#">Privacy Policy</a>
-  </div>
-  <div class="support-btn">💬</div>
 </div>
 
-<!-- PAGE 3: SIGNUP -->
+<!-- SIGNUP -->
 <div id="signupPage" class="auth-page hid">
-  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"></div>
+  <div class="auth-logo"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="70"></div>
   <h1 class="auth-title">Create Account ✨</h1>
   <p class="auth-sub">Join us and start banking smarter</p>
-  
   <div class="auth-card">
-    <div class="input-group">
-      <label>Full Name</label>
-      <div class="input-box">
-        <span class="icon-left">👤</span>
-        <input id="suName" placeholder="Enter your full name">
-      </div>
-    </div>
-    <div class="input-group">
-      <label>Email</label>
-      <div class="input-box">
-        <span class="icon-left">✉️</span>
-        <input id="suEmail" type="email" placeholder="Enter your email">
-      </div>
-    </div>
-    <div class="input-group">
-      <label>Password</label>
-      <div class="input-box">
-        <span class="icon-left">🔒</span>
-        <input id="suPass" type="password" placeholder="Create password">
-        <span class="icon-right" onclick="togglePass('suPass')">👁️</span>
-      </div>
-    </div>
+    <div class="input-group"><label>Full Name</label><div class="input-box"><span class="icon-left">👤</span><input id="suName" placeholder="Enter full name"></div></div>
+    <div class="input-group"><label>Email</label><div class="input-box"><span class="icon-left">✉️</span><input id="suEmail" type="email" placeholder="Enter email"></div></div>
+    <div class="input-group"><label>Password</label><div class="input-box"><span class="icon-left">🔒</span><input id="suPass" type="password" placeholder="Create password"></div></div>
     <button class="btn-orange" onclick="doSignup()">Create Account</button>
   </div>
-  
   <p class="switch">Already have an account? <a href="#" onclick="showPage('login')">Sign In</a></p>
-  <div class="footer-links">
-    <a href="#">Contact Support</a> · <a href="#">Privacy Policy</a>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardPage" class="hid">
+  <div class="app-header">
+    <div class="user-info">
+      <div class="avatar" id="userAvatar">U</div>
+      <div><small>Good morning</small><br><b id="userName">User</b></div>
+    </div>
+    <div class="bell">🔔</div>
   </div>
-  <div class="support-btn">💬</div>
+
+  <div class="dashboard">
+    <!-- BALANCE CARD -->
+    <div class="balance-card">
+      <small>Available Balance</small>
+      <h1>$<span id="balance">2,450.75</span></h1>
+      <div class="account-info">
+        <div>Acc: •••• 1016</div>
+        <div>Routing: 0260 1394</div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <h3 class="actions-title">Quick Actions</h3>
+    <div class="actions-grid">
+      <div class="action-btn" onclick="alert('Transfer page coming')">
+        <div class="action-icon">💸</div><small>Transfer</small>
+      </div>
+      <div class="action-btn" onclick="alert('Airtime coming')">
+        <div class="action-icon">📱</div><small>Airtime</small>
+      </div>
+      <div class="action-btn" onclick="alert('Bills coming')">
+        <div class="action-icon">🧾</div><small>Bills</small>
+      </div>
+      <div class="action-btn" onclick="alert('Cards coming')">
+        <div class="action-icon">💳</div><small>Cards</small>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <small>Total Sent</small>
+        <h3>$<span id="totalSent">1,230.00</span></h3>
+        <div class="up">↑ 12% this month</div>
+      </div>
+      <div class="stat-card">
+        <small>Total Received</small>
+        <h3>$<span id="totalIn">3,680.00</span></h3>
+        <div class="up">↑ 8% this month</div>
+      </div>
+    </div>
+
+    <!-- RECENT TRANSACTIONS -->
+    <div class="section-header">
+      <h3>Recent Activity</h3>
+      <a href="#" onclick="alert('Full history page')">See All</a>
+    </div>
+    <div class="tx-list" id="txList">
+      <div class="tx-item">
+        <div class="tx-left">
+          <div class="tx-icon">💸</div>
+          <div>
+            <div class="tx-name">Transfer to John Doe</div>
+            <div class="tx-date">Today, 2:30 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount amount-out">-$250.00</div>
+      </div>
+      <div class="tx-item">
+        <div class="tx-left">
+          <div class="tx-icon">📥</div>
+          <div>
+            <div class="tx-name">Salary Deposit</div>
+            <div class="tx-date">Yesterday, 9:00 AM</div>
+          </div>
+        </div>
+        <div class="tx-amount amount-in">+$1,500.00</div>
+      </div>
+      <div class="tx-item">
+        <div class="tx-left">
+          <div class="tx-icon">🧾</div>
+          <div>
+            <div class="tx-name">Electricity Bill</div>
+            <div class="tx-date">2 Days Ago</div>
+          </div>
+        </div>
+        <div class="tx-amount amount-out">-$45.50</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
+let user=null, balance=2450.75;
+
 function showPage(page){
-  document.getElementById('landing').classList.add('hid');
-  document.getElementById('loginPage').classList.add('hid');
-  document.getElementById('signupPage').classList.add('hid');
+  ['landing','loginPage','signupPage','dashboardPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
   document.getElementById(page+'Page').classList.remove('hid');
 }
-function togglePass(id){
-  let x=document.getElementById(id);
-  x.type = x.type==='password'?'text':'password';
-}
+
 function doSignup(){
   let n=suName.value,e=suEmail.value,p=suPass.value;
   if(!n||!e||!p){alert('Fill all fields');return}
@@ -178,12 +242,15 @@ function doSignup(){
   alert('Account created! Please login.');
   showPage('login');
 }
+
 function doLogin(){
   let e=loginEmail.value,p=loginPass.value;
   let s=JSON.parse(localStorage.getItem('cfUser'));
   if(!s || ((e!=s.n && e!=s.e) || p!=s.p)){alert('Invalid login');return}
-  alert('Login Success! Step 3: Dashboard go come next');
-  // Step 3 coming soon 👍
+  user=s;
+  document.getElementById('userName').innerText=s.n.split(' ')[0];
+  document.getElementById('userAvatar').innerText=s.n[0].toUpperCase();
+  showPage('dashboard');
 }
 </script>
 
