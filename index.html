@@ -3,73 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CashflowBank - Transfer</title>
+<title>CashflowBank - Pro Banking</title>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
   
   body {
-    background: linear-gradient(135deg, #ffffff 0%, #ffeb 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ffea 100%);
     min-height: 100vh;
-    color: #333;
   }
   
   .header {
-    background: #d40000;
+    background: linear-gradient(135deg, #d40000, #ff0000);
     color: white;
-    padding: 20px;
+    padding: 25px 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(212,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(212,0,0,0.4);
   }
   
+  .header h1 { font-size: 32px; font-weight: 800; }
+  .header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+  
   .container {
-    max-width: 450px;
+    max-width: 500px;
     margin: 30px auto;
     padding: 20px;
   }
   
   .card {
     background: white;
-    border-radius: 15px;
-    padding: 25px;
+    border-radius: 20px;
+    padding: 30px;
     margin-bottom: 20px;
-    box-shadow: 0 8px 20px rgba(212,0,0,0.15);
-    border: 2px solid #d40000;
+    box-shadow: 0 10px 30px rgba(212,0,0,0.15);
+    border: 2px solid #ffcccc;
   }
   
   .balance {
-    text-align: center;
-    background: linear-gradient(135deg, #d40000, #ff0000);
+    background: linear-gradient(135deg, #d40000, #ff3333);
     color: white;
+    text-align: center;
     border: none;
   }
   
-  .balance h2 { font-size: 14px; opacity: 0.9; }
-  .balance h1 { font-size: 28px; font-weight: bold; margin-top: 5px; }
+  .balance h2 { font-size: 14px; opacity: 0.9; letter-spacing: 1px; }
+  .balance h1 { font-size: 36px; font-weight: 800; margin-top: 10px; }
   
   .btn {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
     margin: 10px 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
   }
   
-  .btn-red { background: #d40000; color: white; }
-  .btn-red:hover { background: #a30000; }
+  .btn-red { background: linear-gradient(135deg, #d40000, #ff0000); color: white; }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,0,0,0.3); }
   .btn-white { background: white; color: #d40000; border: 2px solid #d40000; }
   .btn-white:hover { background: #ffeb; }
   
   input {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 14px;
+    margin: 10px 0;
+    border: 2px solid #ffcccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.3s;
   }
   input:focus { border-color: #d40000; outline: none; }
   
@@ -82,28 +85,72 @@
     border-radius: 10px;
     text-align: center;
     margin: 10px 0;
+    font-weight: 600;
   }
+  
+  .welcome-text {
+    text-align: center;
+    color: #d40000;
+    margin-bottom: 20px;
+  }
+  .welcome-text h2 { font-size: 24px; }
+  .welcome-text p { font-size: 14px; color: #666; margin-top: 5px; }
+  
+  .footer { text-align: center; padding: 20px; color: #d40000; font-size: 12px; }
 </style>
 </head>
 <body>
 
   <div class="header">
     <h1>🏦 CashflowBank</h1>
+    <p>Secure. Fast. Trusted Banking</p>
   </div>
 
   <div class="container">
     
+    <!-- LOGIN PAGE -->
+    <div id="loginPage">
+      <div class="card">
+        <div class="welcome-text">
+          <h2>Welcome Back!</h2>
+          <p>Login to access your account</p>
+        </div>
+        <input type="text" id="loginUser" placeholder="Username or Email">
+        <input type="password" id="loginPass" placeholder="Password">
+        <button class="btn btn-red" onclick="login()">Login</button>
+        <button class="btn btn-white" onclick="showRegister()">Create New Account</button>
+      </div>
+    </div>
+
+    <!-- REGISTER PAGE -->
+    <div id="registerPage" class="hidden">
+      <div class="card">
+        <div class="welcome-text">
+          <h2>Create Account</h2>
+          <p>Join CashflowBank Today</p>
+        </div>
+        <input type="text" id="regName" placeholder="Full Name">
+        <input type="email" id="regEmail" placeholder="Email Address">
+        <input type="text" id="regUser" placeholder="Choose Username">
+        <input type="password" id="regPass" placeholder="Create Password">
+        <button class="btn btn-red" onclick="register()">Create Account</button>
+        <button class="btn btn-white" onclick="showLogin()">Back to Login</button>
+      </div>
+    </div>
+
     <!-- HOME PAGE -->
-    <div id="homePage">
+    <div id="homePage" class="hidden">
       <div class="card balance">
         <h2>AVAILABLE BALANCE</h2>
         <h1 id="balance">$1,670,281.92</h1>
       </div>
       
       <div class="card">
+        <h3 style="color:#d40000; margin-bottom:15px;">Welcome, <span id="userName">User</span>!</h3>
         <button class="btn btn-red" onclick="showTransfer()">Send Money</button>
         <button class="btn btn-white">Add Money</button>
         <button class="btn btn-white">Transaction History</button>
+        <button class="btn btn-white" onclick="logout()">Logout</button>
       </div>
     </div>
 
@@ -111,30 +158,70 @@
     <div id="transferPage" class="hidden">
       <div class="card">
         <h2 style="color:#d40000; margin-bottom:15px;">Transfer Money</h2>
-        <input type="text" id="recipient" placeholder="Recipient Name">
+        <input type="text" id="recipient" placeholder="Recipient Full Name">
         <input type="text" id="account" placeholder="Account Number">
         <input type="text" id="bank" placeholder="Bank Name">
         <input type="number" id="amount" placeholder="Amount $" step="0.01">
         <button class="btn btn-red" onclick="sendMoney()">Send Now</button>
-        <button class="btn btn-white" onclick="showHome()">Back to Home</button>
+        <button class="btn btn-white" onclick="showHome()">Back to Dashboard</button>
       </div>
       <div id="successMsg"></div>
     </div>
     
   </div>
 
+  <div class="footer">
+    © 2026 CashflowBank. Licensed & Secured with 256-bit SSL Encryption
+  </div>
+
 <script>
   let balance = 1670281.92;
+  let currentUser = '';
 
+  function showLogin() {
+    hideAll(); document.getElementById('loginPage').classList.remove('hidden');
+  }
+  function showRegister() {
+    hideAll(); document.getElementById('registerPage').classList.remove('hidden');
+  }
+  function showHome() {
+    hideAll(); document.getElementById('homePage').classList.remove('hidden');
+    document.getElementById('successMsg').innerHTML = '';
+  }
   function showTransfer() {
+    hideAll(); document.getElementById('transferPage').classList.remove('hidden');
+  }
+  function hideAll() {
+    document.getElementById('loginPage').classList.add('hidden');
+    document.getElementById('registerPage').classList.add('hidden');
     document.getElementById('homePage').classList.add('hidden');
-    document.getElementById('transferPage').classList.remove('hidden');
+    document.getElementById('transferPage').classList.add('hidden');
   }
   
-  function showHome() {
-    document.getElementById('transferPage').classList.add('hidden');
-    document.getElementById('homePage').classList.remove('hidden');
-    document.getElementById('successMsg').innerHTML = '';
+  function login() {
+    let user = document.getElementById('loginUser').value;
+    let pass = document.getElementById('loginPass').value;
+    if(!user || !pass) { alert('Please fill all fields'); return; }
+    currentUser = user;
+    document.getElementById('userName').innerText = user;
+    showHome();
+  }
+  
+  function register() {
+    let name = document.getElementById('regName').value;
+    let email = document.getElementById('regEmail').value;
+    let user = document.getElementById('regUser').value;
+    let pass = document.getElementById('regPass').value;
+    if(!name || !email || !user || !pass) { alert('Please fill all fields'); return; }
+    alert('✅ Account Created Successfully! Please Login');
+    showLogin();
+  }
+  
+  function logout() {
+    currentUser = '';
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+    showLogin();
   }
   
   function sendMoney() {
@@ -142,15 +229,8 @@
     let acc = document.getElementById('account').value;
     let amt = parseFloat(document.getElementById('amount').value);
     
-    if(!name || !acc || !amt) {
-      alert('Please fill all fields');
-      return;
-    }
-    
-    if(amt > balance) {
-      alert('Insufficient Funds');
-      return;
-    }
+    if(!name || !acc || !amt) { alert('Please fill all fields'); return; }
+    if(amt > balance) { alert('Insufficient Funds'); return; }
     
     balance = balance - amt;
     document.getElementById('balance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
