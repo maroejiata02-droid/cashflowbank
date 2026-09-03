@@ -3,108 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CASHFLOW BANK</title>
+<title>CASHFLOW BANK - Your Global Digital Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#f4f6fb;color:#1a1a1a}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8fafc;color:#0f172a}
 
-/* LANDING */
-.nav{background:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;box-shadow:0 2px 5px rgba(0,0,0,0.05)}
-.logo{font-size:22px;font-weight:900;color:#0047AB;display:flex;align-items:center;gap:8px}
-.logo::before{content:"🏦";font-size:26px}
-.btn{padding:10px 20px;border:none;border-radius:25px;font-weight:600;cursor:pointer}
-.btn-blue{background:#0047AB;color:white}
-.btn-white{padding:8px 18px;background:white;color:#0047AB;border:2px solid #0047AB;border-radius:25px;font-weight:600;cursor:pointer}
-.sidebar{height:100%;width:0;position:fixed;top:0;right:0;background:#0047AB;overflow-x:hidden;transition:0.4s;padding-top:60px;z-index:1000}
-.sidebar a{padding:16px 25px;text-decoration:none;font-size:18px;color:white;display:block}
-.sidebar .closebtn{position:absolute;top:10px;right:20px;font-size:35px;color:white;cursor:pointer}
-.hamburger{display:none;font-size:26px;color:#0047AB;cursor:pointer}
-.hero{padding:60px 20px;max-width:1200px;margin:0 auto;text-align:center;color:#0047AB}
-.hero h1{font-size:44px;margin:15px 0;font-weight:800}
+/* PREMIUM LANDING */
+.nav{background:#fff;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.logo{font-size:24px;font-weight:800;color:#2563eb;display:flex;align-items:center;gap:10px}
+.logo::before{content:"🏦";font-size:28px}
+.btn{padding:12px 24px;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:0.3s}
+.btn-blue{background:#2563eb;color:white}
+.btn-blue:hover{background:#1d4ed8;transform:translateY(-2px)}
+.btn-white{padding:10px 20px;background:white;color:#2563eb;border:2px solid #2563eb;border-radius:12px;font-weight:600;cursor:pointer}
+.hero{padding:100px 5%;background:linear-gradient(135deg,#2563eb 0%,#1e40af 100%);color:white;text-align:center}
+.hero h1{font-size:52px;font-weight:800;line-height:1.1;margin-bottom:20px}
+.hero p{font-size:18px;color:#dbeafe;max-width:600px;margin:0 auto 30px}
+.badges{display:flex;gap:20px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,0.15);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600}
+.features{padding:80px 5%;background:#fff;text-align:center}
+.features h2{font-size:36px;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1200px;margin:40px auto}
+.fcard{background:#f8fafc;padding:30px;border-radius:16px;border:1px solid #e2e8f0}
+.fcard h3{color:#2563eb;margin-bottom:10px}
 
 /* MODAL */
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1001;align-items:center;justify-content:center;padding:20px}
-.box{background:white;color:#222;padding:35px 25px;border-radius:18px;width:100%;max-width:400px}
-.field{margin-bottom:16px}.field input{width:100%;padding:13px;border:2px solid #e5e7eb;border-radius:10px;font-size:15px}
-.bigbtn{width:100%;padding:14px;background:#0047AB;color:white;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1001;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.box{background:white;color:#222;padding:40px 30px;border-radius:20px;width:100%;max-width:420px;box-shadow:0 20px 50px rgba(0,0,0,0.2)}
+.field{margin-bottom:16px}.field label{font-weight:600;margin-bottom:6px;display:block}
+.field input{width:100%;padding:14px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px}
+.bigbtn{width:100%;padding:15px;background:#2563eb;color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer}
 
-/* NEW DASHBOARD */
-.page{display:none;background:#f4f6fb;min-height:100vh}
-.dtop{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#fff}
-.btn-menu{background:#4c5cf1;color:white;padding:10px 16px;border:none;border-radius:8px;font-weight:600;display:flex;gap:8px;align-items:center;cursor:pointer}
-.profile{display:flex;align-items:center;gap:10px}
-.profile img{width:40px;height:40px;border-radius:50%;object-fit:cover}
-.container{max-width:600px;margin:0 auto;padding:20px}
-.container h1{font-size:26px;font-weight:800;margin-bottom:5px;color:#1a1a1a}
-.container p{color:#6b7280;margin-bottom:20px}
-
-.card{background:#fff;padding:18px;border-radius:14px;margin-bottom:14px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
-.icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+/* PREMIUM DASHBOARD */
+.page{display:none;background:#f8fafc;min-height:100vh}
+.dtop{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.btn-menu{background:#2563eb;color:white;padding:10px 18px;border:none;border-radius:10px;font-weight:600;display:flex;gap:8px;align-items:center;cursor:pointer}
+.profile{display:flex;align-items:center;gap:12px;font-weight:600}
+.profile img{width:42px;height:42px;border-radius:50%}
+.container{max-width:700px;margin:0 auto;padding:30px 20px}
+.container h1{font-size:30px;font-weight:800;margin-bottom:5px}
+.container p{color:#64748b;margin-bottom:25px}
+.card{background:#fff;padding:22px;border-radius:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:0.3s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(37,99,235,0.1)}
+.icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
 .icon-purple{background:#ede9fe;color:#7c3aed}
 .icon-green{background:#dcfce7;color:#16a34a}
 .icon-blue{background:#dbeafe;color:#2563eb}
-.card-info small{color:#6b7280;font-size:13px}
-.card-info b{font-size:18px;display:block;margin-top:4px;color:#111}
+.card-info small{color:#64748b;font-size:13px}
+.card-info b{font-size:20px;display:block;margin-top:4px;color:#0f172a}
+.logout{width:100%;padding:15px;background:#ef4444;color:white;border:none;border-radius:12px;font-weight:700;margin-top:15px;cursor:pointer}
 
-.logout{width:100%;padding:14px;background:#da3633;color:white;border:none;border-radius:10px;font-weight:700;margin-top:10px;cursor:pointer}
-
-@media(max-width:900px){.btn-white,.btn-blue{display:none}.hamburger{display:block}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.btn-white,.btn-blue{display:none}.hero h1{font-size:36px}}
 .hid{display:none}
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
+<!-- PREMIUM LANDING -->
 <div id="landing">
-  <div id="sidebar" class="sidebar">
-    <span class="closebtn" onclick="closeMenu()">×</span>
-    <a href="#">Home</a><a href="#">About</a><a href="#">Services</a>
-    <a href="#" onclick="openLogin();closeMenu()">Login</a>
-    <a href="#" onclick="openSignup();closeMenu()">Create Account</a>
-  </div>
   <div class="nav">
     <div class="logo">CASHFLOW BANK</div>
     <div><button class="btn-white" onclick="openSignup()">Create Account</button>
-    <button class="btn btn-blue" onclick="openLogin()">Login</button>
-    <div class="hamburger" onclick="openMenu()">☰</div></div>
+    <button class="btn btn-blue" onclick="openLogin()">Login</button></div>
   </div>
+  
   <div class="hero">
-    <h1>Your Money. Your Bank. Anywhere.</h1>
-    <button class="btn" style="background:#0047AB;color:white;padding:14px 30px;margin-top:20px" onclick="openSignup()">Start Banking Free</button>
+    <h1>Banking Made<br>Simple. Fast. Secure.</h1>
+    <p>Send money globally in seconds. Manage your finances with zero stress. Join over 1 Million users who trust Cashflow Bank.</p>
+    <button class="btn" style="background:white;color:#2563eb;padding:16px 35px;font-size:16px" onclick="openSignup()">Get Started Free</button>
+    <div class="badges">
+      <div class="badge">🔒 Bank Level Security</div>
+      <div class="badge">⚡ Instant Transfers</div>
+      <div class="badge">🌍 200+ Countries</div>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Why Choose Cashflow Bank?</h2>
+    <p style="color:#64748b">Everything you need to manage your money, in one place</p>
+    <div class="grid">
+      <div class="fcard"><h3>💸 Zero Fees</h3><p>Send and receive money without hidden charges</p></div>
+      <div class="fcard"><h3>📱 Mobile First</h3><p>Bank from anywhere with our beautiful app</p></div>
+      <div class="fcard"><h3>🛡️ 24/7 Protection</h3><p>Your money is insured and protected</p></div>
+    </div>
   </div>
 </div>
 
 <!-- LOGIN -->
 <div id="loginModal" class="modal"><div class="box">
-  <h2>Login</h2>
-  <div class="field"><input id="lu" placeholder="Username or Email"></div>
-  <div class="field"><input id="lp" type="password" placeholder="Password"></div>
+  <h2 style="margin-bottom:20px">Welcome Back 👋</h2>
+  <div class="field"><label>Username or Email</label><input id="lu" placeholder="Enter email"></div>
+  <div class="field"><label>Password</label><input id="lp" type="password" placeholder="Enter password"></div>
   <button class="bigbtn" onclick="login()">Sign In</button>
-  <button class="bigbtn" style="background:#666;margin-top:10px" onclick="closeLogin()">Cancel</button>
+  <button class="bigbtn" style="background:#94a3b8;margin-top:10px" onclick="closeLogin()">Cancel</button>
 </div></div>
 
 <!-- SIGNUP -->
 <div id="signupModal" class="modal"><div class="box">
-  <h2>Create Account</h2>
-  <div class="field"><input id="su" placeholder="Username"></div>
-  <div class="field"><input id="se" type="email" placeholder="Email"></div>
-  <div class="field"><input id="sp" type="password" placeholder="Password"></div>
+  <h2 style="margin-bottom:20px">Create Your Account ✨</h2>
+  <div class="field"><label>Username</label><input id="su" placeholder="Choose username"></div>
+  <div class="field"><label>Email</label><input id="se" type="email" placeholder="Enter email"></div>
+  <div class="field"><label>Password</label><input id="sp" type="password" placeholder="Create password"></div>
   <button class="bigbtn" onclick="signup()">Create Account</button>
-  <button class="bigbtn" style="background:#666;margin-top:10px" onclick="closeSignup()">Cancel</button>
+  <button class="bigbtn" style="background:#94a3b8;margin-top:10px" onclick="closeSignup()">Cancel</button>
 </div></div>
 
-<!-- NEW DASHBOARD -->
+<!-- PREMIUM DASHBOARD -->
 <div id="dash" class="page">
   <div class="dtop">
-    <button class="btn-menu" onclick="openMenu()">☰ Menu</button>
+    <button class="btn-menu" onclick="alert('Menu coming')">☰ Menu</button>
     <div class="profile">
       <img src="https://i.pravatar.cc/100" alt="profile">
-      <span id="username">Jeff</span>
+      <span id="username">User</span>
     </div>
   </div>
   <div class="container">
     <h1>Overview</h1>
-    <p>Hello <span id="n">Jeffmorg</span>, Welcome Back!</p>
+    <p>Hello <span id="n">User</span>, Welcome Back!</p>
     
     <div class="card">
       <div class="icon icon-purple">💳</div>
@@ -125,7 +141,7 @@ body{background:#f4f6fb;color:#1a1a1a}
     <div class="card">
       <div class="icon icon-blue">📥</div>
       <div class="card-info">
-        <small>Deposits</small>
+        <small>Total Deposits</small>
         <b>$<span id="dep">5,430,500</span></b>
       </div>
     </div>
@@ -133,7 +149,7 @@ body{background:#f4f6fb;color:#1a1a1a}
     <div class="card">
       <div class="icon icon-purple">📤</div>
       <div class="card-info">
-        <small>Withdrawals</small>
+        <small>Total Withdrawals</small>
         <b>$<span id="with">0</span></b>
       </div>
     </div>
@@ -144,8 +160,6 @@ body{background:#f4f6fb;color:#1a1a1a}
 
 <script>
 let balance=5430500, account='87135061016';
-function openMenu(){document.getElementById("sidebar").style.width = "250px"}
-function closeMenu(){document.getElementById("sidebar").style.width = "0"}
 function openLogin(){document.getElementById('loginModal').style.display='flex'}
 function closeLogin(){document.getElementById('loginModal').style.display='none'}
 function openSignup(){document.getElementById('signupModal').style.display='flex'}
@@ -153,15 +167,15 @@ function closeSignup(){document.getElementById('signupModal').style.display='non
 
 function signup(){
   let u=su.value,e=se.value,p=sp.value;
-  if(!u||!e||!p){alert('Fill all fields');return}
+  if(!u||!e||!p){alert('Please fill all fields');return}
   localStorage.setItem('cfUser',JSON.stringify({u,e,p}));
-  alert('Account created! Now login.');
+  alert('Account created successfully! 🎉');
   closeSignup();openLogin();
 }
 function login(){
   let u=lu.value,p=lp.value;let s=JSON.parse(localStorage.getItem('cfUser'));
-  if(!s){alert('No account. Create account first.');return}
-  if((u!=s.u && u!=s.e) || p!=s.p){alert('Wrong details');return}
+  if(!s){alert('No account found. Create account first.');return}
+  if((u!=s.u && u!=s.e) || p!=s.p){alert('Wrong username/email or password');return}
   document.getElementById('n').innerText=s.u;
   document.getElementById('username').innerText=s.u;
   document.getElementById('acc').innerText=account;
