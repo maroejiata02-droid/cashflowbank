@@ -10,16 +10,18 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
+svg{width:24px;height:24px}
 
-/* NEW LOADING PAGE - BIG LOGO */
+/* LOADING PAGE */
 .loading-page{background:#fff8f0;min-height:100vh;padding:20px;color:#000;padding-bottom:100px}
 .loading-header{display:flex;justify-content:space-between;align-items:center;padding:15px 0;margin-bottom:20px}
 .logo-text{font-size:28px;font-weight:900;letter-spacing:-0.5px}
 .logo-text .cashflow{color:#f97316}
 .logo-text .bank{color:#1e293b}
-.loading-menu{font-size:28px;cursor:pointer;color:#1e293b}
+.loading-menu svg{width:28px;height:28px;stroke:#1e293b}
 .feature-card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-.feature-icon-box{width:48px;height:48px;border-radius:12px;background:#fff7ed;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.feature-icon-box{width:48px;height:48px;border-radius:12px;background:#fff7ed;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.feature-icon-box svg{stroke:#f97316;width:24px;height:24px}
 .feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px;color:#111}
 .feature-card p{font-size:14px;color:#6b7280;line-height:1.5}
 
@@ -30,24 +32,20 @@ body{background:var(--bg);color:var(--text)}
 
 .section-title{text-align:center;font-size:22px;font-weight:800;margin:30px 0 10px;color:#1e293b}
 .section-subtitle{text-align:center;color:#6b7280;font-size:14px;margin-bottom:20px}
-
 .footer-note{background:#0a1128;color:#94a3b8;padding:20px;border-radius:16px;text-align:center;font-size:13px;line-height:1.6;margin-bottom:16px}
-.footer-logo{height:28px;margin-bottom:10px}
 
 .login-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px 20px;text-align:center;border-top:1px solid #e5e7eb}
 .login-bottom span{color:#6b7280;font-size:14px}
 .login-bottom a{color:#f97316;font-weight:700;text-decoration:none;cursor:pointer}
 
-/* AUTH + APP STYLES */
+/* APP STYLES */
 .auth-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#fff}
-.auth-card{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.auth-card{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:420px}
 .input-wrapper{margin-bottom:18px}
 .input-wrapper label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:#000}
 .input-wrapper input{width:100%;padding:14px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:14px;color:#000}
-.btn-orange{width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:12px}
-.btn-faceid{width:100%;padding:14px;background:#000;color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
-.divider{display:flex;align-items:center;text-align:center;color:#94a3b8;margin:16px 0;font-size:13px}
-.divider::before,.divider::after{content:'';flex:1;border-bottom:1px solid #e5e7eb}
+.btn-orange{width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-faceid{width:100%;padding:14px;background:#000;color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 
 .app-header{display:flex;justify-content:space-between;align-items:center;padding:20px;background:var(--bg);color:white}
 .user{display:flex;align-items:center;gap:10px}
@@ -56,7 +54,8 @@ body{background:var(--bg);color:var(--text)}
 .balance-card{background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);padding:24px;border-radius:20px;margin-bottom:24px;color:white}
 .balance-card h1{font-size:28px;font-weight:800;margin:8px 0}
 .actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
-.action-btn{background:var(--card);padding:16px 8px;border-radius:16px;text-align:center;cursor:pointer;border:1px solid #1e293b;color:white}
+.action-btn{background:var(--card);padding:16px 8px;border-radius:16px;text-align:center;cursor:pointer;border:1px solid #1e293b;color:white;display:flex;flex-direction:column;align-items:center;gap:8px}
+.action-btn svg{stroke:white}
 .section-title-app{font-weight:700;font-size:16px;margin-bottom:14px;color:white}
 .tx-list{background:var(--card);border-radius:16px;padding:8px;border:1px solid #1e293b}
 .tx-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #1e293b;color:white}
@@ -65,45 +64,39 @@ body{background:var(--bg);color:var(--text)}
 .bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);display:flex;justify-content:space-around;align-items:center;padding:8px;border-radius:20px;border:1px solid #1e293b}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--muted);cursor:pointer;flex:1}
 .nav-item.active{color:var(--blue)}
-.transfer-btn{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-20px;cursor:pointer}
+.nav-item.active svg{stroke:var(--blue)}
+.nav-item svg{stroke:var(--muted);width:22px;height:22px}
+.transfer-btn{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-top:-20px;cursor:pointer}
 
 .page-header{display:flex;align-items:center;gap:12px;padding:20px;background:var(--bg);color:white}
-.back-btn{font-size:24px;cursor:pointer}
+.back-btn svg{stroke:white}
 .page-title{font-size:20px;font-weight:700}
 .page-form{background:var(--card);margin:16px;border-radius:16px;padding:20px;border:1px solid #1e293b}
 .form-group{margin-bottom:18px}
 .form-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:var(--muted)}
 .form-group input, .form-group select{width:100%;padding:14px;background:#0f172a;border:1.5px solid #1e293b;border-radius:12px;font-size:15px;color:var(--text)}
 .btn-blue{width:100%;padding:16px;background:var(--blue);color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer}
-
-.profile-header{text-align:center;padding:30px 20px;background:var(--bg)}
-.profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;margin:0 auto 12px}
-.setting-item{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #1e293b;cursor:pointer;color:white}
-.setting-item:hover{background:#0f172a}
-.arrow{color:var(--muted)}
-.logout-btn{background:var(--red)!important;margin-top:20px}
 </style>
 </head>
 <body>
 
-<!-- 1. LOADING PAGE - BIG LOGO -->
+<!-- 1. LOADING PAGE -->
 <div id="loadingPage" class="loading-page">
   <div class="loading-header">
-    <div class="logo-text">
-      <span class="cashflow">CASHFLOW</span>
-      <span class="bank">BANK</span>
+    <div class="logo-text"><span class="cashflow">CASHFLOW</span><span class="bank">BANK</span></div>
+    <div class="loading-menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </div>
-    <div class="loading-menu">☰</div>
   </div>
 
   <div class="feature-card">
-    <div class="feature-icon-box">🎧</div>
+    <div class="feature-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
     <h3>24/7 Support</h3>
     <p>Our support team is always here to help you.</p>
   </div>
 
   <div class="feature-card">
-    <div class="feature-icon-box">🏷️</div>
+    <div class="feature-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
     <h3>Best Rates</h3>
     <p>We offer the best exchange rates with zero hidden fees.</p>
   </div>
@@ -112,19 +105,19 @@ body{background:var(--bg);color:var(--text)}
   <p class="section-subtitle">From sign up to your first transfer in minutes</p>
 
   <div class="feature-card">
-    <div class="feature-icon-box">✅</div>
+    <div class="feature-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
     <h3>Verified & Secure</h3>
     <p>Bank-level security with 256-bit encryption and FDIC insurance.</p>
   </div>
 
   <div class="feature-card">
-    <div class="feature-icon-box">🛡️</div>
+    <div class="feature-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
     <h3>Secure & Reliable</h3>
     <p>Your security is our priority. Safe payments and data protection.</p>
   </div>
 
   <div class="feature-card">
-    <div class="feature-icon-box">⚡</div>
+    <div class="feature-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
     <h3>Instant Transfers</h3>
     <p>Most transfers are delivered instantly after confirmation.</p>
   </div>
@@ -135,12 +128,6 @@ body{background:var(--bg);color:var(--text)}
     <button class="btn-white" onclick="document.getElementById('loadingPage').classList.add('hid');document.getElementById('loginPage').classList.remove('hid')">Create Account →</button>
   </div>
 
-  <div class="footer-note">
-    <div style="font-size:18px;font-weight:800;margin-bottom:10px"><span style="color:#f97316">CASHFLOW</span> <span>BANK</span></div>
-    <p>Send money to 200+ countries and pay all your bills using one reliable, affordable and secure wallet.</p>
-  </div>
-
-  <!-- LOGIN BOTTOM BUTTON -->
   <div class="login-bottom">
     <span>Already have an account? </span>
     <a onclick="document.getElementById('loadingPage').classList.add('hid');document.getElementById('loginPage').classList.remove('hid')">Login</a>
@@ -154,8 +141,11 @@ body{background:var(--bg);color:var(--text)}
     <div class="input-wrapper"><label>Email</label><input id="loginEmail" placeholder="Enter your email"></div>
     <div class="input-wrapper"><label>Password</label><input id="loginPass" type="password" placeholder="Enter password"></div>
     <button class="btn-orange" onclick="doLogin()">Sign In</button>
-    <div class="divider">or</div>
-    <button class="btn-faceid" onclick="faceIDLogin()">👤 Sign in with Face ID</button>
+    <div style="display:flex;align-items:center;text-align:center;color:#94a3b8;margin:16px 0;font-size:13px"><span style="flex:1;border-bottom:1px solid #e5e7eb"></span><span style="padding:0 10px">or</span><span style="flex:1;border-bottom:1px solid #e5e7eb"></span></div>
+    <button class="btn-faceid" onclick="faceIDLogin()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Sign in with Face ID
+    </button>
   </div>
 </div>
 
@@ -163,36 +153,36 @@ body{background:var(--bg);color:var(--text)}
 <div id="dashboardPage" class="hid">
   <div class="app-header">
     <div class="user"><div class="avatar">S</div><div><small>Good morning,</small><br><b>Sun 👋</b></div></div>
-    <div style="font-size:22px">🔔</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
   </div>
   <div class="dashboard">
     <div class="balance-card"><small>Available Balance</small><h1 id="mainBalance">$8,709,627.98</h1></div>
     <div class="section-title-app">Quick Actions</div>
     <div class="actions-grid">
-      <div class="action-btn" onclick="showPage('transfer')"><div>💸</div><b>Transfer</b></div>
-      <div class="action-btn" onclick="showPage('bills')"><div>🧾</div><b>Bills</b></div>
-      <div class="action-btn" onclick="showPage('cards')"><div>💳</div><b>Cards</b></div>
+      <div class="action-btn" onclick="showPage('transfer')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="19" y1="12" x2="5" y2="12"/></svg><b>Transfer</b></div>
+      <div class="action-btn" onclick="showPage('bills')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><b>Bills</b></div>
+      <div class="action-btn" onclick="showPage('cards')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><b>Cards</b></div>
     </div>
     <div class="section-title-app">Recent Transactions</div>
     <div class="tx-list" id="txList"></div>
   </div>
   <div class="bottom-nav">
-    <div class="nav-item active" onclick="showPage('dashboard')"><div>🏠</div>Home</div>
-    <div class="nav-item" onclick="showPage('payments')"><div>📊</div>Payments</div>
-    <div class="transfer-btn" onclick="showPage('transfer')">🔁</div>
-    <div class="nav-item" onclick="showPage('cards')"><div>💳</div>Cards</div>
-    <div class="nav-item" onclick="showPage('profile')"><div>👤</div>Profile</div>
+    <div class="nav-item active" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</div>
+    <div class="nav-item" onclick="showPage('payments')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>Payments</div>
+    <div class="transfer-btn" onclick="showPage('transfer')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+    <div class="nav-item" onclick="showPage('cards')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Cards</div>
+    <div class="nav-item" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</div>
   </div>
 </div>
 
-<!-- OTHER PAGES -->
-<div id="transferPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Send Money</div></div><div class="page-form"><div class="form-group"><label>Recipient Name</label><input id="recipientName" placeholder="Enter recipient name"></div><div class="form-group"><label>Account Number</label><input id="recipientAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="transferAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="sendMoney()">Send Money</button></div></div>
-<div id="billsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Pay Bills</div></div><div class="page-form"><div class="form-group"><label>Bill Type</label><select id="billType"><option>Electricity</option><option>Water</option><option>Internet</option><option>TV</option></select></div><div class="form-group"><label>Account Number</label><input id="billAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="billAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="payBill()">Pay Bill</button></div></div>
-<div id="cardsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">My Cards</div></div><div class="page-form"><div style="background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px"><div style="display:flex;justify-content:space-between">VISA <div>💳</div></div><div style="font-size:18px;letter-spacing:2px;margin:16px 0">**** **** 4567</div><div style="display:flex;justify-content:space-between"><div>SUN<br>12/28</div></div></div><button class="btn-blue" onclick="alert('New card requested!')">Request New Card</button></div></div>
-<div id="paymentsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Payments</div></div><div class="page-form"><h3 style="margin-bottom:16px">Payment History</h3><div class="tx-list" id="paymentList"></div></div></div>
-<div id="profilePage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Profile</div></div><div class="profile-header"><div class="profile-avatar">S</div><h2>Sun</h2><small style="color:var(--muted)">sun@email.com</small></div><div class="page-form"><div class="setting-item"><div><b>Phone</b><br><small style="color:var(--muted)">+1 555 123 4567</small></div><div class="arrow">›</div></div><div class="setting-item"><div><b>Address</b><br><small style="color:var(--muted)">New York, USA</small></div><div class="arrow">›</div></div><div class="setting-item" onclick="showPage('changePin')"><div><b>Change Payment PIN</b></div><div class="arrow">›</div></div><div class="setting-item" onclick="showPage('changePassword')"><div><b>Change Login Password</b></div><div class="arrow">›</div></div><div class="setting-item" onclick="resetBalance()"><div><b>Reset Balance</b></div><div class="arrow">›</div></div><button class="btn-blue logout-btn" onclick="showPage('login')">Logout</button></div></div>
-<div id="changePinPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('profile')">←</span><div class="page-title">Change Payment PIN</div></div><div class="page-form"><div class="form-group"><label>New PIN</label><input id="newPin" type="password" placeholder="4-digit PIN"></div><button class="btn-blue" onclick="changePin()">Update PIN</button></div></div>
-<div id="changePasswordPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('profile')">←</span><div class="page-title">Change Login Password</div></div><div class="page-form"><div class="form-group"><label>New Password</label><input id="newPass" type="password" placeholder="New password"></div><button class="btn-blue" onclick="changePassword()">Update Password</button></div></div>
+<!-- OTHER PAGES: TRANSFER, BILLS, CARDS, PAYMENTS, PROFILE -->
+<div id="transferPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Send Money</div></div><div class="page-form"><div class="form-group"><label>Recipient Name</label><input id="recipientName" placeholder="Enter recipient name"></div><div class="form-group"><label>Account Number</label><input id="recipientAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="transferAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="sendMoney()">Send Money</button></div></div>
+<div id="billsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Pay Bills</div></div><div class="page-form"><div class="form-group"><label>Bill Type</label><select id="billType"><option>Electricity</option><option>Water</option><option>Internet</option><option>TV</option></select></div><div class="form-group"><label>Account Number</label><input id="billAcc" placeholder="Enter account number"></div><div class="form-group"><label>Amount</label><input id="billAmount" type="number" placeholder="$0.00"></div><button class="btn-blue" onclick="payBill()">Pay Bill</button></div></div>
+<div id="cardsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">My Cards</div></div><div class="page-form"><div style="background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px"><div style="display:flex;justify-content:space-between">VISA <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/></svg></div><div style="font-size:18px;letter-spacing:2px;margin:16px 0">**** **** 4567</div><div style="display:flex;justify-content:space-between"><div>SUN<br>12/28</div></div></div><button class="btn-blue" onclick="alert('New card requested!')">Request New Card</button></div></div>
+<div id="paymentsPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Payments</div></div><div class="page-form"><h3 style="margin-bottom:16px">Payment History</h3><div class="tx-list" id="paymentList"></div></div></div>
+<div id="profilePage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Profile</div></div><div class="profile-header"><div class="profile-avatar">S</div><h2>Sun</h2><small style="color:var(--muted)">sun@email.com</small></div><div class="page-form"><div class="setting-item"><div><b>Phone</b><br><small style="color:var(--muted)">+1 555 123 4567</small></div><div class="arrow">›</div></div><div class="setting-item"><div><b>Address</b><br><small style="color:var(--muted)">New York, USA</small></div><div class="arrow">›</div></div><div class="setting-item" onclick="showPage('changePin')"><div><b>Change Payment PIN</b></div><div class="arrow">›</div></div><div class="setting-item" onclick="showPage('changePassword')"><div><b>Change Login Password</b></div><div class="arrow">›</div></div><div class="setting-item" onclick="resetBalance()"><div><b>Reset Balance</b></div><div class="arrow">›</div></div><button class="btn-blue logout-btn" onclick="showPage('login')">Logout</button></div></div>
+<div id="changePinPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Change Payment PIN</div></div><div class="page-form"><div class="form-group"><label>New PIN</label><input id="newPin" type="password" placeholder="4-digit PIN"></div><button class="btn-blue" onclick="changePin()">Update PIN</button></div></div>
+<div id="changePasswordPage" class="hid"><div class="page-header"><span class="back-btn" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span><div class="page-title">Change Login Password</div></div><div class="page-form"><div class="form-group"><label>New Password</label><input id="newPass" type="password" placeholder="New password"></div><button class="btn-blue" onclick="changePassword()">Update Password</button></div></div>
 
 <script>
 let balance = localStorage.getItem('cashflowBalance') ? parseFloat(localStorage.getItem('cashflowBalance')) : 8709627.982;
