@@ -3,209 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CASHFLOW BANK - Your Global Digital Bank</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>CASHFLOW BANK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+:root{
+  --blue:#2563eb;--blue-dark:#1d4ed8;--bg:#f8fafc;--card:#ffffff;
+  --text:#0f172a;--muted:#64748b;--green:#16a34a;--red:#ef4444;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8fafc;color:#0f172a}
+body{background:var(--bg);color:var(--text)}
 
-/* LANDING */
-.nav{background:#fff;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-.logo{font-size:24px;font-weight:800;color:#2563eb;display:flex;align-items:center;gap:10px}
-.logo::before{content:"🏦";font-size:28px}
-.btn{padding:12px 24px;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:0.3s}
-.btn-blue{background:#2563eb;color:white}
-.btn-blue:hover{background:#1d4ed8;transform:translateY(-2px)}
-.btn-white{padding:10px 20px;background:white;color:#2563eb;border:2px solid #2563eb;border-radius:12px;font-weight:600;cursor:pointer}
-.hero{padding:100px 5%;background:linear-gradient(135deg,#2563eb 0%,#1e40af 100%);color:white;text-align:center}
-.hero h1{font-size:52px;font-weight:800;line-height:1.1;margin-bottom:20px}
-.hero p{font-size:18px;color:#dbeafe;max-width:600px;margin:0 auto 30px}
-.badges{display:flex;gap:20px;justify-content:center;margin-top:40px;flex-wrap:wrap}
-.badge{background:rgba(255,255,255,0.15);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600}
-.features{padding:80px 5%;background:#fff;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1200px;margin:40px auto}
-.fcard{background:#f8fafc;padding:30px;border-radius:16px;border:1px solid #e2e8f0}
+/* UTIL */
+.hid{display:none !important}
+.btn{padding:12px 24px;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:0.2s}
+.btn-primary{background:var(--blue);color:white}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-outline{background:white;color:var(--blue);border:2px solid var(--blue)}
 
-/* MODAL */
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1001;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
-.box{background:white;color:#222;padding:40px 30px;border-radius:20px;width:100%;max-width:420px}
-.field{margin-bottom:16px}.field label{font-weight:600;margin-bottom:6px;display:block}
-.field input{width:100%;padding:14px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px}
-.bigbtn{width:100%;padding:15px;background:#2563eb;color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer}
+/* 1. LANDING */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 6%;background:var(--card);position:sticky;top:0;z-index:10;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.logo{font-size:22px;font-weight:800;color:var(--blue);display:flex;gap:8px;align-items:center}
+.logo::before{content:"🏦"}
+.hero{display:flex;align-items:center;justify-content:space-between;padding:100px 6%;gap:50px}
+.hero-text h1{font-size:52px;line-height:1.1;margin-bottom:18px}
+.hero-text p{font-size:18px;color:var(--muted);margin-bottom:30px;max-width:500px}
+.hero-img{font-size:200px}
+.features{padding:80px 6%;background:var(--card)}
+.features h2{text-align:center;font-size:32px;margin-bottom:40px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.fcard{background:var(--bg);padding:28px;border-radius:16px;border:1px solid #e2e8f0}
+.fcard h3{margin-bottom:8px;color:var(--blue)}
 
-/* DASHBOARD + TRANSFER */
-.page{display:none;background:#f8fafc;min-height:100vh}
-.dtop{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
-.btn-menu{background:#2563eb;color:white;padding:10px 18px;border:none;border-radius:10px;font-weight:600;cursor:pointer}
-.profile{display:flex;align-items:center;gap:12px;font-weight:600}
-.profile img{width:42px;height:42px;border-radius:50%}
-.container{max-width:700px;margin:0 auto;padding:30px 20px}
-.container h1{font-size:30px;font-weight:800;margin-bottom:5px}
-.container p{color:#64748b;margin-bottom:25px}
-.card{background:#fff;padding:22px;border-radius:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:0.3s}
-.card:hover{transform:translateY(-3px)}
-.icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
-.icon-purple{background:#ede9fe;color:#7c3aed}
-.icon-green{background:#dcfce7;color:#16a34a}
-.icon-blue{background:#dbeafe;color:#2563eb}
-.card-info small{color:#64748b;font-size:13px}
-.card-info b{font-size:20px;display:block;margin-top:4px;color:#0f172a}
-.action-btn{width:100%;padding:15px;background:#2563eb;color:white;border:none;border-radius:12px;font-weight:700;margin:10px 0;cursor:pointer;font-size:16px}
-.logout{background:#ef4444}
+/* 2. AUTH MODAL */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal-box{background:var(--card);padding:36px;border-radius:20px;width:90%;max-width:420px}
+.modal-box h2{margin-bottom:20px}
+.input-group{margin-bottom:16px}
+.input-group label{font-weight:500;font-size:14px;margin-bottom:6px;display:block}
+.input-group input{width:100%;padding:14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:15px}
 
-.hid{display:none}
+/* 3. APP LAYOUT */
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:var(--card);border-right:1px solid #e2e8f0;padding:24px}
+.sidebar .logo{margin-bottom:30px}
+.nav-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;color:var(--muted);font-weight:500;margin-bottom:4px;cursor:pointer}
+.nav-link.active,.nav-link:hover{background:#eff6ff;color:var(--blue)}
+.main{flex:1;padding:30px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.profile{display:flex;align-items:center;gap:10px;font-weight:600}
+.profile img{width:40px;height:40px;border-radius:50%}
+
+/* 4. DASHBOARD CARDS */
+.balance-card{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:white;padding:28px;border-radius:20px}
+.balance-card small{opacity:0.8}
+.balance-card h2{font-size:38px;margin:8px 0}
+.btn-row{display:flex;gap:10px;margin-top:16px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.stat-card{background:var(--card);padding:20px;border-radius:16px;display:flex;gap:14px;align-items:center}
+.icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.bg-purple{background:#ede9fe;color:#7c3aed}
+.bg-green{background:#dcfce7;color:var(--green)}
+.bg-blue{background:#dbeafe;color:var(--blue)}
+
+/* 5. TRANSFER + TABLE */
+.form-card{background:var(--card);padding:28px;border-radius:16px;max-width:550px}
+.input-group select{width:100%;padding:14px;border:1.5px solid #e2e8f0;border-radius:10px}
+.table{background:var(--card);border-radius:16px;padding:20px;margin-top:20px}
+.table table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:14px;text-align:left;border-bottom:1px solid #f1f5f9}
+.status{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.status.success{background:#dcfce7;color:var(--green)}
+
+@media(max-width:900px){
+  .hero{flex-direction:column;text-align:center}
+  .grid-3,.stat-grid{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:-260px;transition:0.3s;z-index:99}
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
+<!-- LANDING PAGE -->
 <div id="landing">
   <div class="nav">
     <div class="logo">CASHFLOW BANK</div>
-    <div><button class="btn-white" onclick="openSignup()">Create Account</button>
-    <button class="btn btn-blue" onclick="openLogin()">Login</button></div>
+    <div><button class="btn btn-outline" onclick="openAuth('login')">Login</button>
+    <button class="btn btn-primary" onclick="openAuth('signup')">Create Account</button></div>
   </div>
   <div class="hero">
-    <h1>Banking Made<br>Simple. Fast. Secure.</h1>
-    <p>Send money globally in seconds. Join over 1 Million users who trust Cashflow Bank.</p>
-    <button class="btn" style="background:white;color:#2563eb;padding:16px 35px" onclick="openSignup()">Get Started Free</button>
-    <div class="badges">
-      <div class="badge">🔒 Bank Level Security</div>
-      <div class="badge">⚡ Instant Transfers</div>
-      <div class="badge">🌍 200+ Countries</div>
+    <div class="hero-text">
+      <h1>Banking Made<br>Simple. Fast. Secure.</h1>
+      <p>Send money globally in seconds. Track your spending. Grow your savings. All in one beautiful app.</p>
+      <button class="btn btn-primary" onclick="openAuth('signup')">Get Started Free</button>
+    </div>
+    <div class="hero-img">📱</div>
+  </div>
+  <div class="features">
+    <h2>Why 1M+ People Trust Us</h2>
+    <div class="grid-3">
+      <div class="fcard"><h3>⚡ Instant Transfers</h3><p>Send money to anyone, anywhere in under 10 seconds</p></div>
+      <div class="fcard"><h3>🔒 Bank-Grade Security</h3><p>256-bit encryption and fraud protection 24/7</p></div>
+      <div class="fcard"><h3>📊 Smart Analytics</h3><p>See where your money goes with beautiful charts</p></div>
     </div>
   </div>
 </div>
 
-<!-- LOGIN -->
-<div id="loginModal" class="modal"><div class="box">
-  <h2 style="margin-bottom:20px">Welcome Back 👋</h2>
-  <div class="field"><label>Username or Email</label><input id="lu"></div>
-  <div class="field"><label>Password</label><input id="lp" type="password"></div>
-  <button class="bigbtn" onclick="login()">Sign In</button>
-  <button class="bigbtn" style="background:#94a3b8;margin-top:10px" onclick="closeLogin()">Cancel</button>
-</div></div>
-
-<!-- SIGNUP -->
-<div id="signupModal" class="modal"><div class="box">
-  <h2 style="margin-bottom:20px">Create Your Account ✨</h2>
-  <div class="field"><label>Username</label><input id="su"></div>
-  <div class="field"><label>Email</label><input id="se" type="email"></div>
-  <div class="field"><label>Password</label><input id="sp" type="password"></div>
-  <button class="bigbtn" onclick="signup()">Create Account</button>
-  <button class="bigbtn" style="background:#94a3b8;margin-top:10px" onclick="closeSignup()">Cancel</button>
-</div></div>
-
-<!-- DASHBOARD -->
-<div id="dash" class="page">
-  <div class="dtop">
-    <button class="btn-menu" onclick="showPage('dash')">☰ Menu</button>
-    <div class="profile">
-      <img src="https://i.pravatar.cc/100" alt="profile">
-      <span id="username">User</span>
+<!-- AUTH MODAL -->
+<div id="authModal" class="modal hid">
+  <div class="modal-box">
+    <h2 id="authTitle">Login</h2>
+    <div id="signupFields" class="hid">
+      <div class="input-group"><label>Username</label><input id="su"></div>
     </div>
+    <div class="input-group"><label>Email</label><input id="se" type="email"></div>
+    <div class="input-group"><label>Password</label><input id="sp" type="password"></div>
+    <button class="btn btn-primary" style="width:100%" onclick="handleAuth()">Continue</button>
+    <p style="text-align:center;margin-top:16px;font-size:14px">
+      <span id="authSwitchText">Don't have an account?</span> 
+      <a href="#" onclick="toggleAuth()" style="color:var(--blue);font-weight:600">Sign Up</a>
+    </p>
+    <button onclick="closeAuth()" style="margin-top:10px;background:none;border:none;color:var(--muted);width:100%;cursor:pointer">Cancel</button>
   </div>
-  <div class="container">
-    <h1>Overview</h1>
-    <p>Hello <span id="n">User</span>, Welcome Back!</p>
-    
-    <div class="card">
-      <div class="icon icon-purple">💳</div>
-      <div class="card-info">
-        <small>Account Number</small>
-        <b id="acc">87135061016</b>
-      </div>
-    </div>
+</div>
 
-    <div class="card">
-      <div class="icon icon-green">$</div>
-      <div class="card-info">
+<!-- APP -->
+<div id="app" class="app hid">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">CASHFLOW BANK</div>
+    <div class="nav-link active" onclick="show('dashboard')">📊 Overview</div>
+    <div class="nav-link" onclick="show('transfer')">💸 Transfer</div>
+    <div class="nav-link" onclick="show('transactions')">📜 Transactions</div>
+    <div class="nav-link" onclick="logout()">🚪 Logout</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+      <div class="topbar">
+        <div>
+          <h1>Good Morning, <span id="username">User</span> 👋</h1>
+          <p style="color:var(--muted)">Here's what's happening with your money</p>
+        </div>
+        <div class="profile"><img src="https://i.pravatar.cc/100"><span id="userEmail"></span></div>
+      </div>
+      
+      <div class="balance-card">
         <small>Available Balance</small>
-        <b>$<span id="bal">5,430,500</span></b>
+        <h2>$<span id="balance">5,430,500.00</span></h2>
+        <small>Account: <span id="accNo">87135061016</span></small>
+        <div class="btn-row">
+          <button class="btn" style="background:white;color:var(--blue)" onclick="show('transfer')">Send Money</button>
+          <button class="btn" style="background:rgba(255,255,255,0.2);color:white">Receive</button>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="icon bg-purple">💳</div>
+          <div><small>Total Deposits</small><b>$5,430,500</b></div>
+        </div>
+        <div class="stat-card">
+          <div class="icon bg-green">📈</div>
+          <div><small>This Month</small><b>+$12,450</b></div>
+        </div>
+        <div class="stat-card">
+          <div class="icon bg-blue">📤</div>
+          <div><small>Total Sent</small><b>$0</b></div>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="icon icon-blue">📥</div>
-      <div class="card-info">
-        <small>Total Deposits</small>
-        <b>$<span id="dep">5,430,500</span></b>
+    <!-- TRANSFER -->
+    <div id="transfer" class="hid">
+      <h1>Send Money</h1>
+      <p style="color:var(--muted);margin-bottom:20px">Transfer to any bank account instantly</p>
+      <div class="form-card">
+        <div class="input-group"><label>Recipient Account Number</label><input id="tAcc" placeholder="10 digit account"></div>
+        <div class="input-group"><label>Recipient Name</label><input id="tName" placeholder="Full name"></div>
+        <div class="input-group"><label>Amount ($)</label><input id="tAmt" type="number" placeholder="0.00"></div>
+        <div class="input-group"><label>Narration</label><input id="tNote" placeholder="What's this for?"></div>
+        <button class="btn btn-primary" style="width:100%" onclick="sendMoney()">Send Now</button>
       </div>
     </div>
 
-    <button class="action-btn" onclick="showPage('transfer')">💸 Send Money</button>
-    <button class="action-btn logout" onclick="logout()">Logout</button>
-  </div>
-</div>
-
-<!-- TRANSFER PAGE -->
-<div id="transfer" class="page">
-  <div class="dtop">
-    <button class="btn-menu" onclick="showPage('dash')">← Back</button>
-    <div class="profile"><span>Send Money</span></div>
-  </div>
-  <div class="container">
-    <h1>Send Money</h1>
-    <p>Transfer to any bank account instantly</p>
-    
-    <div class="box" style="margin-top:20px">
-      <div class="field"><label>Recipient Account Number</label><input id="tAcc" placeholder="Enter 10 digit account"></div>
-      <div class="field"><label>Recipient Name</label><input id="tName" placeholder="Enter full name"></div>
-      <div class="field"><label>Amount ($)</label><input id="tAmt" type="number" placeholder="0.00"></div>
-      <div class="field"><label>Narration</label><input id="tNote" placeholder="What is this for?"></div>
-      <button class="bigbtn" onclick="sendMoney()">Send Now</button>
-      <button class="bigbtn" style="background:#94a3b8;margin-top:10px" onclick="showPage('dash')">Cancel</button>
+    <!-- TRANSACTIONS -->
+    <div id="transactions" class="hid">
+      <h1>Transaction History</h1>
+      <div class="table">
+        <table>
+          <thead><tr><th>Recipient</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody id="txBody">
+            <tr><td colspan="4" style="text-align:center;color:var(--muted)">No transactions yet</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-let balance=5430500, account='87135061016';
-function showPage(page){
-  document.getElementById('dash').style.display='none';
-  document.getElementById('transfer').style.display='none';
-  document.getElementById(page).style.display='block';
-}
+let user=null, balance=5430500, transactions=[];
+let authMode='login';
 
-function openLogin(){document.getElementById('loginModal').style.display='flex'}
-function closeLogin(){document.getElementById('loginModal').style.display='none'}
-function openSignup(){document.getElementById('signupModal').style.display='flex'}
-function closeSignup(){document.getElementById('signupModal').style.display='none'}
+// AUTH
+function openAuth(mode){authMode=mode;document.getElementById('authModal').classList.remove('hid');
+  document.getElementById('authTitle').innerText=mode==='login'?'Welcome Back 👋':'Create Account ✨';
+  document.getElementById('signupFields').classList.toggle('hid',mode==='login');
+  document.getElementById('authSwitchText').innerText=mode==='login'?"Don't have an account?":"Already have an account?"}
+function closeAuth(){document.getElementById('authModal').classList.add('hid')}
+function toggleAuth(){openAuth(authMode==='login'?'signup':'login')}
 
-function signup(){
+function handleAuth(){
   let u=su.value,e=se.value,p=sp.value;
-  if(!u||!e||!p){alert('Please fill all fields');return}
-  localStorage.setItem('cfUser',JSON.stringify({u,e,p}));
-  alert('Account created successfully! 🎉');
-  closeSignup();openLogin();
+  if(authMode==='signup'){
+    if(!u||!e||!p){alert('Fill all fields');return}
+    localStorage.setItem('cfUser',JSON.stringify({u,e,p}));
+    alert('Account created! Please login.');
+    openAuth('login');return;
+  }
+  let s=JSON.parse(localStorage.getItem('cfUser'));
+  if(!s || ((e!=s.u && e!=s.e) || p!=s.p)){alert('Invalid details');return}
+  user=s;loginSuccess();
 }
-function login(){
-  let u=lu.value,p=lp.value;let s=JSON.parse(localStorage.getItem('cfUser'));
-  if(!s){alert('No account found. Create account first.');return}
-  if((u!=s.u && u!=s.e) || p!=s.p){alert('Wrong username/email or password');return}
-  document.getElementById('n').innerText=s.u;
-  document.getElementById('username').innerText=s.u;
-  document.getElementById('acc').innerText=account;
-  document.getElementById('bal').innerText=balance.toLocaleString();
-  document.getElementById('dep').innerText=balance.toLocaleString();
+
+function loginSuccess(){
   document.getElementById('landing').classList.add('hid');
-  showPage('dash');
-  closeLogin();
+  document.getElementById('authModal').classList.add('hid');
+  document.getElementById('app').classList.remove('hid');
+  document.getElementById('username').innerText=user.u;
+  document.getElementById('userEmail').innerText=user.e;
+  updateBalance();
 }
+
+// NAV
+function show(page){
+  ['dashboard','transfer','transactions'].forEach(id=>document.getElementById(id).classList.add('hid'));
+  document.getElementById(page).classList.remove('hid');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// TRANSFER
 function sendMoney(){
-  let acc=tAcc.value, name=tName.value, amt=parseFloat(tAmt.value);
+  let acc=tAcc.value,name=tName.value,amt=parseFloat(tAmt.value);
   if(!acc||!name||!amt){alert('Fill all fields');return}
   if(amt>balance){alert('Insufficient Balance');return}
   balance-=amt;
-  document.getElementById('bal').innerText=balance.toLocaleString();
-  alert(`Success! $${amt.toLocaleString()} sent to ${name}\nAcc: ${acc}`);
-  tAcc.value='';tName.value='';tAmt.value='';tNote.value='';
-  showPage('dash');
+  transactions.unshift({name,amt,date:new Date().toLocaleDateString(),status:'Success'});
+  updateBalance();renderTx();
+  alert(`Success! $${amt.toLocaleString()} sent to ${name}`);
+  tAcc.value=tName.value=tAmt.value=tNote.value='';
+  show('dashboard');
+}
+function updateBalance(){
+  document.getElementById('balance').innerText=balance.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('accNo').innerText='87135061016';
+}
+function renderTx(){
+  let tbody=document.getElementById('txBody');
+  if(transactions.length===0)return;
+  tbody.innerHTML=transactions.map(tx=>`
+    <tr><td>${tx.name}</td><td>${tx.date}</td><td>-$${tx.amt.toLocaleString()}</td>
+    <td><span class="status success">${tx.status}</span></td></tr>`).join('');
 }
 function logout(){
+  document.getElementById('app').classList.add('hid');
   document.getElementById('landing').classList.remove('hid');
-  document.getElementById('dash').style.display='none';
-  document.getElementById('transfer').style.display='none';
+  user=null;
 }
 </script>
 </body>
