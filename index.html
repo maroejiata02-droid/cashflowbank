@@ -3,184 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CASHFLOW BANK - Member FDIC</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>CASHFLOW BANK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0047AB;--blue-dark:#003380;--bg:#f5f7fa;--card:#ffffff;--text:#1a1a1a;--muted:#6b7280;--green:#059669}
+:root{
+  --blue:#2563eb;--bg:#f8f9fa;--card:#ffffff;--text:#1f2937;--muted:#6b7280;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--text)}
-.hid{display:none !important}
-.btn{padding:12px 24px;border:none;border-radius:8px;font-weight:600;cursor:pointer}
-.btn-primary{background:var(--blue);color:white}
-.btn-primary:hover{background:var(--blue-dark)}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 6%;background:var(--card);border-bottom:1px solid #e5e7eb}
-.logo{font-size:20px;font-weight:800;color:var(--blue);display:flex;gap:8px;align-items:center}
-.logo::before{content:"🏦"}
-.disclaimer{background:#fef3c7;color:#92400e;padding:10px;text-align:center;font-size:12px;font-weight:500}
-.hero{padding:80px 6%;display:flex;gap:40px;align-items:center}
-.hero h1{font-size:44px;line-height:1.2;margin-bottom:16px}
-.badges{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-.badge{background:#eff6ff;color:var(--blue);padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600}
 
-/* APP */
-.app{display:flex;min-height:100vh}
-.sidebar{width:250px;background:var(--card);border-right:1px solid #e5e7eb;padding:20px}
-.nav-link{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;color:var(--muted);font-weight:500;margin-bottom:2px;cursor:pointer;font-size:14px}
-.nav-link.active{background:#eff6ff;color:var(--blue)}
-.main{flex:1;padding:24px}
-.balance-card{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);color:white;padding:24px;border-radius:12px}
-.balance-card h2{font-size:32px;margin:8px 0}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;font-size:13px}
-.info-item{background:rgba(255,255,255,0.15);padding:10px;border-radius:8px}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
-.stat-card{background:var(--card);padding:18px;border-radius:12px;border:1px solid #e5e7eb}
-.form-card{background:var(--card);padding:24px;border-radius:12px;border:1px solid #e5e7eb;max-width:500px}
+/* TOP NAV */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;background:var(--card);position:sticky;top:0;
+  border-bottom:1px solid #e5e7eb;
+}
+.logo{font-size:18px;font-weight:800;color:var(--blue)}
+.nav-btns{display:flex;gap:8px}
+.btn{
+  padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;
+  cursor:pointer;border:1.5px solid var(--blue);transition:0.2s
+}
+.btn-outline{background:white;color:var(--blue)}
+.btn-primary{background:var(--blue);color:white;border:1.5px solid var(--blue)}
+
+/* MAIN CONTENT */
+.container{padding:20px;max-width:500px;margin:0 auto}
+.feature-card{
+  background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;
+  text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05)
+}
+.icon{
+  width:50px;height:50px;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  background:#eff6ff;border-radius:12px;font-size:28px
+}
+.feature-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* AUTH MODAL */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:100}
+.modal.active{display:flex}
+.modal-box{background:var(--card);padding:28px;border-radius:16px;width:90%;max-width:400px}
 .input-group{margin-bottom:14px}
-.input-group label{font-weight:500;font-size:13px;margin-bottom:6px;display:block}
-.input-group input{width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px}
-.table{background:var(--card);border-radius:12px;padding:18px;border:1px solid #e5e7eb;margin-top:20px}
-.table table{width:100%;border-collapse:collapse;font-size:14px}
-.table th{color:var(--muted);font-weight:500;text-align:left;padding:10px;border-bottom:1px solid #e5e7eb}
-.table td{padding:12px;border-bottom:1px solid #f3f4f6}
-.status{padding:4px 10px;border-radius:16px;font-size:11px;font-weight:600}
-.status.success{background:#d1fae5;color:var(--green)}
-.footer-note{font-size:11px;color:var(--muted);margin-top:30px;text-align:center}
+.input-group label{font-size:13px;font-weight:500;margin-bottom:6px;display:block}
+.input-group input{width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px}
 </style>
 </head>
 <body>
 
-<!-- DISCLAIMER TOP -->
-<div class="disclaimer">⚠️ DEMO APP - This is not a real bank. For educational and testing purposes only.</div>
-
-<!-- LANDING -->
-<div id="landing">
-  <div class="nav">
-    <div class="logo">CASHFLOW BANK</div>
-    <div><button class="btn" onclick="openAuth('login')">Login</button>
-    <button class="btn btn-primary" onclick="openAuth('signup')">Open Account</button></div>
-  </div>
-  <div class="hero">
-    <div>
-      <h1>Banking That Works<br>For You</h1>
-      <p style="color:var(--muted);margin-bottom:20px">Member FDIC. Equal Housing Lender. Your deposits are insured up to $250,000.</p>
-      <div class="badges">
-        <div class="badge">🔒 256-bit Encryption</div>
-        <div class="badge">✅ FDIC Insured</div>
-        <div class="badge">📱 Mobile App</div>
-      </div>
-    </div>
+<!-- TOP NAV -->
+<div class="nav">
+  <div class="logo">CASHFLOW BANK</div>
+  <div class="nav-btns">
+    <button class="btn btn-outline" onclick="openAuth('signup')">Create Account</button>
+    <button class="btn btn-primary" onclick="openAuth('login')">Login</button>
   </div>
 </div>
 
+<!-- MAIN CARDS -->
+<div class="container">
+  
+  <!-- CARD 1 -->
+  <div class="feature-card">
+    <div class="icon">🌍</div>
+    <h3>Global Transfers</h3>
+    <p>Send and receive money anywhere in the world in seconds with low fees and real-time tracking.</p>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="feature-card">
+    <div class="icon">📱</div>
+    <h3>24/7 Mobile Banking</h3>
+    <p>Manage your account anytime, anywhere from your phone. We are available 24 hours, 7 days a week.</p>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="feature-card">
+    <div class="icon">🔒</div>
+    <h3>Bank Level Security</h3>
+    <p>Your transactions are protected with 256-bit encryption and 4-digit payment PIN for extra safety.</p>
+  </div>
+
+</div>
+
 <!-- AUTH MODAL -->
-<div id="authModal" class="hid" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center">
-  <div style="background:white;padding:30px;border-radius:12px;width:90%;max-width:400px">
-    <h2 id="authTitle">Login</h2>
-    <div id="signupFields" class="hid">
+<div id="authModal" class="modal">
+  <div class="modal-box">
+    <h2 id="authTitle" style="margin-bottom:16px">Login</h2>
+    <div id="signupFields" style="display:none">
       <div class="input-group"><label>Full Name</label><input id="su"></div>
     </div>
     <div class="input-group"><label>Email</label><input id="se" type="email"></div>
     <div class="input-group"><label>Password</label><input id="sp" type="password"></div>
     <button class="btn btn-primary" style="width:100%" onclick="handleAuth()">Continue</button>
-    <p style="text-align:center;margin-top:14px;font-size:13px"><a href="#" onclick="toggleAuth()" style="color:var(--blue)">Switch to Sign Up</a></p>
+    <p style="text-align:center;margin-top:14px;font-size:13px">
+      <a href="#" onclick="toggleAuth()" style="color:var(--blue);font-weight:600">Switch to Sign Up</a>
+    </p>
     <button onclick="closeAuth()" style="margin-top:8px;background:none;border:none;color:var(--muted);width:100%">Cancel</button>
   </div>
 </div>
 
-<!-- APP -->
-<div id="app" class="app hid">
-  <div class="sidebar">
-    <div class="logo" style="margin-bottom:20px">CASHFLOW BANK</div>
-    <div class="nav-link active" onclick="show('dashboard')">📊 Dashboard</div>
-    <div class="nav-link" onclick="show('transfer')">💸 Transfer Funds</div>
-    <div class="nav-link" onclick="show('transactions')">📜 Activity</div>
-    <div class="nav-link" onclick="logout()">🚪 Sign Out</div>
-  </div>
-
-  <div class="main">
-    <!-- DASHBOARD -->
-    <div id="dashboard">
-      <h1>Welcome back, <span id="username">User</span></h1>
-      <p style="color:var(--muted);margin-bottom:20px">Last login: Today 7:30 PM WAT</p>
-      
-      <div class="balance-card">
-        <small>Checking Account •••• 1016</small>
-        <h2>$<span id="balance">2,450.75</span></h2>
-        <div class="info-grid">
-          <div class="info-item"><small>Account Number</small><br><b>8713 5061 016</b></div>
-          <div class="info-item"><small>Routing Number</small><br><b>0260 1394 7</b></div>
-          <div class="info-item"><small>Bank</small><br><b>Cashflow Bank, N.A</b></div>
-          <div class="info-item"><small>Status</small><br><b>✅ Verified</b></div>
-        </div>
-        <button class="btn" style="background:white;color:var(--blue);margin-top:16px" onclick="show('transfer')">Send Money</button>
-      </div>
-
-      <div class="stat-grid">
-        <div class="stat-card"><small>Available</small><h3>$2,450.75</h3></div>
-        <div class="stat-card"><small>Pending</small><h3>$0.00</h3></div>
-        <div class="stat-card"><small>This Month Spent</small><h3>$1,240.50</h3></div>
-      </div>
-    </div>
-
-    <!-- TRANSFER -->
-    <div id="transfer" class="hid">
-      <h1>Transfer Funds</h1>
-      <p style="color:var(--muted);margin-bottom:16px">Transfers typically arrive in 1-2 business days</p>
-      <div class="form-card">
-        <div class="input-group"><label>To Account Number</label><input id="tAcc" placeholder="1234 5678 90"></div>
-        <div class="input-group"><label>Recipient Name</label><input id="tName" placeholder="John Doe"></div>
-        <div class="input-group"><label>Amount</label><input id="tAmt" type="number" placeholder="0.00"></div>
-        <div class="input-group"><label>Memo</label><input id="tNote" placeholder="Rent, Groceries, etc"></div>
-        <p style="font-size:12px;color:var(--muted)">Fee: $0.00</p>
-        <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="sendMoney()">Send Transfer</button>
-      </div>
-    </div>
-
-    <!-- TRANSACTIONS -->
-    <div id="transactions" class="hid">
-      <h1>Recent Activity</h1>
-      <div class="table">
-        <table>
-          <thead><tr><th>Description</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody id="txBody">
-            <tr><td>Direct Deposit - SALARY</td><td>Sep 01</td><td style="color:var(--green)">+$3,200.00</td><td><span class="status success">Completed</span></td></tr>
-            <tr><td>Starbucks Coffee</td><td>Sep 02</td><td>-$5.75</td><td><span class="status success">Completed</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <p class="footer-note">Cashflow Bank, N.A. Member FDIC. This is a demo application.</p>
-  </div>
-</div>
-
 <script>
-let user=null, balance=2450.75, transactions=[];
 let authMode='login';
-function openAuth(m){authMode=m;document.getElementById('authModal').classList.remove('hid');
-  document.getElementById('authTitle').innerText=m==='login'?'Sign In':'Open Account';
-  document.getElementById('signupFields').classList.toggle('hid',m==='login')}
-function closeAuth(){document.getElementById('authModal').classList.add('hid')}
+function openAuth(mode){
+  authMode=mode;
+  document.getElementById('authModal').classList.add('active');
+  document.getElementById('authTitle').innerText=mode==='login'?'Login':'Create Account';
+  document.getElementById('signupFields').style.display=mode==='login'?'none':'block';
+}
+function closeAuth(){document.getElementById('authModal').classList.remove('active')}
 function toggleAuth(){openAuth(authMode==='login'?'signup':'login')}
-function handleAuth(){
-  let u=su.value,e=se.value,p=sp.value;
-  if(authMode==='signup'){localStorage.setItem('cfUser',JSON.stringify({u,e,p}));alert('Account created!');openAuth('login');return;}
-  let s=JSON.parse(localStorage.getItem('cfUser'));
-  if(!s || ((e!=s.u && e!=s.e) || p!=s.p)){alert('Invalid login');return}
-  user=s;document.getElementById('landing').classList.add('hid');document.getElementById('authModal').classList.add('hid');
-  document.getElementById('app').classList.remove('hid');document.getElementById('username').innerText=s.u;updateBalance();
-}
-function show(p){['dashboard','transfer','transactions'].forEach(id=>document.getElementById(id).classList.add('hid'));
-  document.getElementById(p).classList.remove('hid')}
-function sendMoney(){
-  let acc=tAcc.value,name=tName.value,amt=parseFloat(tAmt.value);
-  if(!acc||!name||!amt){alert('Fill all fields');return}
-  if(amt>balance){alert('Insufficient funds');return}
-  balance-=amt;transactions.unshift({name,amt,date:'Today'});
-  updateBalance();alert(`Transfer of $${amt} to ${name} initiated.`);
-  tAcc.value=tName.value=tAmt.value=tNote.value='';show('dashboard');
-}
-function updateBalance(){document.getElementById('balance').innerText=balance.toLocaleString(undefined,{minimumFractionDigits:2})}
-function logout(){document.getElementById('app').classList.add('hid');document.getElementById('landing').classList.remove('hid')}
+function handleAuth(){alert('Step 2 go connect this one to dashboard');closeAuth()}
 </script>
+
 </body>
 </html>
