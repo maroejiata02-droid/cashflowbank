@@ -4,18 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CASHFLOW BANK</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a1128;--card:#131d3a;--text:#ffffff;--muted:#94a3b8;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--orange:#f97316;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
-/* NEW LOADING PAGE - OTPSUITE STYLE */
+/* NEW LOADING PAGE - BIG LOGO */
 .loading-page{background:#fff8f0;min-height:100vh;padding:20px;color:#000;padding-bottom:100px}
-.loading-header{display:flex;justify-content:space-between;align-items:center;padding:10px 0;margin-bottom:20px}
-.loading-logo{height:32px}
-.loading-menu{font-size:24px;cursor:pointer}
+.loading-header{display:flex;justify-content:space-between;align-items:center;padding:15px 0;margin-bottom:20px}
+.logo-text{font-size:28px;font-weight:900;letter-spacing:-0.5px}
+.logo-text .cashflow{color:#f97316}
+.logo-text .bank{color:#1e293b}
+.loading-menu{font-size:28px;cursor:pointer;color:#1e293b}
 .feature-card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 .feature-icon-box{width:48px;height:48px;border-radius:12px;background:#fff7ed;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px;color:#111}
@@ -26,7 +28,7 @@ body{background:var(--bg);color:var(--text)}
 .cta-box p{font-size:14px;margin-bottom:20px;opacity:0.9}
 .btn-white{background:#fff;color:#f97316;border:none;padding:14px 24px;border-radius:50px;font-weight:700;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 
-.section-title{text-align:center;font-size:22px;font-weight:800;margin:30px 0 10px}
+.section-title{text-align:center;font-size:22px;font-weight:800;margin:30px 0 10px;color:#1e293b}
 .section-subtitle{text-align:center;color:#6b7280;font-size:14px;margin-bottom:20px}
 
 .footer-note{background:#0a1128;color:#94a3b8;padding:20px;border-radius:16px;text-align:center;font-size:13px;line-height:1.6;margin-bottom:16px}
@@ -84,10 +86,13 @@ body{background:var(--bg);color:var(--text)}
 </head>
 <body>
 
-<!-- 1. NEW LOADING PAGE - OTPSUITE STYLE -->
+<!-- 1. LOADING PAGE - BIG LOGO -->
 <div id="loadingPage" class="loading-page">
   <div class="loading-header">
-    <img src="logo.png" class="loading-logo" onerror="this.outerHTML='<b style=color:#f97316>CASHFLOW</b> <b> BANK</b>'">
+    <div class="logo-text">
+      <span class="cashflow">CASHFLOW</span>
+      <span class="bank">BANK</span>
+    </div>
     <div class="loading-menu">☰</div>
   </div>
 
@@ -131,7 +136,7 @@ body{background:var(--bg);color:var(--text)}
   </div>
 
   <div class="footer-note">
-    <img src="logo.png" class="footer-logo" onerror="this.style.display='none'">
+    <div style="font-size:18px;font-weight:800;margin-bottom:10px"><span style="color:#f97316">CASHFLOW</span> <span>BANK</span></div>
     <p>Send money to 200+ countries and pay all your bills using one reliable, affordable and secure wallet.</p>
   </div>
 
