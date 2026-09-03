@@ -7,24 +7,46 @@
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
   body { background: linear-gradient(135deg, #ffffff 0%, #ffea 100%); min-height: 100vh; }
-  .header { background: linear-gradient(135deg, #d40000, #ff0000); color: white; padding: 25px 20px; text-align: center; }
-  .header h1 { font-size: 32px; font-weight: 800; }
-  .header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
-  .container { max-width: 500px; margin: 30px auto; padding: 20px; }
-  .card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(212,0,0,0.15); border: 2px solid #ffcccc; }
-  .balance { background: linear-gradient(135deg, #d40000, #ff3333); color: white; text-align: center; border: none; }
-  .balance h2 { font-size: 14px; opacity: 0.9; } .balance h1 { font-size: 36px; font-weight: 800; margin-top: 10px; }
-  .btn { width: 100%; padding: 16px; margin: 10px 0; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; }
-  .btn-red { background: linear-gradient(135deg, #d40000, #ff0000); color: white; }
-  .btn-white { background: white; color: #d40000; border: 2px solid #d40000; }
+ .header { background: linear-gradient(135deg, #d40000, #ff0000); color: white; padding: 25px 20px; text-align: center; }
+ .header h1 { font-size: 32px; font-weight: 800; }
+ .header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+ .container { max-width: 500px; margin: 30px auto; padding: 20px; }
+ .card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(212,0,0,0.15); border: 2px solid #ffcccc; }
+ .balance { background: linear-gradient(135deg, #d40000, #ff3333); color: white; text-align: center; border: none; }
+ .balance h2 { font-size: 14px; opacity: 0.9; }.balance h1 { font-size: 36px; font-weight: 800; margin-top: 10px; }
+ .btn { width: 100%; padding: 16px; margin: 10px 0; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; }
+ .btn-red { background: linear-gradient(135deg, #d40000, #ff0000); color: white; }
+ .btn-white { background: white; color: #d40000; border: 2px solid #d40000; }
   input { width: 100%; padding: 14px; margin: 10px 0; border: 2px solid #ffcccc; border-radius: 10px; font-size: 15px; }
-  .hidden { display: none; }
-  .success { background: #00c851; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 10px 0; font-weight: 600; }
-  .error { background: #ff4444; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 10px 0; font-weight: 600; }
-  .welcome-text { text-align: center; color: #d40000; margin-bottom: 20px; }
-  .welcome-text h2 { font-size: 24px; } .welcome-text p { font-size: 14px; color: #666; }
-  .timer { text-align: center; color: #d40000; font-size: 12px; margin-top: 10px; }
-  .footer { text-align: center; padding: 20px; color: #d40000; font-size: 12px; }
+ .hidden { display: none; }
+ .success { background: #00c851; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 10px 0; font-weight: 600; }
+ .error { background: #ff4444; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 10px 0; font-weight: 600; }
+ .welcome-text { text-align: center; color: #d40000; margin-bottom: 20px; }
+ .welcome-text h2 { font-size: 24px; }.welcome-text p { font-size: 14px; color: #666; }
+
+  /* PROFILE PIC STYLE */
+ .profile-section { text-align: center; margin-bottom: 20px; }
+ .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #d40000;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+ .upload-btn {
+    background: white;
+    color: #d40000;
+    border: 2px solid #d40000;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #fileInput { display: none; }
+
+ .footer { text-align: center; padding: 20px; color: #d40000; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -35,7 +57,7 @@
   </div>
 
   <div class="container">
-    
+
     <!-- LOGIN PAGE -->
     <div id="loginPage">
       <div class="card">
@@ -50,11 +72,10 @@
     <!-- VERIFICATION CODE PAGE -->
     <div id="codePage" class="hidden">
       <div class="card">
-        <div class="welcome-text"><h2>2FA Verification</h2><p>Open 2fa.live and enter code</p></div>
-        <input type="text" id="verifyCode" placeholder="Enter 6-digit Code from 2fa.live" maxlength="6">
+        <div class="welcome-text"><h2>2FA Verification</h2><p>Enter your 6-digit code</p></div>
+        <input type="text" id="verifyCode" placeholder="Enter 6-digit Code" maxlength="6">
         <button class="btn btn-red" onclick="verifyCode()">Verify & Continue</button>
         <button class="btn btn-white" onclick="showLogin()">Back to Login</button>
-        <div class="timer">Code changes every 30 seconds</div>
         <div id="codeError"></div>
       </div>
     </div>
@@ -74,8 +95,14 @@
 
     <!-- HOME PAGE -->
     <div id="homePage" class="hidden">
-      <div class="card balance"><h2>AVAILABLE BALANCE</h2><h1 id="balance">$1,670,281.92</h1></div>
       <div class="card">
+        <div class="profile-section">
+          <img src="https://i.ibb.co/4pDNDk1/user-avatar.png" id="profileImg" class="profile-pic" alt="Profile">
+          <br>
+          <label for="fileInput" class="upload-btn">📷 Change Picture</label>
+          <input type="file" id="fileInput" accept="image/*" onchange="uploadProfile()">
+        </div>
+        <div class="card balance"><h2>AVAILABLE BALANCE</h2><h1 id="balance">$1,670,281.92</h1></div>
         <h3 style="color:#d40000; margin-bottom:15px;">Welcome, <span id="userName">User</span>!</h3>
         <button class="btn btn-red" onclick="showTransfer()">Send Money</button>
         <button class="btn btn-white">Add Money</button>
@@ -97,7 +124,7 @@
       </div>
       <div id="successMsg"></div>
     </div>
-    
+
   </div>
 
   <div class="footer">© 2026 CashflowBank. Licensed & Secured with 256-bit SSL Encryption</div>
@@ -105,29 +132,26 @@
 <script>
   let balance = 1670281.92;
   let currentUser = '';
-  // YOUR 2FA SECRET KEY - NO SPACES
-  const SECRET_KEY = 'SSNZ3I5AIASBMK3ZJMU34NUHFU5M4KAW'; 
+  const SECRET_CODES = ['739204', '812567', '450981', '623410', '905837', '178246', '364519'];
 
-  // SIMPLE TOTP CHECKER - NO EXTERNAL SCRIPT
-  function base32toHex(base32) {
-    const base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-    let bits = "";
-    let hex = "";
-    for(let i = 0; i < base32.length; i++) {
-      let val = base32chars.indexOf(base32.charAt(i).toUpperCase());
-      bits += ("00000" + val.toString(2)).slice(-5);
+  // LOAD SAVED PROFILE PIC
+  window.onload = function() {
+    let savedPic = localStorage.getItem('profilePic');
+    if(savedPic) {
+      document.getElementById('profileImg').src = savedPic;
     }
-    for(let i = 0; i+4 <= bits.length; i+=4) {
-      let chunk = bits.substr(i, 4);
-      hex = hex + parseInt(chunk, 2).toString(16);
-    }
-    return hex;
   }
 
-  function generateTOTP(secret) {
-    // This is simplified - real TOTP needs crypto. For now we check if code matches 2fa.live
-    // Just accept any 6 digit code for demo. For real use, use backend
-    return true;
+  function uploadProfile() {
+    let file = document.getElementById('fileInput').files[0];
+    if(file) {
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('profileImg').src = e.target.result;
+        localStorage.setItem('profilePic', e.target.result); // Save am
+      }
+      reader.readAsDataURL(file);
+    }
   }
 
   function showLogin() { hideAll(); document.getElementById('loginPage').classList.remove('hidden'); }
@@ -142,36 +166,36 @@
     document.getElementById('homePage').classList.add('hidden');
     document.getElementById('transferPage').classList.add('hidden');
   }
-  
+
   function login() {
     let user = document.getElementById('loginUser').value;
     let pass = document.getElementById('loginPass').value;
-    if(!user || !pass) { alert('Please fill all fields'); return; }
+    if(!user ||!pass) { alert('Please fill all fields'); return; }
     currentUser = user;
     showCode();
   }
-  
+
   function verifyCode() {
     let code = document.getElementById('verifyCode').value;
-    if(code.length === 6 && !isNaN(code)) { // Just check if na 6 digits
+    if(SECRET_CODES.includes(code)) {
       document.getElementById('userName').innerText = currentUser;
       document.getElementById('codeError').innerHTML = '';
       showHome();
     } else {
-      document.getElementById('codeError').innerHTML = `<div class="error">❌ Invalid 2FA Code. Enter 6 digits from 2fa.live</div>`;
+      document.getElementById('codeError').innerHTML = `<div class="error">❌ Invalid Code. Please try again.</div>`;
     }
   }
-  
+
   function register() {
     let name = document.getElementById('regName').value;
     let email = document.getElementById('regEmail').value;
     let user = document.getElementById('regUser').value;
     let pass = document.getElementById('regPass').value;
-    if(!name || !email || !user || !pass) { alert('Please fill all fields'); return; }
+    if(!name ||!email ||!user ||!pass) { alert('Please fill all fields'); return; }
     alert('✅ Account Created Successfully! Please Login');
     showLogin();
   }
-  
+
   function logout() {
     currentUser = '';
     document.getElementById('loginUser').value = '';
@@ -179,12 +203,12 @@
     document.getElementById('verifyCode').value = '';
     showLogin();
   }
-  
+
   function sendMoney() {
     let name = document.getElementById('recipient').value;
     let acc = document.getElementById('account').value;
     let amt = parseFloat(document.getElementById('amount').value);
-    if(!name || !acc || !amt) { alert('Please fill all fields'); return; }
+    if(!name ||!acc ||!amt) { alert('Please fill all fields'); return; }
     if(amt > balance) { alert('Insufficient Funds'); return; }
     balance = balance - amt;
     document.getElementById('balance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
