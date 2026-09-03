@@ -47,23 +47,26 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
 .nav-item.active{color:var(--blue)}
 .transfer-btn{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-20px;box-shadow:0 4px 12px rgba(59,130,246,0.4);cursor:pointer}
 
-/* PAGES HEADER */
+/* PAGES */
 .page-header{display:flex;align-items:center;gap:12px;padding:20px}
 .back-btn{font-size:24px;cursor:pointer}
 .page-title{font-size:20px;font-weight:700}
-
-/* FORMS */
 .page-form{background:var(--card);margin:16px;border-radius:16px;padding:20px;border:1px solid #1e293b}
 .form-group{margin-bottom:18px}
 .form-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:var(--muted)}
 .form-group input, .form-group select{width:100%;padding:14px;background:#0f172a;border:1.5px solid #1e293b;border-radius:12px;font-size:15px;color:var(--text)}
-.amount-input{font-size:28px;font-weight:700;text-align:center}
 .btn-blue{width:100%;padding:16px;background:var(--blue);color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
 
 /* CARD */
 .card-box{background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px}
 .card-number{font-size:18px;letter-spacing:2px;margin:16px 0}
 .card-bottom{display:flex;justify-content:space-between}
+
+/* PROFILE */
+.profile-header{text-align:center;padding:20px}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;margin:0 auto 12px}
+.profile-item{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #1e293b}
+.logout-btn{background:var(--red)!important}
 </style>
 </head>
 <body>
@@ -100,17 +103,15 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
     </div>
 
     <div class="section-header"><h3 class="section-title">Recent Transactions</h3></div>
-    <div class="tx-list" id="txList">
-      <div class="tx-item"><div style="display:flex;gap:12px"><div class="tx-avatar" style="background:#be123c;color:white">TJ</div><div><div>Transfer to John</div><small style="color:var(--muted)">Today, 7:25 AM</small></div></div><div style="color:var(--red);font-weight:700">-$250.00</div></div>
-    </div>
+    <div class="tx-list" id="txList"></div>
   </div>
   
   <div class="bottom-nav">
-    <div class="nav-item active"><div>🏠</div>Home</div>
-    <div class="nav-item"><div>$</div>Payments</div>
+    <div class="nav-item active" onclick="showPage('dashboard')"><div>🏠</div>Home</div>
+    <div class="nav-item" onclick="showPage('payments')"><div>$</div>Payments</div>
     <div class="transfer-btn" onclick="showPage('transfer')">↔️</div>
     <div class="nav-item" onclick="showPage('cards')"><div>💳</div>Cards</div>
-    <div class="nav-item"><div>👤</div>Profile</div>
+    <div class="nav-item" onclick="showPage('profile')"><div>👤</div>Profile</div>
   </div>
 </div>
 
@@ -120,7 +121,7 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
   <div class="page-form">
     <div class="form-group"><label>Recipient Name</label><input id="recipientName" placeholder="Enter recipient name"></div>
     <div class="form-group"><label>Account Number</label><input id="recipientAcc" placeholder="Enter account number"></div>
-    <div class="form-group"><label>Amount</label><input id="transferAmount" type="number" class="amount-input" placeholder="$0.00"></div>
+    <div class="form-group"><label>Amount</label><input id="transferAmount" type="number" placeholder="$0.00"></div>
     <button class="btn-blue" onclick="sendMoney()">Send Money</button>
   </div>
 </div>
@@ -129,17 +130,9 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
 <div id="billsPage" class="hid">
   <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Pay Bills</div></div>
   <div class="page-form">
-    <div class="form-group">
-      <label>Bill Type</label>
-      <select id="billType">
-        <option>Electricity</option>
-        <option>Water</option>
-        <option>Internet</option>
-        <option>TV Subscription</option>
-      </select>
-    </div>
+    <div class="form-group"><label>Bill Type</label><select id="billType"><option>Electricity</option><option>Water</option><option>Internet</option><option>TV Subscription</option></select></div>
     <div class="form-group"><label>Account/Meter Number</label><input id="billAcc" placeholder="Enter account number"></div>
-    <div class="form-group"><label>Amount</label><input id="billAmount" type="number" class="amount-input" placeholder="$0.00"></div>
+    <div class="form-group"><label>Amount</label><input id="billAmount" type="number" placeholder="$0.00"></div>
     <button class="btn-blue" onclick="payBill()">Pay Bill</button>
   </div>
 </div>
@@ -158,11 +151,45 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
   </div>
 </div>
 
+<!-- PAYMENTS PAGE -->
+<div id="paymentsPage" class="hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Payments</div></div>
+  <div class="page-form">
+    <h3 style="margin-bottom:16px">Payment History</h3>
+    <div class="tx-list" id="paymentList">
+      <div class="tx-item"><div>Transfer</div><div style="color:var(--red)">-$250.00</div></div>
+      <div class="tx-item"><div>Electricity Bill</div><div style="color:var(--red)">-$85.00</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE PAGE -->
+<div id="profilePage" class="hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Profile</div></div>
+  <div class="profile-header">
+    <div class="profile-avatar">S</div>
+    <h2>Sun</h2>
+    <small style="color:var(--muted)">sun@email.com</small>
+  </div>
+  <div class="page-form">
+    <div class="profile-item"><span>Account Number</span><b>0102345678</b></div>
+    <div class="profile-item"><span>Phone</span><b>+234 800 000 0000</b></div>
+    <div class="profile-item"><span>Address</span><b>Bonny, Rivers State</b></div>
+    <button class="btn-blue logout-btn" onclick="showPage('login')">Logout</button>
+  </div>
+</div>
+
 <script>
 let balance = 8709627.982;
 
 function showPage(page){
-  ['loginPage','dashboardPage','transferPage','billsPage','cardsPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
+  document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));
+  if(page=='dashboard') document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+  if(page=='payments') document.querySelector('.nav-item:nth-child(2)').classList.add('active');
+  if(page=='cards') document.querySelector('.nav-item:nth-child(4)').classList.add('active');
+  if(page=='profile') document.querySelector('.nav-item:nth-child(5)').classList.add('active');
+
+  ['loginPage','dashboardPage','transferPage','billsPage','cardsPage','paymentsPage','profilePage'].forEach(id=>document.getElementById(id).classList.add('hid'));
   document.getElementById(page+'Page').classList.remove('hid');
 }
 
@@ -172,7 +199,7 @@ function doLogin(){
   if(e && p){showPage('dashboard');} else {alert('Enter email and password');}
 }
 
-function addTransaction(name, amt, type){
+function addTransaction(name, amt){
   balance -= amt;
   document.getElementById('mainBalance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
   let txList = document.getElementById('txList');
@@ -185,7 +212,7 @@ function sendMoney(){
   let amt = parseFloat(document.getElementById('transferAmount').value);
   if(!name || !amt){alert('Please fill all fields');return}
   if(amt > balance){alert('Insufficient balance');return}
-  addTransaction('Transfer to '+name, amt, 'transfer');
+  addTransaction('Transfer to '+name, amt);
   alert('Transfer of $' + amt.toLocaleString() + ' to ' + name + ' successful!');
   document.getElementById('recipientName').value='';
   document.getElementById('transferAmount').value='';
@@ -197,7 +224,7 @@ function payBill(){
   let amt = parseFloat(document.getElementById('billAmount').value);
   if(!amt){alert('Enter amount');return}
   if(amt > balance){alert('Insufficient balance');return}
-  addTransaction(type+' Bill', amt, 'bill');
+  addTransaction(type+' Bill', amt);
   alert(type+' bill of $' + amt.toLocaleString() + ' paid successfully!');
   document.getElementById('billAmount').value='';
   showPage('dashboard');
