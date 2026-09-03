@@ -49,8 +49,8 @@
     <!-- VERIFICATION CODE PAGE -->
     <div id="codePage" class="hidden">
       <div class="card">
-        <div class="welcome-text"><h2>Security Verification</h2><p>Enter the 6-digit code sent to your device</p></div>
-        <input type="text" id="verifyCode" placeholder="Enter 6-digit Code" maxlength="6">
+        <div class="welcome-text"><h2>Security Verification</h2><p>Enter your 6-digit security code</p></div>
+        <input type="password" id="verifyCode" placeholder="Enter 6-digit Code" maxlength="6">
         <button class="btn btn-red" onclick="verifyCode()">Verify & Continue</button>
         <button class="btn btn-white" onclick="showLogin()">Back to Login</button>
         <div id="codeError"></div>
@@ -103,15 +103,11 @@
 <script>
   let balance = 1670281.92;
   let currentUser = '';
-  let SECRET_CODE = '';
-
-  function generateCode() {
-    SECRET_CODE = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log('Your CashflowBank Code:', SECRET_CODE); // Only you fit see am for console
-  }
+  // YOUR 7 SECRET CODES - ANY OF THEM GO WORK
+  const SECRET_CODES = ['739204', '812567', '450981', '623410', '905837', '178246', '364519'];
 
   function showLogin() { hideAll(); document.getElementById('loginPage').classList.remove('hidden'); }
-  function showCode() { generateCode(); hideAll(); document.getElementById('codePage').classList.remove('hidden'); }
+  function showCode() { hideAll(); document.getElementById('codePage').classList.remove('hidden'); }
   function showRegister() { hideAll(); document.getElementById('registerPage').classList.remove('hidden'); }
   function showHome() { hideAll(); document.getElementById('homePage').classList.remove('hidden'); document.getElementById('successMsg').innerHTML = ''; }
   function showTransfer() { hideAll(); document.getElementById('transferPage').classList.remove('hidden'); }
@@ -133,7 +129,7 @@
   
   function verifyCode() {
     let code = document.getElementById('verifyCode').value;
-    if(code === SECRET_CODE) {
+    if(SECRET_CODES.includes(code)) { // Check if code dey inside the 7 codes
       document.getElementById('userName').innerText = currentUser;
       document.getElementById('codeError').innerHTML = '';
       showHome();
@@ -153,7 +149,7 @@
   }
   
   function logout() {
-    currentUser = ''; SECRET_CODE = '';
+    currentUser = '';
     document.getElementById('loginUser').value = '';
     document.getElementById('loginPass').value = '';
     document.getElementById('verifyCode').value = '';
