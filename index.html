@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CashflowBank</title>
+<title>CITI BANK</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f7fa}
 .nav{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-.logo{font-size:24px;font-weight:800}
-.logo .b{color:#0066ff}.logo .g{color:#00c896}
+.logo{font-size:24px;font-weight:800;color:#0066ff}
 .btn{background:#0066ff;color:white;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer}
 .content{max-width:600px;margin:30px auto;padding:0 20px}
 .card{background:white;padding:30px;border-radius:12px;margin-bottom:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
@@ -17,7 +16,7 @@ body{background:#f5f7fa}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
 .box{background:#1a1f2e;padding:30px;border-radius:15px;width:90%;max-width:400px}
 .box h2{color:white;margin-bottom:20px;text-align:center}
-.box input{width:100%;padding:14px;margin:10px 0;background:#0f1419;border:1px solid #2a3441;border-radius:8px;color:white}
+.box input{width:100%;padding:14px;margin:10px 0;background:#0f1419;border:1px solid #2a3441;border-radius:8px;color:white;text-align:center;font-size:18px;letter-spacing:8px}
 .page{display:none;background:#0f1419;color:#e0e0e0;min-height:100vh}
 .dnav{background:#1a1f2e;padding:15px 20px;display:flex;justify-content:space-between}
 .dcon{max-width:500px;margin:0 auto;padding:20px}
@@ -38,6 +37,8 @@ h1{color:white;text-align:center;margin:20px 0}
 .detail{background:#1a1f2e;padding:15px;border-radius:8px;display:flex;justify-content:space-between;margin-bottom:10px;border:1px solid #2a3441}
 .detail span:first-child{color:#888}
 .hid{display:none}
+.pin-box{display:flex;gap:10px;justify-content:center}
+.pin-box input{width:50px;height:50px;text-align:center;font-size:20px;letter-spacing:0}
 </style>
 </head>
 <body>
@@ -45,22 +46,22 @@ h1{color:white;text-align:center;margin:20px 0}
 <!-- LANDING -->
 <div id="landing">
   <div class="nav">
-    <div class="logo"><span class="b">Cashflow</span><span class="g">Bank</span></div>
+    <div class="logo">CITI BANK</div>
     <button class="btn" onclick="document.getElementById('m').style.display='flex'">Login</button>
   </div>
   <div class="content">
     <div class="card"><p>Send and receive money anywhere in the world in seconds.</p></div>
     <div class="card"><div style="font-size:40px">📱</div><h2>24/7 Mobile Banking</h2><p>Manage your account anytime, anywhere from your phone.</p></div>
   </div>
-  <div class="footer"><p style="color:#64748b;font-size:12px">© 2026 CashflowBank. Demo website for educational purposes.</p></div>
+  <div class="footer"><p style="color:#64748b;font-size:12px">© 2026 CITI BANK. Demo website for educational purposes.</p></div>
 </div>
 
 <!-- LOGIN -->
 <div id="m" class="modal">
   <div class="box">
-    <h2>Login to CashflowBank</h2>
-    <input id="u" placeholder="Username">
-    <input id="p" type="password" placeholder="Password">
+    <h2>Login to CITI BANK</h2>
+    <input id="u" placeholder="Username" style="letter-spacing:0;text-align:left;font-size:15px">
+    <input id="p" type="password" placeholder="Password" style="letter-spacing:0;text-align:left;font-size:15px">
     <button class="btn" style="width:100%" onclick="go()">Login</button>
     <button class="btn2" style="width:100%;margin-top:10px" onclick="document.getElementById('m').style.display='none'">Cancel</button>
   </div>
@@ -68,7 +69,7 @@ h1{color:white;text-align:center;margin:20px 0}
 
 <!-- DASHBOARD -->
 <div id="dash" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CASHFLOW BANK</div><div style="width:40px;height:40px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div style="width:40px;height:40px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center">👤</div></div>
   <div class="dcon">
     <div class="greet">
       <h2>Good morning <span id="n">User</span></h2>
@@ -88,22 +89,38 @@ h1{color:white;text-align:center;margin:20px 0}
 
 <!-- TRANSFER -->
 <div id="t" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CASHFLOW BANK</div><div>👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div>👤</div></div>
   <div class="dcon">
-    <h1>CashflowBank Online<br>Banking Transfer.</h1>
+    <h1>CITI BANK Online<br>Banking Transfer.</h1>
     <div class="amount">AMOUNT TO TRANSFER: USD<span id="tamt">27,800</span></div>
     <div class="form"><label>Bank name:</label><input id="bn" placeholder="Citi Bank"></div>
     <div class="form"><label>Account Number:</label><input id="an" placeholder="1234567890"></div>
     <div class="form"><label>Account holder:</label><input id="ah" placeholder="Carson"></div>
     <div class="form"><label>Description(optional):</label><input id="ds" placeholder="Payment for shipping"></div>
-    <button class="btn" style="width:100%" onclick="send()">Continue to next step</button>
+    <button class="btn" style="width:100%" onclick="showPin()">Continue to next step</button>
     <button class="btn2" style="width:100%;margin-top:10px" onclick="show('dash')">Back</button>
+  </div>
+</div>
+
+<!-- PIN MODAL -->
+<div id="pinModal" class="modal">
+  <div class="box">
+    <h2>Enter Payment PIN</h2>
+    <p style="color:#888;text-align:center;margin-bottom:15px;font-size:14px">Enter your 4-digit transaction PIN</p>
+    <div class="pin-box">
+      <input type="password" id="pin1" maxlength="1" onkeyup="moveNext(this, 'pin2')">
+      <input type="password" id="pin2" maxlength="1" onkeyup="moveNext(this, 'pin3')">
+      <input type="password" id="pin3" maxlength="1" onkeyup="moveNext(this, 'pin4')">
+      <input type="password" id="pin4" maxlength="1">
+    </div>
+    <button class="btn" style="width:100%;margin-top:20px" onclick="verifyPin()">Confirm Transfer</button>
+    <button class="btn2" style="width:100%;margin-top:10px" onclick="closePin()">Cancel</button>
   </div>
 </div>
 
 <!-- SUCCESS -->
 <div id="s" class="page">
-  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CASHFLOW BANK</div><div>👤</div></div>
+  <div class="dnav"><div>☰</div><div style="color:#666;font-weight:700">CITI BANK</div><div>👤</div></div>
   <div class="dcon">
     <div class="success">✓</div>
     <h1>Transaction successful!</h1>
@@ -120,14 +137,59 @@ h1{color:white;text-align:center;margin:20px 0}
 
 <script>
 let balance=8360200;
+let correctPin = "1234"; // <-- CHANGE THIS TO YOUR PIN
 let tx=[
   {r:'ELI/LCO3NJQEL-0626',d:'16 Jun 2026, 5:13 pm',s:'Initial payment',a:2700000,t:'c'},
   {r:'ELI/ETEHME31V-0626',d:'16 Jun 2026, 4:10 pm',s:'Initial payment',a:300000,t:'c'},
   {r:'ELI/NAJYATY0Z-0626',d:'16 Jun 2026, 1:45 am',s:'Food supply',a:187000,t:'d'}
 ];
+
 function show(id){document.querySelectorAll('.page').forEach(p=>p.style.display='none');document.getElementById(id).style.display='block';if(id=='dash')load()}
 function go(){let u=document.getElementById('u').value;if(!u){alert('Enter username');return}document.getElementById('n').innerText=u;document.getElementById('m').style.display='none';document.getElementById('landing').classList.add('hid');show('dash')}
-function send(){let bn=document.getElementById('bn').value,an=document.getElementById('an').value,ah=document.getElementById('ah').value,ds=document.getElementById('ds').value,amt=parseInt(document.getElementById('tamt').innerText.replace(/,/g,''));if(!bn||!an||!ah){alert('Fill all fields');return}if(amt>balance){alert('Insufficient Funds');return}balance-=amt;document.getElementById('sa').innerText=amt.toLocaleString();document.getElementById('sto').innerText=ah;document.getElementById('da').innerText='USD '+amt.toLocaleString();document.getElementById('dh').innerText=ah;document.getElementById('db').innerText=bn;document.getElementById('dba').innerText='USD '+balance.toLocaleString();document.getElementById('dd').innerText=new Date().toLocaleString();document.getElementById('dr').innerText='ELI/'+Math.random().toString(36).substr(2,6).toUpperCase()+'-0626';tx.unshift({r:document.getElementById('dr').innerText,d:document.getElementById('dd').innerText,s:ds,a:amt,t:'d'});show('s')}
+
+function showPin(){
+  let bn=document.getElementById('bn').value,an=document.getElementById('an').value,ah=document.getElementById('ah').value;
+  if(!bn||!an||!ah){alert('Fill all fields');return}
+  document.getElementById('pinModal').style.display='flex';
+  document.getElementById('pin1').value='';document.getElementById('pin2').value='';document.getElementById('pin3').value='';document.getElementById('pin4').value='';
+  document.getElementById('pin1').focus();
+}
+
+function closePin(){document.getElementById('pinModal').style.display='none'}
+
+function moveNext(current, nextId){
+  if(current.value.length==1){document.getElementById(nextId).focus()}
+}
+
+function verifyPin(){
+  let pin = document.getElementById('pin1').value + document.getElementById('pin2').value + document.getElementById('pin3').value + document.getElementById('pin4').value;
+  
+  if(pin != correctPin){
+    alert('Incorrect PIN. Please try again.');
+    closePin();
+    return;
+  }
+  
+  closePin();
+  processTransfer();
+}
+
+function processTransfer(){
+  let bn=document.getElementById('bn').value,an=document.getElementById('an').value,ah=document.getElementById('ah').value,ds=document.getElementById('ds').value,amt=parseInt(document.getElementById('tamt').innerText.replace(/,/g,''));
+  if(amt>balance){alert('Insufficient Funds');return}
+  balance-=amt;
+  document.getElementById('sa').innerText=amt.toLocaleString();
+  document.getElementById('sto').innerText=ah;
+  document.getElementById('da').innerText='USD '+amt.toLocaleString();
+  document.getElementById('dh').innerText=ah;
+  document.getElementById('db').innerText=bn;
+  document.getElementById('dba').innerText='USD '+balance.toLocaleString();
+  document.getElementById('dd').innerText=new Date().toLocaleString();
+  document.getElementById('dr').innerText='ELI/'+Math.random().toString(36).substr(2,6).toUpperCase()+'-0626';
+  tx.unshift({r:document.getElementById('dr').innerText,d:document.getElementById('dd').innerText,s:ds,a:amt,t:'d'});
+  show('s')
+}
+
 function load(){let h='';tx.forEach(x=>{h+=`<div class="tx"><div><div style="color:white;font-weight:600">${x.r}</div><div style="color:#888;font-size:12px">${x.d}</div><div style="color:#3b82f6;font-size:13px">${x.s}</div></div><div style="text-align:right"><div class="${x.t}">${x.t=='c'?'+':'-'} ${x.a.toLocaleString()}</div><div style="color:#888;font-size:12px">USD</div></div></div>`});document.getElementById('tlist').innerHTML=h;document.getElementById('bal').innerText=balance.toLocaleString()}
 </script>
 </body>
