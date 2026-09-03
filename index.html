@@ -11,24 +11,13 @@
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
-/* LOADING PAGE - EXACTLY LIKE YOUR SCREENSHOT */
+/* LOADING PAGE */
 .loading-page{min-height:100vh;padding:20px;padding-bottom:80px;background:#fff8f0;color:#000}
-.loading-header{padding:20px 0}
-.logo{font-size:26px;font-weight:900;letter-spacing:-0.5px}
-.logo .cashflow{color:var(--orange)}
-.logo .bank{color:#475569}
-.feature-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
-.feature-icon{width:40px;height:40px;border-radius:12px;background:#fff7ed;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
-.feature-icon svg{stroke:var(--orange);width:20px;height:20px}
-.feature-card h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px}
-.feature-card p{font-size:13px;color:#64748b;line-height:1.5}
-.section-title{text-align:center;font-size:20px;font-weight:800;color:#1e293b;margin:24px 0 16px}
+.logo{font-size:26px;font-weight:900}.logo .cashflow{color:var(--orange)}.logo .bank{color:#475569}
+.feature-card{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px}
 .cta-box{background:var(--orange);border-radius:16px;padding:24px;text-align:center;color:#fff}
-.cta-box h2{font-size:20px;font-weight:800;margin-bottom:14px}
-.btn-create{background:#fff;color:var(--orange);border:none;padding:12px 20px;border-radius:50px;font-weight:700;font-size:14px;cursor:pointer}
-.login-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px;text-align:center;border-top:1px solid #e2e8f0;font-size:14px}
-.login-bottom span{color:#64748b}
-.login-bottom a{color:var(--orange);font-weight:700;text-decoration:none;cursor:pointer}
+.btn-create{background:#fff;color:var(--orange);border:none;padding:10px 20px;border-radius:50px;font-weight:700;cursor:pointer}
+.pin-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px;text-align:center;border-top:1px solid #e2e8f0;font-size:13px;color:#64748b}
 
 /* PIN MODAL */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
@@ -39,22 +28,42 @@ body{background:var(--bg);color:var(--text)}
 .btn-cancel{flex:1;padding:14px;background:#1e293b;color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer}
 .btn-confirm{flex:1;padding:14px;background:var(--green);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer}
 
-/* APP */
-.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#010409;border-bottom:1px solid var(--border)}
-.dashboard{padding:20px;padding-bottom:100px}
-.limit-bar{background:var(--card2);padding:12px;border-radius:8px;margin:12px 0;font-size:12px}
+/* DASHBOARD - IMPROVED */
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#010409;border-bottom:1px solid var(--border);font-weight:600}
+.dashboard{padding:16px;padding-bottom:100px}
+.welcome{font-size:15px;color:var(--muted);margin-bottom:16px}
+.welcome b{color:var(--text)}
+.balance-card{background:linear-gradient(135deg, #2563eb 0%, #1e40af 100%);padding:20px;border-radius:16px;margin-bottom:12px;color:white}
+.balance-card small{font-size:12px;opacity:0.9}
+.balance-card h1{font-size:26px;font-weight:800;margin:6px 0}
+.limit-bar{background:var(--card2);padding:10px 14px;border-radius:8px;margin-bottom:20px;font-size:13px}
 .limit-bar .used{color:var(--orange);font-weight:700}
-.balance-card{background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);padding:24px;border-radius:16px;margin:16px 0;color:white}
-.balance-card h1{font-size:28px;font-weight:800;margin:8px 0}
-.actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.action-btn{background:var(--card);padding:16px 8px;border-radius:12px;text-align:center;cursor:pointer;border:1px solid var(--border)}
+
+/* QUICK ACTIONS - BETTER BUTTONS */
+.section-title{font-weight:700;font-size:15px;margin:20px 0 12px}
+.actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.action-btn{background:var(--card2);padding:14px 8px;border-radius:12px;text-align:center;cursor:pointer;border:1px solid var(--border);font-weight:600;font-size:14px}
+.action-btn:hover{background:#21262d}
+
+/* RECENT TRANSACTIONS - IMPROVED */
+.tx-list{background:var(--card);border-radius:12px;padding:8px;border:1px solid var(--border)}
+.tx-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid var(--border)}
+.tx-item:last-child{border-bottom:none}
+.tx-left{display:flex;flex-direction:column}
+.tx-ref{font-size:13px;font-weight:600}
+.tx-date{font-size:11px;color:var(--muted)}
+.tx-amount{font-size:14px;font-weight:700}
+.tx-amount.debit{color:var(--red)}
+.tx-amount.credit{color:var(--green)}
+.view-all{text-align:center;padding:10px;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer}
+
+/* OTHER PAGES */
 .transfer-page{padding:20px}
 .form-group{margin-bottom:16px}
 .form-group label{font-size:12px;color:var(--muted);margin-bottom:8px;display:block}
 .form-group input{width:100%;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:15px;color:var(--text)}
 .btn-primary{width:100%;padding:14px;background:var(--blue);color:white;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer}
 .btn-primary:disabled{background:#30363d;cursor:not-allowed}
-.tx-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px}
 .profile-page{padding:20px;background:linear-gradient(180deg, #1e3a8a 0%, #0d1117 100%);min-height:100vh}
 .profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;margin:0 auto 12px}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:12px;border-top:1px solid var(--border)}
@@ -82,56 +91,40 @@ body{background:var(--bg);color:var(--text)}
   </div>
 </div>
 
-<!-- 1. LOADING PAGE - WITH LOGIN BOTTOM -->
+<!-- LOADING PAGE -->
 <div id="loadingPage" class="loading-page">
-  <div class="loading-header"><div class="logo"><span class="cashflow">CASHFLOW</span><span class="bank">BANK</span></div></div>
-  
-  <div class="feature-card">
-    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div>
-    <h3>24/7 Support</h3>
-    <p>Our support team is always here to help you.</p>
-  </div>
-  
-  <div class="feature-card">
-    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-    <h3>Best Rates</h3>
-    <p>We offer the best exchange rates with zero hidden fees.</p>
-  </div>
-
-  <h2 class="section-title">Get Started in 3 Simple Steps</h2>
-
-  <div class="cta-box">
-    <h2>Ready to Get Started?</h2>
-    <button class="btn-create" onclick="showPage('dashboardPage')">Get Started →</button>
-  </div>
-
-  <!-- LOGIN BOTTOM - BROUGHT BACK -->
-  <div class="login-bottom">
-    <span>Already have an account? </span>
-    <a onclick="showPage('dashboardPage')">Login</a>
-  </div>
+  <div style="padding:20px 0"><div class="logo"><span class="cashflow">CASHFLOW</span><span class="bank">BANK</span></div></div>
+  <div class="feature-card"><h3>24/7 Support</h3><p>Our support team is always here to help you.</p></div>
+  <div class="feature-card"><h3>Best Rates</h3><p>We offer the best exchange rates with zero hidden fees.</p></div>
+  <div class="cta-box"><h2>Ready to Get Started?</h2><button class="btn-create" onclick="showPage('dashboardPage')">Get Started →</button></div>
+  <div class="pin-bottom">Default PIN: <b>0000</b></div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- DASHBOARD - IMPROVED -->
 <div id="dashboardPage" class="hid">
   <div class="top-bar"><div>☰</div><div>CASHFLOW BANK</div><div onclick="showPage('profilePage')">👤</div></div>
   <div class="dashboard">
-    <div>Good morning, <b>Sun 👋</b></div>
+    <div class="welcome">Good morning, <b>Sun 👋</b></div>
+    
     <div class="balance-card">
       <small>Available Balance</small>
       <h1 id="mainBalance">USD 7,890,200</h1>
     </div>
+
     <div class="limit-bar">
       Daily Transfer Limit: <span class="used" id="usedLimit">$0</span> / $1,000,000
     </div>
-    <div style="font-weight:700;margin:20px 0 12px">Quick Actions</div>
+
+    <div class="section-title">Quick Actions</div>
     <div class="actions-grid">
-      <div class="action-btn" onclick="showPage('transferPage')"><b>Transfer</b></div>
-      <div class="action-btn" onclick="showPage('txPage')"><b>History</b></div>
-      <div class="action-btn" onclick="showPage('profilePage')"><b>Profile</b></div>
+      <div class="action-btn" onclick="showPage('transferPage')">Transfer</div>
+      <div class="action-btn" onclick="showPage('txPage')">History</div>
+      <div class="action-btn" onclick="showPage('profilePage')">Profile</div>
     </div>
-    <div style="font-weight:700;margin:20px 0 12px">Recent Transactions</div>
-    <div id="recentTx"></div>
+
+    <div class="section-title">Recent Transactions</div>
+    <div class="tx-list" id="recentTx"></div>
+    <div class="view-all" onclick="showPage('txPage')">View All Transactions →</div>
   </div>
   <div class="bottom-nav">
     <div class="nav-btn active" onclick="showPage('dashboardPage')">Home</div>
@@ -161,8 +154,12 @@ body{background:var(--bg);color:var(--text)}
   <button class="btn-primary" style="margin-top:20px" onclick="showPage('dashboardPage')">Back to Home</button>
 </div>
 
-<!-- TRANSACTIONS -->
-<div id="txPage" class="hid" style="padding:20px"><div onclick="showPage('dashboardPage')">← Back</div><div id="txList"></div></div>
+<!-- FULL HISTORY PAGE -->
+<div id="txPage" class="hid" style="padding:20px">
+  <div onclick="showPage('dashboardPage')">← Back</div>
+  <div style="font-size:18px;font-weight:700;margin:16px 0">Transaction History</div>
+  <div id="txList"></div>
+</div>
 
 <!-- PROFILE -->
 <div id="profilePage" class="profile-page hid">
@@ -185,18 +182,22 @@ body{background:var(--bg);color:var(--text)}
 </div>
 
 <script>
-let balance = 7890200;
+let balance = 7865200; // Match your screenshot
 let DAILY_LIMIT = 1000000;
 let savedPin = localStorage.getItem('cashflowPin') || '0000';
 let transferData = {};
 
 let today = new Date().toDateString();
-let dailyData = JSON.parse(localStorage.getItem('cashflowDaily')) || {date: today, used: 0};
+let dailyData = JSON.parse(localStorage.getItem('cashflowDaily')) || {date: today, used: 25000}; // Match your 25k
 if(dailyData.date !== today){
   dailyData = {date: today, used: 0};
 }
 
-let transactions = JSON.parse(localStorage.getItem('cashflowTransactions')) || [];
+let transactions = JSON.parse(localStorage.getItem('cashflowTransactions')) || [
+  {ref:"CFB/DR6XWWE3-0626", amt:-10000, date:"Today", desc:"Transfer"},
+  {ref:"CFB/XW1TUM3U-0626", amt:-5000, date:"Today", desc:"Transfer"},
+  {ref:"CFB/1KFASCH6-0626", amt:-5000, date:"Yesterday", desc:"Transfer"}
+];
 
 window.onload = function(){
   updateBalance();
@@ -263,7 +264,7 @@ function confirmTransfer(){
   if(pin !== savedPin){alert('Wrong PIN! Default is 0000');return}
   balance -= transferData.amount;
   dailyData.used += transferData.amount;
-  let newTx = {ref: 'CFB/'+Math.random().toString(36).substring(2,10).toUpperCase()+'-0626', amt: -transferData.amount, date: new Date().toLocaleDateString(), desc: document.getElementById('desc').value || "Transfer"};
+  let newTx = {ref: 'CFB/'+Math.random().toString(36).substring(2,10).toUpperCase()+'-0626', amt: -transferData.amount, date: "Just now", desc: document.getElementById('desc').value || "Transfer"};
   transactions.unshift(newTx);
   localStorage.setItem('cashflowDaily', JSON.stringify(dailyData));
   localStorage.setItem('cashflowTransactions', JSON.stringify(transactions));
@@ -279,18 +280,34 @@ function confirmTransfer(){
   showPage('successPage');
 }
 
+// IMPROVED RECENT TX DISPLAY
 function loadRecentTx(){
   let html = '';
-  transactions.slice(0,3).forEach(tx=>{
-    html += `<div class="tx-card"><div style="display:flex;justify-content:space-between"><div>${tx.ref}</div><div style="color:${tx.amt<0?'var(--red)':'var(--green)'}">${tx.amt.toLocaleString()} USD</div></div></div>`;
-  });
+  if(transactions.length === 0){
+    html = `<div style="padding:20px;text-align:center;color:var(--muted)">No transactions yet</div>`;
+  } else {
+    transactions.slice(0,5).forEach(tx=>{
+      let amtClass = tx.amt < 0 ? 'debit' : 'credit';
+      let amtSign = tx.amt < 0 ? '-' : '+';
+      html += `
+      <div class="tx-item">
+        <div class="tx-left">
+          <div class="tx-ref">${tx.ref}</div>
+          <div class="tx-date">${tx.date}</div>
+        </div>
+        <div class="tx-amount ${amtClass}">${amtSign}${Math.abs(tx.amt).toLocaleString()} USD</div>
+      </div>`;
+    });
+  }
   document.getElementById('recentTx').innerHTML = html;
 }
 
 function loadTransactions(){
   let html = '';
   transactions.forEach(tx=>{
-    html += `<div class="tx-card"><div style="display:flex;justify-content:space-between"><div>${tx.ref}</div><div style="color:${tx.amt<0?'var(--red)':'var(--green)'}">${tx.amt.toLocaleString()} USD</div></div><div style="color:var(--muted);font-size:12px">${tx.date}</div><div>${tx.desc}</div></div>`;
+    let amtClass = tx.amt < 0 ? 'debit' : 'credit';
+    let amtSign = tx.amt < 0 ? '-' : '+';
+    html += `<div class="tx-item"><div class="tx-left"><div class="tx-ref">${tx.ref}</div><div class="tx-date">${tx.date} - ${tx.desc}</div></div><div class="tx-amount ${amtClass}">${amtSign}${Math.abs(tx.amt).toLocaleString()} USD</div></div>`;
   });
   document.getElementById('txList').innerHTML = html;
 }
@@ -309,8 +326,8 @@ function updatePin(){
 }
 
 function resetBalance(){
-  if(confirm('Reset balance to $7,890,200 and daily limit?')){
-    balance = 7890200;
+  if(confirm('Reset balance to $7,865,200 and daily limit?')){
+    balance = 7865200;
     dailyData = {date: today, used: 0};
     transactions = [];
     localStorage.setItem('cashflowDaily', JSON.stringify(dailyData));
