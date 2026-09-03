@@ -7,104 +7,68 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a1128;--card:#131d3a;--card2:#1a2647;--text:#ffffff;--muted:#94a3b8;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;
+  --bg:#0a1128;--card:#131d3a;--card2:#1a2647;--text:#ffffff;--muted:#94a3b8;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--orange:#f97316;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--bg);color:var(--text);padding-bottom:90px}
 .hid{display:none!important}
 
-/* AUTH - Keep light for now */
+/* AUTH */
 .auth-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#fff}
 .auth-card{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .input-wrapper{position:relative;margin-bottom:18px}
 .input-wrapper label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:#000}
 .input-wrapper input{width:100%;padding:14px 14px 14px 42px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:14px}
-.btn-orange{width:100%;padding:14px;background:#f97316;color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
+.btn-orange{width:100%;padding:14px;background:var(--orange);color:white;border:none;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
 
-/* DASHBOARD DARK */
+/* DASHBOARD */
 .app-header{display:flex;justify-content:space-between;align-items:center;padding:20px}
 .user{display:flex;align-items:center;gap:10px}
 .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
-.user small{color:var(--muted);font-size:13px}
-.user b{font-size:17px}
 .bell{position:relative;font-size:22px}
 .bell-dot{position:absolute;top:0;right:0;width:8px;height:8px;background:var(--red);border-radius:50%}
-
 .dashboard{padding:0 16px;max-width:600px;margin:0 auto}
-
-/* BALANCE CARD DARK */
-.balance-card{
-  background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-  padding:24px;border-radius:20px;margin-bottom:24px;position:relative;overflow:hidden
-}
-.balance-card small{color:#cbd5e1;font-size:13px}
+.balance-card{background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);padding:24px;border-radius:20px;margin-bottom:24px;position:relative;overflow:hidden}
 .balance-card h1{font-size:34px;font-weight:800;margin:8px 0}
 .bank-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:60px;opacity:0.2}
-.secure-badge{
-  display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.2);
-  color:var(--green);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-top:8px
-}
-
-/* QUICK ACTIONS */
+.secure-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.2);color:var(--green);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-top:8px}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .section-title{font-weight:700;font-size:16px}
 .section-header a{color:var(--blue);font-size:13px;font-weight:600;text-decoration:none}
 .actions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-.action-btn{
-  background:var(--card);padding:16px 8px;border-radius:16px;text-align:center;
-  cursor:pointer;border:1px solid #1e293b
-}
+.action-btn{background:var(--card);padding:16px 8px;border-radius:16px;text-align:center;cursor:pointer;border:1px solid #1e293b}
 .action-icon{width:40px;height:40px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.action-btn b{font-size:14px;display:block}
-.action-btn small{font-size:11px;color:var(--muted)}
-
-/* TRANSACTIONS */
 .tx-list{background:var(--card);border-radius:16px;padding:8px;border:1px solid #1e293b}
 .tx-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #1e293b}
-.tx-item:last-child{border-bottom:none}
-.tx-left{display:flex;align-items:center;gap:12px}
 .tx-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px}
-.tx-name{font-weight:600;font-size:14px}
-.tx-date{font-size:12px;color:var(--muted)}
-.tx-amount{font-weight:700;font-size:15px}
+.security-card{background:var(--card2);border-radius:16px;padding:16px;margin-top:20px;display:flex;align-items:center;gap:12px;border:1px solid #1e293b}
 
-/* SECURITY CARD */
-.security-card{
-  background:var(--card2);border-radius:16px;padding:16px;margin-top:20px;
-  display:flex;align-items:center;gap:12px;border:1px solid #1e293b
-}
-.shield{width:44px;height:44px;border-radius:50%;background:rgba(59,130,246,0.2);display:flex;align-items:center;justify-content:center;font-size:20px}
-
-/* BOTTOM NAV - 5 TABS */
-.bottom-nav{
-  position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);
-  display:flex;justify-content:space-around;align-items:center;padding:8px;border-radius:20px;
-  border:1px solid #1e293b
-}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);display:flex;justify-content:space-around;align-items:center;padding:8px;border-radius:20px;border:1px solid #1e293b}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--muted);cursor:pointer;flex:1}
 .nav-item.active{color:var(--blue)}
-.nav-icon{font-size:22px}
-.transfer-btn{
-  width:56px;height:56px;border-radius:50%;background:var(--blue);
-  display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-20px;
-  box-shadow:0 4px 12px rgba(59,130,246,0.4)
-}
+.transfer-btn{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-20px;box-shadow:0 4px 12px rgba(59,130,246,0.4);cursor:pointer}
+
+/* TRANSFER PAGE */
+.page-header{display:flex;align-items:center;gap:12px;padding:20px}
+.back-btn{font-size:24px;cursor:pointer}
+.page-title{font-size:20px;font-weight:700}
+.transfer-form{background:var(--card);margin:16px;border-radius:16px;padding:20px;border:1px solid #1e293b}
+.form-group{margin-bottom:18px}
+.form-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:var(--muted)}
+.form-group input{width:100%;padding:14px;background:#0f172a;border:1.5px solid #1e293b;border-radius:12px;font-size:15px;color:var(--text)}
+.amount-input{font-size:28px;font-weight:700;text-align:center}
+.btn-blue{width:100%;padding:16px;background:var(--blue);color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
 <div id="loginPage" class="auth-page">
-  <h1 class="auth-title" style="color:#000">Welcome Back! 👋</h1>
+  <h1 style="color:#000;font-size:26px;margin-bottom:20px">Welcome Back! 👋</h1>
   <div class="auth-card">
-    <div class="input-wrapper">
-      <label>Email</label>
-      <input id="loginEmail" placeholder="Enter your email">
-    </div>
-    <div class="input-wrapper">
-      <label>Password</label>
-      <input id="loginPass" type="password" placeholder="Enter password">
-    </div>
+    <div class="input-wrapper"><label>Email</label><input id="loginEmail" placeholder="Enter your email"></div>
+    <div class="input-wrapper"><label>Password</label><input id="loginPass" type="password" placeholder="Enter password"></div>
     <button class="btn-orange" onclick="doLogin()">Sign In</button>
   </div>
 </div>
@@ -112,108 +76,111 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
 <!-- DASHBOARD -->
 <div id="dashboardPage" class="hid">
   <div class="app-header">
-    <div class="user">
-      <div class="avatar">S</div>
-      <div>
-        <small>Good morning,</small><br>
-        <b>Sun 👋</b>
-      </div>
-    </div>
+    <div class="user"><div class="avatar">S</div><div><small>Good morning,</small><br><b>Sun 👋</b></div></div>
     <div class="bell">🔔<span class="bell-dot"></span></div>
   </div>
-
   <div class="dashboard">
-    <!-- BALANCE -->
     <div class="balance-card">
       <div class="bank-icon">🏦</div>
       <small>Available Balance</small>
-      <h1>$2,450.75</h1>
+      <h1 id="mainBalance">$2,450.75</h1>
       <div class="secure-badge">✓ Account is secure</div>
     </div>
-
-    <!-- QUICK ACTIONS -->
-    <div class="section-header">
-      <h3 class="section-title">Quick Actions</h3>
-      <a href="#">Edit</a>
-    </div>
+    <div class="section-header"><h3 class="section-title">Quick Actions</h3><a href="#">Edit</a></div>
     <div class="actions-grid">
-      <div class="action-btn">
-        <div class="action-icon" style="background:rgba(34,197,94,0.2)">🔄</div>
-        <b>Transfer</b><small>Send money</small>
-      </div>
-      <div class="action-btn">
-        <div class="action-icon" style="background:rgba(59,130,246,0.2)">📱</div>
-        <b>Airtime</b><small>Top up</small>
-      </div>
-      <div class="action-btn">
-        <div class="action-icon" style="background:rgba(168,85,247,0.2)">📄</div>
-        <b>Bills</b><small>Pay bills</small>
-      </div>
-      <div class="action-btn">
-        <div class="action-icon" style="background:rgba(249,115,22,0.2)">💳</div>
-        <b>Cards</b><small>Manage cards</small>
-      </div>
+      <div class="action-btn" onclick="showPage('transfer')"><div class="action-icon" style="background:rgba(34,197,94,0.2)">🔄</div><b>Transfer</b><small>Send money</small></div>
+      <div class="action-btn"><div class="action-icon" style="background:rgba(59,130,246,0.2)">📱</div><b>Airtime</b><small>Top up</small></div>
+      <div class="action-btn"><div class="action-icon" style="background:rgba(168,85,247,0.2)">📄</div><b>Bills</b><small>Pay bills</small></div>
+      <div class="action-btn"><div class="action-icon" style="background:rgba(249,115,22,0.2)">💳</div><b>Cards</b><small>Manage cards</small></div>
     </div>
-
-    <!-- TRANSACTIONS -->
-    <div class="section-header">
-      <h3 class="section-title">Recent Transactions</h3>
-      <a href="#">View all ></a>
-    </div>
-    <div class="tx-list">
-      <div class="tx-item">
-        <div class="tx-left">
-          <div class="tx-avatar" style="background:#be123c;color:white">TJ</div>
-          <div>
-            <div class="tx-name">Transfer to John</div>
-            <div class="tx-date">Today, 7:25 AM</div>
-          </div>
-        </div>
-        <div class="tx-amount" style="color:var(--red)">-$250.00</div>
-      </div>
-      <div class="tx-item">
-        <div class="tx-left">
-          <div class="tx-avatar" style="background:#15803d;color:white">SD</div>
-          <div>
-            <div class="tx-name">Salary Deposit</div>
-            <div class="tx-date">Today, 6:30 AM</div>
-          </div>
-        </div>
-        <div class="tx-amount" style="color:var(--green)">+$1,500.00</div>
-      </div>
-    </div>
-
-    <!-- SECURITY CARD -->
-    <div class="security-card">
-      <div class="shield">🛡️</div>
-      <div>
-        <b>Your money is safe with us</b>
-        <small style="color:var(--muted);display:block">Bank-level security to protect your account.</small>
-      </div>
-      <div style="margin-left:auto">›</div>
+    <div class="section-header"><h3 class="section-title">Recent Transactions</h3><a href="#">View all ></a></div>
+    <div class="tx-list" id="txList">
+      <div class="tx-item"><div style="display:flex;gap:12px"><div class="tx-avatar" style="background:#be123c;color:white">TJ</div><div><div>Transfer to John</div><small style="color:var(--muted)">Today, 7:25 AM</small></div></div><div style="color:var(--red);font-weight:700">-$250.00</div></div>
+      <div class="tx-item"><div style="display:flex;gap:12px"><div class="tx-avatar" style="background:#15803d;color:white">SD</div><div><div>Salary Deposit</div><small style="color:var(--muted)">Today, 6:30 AM</small></div></div><div style="color:var(--green);font-weight:700">+$1,500.00</div></div>
     </div>
   </div>
-
-  <!-- BOTTOM NAV -->
   <div class="bottom-nav">
-    <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
-    <div class="nav-item"><div class="nav-icon">$</div>Payments</div>
-    <div class="transfer-btn">↔️</div>
-    <div class="nav-item"><div class="nav-icon">💳</div>Cards</div>
-    <div class="nav-item"><div class="nav-icon">👤</div>Profile</div>
+    <div class="nav-item active"><div>🏠</div>Home</div>
+    <div class="nav-item"><div>$</div>Payments</div>
+    <div class="transfer-btn" onclick="showPage('transfer')">↔️</div>
+    <div class="nav-item"><div>💳</div>Cards</div>
+    <div class="nav-item"><div>👤</div>Profile</div>
+  </div>
+</div>
+
+<!-- TRANSFER PAGE -->
+<div id="transferPage" class="hid">
+  <div class="page-header">
+    <span class="back-btn" onclick="showPage('dashboard')">←</span>
+    <div class="page-title">Send Money</div>
+  </div>
+  <div class="transfer-form">
+    <div class="form-group">
+      <label>Recipient Name</label>
+      <input id="recipientName" placeholder="Enter recipient name">
+    </div>
+    <div class="form-group">
+      <label>Account Number</label>
+      <input id="recipientAcc" placeholder="Enter account number">
+    </div>
+    <div class="form-group">
+      <label>Amount</label>
+      <input id="transferAmount" type="number" class="amount-input" placeholder="$0.00">
+    </div>
+    <div class="form-group">
+      <label>Narration</label>
+      <input id="transferNote" placeholder="What's this for?">
+    </div>
+    <button class="btn-blue" onclick="sendMoney()">Send Money</button>
   </div>
 </div>
 
 <script>
+let balance = 2450.75;
+
+function showPage(page){
+  ['loginPage','dashboardPage','transferPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
+  document.getElementById(page+'Page').classList.remove('hid');
+}
+
 function doLogin(){
   let e=document.getElementById('loginEmail').value;
   let p=document.getElementById('loginPass').value;
-  if(e && p){
-    document.getElementById('loginPage').classList.add('hid');
-    document.getElementById('dashboardPage').classList.remove('hid');
-  } else {
-    alert('Enter email and password');
-  }
+  if(e && p){showPage('dashboard');} else {alert('Enter email and password');}
+}
+
+function sendMoney(){
+  let name = document.getElementById('recipientName').value;
+  let acc = document.getElementById('recipientAcc').value;
+  let amt = parseFloat(document.getElementById('transferAmount').value);
+  let note = document.getElementById('transferNote').value;
+
+  if(!name || !acc || !amt){alert('Please fill all fields');return}
+  if(amt > balance){alert('Insufficient balance');return}
+
+  balance -= amt;
+  document.getElementById('mainBalance').innerText = '$' + balance.toFixed(2);
+
+  // Add to transaction list
+  let txList = document.getElementById('txList');
+  let newTx = `
+    <div class="tx-item">
+      <div style="display:flex;gap:12px">
+        <div class="tx-avatar" style="background:#dc2626;color:white">${name.substring(0,2).toUpperCase()}</div>
+        <div><div>Transfer to ${name}</div><small style="color:var(--muted)">Just now</small></div>
+      </div>
+      <div style="color:var(--red);font-weight:700">-$${amt.toFixed(2)}</div>
+    </div>
+  ` + txList.innerHTML;
+  txList.innerHTML = newTx;
+
+  alert('Transfer of $' + amt.toFixed(2) + ' to ' + name + ' successful!');
+  
+  // Clear form and go back
+  document.getElementById('recipientName').value='';
+  document.getElementById('recipientAcc').value='';
+  document.getElementById('transferAmount').value='';
+  showPage('dashboard');
 }
 </script>
 
