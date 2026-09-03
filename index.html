@@ -79,12 +79,12 @@ body{background:var(--bg);color:var(--text)}
 
 <!-- 1. LOADING PAGE -->
 <div id="loadingPage" class="loading-page">
-  <img src="logo.png" class="loading-logo-img" onerror="this.style.display='none'"> <!-- PUT logo.png HERE -->
+  <img src="logo.png" class="loading-logo-img" onerror="this.style.display='none'">
   <h1 class="loading-title">CASHFLOW BANK</h1>
   <p class="loading-subtitle">Intelligent Banking. Elevated.</p>
   <div class="features-list">
-    <div class="feature-item"><div class="feature-icon">🕐</div><div><div class="feature-title">24/7 Global Access</div><div class="feature-desc">Manage your finances anytime, from anywhere in the world.</div></div></div>
-    <div class="feature-item"><div class="feature-icon">🛡️</div><div><div class="feature-title">Enterprise-Grade Security</div><div class="feature-desc">Biometric authentication and 256-bit encryption.</div></div></div>
+    <div class="feature-item"><div class="feature-icon">🌐</div><div><div class="feature-title">24/7 Global Access</div><div class="feature-desc">Manage your finances anytime, from anywhere in the world.</div></div></div>
+    <div class="feature-item"><div class="feature-icon">🔐</div><div><div class="feature-title">Enterprise-Grade Security</div><div class="feature-desc">Biometric authentication and 256-bit encryption.</div></div></div>
     <div class="feature-item"><div class="feature-icon">⚡</div><div><div class="feature-title">Real-Time Transactions</div><div class="feature-desc">Execute instant domestic and international transfers.</div></div></div>
     <div class="feature-item"><div class="feature-icon">💎</div><div><div class="feature-title">Transparent Pricing</div><div class="feature-desc">No hidden fees. No surprises.</div></div></div>
   </div>
@@ -99,7 +99,7 @@ body{background:var(--bg);color:var(--text)}
     <div class="input-wrapper"><label>Password</label><input id="loginPass" type="password" placeholder="Enter password"></div>
     <button class="btn-orange" onclick="doLogin()">Sign In</button>
     <div class="divider">or</div>
-    <button class="btn-faceid" onclick="faceIDLogin()">🔒 Sign in with Face ID</button>
+    <button class="btn-faceid" onclick="faceIDLogin()">👤 Sign in with Face ID</button>
   </div>
 </div>
 
@@ -113,8 +113,8 @@ body{background:var(--bg);color:var(--text)}
     <div class="balance-card"><small>Available Balance</small><h1 id="mainBalance">$8,709,627.98</h1></div>
     <div class="section-title">Quick Actions</div>
     <div class="actions-grid">
-      <div class="action-btn" onclick="showPage('transfer')"><div>🔄</div><b>Transfer</b></div>
-      <div class="action-btn" onclick="showPage('bills')"><div>📄</div><b>Bills</b></div>
+      <div class="action-btn" onclick="showPage('transfer')"><div>💸</div><b>Transfer</b></div>
+      <div class="action-btn" onclick="showPage('bills')"><div>🧾</div><b>Bills</b></div>
       <div class="action-btn" onclick="showPage('cards')"><div>💳</div><b>Cards</b></div>
     </div>
     <div class="section-title">Recent Transactions</div>
@@ -124,8 +124,8 @@ body{background:var(--bg);color:var(--text)}
   </div>
   <div class="bottom-nav">
     <div class="nav-item active" onclick="showPage('dashboard')"><div>🏠</div>Home</div>
-    <div class="nav-item" onclick="showPage('payments')"><div>$</div>Payments</div>
-    <div class="transfer-btn" onclick="showPage('transfer')">↔️</div>
+    <div class="nav-item" onclick="showPage('payments')"><div>📊</div>Payments</div>
+    <div class="transfer-btn" onclick="showPage('transfer')">🔁</div>
     <div class="nav-item" onclick="showPage('cards')"><div>💳</div>Cards</div>
     <div class="nav-item" onclick="showPage('profile')"><div>👤</div>Profile</div>
   </div>
@@ -206,7 +206,6 @@ body{background:var(--bg);color:var(--text)}
 <script>
 let balance = 8709627.982;
 
-// AUTO LOADING
 window.onload = function(){
   setTimeout(()=>{
     document.getElementById('loadingPage').classList.add('hid');
@@ -262,7 +261,7 @@ function payBill(){
   if(amt > balance){alert('Insufficient balance');return}
   addTransaction(type+' Bill', amt);
   alert(type+' bill of $' + amt.toLocaleString() + ' paid successfully!');
-  document.getElementById('billAmount').value='';
+  document.getElementById('billAmount')..value='';
   showPage('dashboard');
 }
 
