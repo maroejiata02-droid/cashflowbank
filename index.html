@@ -6,6 +6,8 @@
 <title>CashflowBank</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  
+  /* LANDING */
   body { background: #f5f7fa; }
   .nav { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
   .logo { font-size: 24px; font-weight: 800; }
@@ -20,13 +22,37 @@
   
   .footer { background: #0f172a; color: white; padding: 40px 20px; text-align: center; margin-top: 50px; }
   .footer a { color: #94a3b8; text-decoration: none; margin: 0 10px; font-size: 14px; }
+  
+  /* LOGIN MODAL */
+  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-box { background: #1a1f2e; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; }
+  .modal-box h2 { color: white; margin-bottom: 20px; text-align: center; }
+  .modal-box input { width: 100%; padding: 14px; margin: 10px 0; background: #0f1419; border: 1px solid #2a3441; border-radius: 8px; color: white; }
+  
+  /* DASHBOARD - DARK */
+  .dashboard { display: none; background: #0f1419; color: #e0e0e0; min-height: 100vh; }
+  .d-nav { background: #1a1f2e; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a3441; }
+  .d-container { max-width: 500px; margin: 0 auto; padding: 20px; }
+  .greet { background: #1a1f2e; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+  .greet h2 { color: white; }
+  .greet p { color: #888; font-size: 14px; margin: 5px 0 15px; }
+  .btn2 { background: #2a3441; color: #aaa; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-left: 10px; }
+  .balance { background: linear-gradient(135deg, #1e3a8a, #1e40af); padding: 25px; border-radius: 15px; margin-bottom: 20px; }
+  .balance .label { color: #60a5fa; font-size: 12px; }
+  .balance .amount { color: white; font-size: 32px; font-weight: 800; margin: 5px 0; }
+  .tx { background: #1a1f2e; padding: 15px; border-radius: 10px; margin: 10px 0; display: flex; justify-content: space-between; }
+  .credit { color: #10b981; font-weight: 700; }
+  .debit { color: #ef4444; font-weight: 700; }
+  .hidden { display: none; }
 </style>
 </head>
 <body>
 
+<!-- LANDING PAGE -->
+<div id="landing">
   <div class="nav">
     <div class="logo"><span class="blue">Cashflow</span><span class="green">Bank</span></div>
-    <button class="btn" onclick="alert('Step 2 coming')">Login</button>
+    <button class="btn" onclick="openLogin()">Login</button>
   </div>
 
   <div class="content">
@@ -51,6 +77,85 @@
     </div>
     <p style="color:#64748b; font-size:12px">© 2026 CashflowBank. Demo website for educational purposes.</p>
   </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <h2>Login to CashflowBank</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button class="btn" style="width:100%" onclick="login()">Login</button>
+    <button class="btn2" style="width:100%; margin-top:10px" onclick="closeLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="dashboard">
+  <div class="d-nav">
+    <div>☰</div>
+    <div style="color:#666; font-weight:700">CASHFLOW BANK</div>
+    <div style="width:40px; height:40px; background:#2563eb; border-radius:50%; display:flex; align-items:center; justify-content:center">👤</div>
+  </div>
+  
+  <div class="d-container">
+    <div class="greet">
+      <h2>Good morning <span id="userName">Anthony</span></h2>
+      <p>At a glance summary of your account!</p>
+      <button class="btn">Deposit →</button>
+      <button class="btn2" onclick="alert('Step 3: Transfer coming')">Transfer Fund</button>
+    </div>
+    
+    <h3 style="color:white; margin-bottom:10px;">Overview</h3>
+    <div class="balance">
+      <div class="label">Available balance</div>
+      <div class="amount">USD 8,360,200</div>
+      <div style="color:#94a3b8">Anthony Trimble D</div>
+    </div>
+    
+    <h3 style="color:white; margin:20px 0 10px;">Recent Transaction Activities</h3>
+    <div id="txList"></div>
+  </div>
+</div>
+
+<script>
+let transactions = [
+  {ref: 'ELI/LCO3NJQEL-0626', date: '16 Jun 2026, 5:13 pm', desc: 'Initial payment', amt: 2700000, type: 'credit'},
+  {ref: 'ELI/ETEHME31V-0626', date: '16 Jun 2026, 4:10 pm', desc: 'Initial payment', amt: 300000, type: 'credit'},
+  {ref: 'ELI/NAJYATY0Z-0626', date: '16 Jun 2026, 1:45 am', desc: 'Food supply', amt: 187000, type: 'debit'}
+];
+
+function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
+function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+
+function login() {
+  let user = document.getElementById('username').value;
+  if(!user) { alert('Enter username'); return; }
+  document.getElementById('userName').innerText = user;
+  closeLogin();
+  document.getElementById('landing').classList.add('hidden');
+  document.getElementById('dashboard').style.display = 'block';
+  loadTransactions();
+}
+
+function loadTransactions() {
+  let html = '';
+  transactions.forEach(t => {
+    html += `<div class="tx">
+      <div>
+        <div style="color:white; font-weight:600">${t.ref}</div>
+        <div style="color:#888; font-size:12px">${t.date}</div>
+        <div style="color:#3b82f6; font-size:13px">${t.desc}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="${t.type}">${t.type === 'credit' ? '+' : '-'} ${t.amt.toLocaleString()}</div>
+        <div style="color:#888; font-size:12px">USD</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('txList').innerHTML = html;
+}
+</script>
 
 </body>
 </html>
