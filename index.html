@@ -3,17 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CITI BANK</title>
+<title>CITI BANK - Your Trusted Banking Partner</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f7fa}
-.nav{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+.nav{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:999}
 .logo{font-size:24px;font-weight:800;color:#0066ff}
 .btn{background:#0066ff;color:white;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer}
 .btn-outline{background:white;color:#0066ff;border:2px solid #0066ff;padding:8px 18px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:10px}
-.content{max-width:600px;margin:30px auto;padding:0 20px}
-.card{background:white;padding:30px;border-radius:12px;margin-bottom:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-.footer{background:#0f172a;color:white;padding:40px 20px;text-align:center;margin-top:50px}
+
+/* HERO SECTION */
+.hero{background:linear-gradient(135deg,#0066ff,#0044aa);color:white;padding:60px 20px;text-align:center}
+.hero h1{font-size:32px;margin-bottom:15px}
+.hero p{font-size:16px;margin-bottom:25px;opacity:0.9}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+
+/* FEATURES */
+.content{max-width:1000px;margin:0 auto;padding:40px 20px}
+.section-title{text-align:center;font-size:28px;color:#222;margin-bottom:10px}
+.section-desc{text-align:center;color:#666;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:white;padding:30px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:0.3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+.card .icon{font-size:40px;margin-bottom:15px}
+.card h2{margin:10px 0;color:#222;font-size:20px}
+.card p{color:#666;line-height:1.6}
+
+/* SECURITY SECTION */
+.security{background:#0f172a;color:white;padding:50px 20px;text-align:center}
+.security h2{font-size:28px;margin-bottom:15px}
+.security p{color:#94a3b8;max-width:600px;margin:0 auto;line-height:1.8}
+
+/* CTA */
+.cta{background:#0066ff;color:white;padding:50px 20px;text-align:center}
+.cta h2{font-size:28px;margin-bottom:15px}
+
+.footer{background:#0a0f1a;color:white;padding:40px 20px;text-align:center}
+.footer a{color:#94a3b8;text-decoration:none;margin:0 10px;font-size:14px}
+
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
 .box{background:#1a1f2e;padding:30px;border-radius:15px;width:90%;max-width:400px}
 .box h2{color:white;margin-bottom:20px;text-align:center}
@@ -54,11 +81,81 @@ h1{color:white;text-align:center;margin:20px 0}
       <button class="btn" onclick="openLogin()">Login</button>
     </div>
   </div>
-  <div class="content">
-    <div class="card"><p>Send and receive money anywhere in the world in seconds.</p></div>
-    <div class="card"><div style="font-size:40px">📱</div><h2>24/7 Mobile Banking</h2><p>Manage your account anytime, anywhere from your phone.</p></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Banking Made Simple & Secure</h1>
+    <p>Send and receive money anywhere in the world in seconds. Your money, your control.</p>
+    <div class="hero-btns">
+      <button class="btn" style="background:white;color:#0066ff" onclick="openSignup()">Get Started</button>
+      <button class="btn-outline" style="background:transparent;border-color:white;color:white">Learn More</button>
+    </div>
   </div>
-  <div class="footer"><p style="color:#64748b;font-size:12px">© 2026 CITI BANK. Demo website for educational purposes.</p></div>
+
+  <!-- FEATURES -->
+  <div class="content">
+    <h2 class="section-title">Why Choose CITI BANK</h2>
+    <p class="section-desc">Experience banking the way it should be - fast, secure, and available anytime</p>
+    
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h2>Global Transfers</h2>
+        <p>Send and receive money anywhere in the world in seconds with low fees and real-time tracking.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📱</div>
+        <h2>24/7 Mobile Banking</h2>
+        <p>Manage your account anytime, anywhere from your phone. We are available 24 hours, 7 days a week.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔒</div>
+        <h2>Bank Level Security</h2>
+        <p>Your transactions are protected with 256-bit encryption and 4-digit payment PIN for extra safety.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h2>Instant Transactions</h2>
+        <p>No waiting. Transfers are processed instantly so you can move your money when you need to.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💰</div>
+        <h2>Zero Hidden Fees</h2>
+        <p>What you see is what you pay. No surprise charges. Transparent banking for everyone.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎧</div>
+        <h2>24/7 Customer Support</h2>
+        <p>Our support team is available round the clock to help you with any questions or issues.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="security">
+    <h2>Your Security Is Our Priority</h2>
+    <p>CITI BANK uses military-grade encryption to protect your data. Every transfer requires your personal 4-digit PIN. We monitor your account 24/7 for suspicious activity to keep your money safe.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Ready to Bank Smarter?</h2>
+    <p style="margin-bottom:20px">Join thousands of customers banking with CITI BANK today</p>
+    <button class="btn" style="background:white;color:#0066ff;padding:15px 30px;font-size:16px" onclick="openSignup()">Create Free Account</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="logo" style="color:white;margin-bottom:15px">CITI BANK</div>
+    <div style="margin: 15px 0;">
+      <a href="#">About Us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+      <a href="#">Support</a>
+    </div>
+    <p style="color:#64748b;font-size:12px">© 2026 CITI BANK. All rights reserved.</p>
+  </div>
 </div>
 
 <!-- SIGNUP MODAL -->
@@ -177,7 +274,6 @@ function signup(){
   let pin=document.getElementById('spin').value;
   if(!u||!e||!p||!pin){alert('Fill all fields');return}
   if(pin.length!=4){alert('PIN must be 4 digits');return}
-  
   localStorage.setItem('citi_user', JSON.stringify({username:u,email:e,password:p,pin:pin}));
   alert('Account created successfully! Now login.');
   closeSignup();
@@ -188,10 +284,8 @@ function login(){
   let u=document.getElementById('lu').value;
   let p=document.getElementById('lp').value;
   let saved = JSON.parse(localStorage.getItem('citi_user'));
-  
   if(!saved){alert('No account found. Please create account first.');return}
   if(u!=saved.username || p!=saved.password){alert('Invalid username or password');return}
-  
   currentUser = saved;
   document.getElementById('n').innerText=u;
   closeLogin();
