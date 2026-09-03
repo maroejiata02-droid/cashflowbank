@@ -3,37 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CashflowBank - Banking Solutions</title>
+<title>CashflowBank - Send & Receive Money</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; }
   
-  /* LANDING PAGE STYLES */
-  .landing { background: white; color: #000; }
-  .landing-nav { display: flex; justify-content: space-between; padding: 20px; font-weight: 700; }
-  .landing-nav span { color: #2563eb; }
-  .hero { position: relative; }
-  .hero img { width: 100%; height: 500px; object-fit: cover; }
-  .hero-text { position: absolute; bottom: 40px; left: 20px; right: 20px; }
-  .hero-text .tag { color: #059669; font-weight: 600; font-size: 14px; margin-bottom: 10px; }
-  .hero-text h1 { font-size: 32px; color: #1a1f2e; margin-bottom: 10px; }
-  .hero-text p { color: #555; margin-bottom: 20px; line-height: 1.6; }
-  .btn-landing { background: #2563eb; color: white; border: none; padding: 14px 30px; border-radius: 25px; font-weight: 700; cursor: pointer; margin-right: 10px; }
-  .btn-outline { background: transparent; color: #333; border: 2px solid #333; padding: 14px 30px; border-radius: 25px; font-weight: 700; cursor: pointer; }
-  .chat-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; cursor: pointer; }
+  /* LANDING PAGE - WHITE THEME */
+  .landing { background: #f8f9fa; color: #333; min-height: 100vh; }
+  .landing-nav { 
+    background: white; 
+    padding: 15px 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+  }
+  .logo { font-size: 24px; font-weight: 800; }
+  .logo .cash { color: #0066ff; }
+  .logo .flow { color: #00c896; }
+  .btn-login { 
+    background: #0066ff; 
+    color: white; 
+    border: none; 
+    padding: 10px 25px; 
+    border-radius: 8px; 
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .landing-content { padding: 30px 20px; }
+  .card { 
+    background: white; 
+    padding: 25px; 
+    border-radius: 15px; 
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  }
+  .card h2 { font-size: 20px; color: #222; margin-bottom: 10px; }
+  .card p { color: #666; line-height: 1.6; }
+  .card .icon { font-size: 40px; margin-bottom: 15px; }
   
-  /* DARK THEME STYLES */
+  /* FOOTER */
+  .footer { 
+    background: #1a1d29; 
+    color: white; 
+    padding: 40px 20px; 
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer .logo { font-size: 28px; margin-bottom: 20px; }
+  .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+  .footer-links a { color: #aaa; text-decoration: none; }
+  .footer p { color: #777; font-size: 12px; margin-top: 20px; }
+  
+  /* DARK DASHBOARD THEME */
   body.dark { background: #0f1419; color: #e0e0e0; }
   .navbar { background: #1a1f2e; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a3441; }
-  .logo { font-size: 16px; font-weight: 700; color: #666; }
-  .profile-icon { width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .container { max-width: 500px; margin: 0 auto; padding: 20px; }
-  h1 { font-size: 26px; font-weight: 700; margin: 20px 0; color: white; text-align: center; }
-  .amount-label { color: #3b82f6; font-size: 14px; font-weight: 700; margin-bottom: 20px; }
-  .form-group { margin-bottom: 20px; position: relative; }
-  .form-group label { position: absolute; top: -10px; left: 15px; background: #0f1419; padding: 0 5px; font-size: 12px; color: #888; }
-  .form-group input { width: 100%; background: #1a1f2e; border: 1px solid #2a3441; border-radius: 10px; padding: 18px 45px 18px 15px; color: white; font-size: 15px; }
-  .form-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
-  .btn-primary { width: 100%; background: #2563eb; color: white; border: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+  .profile-icon { width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .greeting { background: #1a1f2e; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
   .greeting h2 { font-size: 20px; color: white; margin-bottom: 5px; }
   .greeting p { color: #888; font-size: 14px; }
@@ -58,9 +86,20 @@
   .tx-amount.debit { color: #ef4444; font-weight: 700; }
   .tx-status { color: #10b981; font-size: 12px; margin-top: 5px; }
   .btn-view { background: #1e3a8a; color: #60a5fa; border: none; padding: 5px 12px; border-radius: 6px; font-size: 12px; margin-top: 5px; cursor: pointer; }
+  
+  /* TRANSFER FORM */
+  .amount-label { color: #3b82f6; font-size: 14px; font-weight: 700; margin-bottom: 20px; }
+  .form-group { margin-bottom: 20px; position: relative; }
+  .form-group label { position: absolute; top: -10px; left: 15px; background: #0f1419; padding: 0 5px; font-size: 12px; color: #888; }
+  .form-group input { width: 100%; background: #1a1f2e; border: 1px solid #2a3441; border-radius: 10px; padding: 18px 45px 18px 15px; color: white; font-size: 15px; }
+  .form-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+  .btn-primary { width: 100%; background: #2563eb; color: white; border: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+  
+  /* SUCCESS PAGE */
   .success-icon { width: 80px; height: 80px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 30px auto; font-size: 40px; }
   .detail-row { background: #1a1f2e; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; margin-bottom: 10px; border: 1px solid #2a3441; }
   .detail-row span:first-child { color: #888; }
+  
   .hidden { display: none; }
 </style>
 </head>
@@ -69,22 +108,32 @@
   <!-- LANDING PAGE -->
   <div id="landingPage" class="landing">
     <div class="landing-nav">
-      <div>CASHFLOW <span>BANK</span></div>
-      <div>☰</div>
+      <div class="logo"><span class="cash">Cashflow</span><span class="flow">Bank</span></div>
+      <button class="btn-login" onclick="showLogin()">Login</button>
     </div>
-    
-    <div class="hero">
-      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="banking team">
-      <div class="hero-text">
-        <div class="tag">Simple. Transparent. Secure</div>
-        <h1>Banking Solutions</h1>
-        <p>Products and services designed to help you reach your financial goals.</p>
-        <button class="btn-landing" onclick="showLogin()">Open Account</button>
-        <button class="btn-outline">Get in touch</button>
+
+    <div class="landing-content">
+      <div class="card">
+        <p style="font-size:16px;">Send and receive money anywhere in the world in seconds.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">📱</div>
+        <h2>24/7 Mobile Banking</h2>
+        <p>Manage your account anytime, anywhere from your phone.</p>
       </div>
     </div>
-    
-    <div class="chat-btn">💬</div>
+
+    <div class="footer">
+      <div class="logo"><span style="color:white">Cashflow</span><span class="flow">Bank</span></div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact</a>
+      </div>
+      <p>© 2026 CashflowBank. Licensed and Regulated. FDIC Insured up to $250,000. Demo website for educational purposes.</p>
+    </div>
   </div>
 
   <!-- LOGIN MODAL -->
@@ -102,7 +151,7 @@
   <div id="dashboardPage" class="hidden">
     <div class="navbar">
       <div>☰</div>
-      <div class="logo">CASHFLOW BANK</div>
+      <div style="color:#666; font-weight:700;">CASHFLOW BANK</div>
       <div class="profile-icon">👤</div>
     </div>
     
@@ -116,7 +165,7 @@
         </div>
       </div>
       
-      <h3 style="margin-bottom:10px;">Overview</h3>
+      <h3 style="margin-bottom:10px; color:white;">Overview</h3>
       <div class="balance-card">
         <img id="profilePic" src="https://i.ibb.co/5xCqW8s/user.jpg" alt="profile">
         <div class="balance-info">
@@ -143,12 +192,12 @@
   <div id="transferPage" class="hidden">
     <div class="navbar">
       <div>☰</div>
-      <div class="logo">CASHFLOW BANK</div>
+      <div style="color:#666; font-weight:700;">CASHFLOW BANK</div>
       <div class="profile-icon">👤</div>
     </div>
     
     <div class="container">
-      <h1>CashflowBank Online<br>Banking Transfer.</h1>
+      <h1 style="color:white; text-align:center;">CashflowBank Online<br>Banking Transfer.</h1>
       <div class="amount-label">AMOUNT TO TRANSFER: USD<span id="transferAmount">27,800</span></div>
       
       <div class="form-group">
@@ -184,17 +233,17 @@
   <div id="successPage" class="hidden">
     <div class="navbar">
       <div>☰</div>
-      <div class="logo">CASHFLOW BANK</div>
+      <div style="color:#666; font-weight:700;">CASHFLOW BANK</div>
       <div class="profile-icon">👤</div>
     </div>
     
     <div class="container">
       <div class="success-icon">✓</div>
-      <h1>Transaction successful!</h1>
+      <h1 style="color:white; text-align:center;">Transaction successful!</h1>
       <p style="text-align:center; color:#888; margin-bottom:20px;">
         You have successfully transfered <span id="successAmount">270,000</span> USD to <span id="successTo">Chris Wood</span>.
       </p>
-      <p style="text-align:center; font-weight:600; margin-bottom:15px;">Details of your transaction are shown below;</p>
+      <p style="text-align:center; font-weight:600; margin-bottom:15px; color:white;">Details of your transaction are shown below;</p>
       
       <div class="detail-row"><span>✓ Amount Debited</span><span id="dAmount">USD 270,000</span></div>
       <div class="detail-row"><span>✓ Transaction refrence:</span><span id="dRef">ELI/K9ATY3YVH-0626</span></div>
@@ -218,7 +267,7 @@
   ];
 
   function showLogin() { document.getElementById('loginModal').style.display = 'flex'; document.body.classList.add('dark'); }
-  function hideLogin() { document.getElementById('loginModal').style.display = 'none'; }
+  function hideLogin() { document.getElementById('loginModal').style.display = 'none'; document.body.classList.remove('dark'); }
   
   function login() {
     let user = document.getElementById('loginUser').value;
