@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CashflowBank - Secure Banking</title>
+<script src="https://cdn.jsdelivr.net/npm/otplib@12.0.1/lib/index.min.js"></script>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
   body { background: linear-gradient(135deg, #ffffff 0%, #ffea 100%); min-height: 100vh; }
@@ -23,6 +24,7 @@
   .error { background: #ff4444; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 10px 0; font-weight: 600; }
   .welcome-text { text-align: center; color: #d40000; margin-bottom: 20px; }
   .welcome-text h2 { font-size: 24px; } .welcome-text p { font-size: 14px; color: #666; }
+  .timer { text-align: center; color: #d40000; font-size: 12px; margin-top: 10px; }
   .footer { text-align: center; padding: 20px; color: #d40000; font-size: 12px; }
 </style>
 </head>
@@ -49,10 +51,11 @@
     <!-- VERIFICATION CODE PAGE -->
     <div id="codePage" class="hidden">
       <div class="card">
-        <div class="welcome-text"><h2>Security Verification</h2><p>Enter your 6-digit security code</p></div>
-        <input type="password" id="verifyCode" placeholder="Enter 6-digit Code" maxlength="6">
+        <div class="welcome-text"><h2>2FA Verification</h2><p>Open 2fa.live and enter code</p></div>
+        <input type="text" id="verifyCode" placeholder="Enter 6-digit Code from 2fa.live" maxlength="6">
         <button class="btn btn-red" onclick="verifyCode()">Verify & Continue</button>
         <button class="btn btn-white" onclick="showLogin()">Back to Login</button>
+        <div class="timer">Code changes every 30 seconds</div>
         <div id="codeError"></div>
       </div>
     </div>
@@ -103,8 +106,8 @@
 <script>
   let balance = 1670281.92;
   let currentUser = '';
-  // YOUR 7 SECRET CODES - ANY OF THEM GO WORK
-  const SECRET_CODES = ['739204', '812567', '450981', '623410', '905837', '178246', '364519'];
+  // YOUR 2FA SECRET KEY FROM 2fa.live
+  const SECRET_KEY = 'SSNZ3I5AIASBMK3ZJMU34NUHFU5M4KAW'; 
 
   function showLogin() { hideAll(); document.getElementById('loginPage').classList.remove('hidden'); }
   function showCode() { hideAll(); document.getElementById('codePage').classList.remove('hidden'); }
@@ -129,12 +132,15 @@
   
   function verifyCode() {
     let code = document.getElementById('verifyCode').value;
-    if(SECRET_CODES.includes(code)) { // Check if code dey inside the 7 codes
+    // Generate current 2FA code using your secret
+    const isValid = otplib.authenticator.check(code, SECRET_KEY);
+    
+    if(isValid) {
       document.getElementById('userName').innerText = currentUser;
       document.getElementById('codeError').innerHTML = '';
       showHome();
     } else {
-      document.getElementById('codeError').innerHTML = `<div class="error">❌ Invalid Code. Please try again.</div>`;
+      document.getElementById('codeError').innerHTML = `<div class="error">❌ Invalid 2FA Code. Check 2fa.live</div>`;
     }
   }
   
