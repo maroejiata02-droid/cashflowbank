@@ -57,16 +57,13 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
 .form-group input, .form-group select{width:100%;padding:14px;background:#0f172a;border:1.5px solid #1e293b;border-radius:12px;font-size:15px;color:var(--text)}
 .btn-blue{width:100%;padding:16px;background:var(--blue);color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
 
-/* CARD */
-.card-box{background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px}
-.card-number{font-size:18px;letter-spacing:2px;margin:16px 0}
-.card-bottom{display:flex;justify-content:space-between}
-
 /* PROFILE */
-.profile-header{text-align:center;padding:20px}
+.profile-header{text-align:center;padding:30px 20px}
 .profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:32px;margin:0 auto 12px}
-.profile-item{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #1e293b}
-.logout-btn{background:var(--red)!important}
+.setting-item{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #1e293b;cursor:pointer}
+.setting-item:hover{background:#0f172a}
+.setting-item .arrow{color:var(--muted)}
+.logout-btn{background:var(--red)!important;margin-top:20px}
 </style>
 </head>
 <body>
@@ -141,10 +138,10 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
 <div id="cardsPage" class="hid">
   <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">My Cards</div></div>
   <div class="page-form">
-    <div class="card-box">
+    <div class="card-box" style="background:linear-gradient(135deg,#3b82f6,#1e40af);padding:20px;border-radius:16px;color:white;margin-bottom:16px">
       <div style="display:flex;justify-content:space-between">VISA <div>💳</div></div>
-      <div class="card-number">**** **** 4567</div>
-      <div class="card-bottom"><div>SUN<br>12/28</div><div>CVV ***</div></div>
+      <div style="font-size:18px;letter-spacing:2px;margin:16px 0">**** **** 4567</div>
+      <div style="display:flex;justify-content:space-between"><div>SUN<br>12/28</div><div>CVV ***</div></div>
     </div>
     <button class="btn-blue" onclick="alert('New card request sent!')">Request New Card</button>
     <button class="btn-blue" style="background:#ef4444;margin-top:10px" onclick="alert('Card blocked!')">Block Card</button>
@@ -156,14 +153,11 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
   <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Payments</div></div>
   <div class="page-form">
     <h3 style="margin-bottom:16px">Payment History</h3>
-    <div class="tx-list" id="paymentList">
-      <div class="tx-item"><div>Transfer</div><div style="color:var(--red)">-$250.00</div></div>
-      <div class="tx-item"><div>Electricity Bill</div><div style="color:var(--red)">-$85.00</div></div>
-    </div>
+    <div class="tx-list" id="paymentList"></div>
   </div>
 </div>
 
-<!-- PROFILE PAGE -->
+<!-- PROFILE PAGE - UPDATED -->
 <div id="profilePage" class="hid">
   <div class="page-header"><span class="back-btn" onclick="showPage('dashboard')">←</span><div class="page-title">Profile</div></div>
   <div class="profile-header">
@@ -172,10 +166,51 @@ body{background:var(--bg);color:var(--text);padding-bottom:90px}
     <small style="color:var(--muted)">sun@email.com</small>
   </div>
   <div class="page-form">
-    <div class="profile-item"><span>Account Number</span><b>0102345678</b></div>
-    <div class="profile-item"><span>Phone</span><b>+234 800 000 0000</b></div>
-    <div class="profile-item"><span>Address</span><b>Bonny, Rivers State</b></div>
+    <div class="setting-item">
+      <div>
+        <div><b>Phone</b></div>
+        <small style="color:var(--muted)">+1 555 123 4567</small> <!-- CHANGED TO USA -->
+      </div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="setting-item">
+      <div>
+        <div><b>Address</b></div>
+        <small style="color:var(--muted)">New York, USA</small> <!-- CHANGED TO USA -->
+      </div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="setting-item" onclick="showPage('changePin')">
+      <div><b>Change Payment PIN</b></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="setting-item" onclick="showPage('changePassword')">
+      <div><b>Change Login Password</b></div>
+      <div class="arrow">›</div>
+    </div>
     <button class="btn-blue logout-btn" onclick="showPage('login')">Logout</button>
+  </div>
+</div>
+
+<!-- CHANGE PIN PAGE -->
+<div id="changePinPage" class="hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('profile')">←</span><div class="page-title">Change Payment PIN</div></div>
+  <div class="page-form">
+    <div class="form-group"><label>Current PIN</label><input id="currentPin" type="password" placeholder="Enter current PIN"></div>
+    <div class="form-group"><label>New PIN</label><input id="newPin" type="password" placeholder="Enter new 4-digit PIN"></div>
+    <div class="form-group"><label>Confirm New PIN</label><input id="confirmPin" type="password" placeholder="Confirm new PIN"></div>
+    <button class="btn-blue" onclick="changePin()">Update PIN</button>
+  </div>
+</div>
+
+<!-- CHANGE PASSWORD PAGE -->
+<div id="changePasswordPage" class="hid">
+  <div class="page-header"><span class="back-btn" onclick="showPage('profile')">←</span><div class="page-title">Change Login Password</div></div>
+  <div class="page-form">
+    <div class="form-group"><label>Current Password</label><input id="currentPass" type="password" placeholder="Enter current password"></div>
+    <div class="form-group"><label>New Password</label><input id="newPass" type="password" placeholder="Enter new password"></div>
+    <div class="form-group"><label>Confirm New Password</label><input id="confirmPass" type="password" placeholder="Confirm new password"></div>
+    <button class="btn-blue" onclick="changePassword()">Update Password</button>
   </div>
 </div>
 
@@ -189,7 +224,7 @@ function showPage(page){
   if(page=='cards') document.querySelector('.nav-item:nth-child(4)').classList.add('active');
   if(page=='profile') document.querySelector('.nav-item:nth-child(5)').classList.add('active');
 
-  ['loginPage','dashboardPage','transferPage','billsPage','cardsPage','paymentsPage','profilePage'].forEach(id=>document.getElementById(id).classList.add('hid'));
+  ['loginPage','dashboardPage','transferPage','billsPage','cardsPage','paymentsPage','profilePage','changePinPage','changePasswordPage'].forEach(id=>document.getElementById(id).classList.add('hid'));
   document.getElementById(page+'Page').classList.remove('hid');
 }
 
@@ -228,6 +263,24 @@ function payBill(){
   alert(type+' bill of $' + amt.toLocaleString() + ' paid successfully!');
   document.getElementById('billAmount').value='';
   showPage('dashboard');
+}
+
+function changePin(){
+  let npin = document.getElementById('newPin').value;
+  let cpin = document.getElementById('confirmPin').value;
+  if(npin != cpin){alert('PINs do not match');return}
+  if(npin.length != 4){alert('PIN must be 4 digits');return}
+  alert('Payment PIN updated successfully!');
+  showPage('profile');
+}
+
+function changePassword(){
+  let npass = document.getElementById('newPass').value;
+  let cpass = document.getElementById('confirmPass').value;
+  if(npass != cpass){alert('Passwords do not match');return}
+  if(npass.length < 6){alert('Password must be at least 6 characters');return}
+  alert('Login password updated successfully!');
+  showPage('profile');
 }
 </script>
 
