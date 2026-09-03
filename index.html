@@ -10,13 +10,14 @@ body{background:#f5f7fa}
 .nav{background:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
 .logo{font-size:24px;font-weight:800;color:#0066ff}
 .btn{background:#0066ff;color:white;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer}
+.btn-outline{background:white;color:#0066ff;border:2px solid #0066ff;padding:8px 18px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:10px}
 .content{max-width:600px;margin:30px auto;padding:0 20px}
 .card{background:white;padding:30px;border-radius:12px;margin-bottom:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 .footer{background:#0f172a;color:white;padding:40px 20px;text-align:center;margin-top:50px}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
 .box{background:#1a1f2e;padding:30px;border-radius:15px;width:90%;max-width:400px}
 .box h2{color:white;margin-bottom:20px;text-align:center}
-.box input{width:100%;padding:14px;margin:10px 0;background:#0f1419;border:1px solid #2a3441;border-radius:8px;color:white;text-align:center;font-size:18px;letter-spacing:8px}
+.box input{width:100%;padding:14px;margin:10px 0;background:#0f1419;border:1px solid #2a3441;border-radius:8px;color:white;text-align:left;font-size:15px}
 .page{display:none;background:#0f1419;color:#e0e0e0;min-height:100vh}
 .dnav{background:#1a1f2e;padding:15px 20px;display:flex;justify-content:space-between}
 .dcon{max-width:500px;margin:0 auto;padding:20px}
@@ -39,6 +40,7 @@ h1{color:white;text-align:center;margin:20px 0}
 .hid{display:none}
 .pin-box{display:flex;gap:10px;justify-content:center}
 .pin-box input{width:50px;height:50px;text-align:center;font-size:20px;letter-spacing:0}
+.link{color:#3b82f6;text-align:center;margin-top:15px;cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -47,7 +49,10 @@ h1{color:white;text-align:center;margin:20px 0}
 <div id="landing">
   <div class="nav">
     <div class="logo">CITI BANK</div>
-    <button class="btn" onclick="document.getElementById('m').style.display='flex'">Login</button>
+    <div>
+      <button class="btn-outline" onclick="openSignup()">Create Account</button>
+      <button class="btn" onclick="openLogin()">Login</button>
+    </div>
   </div>
   <div class="content">
     <div class="card"><p>Send and receive money anywhere in the world in seconds.</p></div>
@@ -56,14 +61,29 @@ h1{color:white;text-align:center;margin:20px 0}
   <div class="footer"><p style="color:#64748b;font-size:12px">© 2026 CITI BANK. Demo website for educational purposes.</p></div>
 </div>
 
-<!-- LOGIN -->
-<div id="m" class="modal">
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="modal">
+  <div class="box">
+    <h2>Create CITI BANK Account</h2>
+    <input id="su" placeholder="Choose Username">
+    <input id="se" type="email" placeholder="Email Address">
+    <input id="sp" type="password" placeholder="Create Password">
+    <input id="spin" type="password" placeholder="Create 4-digit PIN" maxlength="4">
+    <button class="btn" style="width:100%" onclick="signup()">Create Account</button>
+    <p class="link" onclick="closeSignup();openLogin()">Already have account? Login</p>
+    <button class="btn2" style="width:100%;margin-top:10px" onclick="closeSignup()">Cancel</button>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
   <div class="box">
     <h2>Login to CITI BANK</h2>
-    <input id="u" placeholder="Username" style="letter-spacing:0;text-align:left;font-size:15px">
-    <input id="p" type="password" placeholder="Password" style="letter-spacing:0;text-align:left;font-size:15px">
-    <button class="btn" style="width:100%" onclick="go()">Login</button>
-    <button class="btn2" style="width:100%;margin-top:10px" onclick="document.getElementById('m').style.display='none'">Cancel</button>
+    <input id="lu" placeholder="Username">
+    <input id="lp" type="password" placeholder="Password">
+    <button class="btn" style="width:100%" onclick="login()">Login</button>
+    <p class="link" onclick="closeLogin();openSignup()">Don't have account? Sign Up</p>
+    <button class="btn2" style="width:100%;margin-top:10px" onclick="closeLogin()">Cancel</button>
   </div>
 </div>
 
@@ -75,6 +95,7 @@ h1{color:white;text-align:center;margin:20px 0}
       <h2>Good morning <span id="n">User</span></h2>
       <p>At a glance summary of your account!</p>
       <button class="btn">Deposit →</button><button class="btn2" onclick="show('t')">Transfer Fund</button>
+      <button class="btn2" onclick="logout()" style="margin-top:10px;background:#ef4444;color:white">Logout</button>
     </div>
     <h3 style="color:white;margin-bottom:10px">Overview</h3>
     <div class="balance">
@@ -137,15 +158,54 @@ h1{color:white;text-align:center;margin:20px 0}
 
 <script>
 let balance=8360200;
-let correctPin = "1234"; // <-- CHANGE THIS TO YOUR PIN
+let currentUser = null;
 let tx=[
   {r:'ELI/LCO3NJQEL-0626',d:'16 Jun 2026, 5:13 pm',s:'Initial payment',a:2700000,t:'c'},
   {r:'ELI/ETEHME31V-0626',d:'16 Jun 2026, 4:10 pm',s:'Initial payment',a:300000,t:'c'},
   {r:'ELI/NAJYATY0Z-0626',d:'16 Jun 2026, 1:45 am',s:'Food supply',a:187000,t:'d'}
 ];
 
+function openSignup(){document.getElementById('signupModal').style.display='flex'}
+function closeSignup(){document.getElementById('signupModal').style.display='none'}
+function openLogin(){document.getElementById('loginModal').style.display='flex'}
+function closeLogin(){document.getElementById('loginModal').style.display='none'}
+
+function signup(){
+  let u=document.getElementById('su').value;
+  let e=document.getElementById('se').value;
+  let p=document.getElementById('sp').value;
+  let pin=document.getElementById('spin').value;
+  if(!u||!e||!p||!pin){alert('Fill all fields');return}
+  if(pin.length!=4){alert('PIN must be 4 digits');return}
+  
+  localStorage.setItem('citi_user', JSON.stringify({username:u,email:e,password:p,pin:pin}));
+  alert('Account created successfully! Now login.');
+  closeSignup();
+  openLogin();
+}
+
+function login(){
+  let u=document.getElementById('lu').value;
+  let p=document.getElementById('lp').value;
+  let saved = JSON.parse(localStorage.getItem('citi_user'));
+  
+  if(!saved){alert('No account found. Please create account first.');return}
+  if(u!=saved.username || p!=saved.password){alert('Invalid username or password');return}
+  
+  currentUser = saved;
+  document.getElementById('n').innerText=u;
+  closeLogin();
+  document.getElementById('landing').classList.add('hid');
+  show('dash');
+}
+
+function logout(){
+  currentUser = null;
+  document.getElementById('landing').classList.remove('hid');
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+}
+
 function show(id){document.querySelectorAll('.page').forEach(p=>p.style.display='none');document.getElementById(id).style.display='block';if(id=='dash')load()}
-function go(){let u=document.getElementById('u').value;if(!u){alert('Enter username');return}document.getElementById('n').innerText=u;document.getElementById('m').style.display='none';document.getElementById('landing').classList.add('hid');show('dash')}
 
 function showPin(){
   let bn=document.getElementById('bn').value,an=document.getElementById('an').value,ah=document.getElementById('ah').value;
@@ -157,21 +217,12 @@ function showPin(){
 
 function closePin(){document.getElementById('pinModal').style.display='none'}
 
-function moveNext(current, nextId){
-  if(current.value.length==1){document.getElementById(nextId).focus()}
-}
+function moveNext(current, nextId){if(current.value.length==1){document.getElementById(nextId).focus()}}
 
 function verifyPin(){
   let pin = document.getElementById('pin1').value + document.getElementById('pin2').value + document.getElementById('pin3').value + document.getElementById('pin4').value;
-  
-  if(pin != correctPin){
-    alert('Incorrect PIN. Please try again.');
-    closePin();
-    return;
-  }
-  
-  closePin();
-  processTransfer();
+  if(pin != currentUser.pin){alert('Incorrect PIN. Please try again.');closePin();return}
+  closePin();processTransfer();
 }
 
 function processTransfer(){
