@@ -7,46 +7,139 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-:root{--green1:#6e8b3d; --purple2:#2b1055; --purpleBtn:#7c3aed;}
+:root{--green1:#6e8b3d; --purple2:#2b1055; --purpleBtn:#7c3aed; --green:#22c55e; --red:#ef4444;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
 body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
-.page{padding:20px;max-width:500px;margin:0 auto}
+.page{padding:20px;max-width:500px;margin:0 auto;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hid{display:none}
-.card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
-.btn{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px;text-align:center;cursor:pointer;width:100px}
+
+/* HEADER */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.topbar h2{font-size:22px;font-weight:800}
+.profile{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center}
+
+/* BALANCE CARD */
+.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:20px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.2)}
+.balance-card small{opacity:0.8;font-size:13px}
+.balance-card h1{font-size:36px;font-weight:800;margin:8px 0}
+
+/* ACTIONS */
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;transition:0.2s}
+.action:active{transform:scale(0.95)}
+.action svg{margin-bottom:6px}
+
+/* TRANSACTION HISTORY */
+.section-title{font-size:16px;font-weight:700;margin-bottom:12px}
+.tx-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:14px;padding:14px;margin-bottom:10px}
+.tx-left{display:flex;gap:12px;align-items:center}
+.tx-icon{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center}
+.tx-amt{font-weight:700;font-size:16px}
+.income{color:var(--green)}
+.expense{color:var(--red)}
+
+/* SEND PAGE */
+.send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,0.2)}
 .header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .back{cursor:pointer;padding:8px;background:rgba(255,255,255,0.1);border-radius:10px}
+.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px}
 .input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
-.send-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700}
+.input::placeholder{color:rgba(255,255,255,0.5)}
+.send-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px}
 </style>
 </head>
 <body>
 
 <!-- PAGE 1: DASHBOARD -->
 <div id="page1" class="page">
-  <div class="card">
+  <div class="topbar">
+    <div>
+      <h2>Hello, John 👋</h2>
+      <small style="opacity:0.8">Welcome back</small>
+    </div>
+    <div class="profile"><i data-lucide="user"></i></div>
+  </div>
+
+  <div class="balance-card">
     <small>Available Balance</small>
     <h1>$3,501,439.22</h1>
+    <small>Account: **** 7756</small>
   </div>
-  <!-- INLINE JS HERE SO E NO FAIL -->
-  <div class="btn" onclick="document.getElementById('page1').classList.add('hid');document.getElementById('page2').classList.remove('hid')">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-    <br>Send
+
+  <div class="actions">
+    <div class="action" onclick="showPage('page2')">
+      <i data-lucide="send"></i><br><span>Send</span>
+    </div>
+    <div class="action" onclick="alert('Request Money coming soon')">
+      <i data-lucide="download"></i><br><span>Request</span>
+    </div>
+    <div class="action" onclick="alert('Top Up coming soon')">
+      <i data-lucide="credit-card"></i><br><span>TopUp</span>
+    </div>
+    <div class="action" onclick="alert('More coming soon')">
+      <i data-lucide="grid-3x3"></i><br><span>More</span>
+    </div>
+  </div>
+
+  <h3 class="section-title">Transaction History</h3>
+  
+  <div class="tx-item">
+    <div class="tx-left">
+      <div class="tx-icon"><i data-lucide="briefcase" style="color:var(--green)"></i></div>
+      <div>
+        <b>Salary Credit</b><br>
+        <small style="opacity:0.7">Today, 09:15 AM</small>
+      </div>
+    </div>
+    <div class="tx-amt income">+$2,000,000.00</div>
+  </div>
+
+  <div class="tx-item">
+    <div class="tx-left">
+      <div class="tx-icon"><i data-lucide="users" style="color:var(--green)"></i></div>
+      <div>
+        <b>Client Payment</b><br>
+        <small style="opacity:0.7">14 Mar, 11:45 AM</small>
+      </div>
+    </div>
+    <div class="tx-amt income">+$1,500,000.00</div>
+  </div>
+
+  <div class="tx-item">
+    <div class="tx-left">
+      <div class="tx-icon"><i data-lucide="wifi" style="color:var(--red)"></i></div>
+      <div>
+        <b>Internet Bill</b><br>
+        <small style="opacity:0.7">Yesterday, 8:30 PM</small>
+      </div>
+    </div>
+    <div class="tx-amt expense">-$500.78</div>
+  </div>
+
+  <div class="tx-item">
+    <div class="tx-left">
+      <div class="tx-icon"><i data-lucide="shopping-cart" style="color:var(--red)"></i></div>
+      <div>
+        <b>Grocery Store</b><br>
+        <small style="opacity:0.7">12 Mar, 3:20 PM</small>
+      </div>
+    </div>
+    <div class="tx-amt expense">-$1,250.00</div>
   </div>
 </div>
 
 <!-- PAGE 2: SEND MONEY -->
 <div id="page2" class="page hid">
-  <div style="background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px">
+  <div class="send-card">
     <div class="header">
-      <!-- INLINE BACK BUTTON -->
-      <div class="back" onclick="document.getElementById('page2').classList.add('hid');document.getElementById('page1').classList.remove('hid')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      <div class="back" onclick="showPage('page1')">
+        <i data-lucide="arrow-left"></i>
       </div>
       <h2>Send Money</h2>
     </div>
 
-    <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px">
+    <div class="balance-preview">
       <small>Available Balance</small>
       <h3>$3,501,439.22</h3>
     </div>
@@ -60,12 +153,24 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
     <label>Amount ($)</label>
     <input class="input" type="number" value="5250">
 
-    <button class="send-btn" onclick="alert('Transfer Sent!')">Send Now</button>
+    <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:12px;margin:16px 0">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Amount</span><span>$5,250.00</span></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Transfer Fee</span><span>$10.50</span></div>
+      <div style="display:flex;justify-content:space-between;font-weight:700;border-top:1px solid rgba(255,255,255,0.2);padding-top:8px"><span>Total Debit</span><span>$5,260.50</span></div>
+    </div>
+
+    <button class="send-btn" onclick="alert('Transfer Sent to Michael Brown!');showPage('page1')">Send Now</button>
   </div>
 </div>
 
 <script>
-lucide.createIcons(); // only for icons
+lucide.createIcons();
+
+function showPage(id){
+  document.getElementById('page1').classList.add('hid');
+  document.getElementById('page2').classList.add('hid');
+  document.getElementById(id).classList.remove('hid');
+}
 </script>
 </body>
 </html>
