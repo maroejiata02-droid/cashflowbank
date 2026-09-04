@@ -12,65 +12,155 @@
   --purple2:#2b1055; 
   --purpleBtn:#7c3aed; 
   --purpleBtn2:#a855f7;
+  --greenBtn:#22c55e;
+  --red:#ef4444;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
 body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
 .hid{display:none!important}
-.dashboard{padding:20px;max-width:500px;margin:0 auto}
+.center{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
 
-/* REALISTIC SEND MONEY CARD */
-.send-card{background:#fff;color:#111;border-radius:24px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
-.header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.header h2{font-size:20px;font-weight:800}
-
-/* BALANCE PREVIEW */
-.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px;padding:16px;margin-bottom:20px}
-.balance-preview small{opacity:0.8;font-size:12px}
-.balance-preview h3{font-size:22px;font-weight:800;margin-top:4px}
-
-/* INPUTS */
+/* AUTH CARDS */
+.auth-card{background:#fff;color:#111;border-radius:24px;padding:32px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.logo{font-size:28px;font-weight:900;text-align:center;margin-bottom:8px}
+.logo span:first-child{color:var(--purpleBtn)}
+.logo span:last-child{color:var(--purple2)}
+.subtitle{text-align:center;color:#6b7280;font-size:14px;margin-bottom:24px}
 .input-group{margin-bottom:16px}
 .input-group label{font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px}
 .input-box{position:relative}
-.input-box input{width:100%;padding:14px 14px 14px 44px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:15px;font-weight:500}
+.input-box input{width:100%;padding:14px 14px 14px 44px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:15px}
 .input-box input:focus{border-color:var(--purpleBtn);outline:none}
 .input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--purpleBtn);width:20px;height:20px}
+.btn-purple{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer}
+.link-text{text-align:center;margin-top:16px;font-size:14px}
+.link-text a{color:var(--purpleBtn);font-weight:700;cursor:pointer;text-decoration:none}
 
-/* FEE BREAKDOWN */
+/* DASHBOARD */
+.dashboard{padding:20px;max-width:500px;margin:0 auto;padding-bottom:100px}
+.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
+.balance-card h1{font-size:32px;font-weight:800;margin-top:4px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center;cursor:pointer}
+.action svg{width:24px;height:24px;margin-bottom:6px}
+
+/* SEND MONEY CARD */
+.send-card{background:#fff;color:#111;border-radius:24px;padding:24px}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px;padding:16px;margin-bottom:20px}
 .fee-box{background:#f9fafb;border-radius:12px;padding:12px;margin:16px 0}
 .fee-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
-.fee-row.total{font-weight:700;font-size:14px;border-top:1px solid #e5e7eb;padding-top:8px;margin-top:8px}
-
-/* PIN DOTS */
 .pin-dots{display:flex;gap:10px;justify-content:center;margin:16px 0}
 .dot{width:14px;height:14px;border:2px solid #d1d5db;border-radius:50%}
-
-/* BUTTON */
-.btn-purple{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-purple:disabled{opacity:0.6;cursor:not-allowed}
 </style>
 </head>
 <body>
 
-<div class="dashboard">
+<!-- 1. WELCOME / CREATE ACCOUNT -->
+<div id="signup" class="center">
+  <div class="auth-card">
+    <div class="logo"><span>CASH</span><span>FLOW</span></div>
+    <p class="subtitle">Create your free account</p>
+    
+    <div class="input-group">
+      <label>Full Name</label>
+      <div class="input-box">
+        <i data-lucide="user" class="input-icon"></i>
+        <input id="regName" type="text" placeholder="John Doe">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <div class="input-box">
+        <i data-lucide="mail" class="input-icon"></i>
+        <input id="regEmail" type="email" placeholder="john@email.com">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <div class="input-box">
+        <i data-lucide="lock" class="input-icon"></i>
+        <input id="regPass" type="password" placeholder="••••••••">
+      </div>
+    </div>
+
+    <button class="btn-purple" onclick="createAccount()">Create Account</button>
+    <p class="link-text">Already have an account? <a onclick="show('login')">Login</a></p>
+  </div>
+</div>
+
+<!-- 2. LOGIN -->
+<div id="login" class="center hid">
+  <div class="auth-card">
+    <div class="logo"><span>CASH</span><span>FLOW</span></div>
+    <p class="subtitle">Welcome back</p>
+    
+    <div class="input-group">
+      <label>Email</label>
+      <div class="input-box">
+        <i data-lucide="mail" class="input-icon"></i>
+        <input id="logEmail" type="email" placeholder="john@email.com" value="john@email.com">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <div class="input-box">
+        <i data-lucide="lock" class="input-icon"></i>
+        <input id="logPass" type="password" placeholder="••••••••" value="1234">
+      </div>
+    </div>
+
+    <button class="btn-purple" onclick="login()">Login</button>
+    <p class="link-text">Don't have an account? <a onclick="show('signup')">Sign Up</a></p>
+  </div>
+</div>
+
+<!-- 3. DASHBOARD -->
+<div id="dash" class="dashboard hid">
+  <div style="display:flex;justify-content:space-between;margin-bottom:20px">
+    <div>
+      <h2 id="dashName">Hello John</h2>
+      <p style="font-size:13px;opacity:0.8">Let's save your money</p>
+    </div>
+    <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;padding:8px 16px;border-radius:10px;color:#fff;font-weight:600">Logout</button>
+  </div>
+
+  <div class="balance-card">
+    <small>Available Balance</small>
+    <h1 id="bal">$3,501,439.22</h1>
+  </div>
+
+  <div class="actions">
+    <div class="action" onclick="show('transfer')"><i data-lucide="send"></i><br><span>Send</span></div>
+    <div class="action"><i data-lucide="download"></i><br><span>Request</span></div>
+    <div class="action"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
+    <div class="action"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
+  </div>
+
+  <div id="txList"></div>
+</div>
+
+<!-- 4. SEND MONEY -->
+<div id="transfer" class="dashboard hid">
   <div class="send-card">
     <div class="header">
-      <i data-lucide="arrow-left" style="cursor:pointer" onclick="alert('Back')"></i>
+      <i data-lucide="arrow-left" style="cursor:pointer" onclick="show('dash')"></i>
       <h2>Send Money</h2>
     </div>
 
-    <!-- BALANCE PREVIEW -->
     <div class="balance-preview">
       <small>Available Balance</small>
-      <h3 id="bal">$3,501,439.22</h3>
+      <h3 id="bal2">$3,501,439.22</h3>
     </div>
 
-    <!-- RECIPIENT -->
     <div class="input-group">
       <label>Recipient Name</label>
       <div class="input-box">
         <i data-lucide="user" class="input-icon"></i>
-        <input id="accName" type="text" placeholder="Michael Brown" value="Michael Brown">
+        <input id="accName" type="text" placeholder="Michael Brown">
       </div>
     </div>
 
@@ -82,32 +172,29 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
       </div>
     </div>
 
-    <!-- AMOUNT -->
     <div class="input-group">
       <label>Amount ($)</label>
       <div class="input-box">
         <i data-lucide="dollar-sign" class="input-icon"></i>
-        <input id="amount" type="number" placeholder="0.00" value="5250" oninput="calcFee()">
+        <input id="amount" type="number" placeholder="0.00" oninput="calcFee()">
       </div>
     </div>
 
-    <!-- FEE BREAKDOWN -->
     <div class="fee-box">
-      <div class="fee-row"><span>Amount</span><span id="feeAmt">$5,250.00</span></div>
-      <div class="fee-row"><span>Transfer Fee</span><span id="fee">$10.50</span></div>
-      <div class="fee-row total"><span>Total Debit</span><span id="total">$5,260.50</span></div>
+      <div class="fee-row"><span>Amount</span><span id="feeAmt">$0.00</span></div>
+      <div class="fee-row"><span>Transfer Fee</span><span id="fee">$0.00</span></div>
+      <div class="fee-row" style="font-weight:700;border-top:1px solid #e5e7eb;padding-top:8px;margin-top:8px">
+        <span>Total Debit</span><span id="total">$0.00</span>
+      </div>
     </div>
 
-    <!-- PIN -->
     <div class="input-group">
       <label>Enter 4-Digit PIN</label>
-      <div class="pin-dots" id="pinDots">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      </div>
+      <div class="pin-dots" id="pinDots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
       <input id="pin" type="password" maxlength="4" style="opacity:0;height:0" oninput="updateDots()">
     </div>
 
-    <button class="btn-purple" id="sendBtn" onclick="sendMoney()">
+    <button class="btn-purple" onclick="sendMoney()">
       <i data-lucide="send"></i> Send Now
     </button>
   </div>
@@ -116,14 +203,62 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 <script>
 lucide.createIcons();
 
+let user = {name:"John Doe", email:"john@email.com", pass:"1234"};
 let balance = 3501439.22;
+let txs = [
+  {name:"Salary Credit", amt:2000000.00, date:"Today, 09:15 AM"},
+  {name:"Client Payment", amt:1500000.00, date:"14 Mar, 11:45 AM"},
+  {name:"Internet Bill", amt:-500.78, date:"Yesterday, 8:30 PM"}
+];
+
+function show(id){
+  ['signup','login','dash','transfer'].forEach(x=>document.getElementById(x).classList.add('hid'));
+  document.getElementById(id).classList.remove('hid');
+  if(id==='dash') loadDash();
+}
+
+function createAccount(){
+  user.name = document.getElementById('regName').value;
+  user.email = document.getElementById('regEmail').value;
+  user.pass = document.getElementById('regPass').value;
+  if(!user.name || !user.email || !user.pass){alert('Fill all fields');return}
+  alert('Account Created Successfully!');
+  show('login');
+}
+
+function login(){
+  let email = document.getElementById('logEmail').value;
+  let pass = document.getElementById('logPass').value;
+  if(email === user.email && pass === user.pass){
+    show('dash');
+  } else {alert('Invalid Email or Password')}
+}
+
+function logout(){
+  show('login');
+}
+
+function loadDash(){
+  document.getElementById('dashName').innerText = `Hello ${user.name.split(' ')[0]}`;
+  document.getElementById('bal').innerText = '$' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('bal2').innerText = '$' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
+  
+  let html = '';
+  txs.slice(0,3).forEach(t=> {
+    let type = t.amt > 0 ? 'color:var(--greenBtn)' : 'color:var(--red)';
+    html += `<div style="background:rgba(255,255,255,0.15);border-radius:12px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between">
+      <div><b>${t.name}</b><br><small>${t.date}</small></div>
+      <div style="${type};font-weight:700">${t.amt > 0 ? '+' : '-'}$${Math.abs(t.amt).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
+    </div>`;
+  });
+  document.getElementById('txList').innerHTML = html;
+}
 
 function calcFee(){
   let amt = parseFloat(document.getElementById('amount').value) || 0;
-  let fee = amt * 0.002; // 0.2% fee
-  if(fee < 1) fee = 1; // minimum $1
+  let fee = amt * 0.002;
+  if(fee < 1 && amt > 0) fee = 1;
   let total = amt + fee;
-  
   document.getElementById('feeAmt').innerText = '$' + amt.toLocaleString(undefined,{minimumFractionDigits:2});
   document.getElementById('fee').innerText = '$' + fee.toLocaleString(undefined,{minimumFractionDigits:2});
   document.getElementById('total').innerText = '$' + total.toLocaleString(undefined,{minimumFractionDigits:2});
@@ -131,15 +266,13 @@ function calcFee(){
 
 function updateDots(){
   let pin = document.getElementById('pin').value;
-  let dots = document.querySelectorAll('.dot');
+  let dots = document.querySelectorAll('#transfer .dot');
   dots.forEach((d,i)=> {
     d.style.background = i < pin.length ? '#7c3aed' : 'transparent';
-    d.style.borderColor = i < pin.length ? '#7c3aed' : '#d1d5db';
   })
 }
 
 function sendMoney(){
-  let btn = document.getElementById('sendBtn');
   let name = document.getElementById('accName').value;
   let acc = document.getElementById('accNum').value;
   let amt = parseFloat(document.getElementById('amount').value);
@@ -149,20 +282,13 @@ function sendMoney(){
   if(!name){alert('Enter recipient name');return}
   if(!amt || amt <= 0){alert('Enter valid amount');return}
   if(pin !== "1234"){alert('Incorrect PIN. Use: 1234');return}
+  if(amt > balance){alert('Insufficient Balance');return}
 
-  btn.disabled = true;
-  btn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Processing...';
-  lucide.createIcons();
-
-  setTimeout(()=> {
-    alert(`$${amt.toLocaleString()} sent to ${name} successfully!`);
-    btn.disabled = false;
-    btn.innerHTML = '<i data-lucide="send"></i> Send Now';
-    lucide.createIcons();
-  }, 2000)
+  balance -= amt;
+  txs.unshift({name: `Transfer to ${name}`, amt: -amt, date: "Just now"});
+  alert(`$${amt.toLocaleString()} sent to ${name} successfully!`);
+  show('dash');
 }
-
-calcFee(); // run once on load
 </script>
 </body>
 </html>
