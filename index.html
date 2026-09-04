@@ -3,36 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CashFlow Bank</title>
+<title>CashFlow Bank — Prototype</title>
 
 <style>
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,Helvetica,sans-serif
 }
 
 body{
   background:#f7f7f7;
-  color:#151515;
+  color:#151515
 }
 
-button,input,select{
-  font:inherit;
+button,input{
+  font:inherit
 }
 
 button{
-  cursor:pointer;
+  cursor:pointer
 }
 
 .hidden{
-  display:none!important;
+  display:none!important
 }
 
-/* =========================
-   LOADING SCREEN
-========================= */
+/* LOADING */
 
 #loadingScreen{
   position:fixed;
@@ -42,42 +40,50 @@ button{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  transition:opacity:.4s ease;
+  transition:.4s
 }
 
 .loading-box{
-  text-align:center;
+  text-align:center
+}
+
+.loading-logo,
+.mark{
+  background:#e51b23;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:900
 }
 
 .loading-logo{
   width:78px;
   height:78px;
   border-radius:20px;
-  background:#e51b23;
-  color:#fff;
-  display:grid;
-  place-items:center;
   font-size:44px;
-  font-weight:900;
   margin:0 auto 20px;
-  box-shadow:0 12px 30px #e51b2330;
-  animation:logoPulse 1.4s infinite;
+  animation:pulse 1.4s infinite
 }
 
 .loading-name{
   font-size:30px;
   font-weight:800;
-  margin-bottom:8px;
+  margin-bottom:8px
 }
 
-.loading-name span{
-  color:#e51b23;
+.loading-name span,
+.logo span{
+  color:#e51b23
+}
+
+.loading-text,
+.muted{
+  color:#777;
+  font-size:14px
 }
 
 .loading-text{
-  color:#777;
-  font-size:14px;
-  margin-bottom:22px;
+  margin-bottom:22px
 }
 
 .loading-spinner{
@@ -87,35 +93,25 @@ button{
   border-top-color:#e51b23;
   border-radius:50%;
   margin:auto;
-  animation:spin .8s linear infinite;
+  animation:spin .8s linear infinite
 }
 
 @keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
+  to{transform:rotate(360deg)}
 }
 
-@keyframes logoPulse{
-  0%,100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.05);
-  }
+@keyframes pulse{
+  50%{transform:scale(1.05)}
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* AUTH */
 
 .login{
   min-height:100vh;
   display:grid;
   place-items:center;
   padding:20px;
-  background:linear-gradient(135deg,#fff,#fff4f4);
+  background:linear-gradient(135deg,#fff,#fff4f4)
 }
 
 .login-box{
@@ -124,7 +120,7 @@ button{
   border:1px solid #eee;
   border-radius:20px;
   padding:32px;
-  box-shadow:0 15px 45px #00000012;
+  box-shadow:0 15px 45px #0001
 }
 
 .logo{
@@ -132,56 +128,41 @@ button{
   align-items:center;
   gap:10px;
   font-size:23px;
-  font-weight:800;
+  font-weight:800
 }
 
 .mark{
   width:38px;
   height:38px;
-  border-radius:10px;
-  background:#e51b23;
-  color:#fff;
-  display:grid;
-  place-items:center;
-}
-
-.logo span{
-  color:#e51b23;
+  border-radius:10px
 }
 
 .login h1{
   margin:25px 0 8px;
-  font-size:29px;
-}
-
-.muted{
-  color:#777;
-  font-size:14px;
+  font-size:29px
 }
 
 .field{
-  margin:17px 0;
+  margin:17px 0
 }
 
 .field label{
   display:block;
   font-size:13px;
   font-weight:bold;
-  margin-bottom:7px;
+  margin-bottom:7px
 }
 
-.field input,
-.field select{
+.field input{
   width:100%;
   padding:13px;
   border:1px solid #ddd;
   border-radius:10px;
-  outline:0;
+  outline:0
 }
 
-.field input:focus,
-.field select:focus{
-  border-color:#e51b23;
+.field input:focus{
+  border-color:#e51b23
 }
 
 .primary{
@@ -191,11 +172,11 @@ button{
   color:#fff;
   padding:14px;
   border-radius:10px;
-  font-weight:bold;
+  font-weight:bold
 }
 
 .primary:hover{
-  background:#c9151c;
+  background:#c9151c
 }
 
 .secondary{
@@ -206,7 +187,7 @@ button{
   padding:13px;
   border-radius:10px;
   font-weight:bold;
-  margin-top:10px;
+  margin-top:10px
 }
 
 .notice{
@@ -217,12 +198,39 @@ button{
   border:1px solid #ffd5d5;
   color:#777;
   font-size:12px;
-  line-height:1.5;
+  line-height:1.5
 }
 
-/* =========================
-   HEADER
-========================= */
+.auth-switch{
+  text-align:center;
+  margin-top:18px;
+  font-size:13px;
+  color:#777
+}
+
+.auth-switch button,
+.link{
+  border:0;
+  background:none;
+  color:#e51b23;
+  font-weight:bold
+}
+
+.error{
+  color:#c9151c;
+  font-size:13px;
+  margin:8px 0;
+  display:none
+}
+
+.success{
+  color:#168a42;
+  font-size:13px;
+  margin:8px 0;
+  display:none
+}
+
+/* HEADER */
 
 .header{
   height:72px;
@@ -234,19 +242,19 @@ button{
   padding:0 32px;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:100
 }
 
 .header-left,
 .header-right{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:15px
 }
 
 .notification{
   cursor:pointer;
-  font-size:20px;
+  font-size:20px
 }
 
 .avatar{
@@ -258,33 +266,26 @@ button{
   display:grid;
   place-items:center;
   font-weight:bold;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .mobile-menu{
   display:none;
-  font-size:24px;
-  cursor:pointer;
+  font-size:24px
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* LAYOUT */
 
 .layout{
   display:flex;
-  min-height:calc(100vh - 72px);
+  min-height:calc(100vh - 72px)
 }
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar{
   width:245px;
   background:#fff;
   border-right:1px solid #eee;
-  padding:28px 16px;
+  padding:28px 16px
 }
 
 .menu-title{
@@ -292,7 +293,7 @@ button{
   font-size:12px;
   font-weight:bold;
   text-transform:uppercase;
-  margin:8px 14px 12px;
+  margin:8px 14px 12px
 }
 
 .menu-item{
@@ -300,59 +301,36 @@ button{
   border-radius:9px;
   margin-bottom:5px;
   color:#555;
-  cursor:pointer;
-  transition:.2s;
+  cursor:pointer
 }
 
 .menu-item:hover{
   background:#fff1f1;
-  color:#e51b23;
+  color:#e51b23
 }
 
 .menu-item.active{
   background:#e51b23;
   color:#fff;
-  font-weight:bold;
+  font-weight:bold
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
   flex:1;
   padding:32px;
-  max-width:1500px;
-}
-
-.screen{
-  animation:fadeIn .2s ease;
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  max-width:1500px
 }
 
 .welcome{
-  margin-bottom:25px;
+  margin-bottom:25px
 }
 
 .welcome h1{
   font-size:30px;
-  margin-bottom:7px;
+  margin-bottom:7px
 }
 
-/* =========================
-   BALANCE
-========================= */
+/* BALANCE */
 
 .balance-card{
   background:linear-gradient(135deg,#e51b23,#b90009);
@@ -360,37 +338,22 @@ button{
   border-radius:18px;
   padding:28px;
   min-height:205px;
-  box-shadow:0 10px 25px #e51b2330;
-  position:relative;
-  overflow:hidden;
-}
-
-.balance-card:after{
-  content:"";
-  position:absolute;
-  width:220px;
-  height:220px;
-  border:35px solid #ffffff15;
-  border-radius:50%;
-  right:-90px;
-  top:-100px;
+  box-shadow:0 10px 25px #e51b2330
 }
 
 .balance{
   font-size:40px;
   font-weight:800;
-  margin:15px 0 22px;
+  margin:15px 0 22px
 }
 
-/* =========================
-   ACTIONS
-========================= */
+/* ACTIONS */
 
 .actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
-  margin:24px 0;
+  margin:24px 0
 }
 
 .action{
@@ -398,12 +361,12 @@ button{
   border:1px solid #eee;
   border-radius:14px;
   padding:20px;
-  text-align:center;
+  text-align:center
 }
 
 .action:hover{
   border-color:#e51b23;
-  transform:translateY(-2px);
+  transform:translateY(-2px)
 }
 
 .action-icon{
@@ -415,74 +378,59 @@ button{
   display:grid;
   place-items:center;
   margin:auto;
-  font-size:21px;
+  font-size:21px
 }
 
 .action p{
   margin-top:10px;
-  font-weight:bold;
+  font-weight:bold
 }
 
-/* =========================
-   GRID
-========================= */
+/* GRID */
 
 .grid{
   display:grid;
   grid-template-columns:1.5fr 1fr;
-  gap:24px;
+  gap:24px
 }
-
-/* =========================
-   CARDS
-========================= */
 
 .card{
   background:#fff;
   border:1px solid #eee;
   border-radius:17px;
   padding:24px;
-  margin-bottom:24px;
+  margin-bottom:24px
 }
 
 .card h2{
-  margin-bottom:10px;
+  margin-bottom:10px
+}
+
+.card-head,
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
 }
 
 .card-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
+  margin-bottom:18px
 }
 
-.link{
-  border:0;
-  background:none;
-  color:#e51b23;
-  font-weight:bold;
-}
-
-/* =========================
-   TRANSACTIONS
-========================= */
+/* TRANSACTIONS */
 
 .txn{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:14px 0;
-  border-bottom:1px solid #eee;
-}
-
-.txn:last-child{
-  border-bottom:0;
+  border-bottom:1px solid #eee
 }
 
 .txn-left{
   display:flex;
   gap:11px;
-  align-items:center;
+  align-items:center
 }
 
 .txn-icon{
@@ -491,75 +439,49 @@ button{
   border-radius:10px;
   background:#f7f7f7;
   display:grid;
-  place-items:center;
+  place-items:center
 }
 
 .txn-name{
   font-weight:bold;
-  font-size:14px;
+  font-size:14px
 }
 
 .txn-date{
   font-size:11px;
   color:#999;
-  margin-top:3px;
+  margin-top:3px
 }
 
 .plus{
   color:#168a42;
-  font-weight:bold;
+  font-weight:bold
 }
 
 .minus{
   color:#e51b23;
-  font-weight:bold;
+  font-weight:bold
 }
-
-/* =========================
-   SUMMARY
-========================= */
 
 .row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding:15px 0;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #eee
 }
 
-.row:last-child{
-  border-bottom:0;
-}
-
-/* =========================
-   BANK CARD
-========================= */
+/* CARD */
 
 .bank-card{
   background:linear-gradient(135deg,#181818,#3d3d3d);
   color:#fff;
   border-radius:17px;
   padding:22px;
-  min-height:170px;
-  position:relative;
-  overflow:hidden;
-}
-
-.bank-card:after{
-  content:"";
-  position:absolute;
-  width:160px;
-  height:160px;
-  border:30px solid #e51b2330;
-  border-radius:50%;
-  right:-70px;
-  bottom:-90px;
+  min-height:170px
 }
 
 .card-brand{
   color:#ed1c24;
   font-weight:900;
-  font-size:19px;
+  font-size:19px
 }
 
 .chip{
@@ -567,67 +489,61 @@ button{
   height:30px;
   background:#ddd;
   border-radius:6px;
-  margin-top:28px;
+  margin-top:28px
 }
 
 .card-number{
   letter-spacing:3px;
-  margin-top:17px;
+  margin-top:17px
 }
 
 .card-bottom{
   display:flex;
   justify-content:space-between;
   font-size:11px;
-  margin-top:11px;
+  margin-top:11px
 }
 
 .form-card{
-  max-width:680px;
+  max-width:680px
 }
-
-/* =========================
-   EMPTY STATE
-========================= */
 
 .empty{
   padding:25px 5px;
   color:#888;
-  text-align:center;
+  text-align:center
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 .bottom{
-  display:none;
+  display:none
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
   .mobile-menu{
-    display:block;
+    display:block
   }
 
   .sidebar{
-    display:none;
+    display:none
   }
 
   .main{
-    padding:20px 16px 90px;
+    padding:20px 16px 90px
   }
 
   .actions{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr)
   }
 
   .grid{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .header{
-    padding:0 18px;
+    padding:0 18px
   }
 }
 
@@ -643,31 +559,31 @@ button{
     background:#fff;
     border-top:1px solid #ddd;
     z-index:200;
-    justify-content:space-around;
+    justify-content:space-around
   }
 
   .bottom button{
     border:0;
     background:none;
     color:#777;
-    font-size:11px;
+    font-size:11px
   }
 
   .bottom button b{
     display:block;
-    font-size:19px;
+    font-size:19px
   }
 
   .bottom button.active{
-    color:#e51b23;
+    color:#e51b23
   }
 
   .balance{
-    font-size:34px;
+    font-size:34px
   }
 
   .welcome h1{
-    font-size:25px;
+    font-size:25px
   }
 }
 </style>
@@ -675,961 +591,987 @@ button{
 
 <body>
 
-<!-- =========================
-     INITIAL LOADING
-========================= -->
+<!-- LOADING -->
 
 <div id="loadingScreen">
   <div class="loading-box">
-
     <div class="loading-logo">C</div>
-
     <div class="loading-name">
       Cash<span>Flow</span>
     </div>
-
     <div class="loading-text">
       Secure banking experience
     </div>
-
     <div class="loading-spinner"></div>
-
   </div>
 </div>
 
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- LOGIN / CREATE ACCOUNT -->
 
 <section id="login" class="login hidden">
 
-  <div class="login-box">
+<div class="login-box">
 
-    <div class="logo">
-      <div class="mark">C</div>
-      Cash<span>Flow</span>
-    </div>
+<div class="logo">
+  <div class="mark">C</div>
+  Cash<span>Flow</span>
+</div>
 
-    <h1>Welcome back</h1>
 
-    <p class="muted">
-      Sign in to your CashFlow account.
-    </p>
+<!-- LOGIN PANEL -->
 
-    <form id="loginForm">
+<div id="loginPanel">
 
-      <div class="field">
-        <label>Email</label>
-        <input
-          id="email"
-          type="email"
-          autocomplete="username"
-          required
-        >
-      </div>
+<h1>Welcome back</h1>
 
-      <div class="field">
-        <label>Password</label>
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          required
-        >
-      </div>
+<p class="muted">
+  Sign in to your CashFlow prototype account.
+</p>
 
-      <button class="primary" type="submit">
-        Sign In
-      </button>
+<form id="loginForm">
 
-    </form>
+<div class="field">
+<label>Email</label>
+<input
+  id="email"
+  type="email"
+  autocomplete="username"
+  required
+>
+</div>
 
-    <div class="notice">
-      CashFlow is a browser-based prototype. It does not connect to real bank accounts or move real money.
-    </div>
+<div class="field">
+<label>Password</label>
+<input
+  id="password"
+  type="password"
+  autocomplete="current-password"
+  required
+>
+</div>
 
-  </div>
+<div id="loginError" class="error"></div>
+
+<button class="primary">
+  Sign In
+</button>
+
+</form>
+
+<div class="auth-switch">
+Don't have an account?
+<button type="button" onclick="showSignup()">
+Create account
+</button>
+</div>
+
+</div>
+
+
+<!-- CREATE ACCOUNT PANEL -->
+
+<div id="signupPanel" class="hidden">
+
+<h1>Create account</h1>
+
+<p class="muted">
+Create a local CashFlow prototype account.
+</p>
+
+<form id="signupForm">
+
+<div class="field">
+<label>Full name</label>
+<input
+  id="signupName"
+  required
+>
+</div>
+
+<div class="field">
+<label>Email</label>
+<input
+  id="signupEmail"
+  type="email"
+  required
+>
+</div>
+
+<div class="field">
+<label>Password</label>
+<input
+  id="signupPassword"
+  type="password"
+  minlength="6"
+  required
+>
+</div>
+
+<div class="field">
+<label>Confirm password</label>
+<input
+  id="signupConfirm"
+  type="password"
+  minlength="6"
+  required
+>
+</div>
+
+<div id="signupError" class="error"></div>
+
+<div id="signupSuccess" class="success"></div>
+
+<button class="primary">
+Create Account
+</button>
+
+</form>
+
+<div class="auth-switch">
+Already have an account?
+<button type="button" onclick="showLogin()">
+Sign in
+</button>
+</div>
+
+</div>
+
+
+<div class="notice">
+CashFlow is a browser-based prototype. It does not connect to real bank accounts or move real money. Accounts and demo activity are stored locally in this browser.
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================
-     APPLICATION
-========================= -->
+<!-- APPLICATION -->
 
 <section id="app" class="hidden">
 
 <header class="header">
 
-  <div class="header-left">
+<div class="header-left">
 
-    <div
-      class="mobile-menu"
-      onclick="toggleMenu()"
-    >
-      ☰
-    </div>
+<div
+class="mobile-menu"
+onclick="toggleMenu()"
+>
+☰
+</div>
 
-    <div class="logo">
-      <div class="mark">C</div>
-      Cash<span>Flow</span>
-    </div>
+<div class="logo">
+<div class="mark">C</div>
+Cash<span>Flow</span>
+</div>
 
-  </div>
+</div>
 
-  <div class="header-right">
+<div class="header-right">
 
-    <span
-      class="notification"
-      onclick="showAlert('You have no new notifications.')"
-    >
-      🔔
-    </span>
+<span
+class="notification"
+onclick="showAlert('You have no new notifications.')"
+>
+🔔
+</span>
 
-    <div
-      class="avatar"
-      onclick="page('settings')"
-    >
-      JD
-    </div>
+<div
+id="avatar"
+class="avatar"
+onclick="page('settings')"
+>
+JD
+</div>
 
-  </div>
+</div>
 
 </header>
 
 
 <div class="layout">
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+
+<!-- SIDEBAR -->
 
 <aside id="sidebar" class="sidebar">
 
-  <div class="menu-title">
-    Menu
-  </div>
+<div class="menu-title">
+Menu
+</div>
 
-  <div
-    class="menu-item active"
-    data-page="dashboard"
-    onclick="page('dashboard')"
-  >
-    ⌂ &nbsp; Dashboard
-  </div>
+<div
+class="menu-item active"
+data-page="dashboard"
+onclick="page('dashboard')"
+>
+⌂ &nbsp; Dashboard
+</div>
 
-  <div
-    class="menu-item"
-    data-page="transfer"
-    onclick="page('transfer')"
-  >
-    ↔ &nbsp; Transfer Money
-  </div>
+<div
+class="menu-item"
+data-page="transfer"
+onclick="page('transfer')"
+>
+↔ &nbsp; Transfer Money
+</div>
 
-  <div
-    class="menu-item"
-    data-page="transactions"
-    onclick="page('transactions')"
-  >
-    ▣ &nbsp; Transactions
-  </div>
+<div
+class="menu-item"
+data-page="transactions"
+onclick="page('transactions')"
+>
+▣ &nbsp; Transactions
+</div>
 
-  <div
-    class="menu-item"
-    data-page="bills"
-    onclick="page('bills')"
-  >
-    ▤ &nbsp; Bills & Payments
-  </div>
+<div
+class="menu-item"
+data-page="bills"
+onclick="page('bills')"
+>
+▤ &nbsp; Bills & Payments
+</div>
 
-  <div
-    class="menu-item"
-    data-page="cards"
-    onclick="page('cards')"
-  >
-    ▥ &nbsp; Cards
-  </div>
+<div
+class="menu-item"
+data-page="cards"
+onclick="page('cards')"
+>
+▥ &nbsp; Cards
+</div>
 
-  <div
-    class="menu-item"
-    data-page="beneficiaries"
-    onclick="page('beneficiaries')"
-  >
-    ♙ &nbsp; Beneficiaries
-  </div>
+<div
+class="menu-item"
+data-page="beneficiaries"
+onclick="page('beneficiaries')"
+>
+♙ &nbsp; Beneficiaries
+</div>
 
-  <div
-    class="menu-title"
-    style="margin-top:25px"
-  >
-    Account
-  </div>
+<div
+class="menu-title"
+style="margin-top:25px"
+>
+Account
+</div>
 
-  <div
-    class="menu-item"
-    data-page="settings"
-    onclick="page('settings')"
-  >
-    ⚙ &nbsp; Settings
-  </div>
+<div
+class="menu-item"
+data-page="settings"
+onclick="page('settings')"
+>
+⚙ &nbsp; Settings
+</div>
 
-  <div
-    class="menu-item"
-    onclick="logout()"
-  >
-    ↪ &nbsp; Logout
-  </div>
+<div
+class="menu-item"
+onclick="logout()"
+>
+↪ &nbsp; Logout
+</div>
 
 </aside>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main class="main">
 
 
-<!-- =========================
-     DASHBOARD
-========================= -->
+<!-- DASHBOARD -->
 
 <div
-  id="dashboard-page"
-  class="screen"
+id="dashboard-page"
+class="screen"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Good afternoon, John 👋
-    </h1>
+<h1 id="welcomeTitle">
+Good afternoon 👋
+</h1>
 
-    <p class="muted">
-      Here's what's happening with your account.
-    </p>
-
-  </div>
-
-
-  <section class="balance-card">
-
-    <div>
-      AVAILABLE BALANCE
-    </div>
-
-    <div
-      id="balance"
-      class="balance"
-    ></div>
-
-    <div>
-      Checking Account •••• 4821
-    </div>
-
-  </section>
-
-
-  <section class="actions">
-
-    <button
-      class="action"
-      onclick="page('transfer')"
-    >
-      <div class="action-icon">↗</div>
-      <p>Send Money</p>
-    </button>
-
-    <button
-      class="action"
-      onclick="page('request')"
-    >
-      <div class="action-icon">↙</div>
-      <p>Request Money</p>
-    </button>
-
-    <button
-      class="action"
-      onclick="page('bills')"
-    >
-      <div class="action-icon">▤</div>
-      <p>Pay Bills</p>
-    </button>
-
-    <button
-      class="action"
-      onclick="page('addmoney')"
-    >
-      <div class="action-icon">＋</div>
-      <p>Add Money</p>
-    </button>
-
-  </section>
-
-
-  <div class="grid">
-
-    <section class="card">
-
-      <div class="card-head">
-
-        <h2>
-          Recent Transactions
-        </h2>
-
-        <button
-          class="link"
-          onclick="page('transactions')"
-        >
-          View All
-        </button>
-
-      </div>
-
-      <div id="recent"></div>
-
-    </section>
-
-
-    <section>
-
-      <div class="card">
-
-        <h2>
-          Account Summary
-        </h2>
-
-        <div class="row">
-          <span>Account</span>
-          <b>Checking</b>
-        </div>
-
-        <div class="row">
-          <span>Status</span>
-          <b class="plus">Active</b>
-        </div>
-
-        <div class="row">
-          <span>Account</span>
-          <b>•••• 4821</b>
-        </div>
-
-      </div>
-
-
-      <div class="bank-card">
-
-        <div class="card-brand">
-          CashFlow
-        </div>
-
-        <div class="chip"></div>
-
-        <div class="card-number">
-          •••• •••• •••• 4821
-        </div>
-
-        <div class="card-bottom">
-          <span>JOHN DOE</span>
-          <span>PROTOTYPE</span>
-        </div>
-
-      </div>
-
-    </section>
-
-  </div>
+<p class="muted">
+Here's what's happening with your account.
+</p>
 
 </div>
 
 
-<!-- =========================
-     TRANSFER
-========================= -->
+<section class="balance-card">
+
+<div>
+AVAILABLE BALANCE
+</div>
 
 <div
-  id="transfer-page"
-  class="screen hidden"
+id="balance"
+class="balance"
 >
+</div>
 
-  <div class="welcome">
+<div>
+Checking Account •••• 4821
+</div>
 
-    <h1>
-      Transfer Money
-    </h1>
+</section>
 
-    <p class="muted">
-      Record a transfer in your CashFlow prototype.
-    </p>
 
-  </div>
+<section class="actions">
 
-  <section class="card form-card">
+<button
+class="action"
+onclick="page('transfer')"
+>
+<div class="action-icon">↗</div>
+<p>Send Money</p>
+</button>
 
-    <div class="notice">
-      No real money is sent. The transaction is stored only in this browser.
-    </div>
+<button
+class="action"
+onclick="page('request')"
+>
+<div class="action-icon">↙</div>
+<p>Request Money</p>
+</button>
 
-    <form id="transferForm">
+<button
+class="action"
+onclick="page('bills')"
+>
+<div class="action-icon">▤</div>
+<p>Pay Bills</p>
+</button>
 
-      <div class="field">
+<button
+class="action"
+onclick="page('addmoney')"
+>
+<div class="action-icon">＋</div>
+<p>Add Money</p>
+</button>
 
-        <label>
-          Recipient
-        </label>
+</section>
 
-        <input
-          id="recipient"
-          required
-        >
 
-      </div>
+<div class="grid">
 
-      <div class="field">
+<section class="card">
 
-        <label>
-          Account Number
-        </label>
+<div class="card-head">
 
-        <input
-          id="recipientAccount"
-          required
-        >
+<h2>
+Recent Transactions
+</h2>
 
-      </div>
+<button
+class="link"
+onclick="page('transactions')"
+>
+View All
+</button>
 
-      <div class="field">
+</div>
 
-        <label>
-          Amount
-        </label>
+<div id="recent"></div>
 
-        <input
-          id="transferAmount"
-          type="number"
-          min=".01"
-          step=".01"
-          required
-        >
+</section>
 
-      </div>
 
-      <div class="field">
+<section>
 
-        <label>
-          Memo
-        </label>
+<div class="card">
 
-        <input id="memo">
+<h2>
+Account Summary
+</h2>
 
-      </div>
+<div class="row">
+<span>Account</span>
+<b>Checking</b>
+</div>
 
-      <button
-        class="primary"
-        type="submit"
-      >
-        Review Transfer
-      </button>
+<div class="row">
+<span>Status</span>
+<b class="plus">Active</b>
+</div>
 
-    </form>
-
-  </section>
+<div class="row">
+<span>Account</span>
+<b>•••• 4821</b>
+</div>
 
 </div>
 
 
-<!-- =========================
-     TRANSACTIONS
-========================= -->
+<div class="bank-card">
 
-<div
-  id="transactions-page"
-  class="screen hidden"
->
+<div class="card-brand">
+CashFlow
+</div>
 
-  <div class="welcome">
+<div class="chip"></div>
 
-    <h1>
-      Transactions
-    </h1>
+<div class="card-number">
+•••• •••• •••• 4821
+</div>
 
-    <p class="muted">
-      All CashFlow prototype activity.
-    </p>
+<div class="card-bottom">
+<span id="cardName">
+JOHN DOE
+</span>
 
-  </div>
+<span>
+PROTOTYPE
+</span>
+</div>
 
-  <section class="card">
+</div>
 
-    <div id="allTransactions"></div>
+</section>
 
-  </section>
+</div>
 
 </div>
 
 
-<!-- =========================
-     REQUEST MONEY
-========================= -->
+<!-- TRANSFER -->
 
 <div
-  id="request-page"
-  class="screen hidden"
+id="transfer-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Request Money
-    </h1>
+<h1>
+Transfer Money
+</h1>
 
-    <p class="muted">
-      Create a local money request.
-    </p>
+<p class="muted">
+Record a transfer in your CashFlow prototype.
+</p>
 
-  </div>
+</div>
 
-  <section class="card form-card">
+<section class="card form-card">
 
-    <form id="requestForm">
+<div class="notice">
+No real money is sent. The transaction is stored only in this browser.
+</div>
 
-      <div class="field">
+<form id="transferForm">
 
-        <label>
-          From
-        </label>
+<div class="field">
+<label>Recipient</label>
+<input id="recipient" required>
+</div>
 
-        <input
-          id="requestFrom"
-          required
-        >
+<div class="field">
+<label>Account Number</label>
+<input id="recipientAccount" required>
+</div>
 
-      </div>
+<div class="field">
+<label>Amount</label>
+<input
+id="transferAmount"
+type="number"
+min=".01"
+step=".01"
+required
+>
+</div>
 
-      <div class="field">
+<div class="field">
+<label>Memo</label>
+<input id="memo">
+</div>
 
-        <label>
-          Amount
-        </label>
+<button class="primary">
+Review Transfer
+</button>
 
-        <input
-          id="requestAmount"
-          type="number"
-          min=".01"
-          step=".01"
-          required
-        >
+</form>
 
-      </div>
-
-      <button
-        class="primary"
-        type="submit"
-      >
-        Create Request
-      </button>
-
-    </form>
-
-  </section>
+</section>
 
 </div>
 
 
-<!-- =========================
-     ADD MONEY
-========================= -->
+<!-- TRANSACTIONS -->
 
 <div
-  id="addmoney-page"
-  class="screen hidden"
+id="transactions-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Add Money
-    </h1>
+<h1>
+Transactions
+</h1>
 
-    <p class="muted">
-      Add local prototype funds.
-    </p>
+<p class="muted">
+All CashFlow prototype activity.
+</p>
 
-  </div>
+</div>
 
-  <section class="card form-card">
+<section class="card">
 
-    <div class="notice">
-      This changes the local prototype balance only.
-    </div>
+<div id="allTransactions"></div>
 
-    <form id="addForm">
-
-      <div class="field">
-
-        <label>
-          Amount
-        </label>
-
-        <input
-          id="addAmount"
-          type="number"
-          min=".01"
-          step=".01"
-          required
-        >
-
-      </div>
-
-      <button
-        class="primary"
-        type="submit"
-      >
-        Add Prototype Funds
-      </button>
-
-    </form>
-
-  </section>
+</section>
 
 </div>
 
 
-<!-- =========================
-     BILLS
-========================= -->
+<!-- REQUEST -->
 
 <div
-  id="bills-page"
-  class="screen hidden"
+id="request-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Bills & Payments
-    </h1>
+<h1>
+Request Money
+</h1>
 
-    <p class="muted">
-      Manage your local prototype bills.
-    </p>
+<p class="muted">
+Create a local money request.
+</p>
 
-  </div>
+</div>
 
-  <section class="card">
+<section class="card form-card">
 
-    <div class="txn">
+<form id="requestForm">
 
-      <span>
-        ⚡ Electric Company
-        <br>
-        <small>$124.75</small>
-      </span>
+<div class="field">
 
-      <button
-        class="link"
-        onclick="bill('Electric Company',124.75)"
-      >
-        Pay
-      </button>
+<label>
+From
+</label>
 
-    </div>
+<input
+id="requestFrom"
+required
+>
 
+</div>
 
-    <div class="txn">
+<div class="field">
 
-      <span>
-        🌐 Internet
-        <br>
-        <small>$79.99</small>
-      </span>
+<label>
+Amount
+</label>
 
-      <button
-        class="link"
-        onclick="bill('Internet',79.99)"
-      >
-        Pay
-      </button>
+<input
+id="requestAmount"
+type="number"
+min=".01"
+step=".01"
+required
+>
 
-    </div>
+</div>
 
+<button class="primary">
+Create Request
+</button>
 
-    <div class="txn">
+</form>
 
-      <span>
-        📱 Mobile Phone
-        <br>
-        <small>$65.00</small>
-      </span>
-
-      <button
-        class="link"
-        onclick="bill('Mobile Phone',65)"
-      >
-        Pay
-      </button>
-
-    </div>
-
-  </section>
+</section>
 
 </div>
 
 
-<!-- =========================
-     CARDS
-========================= -->
+<!-- ADD MONEY -->
 
 <div
-  id="cards-page"
-  class="screen hidden"
+id="addmoney-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      My Cards
-    </h1>
+<h1>
+Add Money
+</h1>
 
-  </div>
+<p class="muted">
+Add local prototype funds.
+</p>
 
-  <section
-    class="card"
-    style="max-width:600px"
-  >
+</div>
 
-    <div class="bank-card">
+<section class="card form-card">
 
-      <div class="card-brand">
-        CashFlow
-      </div>
+<div class="notice">
+This changes the local prototype balance only.
+</div>
 
-      <div class="chip"></div>
+<form id="addForm">
 
-      <div class="card-number">
-        •••• •••• •••• 4821
-      </div>
+<div class="field">
 
-      <div class="card-bottom">
-        <span>JOHN DOE</span>
-        <span>PROTOTYPE</span>
-      </div>
+<label>
+Amount
+</label>
 
-    </div>
+<input
+id="addAmount"
+type="number"
+min=".01"
+step=".01"
+required
+>
 
-    <div class="row">
+</div>
 
-      <span>
-        Status
-      </span>
+<button class="primary">
+Add Prototype Funds
+</button>
 
-      <b class="plus">
-        Active
-      </b>
+</form>
 
-    </div>
-
-  </section>
+</section>
 
 </div>
 
 
-<!-- =========================
-     BENEFICIARIES
-========================= -->
+<!-- BILLS -->
 
 <div
-  id="beneficiaries-page"
-  class="screen hidden"
+id="bills-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Beneficiaries
-    </h1>
+<h1>
+Bills & Payments
+</h1>
 
-    <p class="muted">
-      Save recipients locally for this browser.
-    </p>
+<p class="muted">
+Manage your local prototype bills.
+</p>
 
-  </div>
+</div>
 
-  <section class="card form-card">
+<section class="card">
 
-    <form id="beneficiaryForm">
+<div class="txn">
 
-      <div class="field">
+<span>
+⚡ Electric Company
+<br>
+<small>$124.75</small>
+</span>
 
-        <label>
-          Name
-        </label>
-
-        <input
-          id="benName"
-          required
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Account
-        </label>
-
-        <input
-          id="benAccount"
-          required
-        >
-
-      </div>
-
-      <button
-        class="primary"
-        type="submit"
-      >
-        Add Beneficiary
-      </button>
-
-    </form>
-
-    <div id="beneficiaries"></div>
-
-  </section>
+<button
+class="link"
+onclick="bill('Electric Company',124.75)"
+>
+Pay
+</button>
 
 </div>
 
 
-<!-- =========================
-     SETTINGS
-========================= -->
+<div class="txn">
+
+<span>
+🌐 Internet
+<br>
+<small>$79.99</small>
+</span>
+
+<button
+class="link"
+onclick="bill('Internet',79.99)"
+>
+Pay
+</button>
+
+</div>
+
+
+<div class="txn">
+
+<span>
+📱 Mobile Phone
+<br>
+<small>$65.00</small>
+</span>
+
+<button
+class="link"
+onclick="bill('Mobile Phone',65)"
+>
+Pay
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- CARDS -->
 
 <div
-  id="settings-page"
-  class="screen hidden"
+id="cards-page"
+class="screen hidden"
 >
 
-  <div class="welcome">
+<div class="welcome">
 
-    <h1>
-      Settings
-    </h1>
+<h1>
+My Cards
+</h1>
 
-    <p class="muted">
-      Manage your local prototype settings.
-    </p>
+</div>
 
-  </div>
+<section
+class="card"
+style="max-width:600px"
+>
 
-  <section class="card form-card">
+<div class="bank-card">
 
-    <div class="row">
+<div class="card-brand">
+CashFlow
+</div>
 
-      <span>
-        Email alerts
-      </span>
+<div class="chip"></div>
 
-      <input
-        type="checkbox"
-        checked
-      >
+<div class="card-number">
+•••• •••• •••• 4821
+</div>
 
-    </div>
+<div class="card-bottom">
 
+<span id="cardName2">
+JOHN DOE
+</span>
 
-    <div class="row">
+<span>
+PROTOTYPE
+</span>
 
-      <span>
-        Transaction alerts
-      </span>
+</div>
 
-      <input
-        type="checkbox"
-        checked
-      >
+</div>
 
-    </div>
+<div class="row">
 
+<span>
+Status
+</span>
 
-    <div class="row">
+<b class="plus">
+Active
+</b>
 
-      <span>
-        Reset local data
-      </span>
+</div>
 
-      <button
-        class="link"
-        onclick="resetData()"
-      >
-        Reset
-      </button>
+</section>
 
-    </div>
+</div>
 
 
-    <div class="row">
+<!-- BENEFICIARIES -->
 
-      <span>
-        Session
-      </span>
+<div
+id="beneficiaries-page"
+class="screen hidden"
+>
 
-      <button
-        class="link"
-        onclick="logout()"
-      >
-        Logout
-      </button>
+<div class="welcome">
 
-    </div>
+<h1>
+Beneficiaries
+</h1>
 
-  </section>
+<p class="muted">
+Save recipients locally for this browser.
+</p>
+
+</div>
+
+<section class="card form-card">
+
+<form id="beneficiaryForm">
+
+<div class="field">
+
+<label>
+Name
+</label>
+
+<input
+id="benName"
+required
+>
+
+</div>
+
+<div class="field">
+
+<label>
+Account
+</label>
+
+<input
+id="benAccount"
+required
+>
+
+</div>
+
+<button class="primary">
+Add Beneficiary
+</button>
+
+</form>
+
+<div id="beneficiaries"></div>
+
+</section>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div
+id="settings-page"
+class="screen hidden"
+>
+
+<div class="welcome">
+
+<h1>
+Settings
+</h1>
+
+<p class="muted">
+Manage your local prototype settings.
+</p>
+
+</div>
+
+<section class="card form-card">
+
+<div class="row">
+
+<span>
+Email alerts
+</span>
+
+<input
+type="checkbox"
+checked
+>
+
+</div>
+
+<div class="row">
+
+<span>
+Transaction alerts
+</span>
+
+<input
+type="checkbox"
+checked
+>
+
+</div>
+
+<div class="row">
+
+<span>
+Reset local data
+</span>
+
+<button
+class="link"
+onclick="resetData()"
+>
+Reset
+</button>
+
+</div>
+
+<div class="row">
+
+<span>
+Session
+</span>
+
+<button
+class="link"
+onclick="logout()"
+>
+Logout
+</button>
+
+</div>
+
+</section>
 
 </div>
 
 </main>
+
 </div>
 
 
-<!-- =========================
-     MOBILE NAVIGATION
-========================= -->
+<!-- MOBILE NAV -->
 
 <div class="bottom">
 
-  <button
-    class="active"
-    data-page="dashboard"
-    onclick="page('dashboard')"
-  >
-    <b>⌂</b>
-    Home
-  </button>
+<button
+class="active"
+data-page="dashboard"
+onclick="page('dashboard')"
+>
+<b>⌂</b>
+Home
+</button>
 
-  <button
-    data-page="transfer"
-    onclick="page('transfer')"
-  >
-    <b>↔</b>
-    Transfer
-  </button>
+<button
+data-page="transfer"
+onclick="page('transfer')"
+>
+<b>↔</b>
+Transfer
+</button>
 
-  <button
-    data-page="transactions"
-    onclick="page('transactions')"
-  >
-    <b>▣</b>
-    Activity
-  </button>
+<button
+data-page="transactions"
+onclick="page('transactions')"
+>
+<b>▣</b>
+Activity
+</button>
 
-  <button
-    data-page="settings"
-    onclick="page('settings')"
-  >
-    <b>⚙</b>
-    Settings
-  </button>
+<button
+data-page="settings"
+onclick="page('settings')"
+>
+<b>⚙</b>
+Settings
+</button>
 
 </div>
 
@@ -1638,1112 +1580,1284 @@ button{
 
 <script>
 
-/* =========================
-   DEFAULT DATA
-========================= */
+/* DEFAULT DATA */
 
 const DEFAULT = {
 
-  balance:24680.50,
+balance:24680.50,
 
-  transactions:[
+transactions:[
 
-    {
-      name:"Grocery Store",
-      date:"Today • 10:42 AM",
-      amount:-86.42,
-      icon:"🛒"
-    },
+{
+name:"Grocery Store",
+date:"Today • 10:42 AM",
+amount:-86.42,
+icon:"🛒"
+},
 
-    {
-      name:"Salary Deposit",
-      date:"Yesterday • 8:15 AM",
-      amount:3250,
-      icon:"💼"
-    },
+{
+name:"Salary Deposit",
+date:"Yesterday • 8:15 AM",
+amount:3250,
+icon:"💼"
+},
 
-    {
-      name:"Electric Company",
-      date:"Sep 2 • 2:30 PM",
-      amount:-124.75,
-      icon:"⚡"
-    },
+{
+name:"Electric Company",
+date:"Sep 2 • 2:30 PM",
+amount:-124.75,
+icon:"⚡"
+},
 
-    {
-      name:"Coffee Shop",
-      date:"Sep 2 • 9:21 AM",
-      amount:-8.50,
-      icon:"☕"
-    }
+{
+name:"Coffee Shop",
+date:"Sep 2 • 9:21 AM",
+amount:-8.50,
+icon:"☕"
+}
 
-  ],
+],
 
-  beneficiaries:[]
+beneficiaries:[]
 
 };
 
 
-/* =========================
-   STATE
-========================= */
+/* STATE */
 
 let state =
-  JSON.parse(
-    localStorage.getItem("cashflow_state") ||
-    JSON.stringify(DEFAULT)
-  );
-
-
-/* =========================
-   MONEY FORMAT
-========================= */
-
-const money = number => {
-
-  return new Intl.NumberFormat(
-    "en-US",
-    {
-      style:"currency",
-      currency:"USD"
-    }
-  ).format(number);
-
-};
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(value){
-
-  return String(value).replace(
-    /[&<>"']/g,
-    character => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[character])
-  );
-
-}
-
-
-/* =========================
-   SAVE DATA
-========================= */
-
-function save(){
-
-  localStorage.setItem(
-    "cashflow_state",
-    JSON.stringify(state)
-  );
-
-}
-
-
-/* =========================
-   RENDER
-========================= */
-
-function render(){
-
-  const balance =
-    document.getElementById("balance");
-
-  if(balance){
-
-    balance.textContent =
-      money(state.balance);
-
-  }
-
-
-  const html =
-    state.transactions.map(transaction => {
-
-      const positive =
-        transaction.amount >= 0;
-
-      return `
-
-        <div class="txn">
-
-          <div class="txn-left">
-
-            <div class="txn-icon">
-              ${escapeHTML(transaction.icon)}
-            </div>
-
-            <div>
-
-              <div class="txn-name">
-                ${escapeHTML(transaction.name)}
-              </div>
-
-              <div class="txn-date">
-                ${escapeHTML(transaction.date)}
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="${positive ? "plus" : "minus"}">
-
-            ${positive ? "+" : "-"}${money(
-              Math.abs(transaction.amount)
-            )}
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("")
-
-    ||
-    "<div class='empty'>No transactions yet.</div>";
-
-
-  const recent =
-    document.getElementById("recent");
-
-  const all =
-    document.getElementById("allTransactions");
-
-
-  if(recent){
-
-    recent.innerHTML =
-      state.transactions
-        .slice(0,5)
-        .map(transaction => {
-
-          const positive =
-            transaction.amount >= 0;
-
-          return `
-
-            <div class="txn">
-
-              <div class="txn-left">
-
-                <div class="txn-icon">
-                  ${escapeHTML(transaction.icon)}
-                </div>
-
-                <div>
-
-                  <div class="txn-name">
-                    ${escapeHTML(transaction.name)}
-                  </div>
-
-                  <div class="txn-date">
-                    ${escapeHTML(transaction.date)}
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="${positive ? "plus" : "minus"}">
-
-                ${positive ? "+" : "-"}${money(
-                  Math.abs(transaction.amount)
-                )}
-
-              </div>
-
-            </div>
-
-          `;
-
-        }).join("")
-
-        ||
-        "<div class='empty'>No transactions yet.</div>";
-
-  }
-
-
-  if(all){
-
-    all.innerHTML = html;
-
-  }
-
-
-  const beneficiaryContainer =
-    document.getElementById("beneficiaries");
-
-
-  if(beneficiaryContainer){
-
-    beneficiaryContainer.innerHTML =
-      state.beneficiaries.map(
-        (beneficiary,index) => `
-
-          <div class="row">
-
-            <span>
-
-              <b>
-                ${escapeHTML(beneficiary.name)}
-              </b>
-
-              <br>
-
-              <small>
-                ${escapeHTML(beneficiary.account)}
-              </small>
-
-            </span>
-
-            <button
-              class="link"
-              onclick="removeBen(${index})"
-            >
-              Remove
-            </button>
-
-          </div>
-
-        `
-      ).join("")
-
-      ||
-
-      "<div class='empty'>No beneficiaries added.</div>";
-
-  }
-
-}
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function page(name){
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-
-      screen.classList.add("hidden");
-
-    });
-
-
-  const selected =
-    document.getElementById(
-      name + "-page"
-    );
-
-
-  if(!selected){
-
-    return;
-
-  }
-
-
-  selected.classList.remove("hidden");
-
-
-  document
-    .querySelectorAll("[data-page]")
-    .forEach(item => {
-
-      item.classList.toggle(
-        "active",
-        item.dataset.page === name
-      );
-
-    });
-
-
-  const sidebar =
-    document.getElementById("sidebar");
-
-
-  if(window.innerWidth < 900){
-
-    sidebar.style.display = "none";
-
-  }
-
-
-  render();
-
-  window.scrollTo(0,0);
-
-}
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-function toggleMenu(){
-
-  const sidebar =
-    document.getElementById("sidebar");
-
-
-  if(sidebar.style.display === "block"){
-
-    sidebar.style.display = "none";
-
-  }else{
-
-    sidebar.style.display = "block";
-
-    sidebar.style.position = "fixed";
-    sidebar.style.top = "72px";
-    sidebar.style.bottom = "0";
-    sidebar.style.left = "0";
-    sidebar.style.zIndex = "150";
-    sidebar.style.overflowY = "auto";
-
-  }
-
-}
-
-
-/* =========================
-   ALERT
-========================= */
-
-function showAlert(message){
-
-  alert(message);
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-document
-  .getElementById("loginForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const email =
-        document
-          .getElementById("email")
-          .value
-          .trim();
-
-
-      const password =
-        document
-          .getElementById("password")
-          .value;
-
-
-      if(!email || !password){
-
-        alert(
-          "Enter your login details."
-        );
-
-        return;
-
-      }
-
-
-      const loader =
-        document.createElement("div");
-
-
-      loader.id =
-        "loginLoading";
-
-
-      loader.innerHTML = `
-
-        <div class="loading-box">
-
-          <div class="loading-logo">
-            C
-          </div>
-
-          <div class="loading-name">
-            Cash<span>Flow</span>
-          </div>
-
-          <div class="loading-text">
-            Signing you in...
-          </div>
-
-          <div class="loading-spinner"></div>
-
-        </div>
-
-      `;
-
-
-      Object.assign(
-        loader.style,
-        {
-          position:"fixed",
-          inset:"0",
-          background:"#fff",
-          display:"flex",
-          alignItems:"center",
-          justifyContent:"center",
-          zIndex:"10000",
-          transition:"opacity .3s ease"
-        }
-      );
-
-
-      document.body.appendChild(loader);
-
-
-      setTimeout(function(){
-
-        sessionStorage.setItem(
-          "cashflow_session",
-          "1"
-        );
-
-
-        document
-          .getElementById("login")
-          .classList.add("hidden");
-
-
-        document
-          .getElementById("app")
-          .classList.remove("hidden");
-
-
-        loader.style.opacity = "0";
-
-
-        setTimeout(function(){
-
-          loader.remove();
-
-          page("dashboard");
-
-        },300);
-
-      },1000);
-
-    }
-  );
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout(){
-
-  if(
-    !confirm(
-      "Are you sure you want to logout?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  sessionStorage.removeItem(
-    "cashflow_session"
-  );
-
-
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("login")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("email")
-    .value = "";
-
-
-  document
-    .getElementById("password")
-    .value = "";
-
-}
-
-
-/* =========================
-   TRANSFER
-========================= */
-
-document
-  .getElementById("transferForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const recipient =
-        document
-          .getElementById("recipient")
-          .value
-          .trim();
-
-
-      const account =
-        document
-          .getElementById("recipientAccount")
-          .value
-          .trim();
-
-
-      const amount =
-        Number(
-          document
-            .getElementById("transferAmount")
-            .value
-        );
-
-
-      const memo =
-        document
-          .getElementById("memo")
-          .value
-          .trim();
-
-
-      if(
-        !recipient ||
-        !account ||
-        !Number.isFinite(amount) ||
-        amount <= 0
-      ){
-
-        alert(
-          "Enter valid transfer details."
-        );
-
-        return;
-
-      }
-
-
-      if(amount > state.balance){
-
-        alert(
-          "Insufficient prototype balance."
-        );
-
-        return;
-
-      }
-
-
-      const confirmed =
-        confirm(
-          "Confirm transfer of " +
-          money(amount) +
-          " to " +
-          recipient +
-          "?"
-        );
-
-
-      if(!confirmed){
-
-        return;
-
-      }
-
-
-      state.balance =
-        Math.round(
-          (state.balance - amount) *
-          100
-        ) / 100;
-
-
-      state.transactions.unshift({
-
-        name:
-          "Transfer to " +
-          recipient,
-
-        date:
-          "Just now",
-
-        amount:
-          -amount,
-
-        icon:
-          "↗",
-
-        memo:
-          memo
-
-      });
-
-
-      save();
-
-      render();
-
-      event.target.reset();
-
-
-      alert(
-        "Transfer recorded in the prototype."
-      );
-
-
-      page("transactions");
-
-    }
-  );
-
-
-/* =========================
-   ADD MONEY
-========================= */
-
-document
-  .getElementById("addForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const amount =
-        Number(
-          document
-            .getElementById("addAmount")
-            .value
-        );
-
-
-      if(
-        !Number.isFinite(amount) ||
-        amount <= 0
-      ){
-
-        alert(
-          "Enter a valid amount."
-        );
-
-        return;
-
-      }
-
-
-      state.balance =
-        Math.round(
-          (state.balance + amount) *
-          100
-        ) / 100;
-
-
-      state.transactions.unshift({
-
-        name:
-          "Prototype Deposit",
-
-        date:
-          "Just now",
-
-        amount:
-          amount,
-
-        icon:
-          "＋"
-
-      });
-
-
-      save();
-
-      render();
-
-      event.target.reset();
-
-
-      alert(
-        "Prototype funds added."
-      );
-
-
-      page("dashboard");
-
-    }
-  );
-
-
-/* =========================
-   REQUEST MONEY
-========================= */
-
-document
-  .getElementById("requestForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const from =
-        document
-          .getElementById("requestFrom")
-          .value
-          .trim();
-
-
-      const amount =
-        Number(
-          document
-            .getElementById("requestAmount")
-            .value
-        );
-
-
-      if(
-        !from ||
-        !Number.isFinite(amount) ||
-        amount <= 0
-      ){
-
-        alert(
-          "Enter valid request details."
-        );
-
-        return;
-
-      }
-
-
-      /*
-        A request is recorded as a request.
-        It does NOT increase the balance until
-        funds are actually received.
-      */
-
-      state.transactions.unshift({
-
-        name:
-          "Money Request to " +
-          from,
-
-        date:
-          "Just now",
-
-        amount:
-          0,
-
-        icon:
-          "↙",
-
-        request:
-          amount
-
-      });
-
-
-      save();
-
-      render();
-
-      event.target.reset();
-
-
-      alert(
-        "Money request created for " +
-        money(amount) +
-        "."
-      );
-
-
-      page("transactions");
-
-    }
-  );
-
-
-/* =========================
-   BILLS
-========================= */
-
-function bill(name,amount){
-
-  if(amount > state.balance){
-
-    alert(
-      "Insufficient prototype balance."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    !confirm(
-      "Pay " +
-      money(amount) +
-      " to " +
-      name +
-      "?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  state.balance =
-    Math.round(
-      (state.balance - amount) *
-      100
-    ) / 100;
-
-
-  state.transactions.unshift({
-
-    name:name,
-
-    date:"Just now",
-
-    amount:-amount,
-
-    icon:"▤"
-
-  });
-
-
-  save();
-
-  render();
-
-
-  alert(
-    "Bill payment recorded in the prototype."
-  );
-
-}
-
-
-/* =========================
-   BENEFICIARIES
-========================= */
-
-document
-  .getElementById("beneficiaryForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const name =
-        document
-          .getElementById("benName")
-          .value
-          .trim();
-
-
-      const account =
-        document
-          .getElementById("benAccount")
-          .value
-          .trim();
-
-
-      if(!name || !account){
-
-        alert(
-          "Enter the beneficiary details."
-        );
-
-        return;
-
-      }
-
-
-      state.beneficiaries.push({
-
-        name:name,
-
-        account:account
-
-      });
-
-
-      save();
-
-      render();
-
-      event.target.reset();
-
-
-      alert(
-        "Beneficiary added."
-      );
-
-    }
-  );
-
-
-/* =========================
-   REMOVE BENEFICIARY
-========================= */
-
-function removeBen(index){
-
-  if(
-    !confirm(
-      "Remove this beneficiary?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  state.beneficiaries.splice(
-    index,
-    1
-  );
-
-
-  save();
-
-  render();
-
-}
-
-
-/* =========================
-   RESET
-========================= */
-
-function resetData(){
-
-  if(
-    !confirm(
-      "Reset all local CashFlow data?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  state =
-    JSON.parse(
-      JSON.stringify(DEFAULT)
-    );
-
-
-  save();
-
-  render();
-
-  page("dashboard");
-
-}
-
-
-/* =========================
-   STARTUP
-========================= */
-
-window.addEventListener(
-  "load",
-  function(){
-
-    setTimeout(
-      function(){
-
-        const loader =
-          document.getElementById(
-            "loadingScreen"
-          );
-
-
-        loader.style.opacity = "0";
-
-
-        setTimeout(
-          function(){
-
-            loader.remove();
-
-
-            if(
-              sessionStorage.getItem(
-                "cashflow_session"
-              ) === "1"
-            ){
-
-              document
-                .getElementById("login")
-                .classList.add("hidden");
-
-
-              document
-                .getElementById("app")
-                .classList.remove("hidden");
-
-
-              page("dashboard");
-
-            }else{
-
-              document
-                .getElementById("login")
-                .classList.remove("hidden");
-
-            }
-
-          },
-          400
-        );
-
-      },
-      1500
-    );
-
-  }
+JSON.parse(
+localStorage.getItem("cashflow_state") ||
+JSON.stringify(DEFAULT)
+);
+
+let currentUser =
+JSON.parse(
+sessionStorage.getItem("cashflow_current_user") ||
+"null"
 );
 
 
-/* Initial render */
+/* USERS */
+
+const users = () =>
+JSON.parse(
+localStorage.getItem("cashflow_users") ||
+"[]"
+);
+
+const saveUsers = users =>
+localStorage.setItem(
+"cashflow_users",
+JSON.stringify(users)
+);
+
+
+/* PASSWORD HASH */
+
+async function hashPassword(password){
+
+const data =
+new TextEncoder().encode(password);
+
+const hash =
+await crypto.subtle.digest(
+"SHA-256",
+data
+);
+
+return Array.from(
+new Uint8Array(hash)
+)
+.map(
+b => b.toString(16).padStart(2,"0")
+)
+.join("");
+
+}
+
+
+/* MONEY */
+
+const money = number =>
+new Intl.NumberFormat(
+"en-US",
+{
+style:"currency",
+currency:"USD"
+}
+).format(number);
+
+
+/* SAVE */
+
+function save(){
+
+localStorage.setItem(
+"cashflow_state",
+JSON.stringify(state)
+);
+
+}
+
+
+/* ESCAPE HTML */
+
+function esc(value){
+
+return String(value).replace(
+/[&<>"']/g,
+character => ({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[character])
+);
+
+}
+
+
+/* INITIALS */
+
+function initials(name){
+
+return String(
+name || "John Doe"
+)
+.trim()
+.split(/\s+/)
+.slice(0,2)
+.map(x => x[0])
+.join("")
+.toUpperCase() || "JD";
+
+}
+
+
+/* SHOW SIGNUP */
+
+function showSignup(){
+
+document
+.getElementById("loginPanel")
+.classList.add("hidden");
+
+document
+.getElementById("signupPanel")
+.classList.remove("hidden");
+
+clearAuth();
+
+}
+
+
+/* SHOW LOGIN */
+
+function showLogin(){
+
+document
+.getElementById("signupPanel")
+.classList.add("hidden");
+
+document
+.getElementById("loginPanel")
+.classList.remove("hidden");
+
+clearAuth();
+
+}
+
+
+/* CLEAR AUTH MESSAGES */
+
+function clearAuth(){
+
+[
+"loginError",
+"signupError",
+"signupSuccess"
+]
+.forEach(id => {
+
+const element =
+document.getElementById(id);
+
+element.style.display="none";
+element.textContent="";
+
+});
+
+}
+
+
+/* MESSAGE */
+
+function msg(id,text,type){
+
+const element =
+document.getElementById(id);
+
+element.textContent=text;
+element.className=type;
+element.style.display="block";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+const name =
+currentUser?.name ||
+"John Doe";
+
+document
+.getElementById("balance")
+.textContent =
+money(state.balance);
+
+document
+.getElementById("avatar")
+.textContent =
+initials(name);
+
+document
+.getElementById("cardName")
+.textContent =
+name.toUpperCase();
+
+document
+.getElementById("cardName2")
+.textContent =
+name.toUpperCase();
+
+
+const hour =
+new Date().getHours();
+
+const greeting =
+hour < 12
+? "Good morning"
+: hour < 18
+? "Good afternoon"
+: "Good evening";
+
+
+document
+.getElementById("welcomeTitle")
+.textContent =
+greeting +
+" " +
+name.split(/\s+/)[0] +
+" 👋";
+
+
+function transactionHTML(transaction){
+
+return `
+
+<div class="txn">
+
+<div class="txn-left">
+
+<div class="txn-icon">
+${esc(transaction.icon)}
+</div>
+
+<div>
+
+<div class="txn-name">
+${esc(transaction.name)}
+</div>
+
+<div class="txn-date">
+${esc(transaction.date)}
+${transaction.request
+? " • Requested " +
+money(transaction.request)
+: ""}
+</div>
+
+</div>
+
+</div>
+
+<div class="${
+transaction.amount >= 0
+? "plus"
+: "minus"
+}">
+
+${
+transaction.amount >= 0
+? "+"
+: "-"
+}
+
+${money(
+Math.abs(transaction.amount)
+)}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+document
+.getElementById("recent")
+.innerHTML =
+state.transactions
+.slice(0,5)
+.map(transactionHTML)
+.join("")
+||
+'<div class="empty">No transactions yet.</div>';
+
+
+document
+.getElementById("allTransactions")
+.innerHTML =
+state.transactions
+.map(transactionHTML)
+.join("")
+||
+'<div class="empty">No transactions yet.</div>';
+
+
+document
+.getElementById("beneficiaries")
+.innerHTML =
+state.beneficiaries
+.map(
+(beneficiary,index) => `
+
+<div class="row">
+
+<span>
+
+<b>
+${esc(beneficiary.name)}
+</b>
+
+<br>
+
+<small>
+${esc(beneficiary.account)}
+</small>
+
+</span>
+
+<button
+class="link"
+onclick="removeBen(${index})"
+>
+Remove
+</button>
+
+</div>
+
+`
+)
+.join("")
+||
+'<div class="empty">No beneficiaries added.</div>';
+
+}
+
+
+/* PAGE */
+
+function page(name){
+
+document
+.querySelectorAll(".screen")
+.forEach(screen =>
+screen.classList.add("hidden")
+);
+
+
+const selected =
+document.getElementById(
+name + "-page"
+);
+
+if(!selected){
+return;
+}
+
+
+selected.classList.remove("hidden");
+
+
+document
+.querySelectorAll("[data-page]")
+.forEach(item => {
+
+item.classList.toggle(
+"active",
+item.dataset.page === name
+);
+
+});
+
+
+if(window.innerWidth < 900){
+
+document
+.getElementById("sidebar")
+.style.display="none";
+
+}
+
+
+render();
+
+window.scrollTo(0,0);
+
+}
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+const sidebar =
+document.getElementById("sidebar");
+
+
+if(sidebar.style.display === "block"){
+
+sidebar.style.display="none";
+
+}else{
+
+Object.assign(
+sidebar.style,
+{
+display:"block",
+position:"fixed",
+top:"72px",
+bottom:"0",
+left:"0",
+zIndex:"150",
+overflowY:"auto"
+}
+);
+
+}
+
+}
+
+
+/* ALERT */
+
+function showAlert(message){
+
+alert(message);
+
+}
+
+
+/* CREATE ACCOUNT */
+
+document
+.getElementById("signupForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+clearAuth();
+
+
+const name =
+document
+.getElementById("signupName")
+.value
+.trim();
+
+
+const email =
+document
+.getElementById("signupEmail")
+.value
+.trim()
+.toLowerCase();
+
+
+const password =
+document
+.getElementById("signupPassword")
+.value;
+
+
+const confirmPassword =
+document
+.getElementById("signupConfirm")
+.value;
+
+
+if(name.length < 2){
+
+return msg(
+"signupError",
+"Please enter your full name.",
+"error"
+);
+
+}
+
+
+if(password.length < 6){
+
+return msg(
+"signupError",
+"Password must be at least 6 characters.",
+"error"
+);
+
+}
+
+
+if(password !== confirmPassword){
+
+return msg(
+"signupError",
+"Passwords do not match.",
+"error"
+);
+
+}
+
+
+let userList = users();
+
+
+if(
+userList.some(
+user => user.email === email
+)
+){
+
+return msg(
+"signupError",
+"An account with that email already exists.",
+"error"
+);
+
+}
+
+
+const user = {
+
+id:Date.now().toString(),
+
+name:name,
+
+email:email,
+
+passwordHash:
+await hashPassword(password),
+
+createdAt:
+new Date().toISOString()
+
+};
+
+
+userList.push(user);
+
+saveUsers(userList);
+
+
+currentUser = {
+
+id:user.id,
+
+name:user.name,
+
+email:user.email
+
+};
+
+
+sessionStorage.setItem(
+"cashflow_current_user",
+JSON.stringify(currentUser)
+);
+
+
+state =
+JSON.parse(
+JSON.stringify(DEFAULT)
+);
+
+save();
+
+
+msg(
+"signupSuccess",
+"Account created. Opening your prototype...",
+"success"
+);
+
+
+setTimeout(
+openApp,
+500
+);
+
+}
+);
+
+
+/* LOGIN */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+clearAuth();
+
+
+const email =
+document
+.getElementById("email")
+.value
+.trim()
+.toLowerCase();
+
+
+const password =
+document
+.getElementById("password")
+.value;
+
+
+const userList = users();
+
+
+const user =
+userList.find(
+item => item.email === email
+);
+
+
+if(!user){
+
+return msg(
+"loginError",
+"No prototype account was found for that email.",
+"error"
+);
+
+}
+
+
+const passwordHash =
+await hashPassword(password);
+
+
+if(
+passwordHash !==
+user.passwordHash
+){
+
+return msg(
+"loginError",
+"Incorrect password.",
+"error"
+);
+
+}
+
+
+currentUser = {
+
+id:user.id,
+
+name:user.name,
+
+email:user.email
+
+};
+
+
+sessionStorage.setItem(
+"cashflow_current_user",
+JSON.stringify(currentUser)
+);
+
+
+openApp();
+
+}
+);
+
+
+/* OPEN APP */
+
+function openApp(){
+
+document
+.getElementById("login")
+.classList.add("hidden");
+
+document
+.getElementById("app")
+.classList.remove("hidden");
+
+page("dashboard");
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+if(
+!confirm(
+"Are you sure you want to logout?"
+)
+){
+
+return;
+
+}
+
+
+sessionStorage.removeItem(
+"cashflow_current_user"
+);
+
+currentUser = null;
+
+
+document
+.getElementById("app")
+.classList.add("hidden");
+
+document
+.getElementById("login")
+.classList.remove("hidden");
+
+showLogin();
+
+}
+
+
+/* TRANSFER */
+
+document
+.getElementById("transferForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const recipient =
+document
+.getElementById("recipient")
+.value
+.trim();
+
+
+const account =
+document
+.getElementById("recipientAccount")
+.value
+.trim();
+
+
+const amount =
+Number(
+document
+.getElementById("transferAmount")
+.value
+);
+
+
+const memo =
+document
+.getElementById("memo")
+.value
+.trim();
+
+
+if(
+!recipient ||
+!account ||
+!Number.isFinite(amount) ||
+amount <= 0
+){
+
+return alert(
+"Enter valid transfer details."
+);
+
+}
+
+
+if(amount > state.balance){
+
+return alert(
+"Insufficient prototype balance."
+);
+
+}
+
+
+if(
+!confirm(
+"Confirm transfer of " +
+money(amount) +
+" to " +
+recipient +
+"?"
+)
+){
+
+return;
+
+}
+
+
+state.balance =
+Math.round(
+(state.balance - amount) *
+100
+) / 100;
+
+
+state.transactions.unshift({
+
+name:
+"Transfer to " +
+recipient,
+
+date:
+"Just now",
+
+amount:
+-amount,
+
+icon:
+"↗",
+
+memo:
+memo
+
+});
+
+
+save();
+
+render();
+
+event.target.reset();
+
+
+alert(
+"Transfer recorded in the prototype."
+);
+
+
+page("transactions");
+
+}
+);
+
+
+/* ADD MONEY */
+
+document
+.getElementById("addForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const amount =
+Number(
+document
+.getElementById("addAmount")
+.value
+);
+
+
+if(
+!Number.isFinite(amount) ||
+amount <= 0
+){
+
+return alert(
+"Enter a valid amount."
+);
+
+}
+
+
+state.balance =
+Math.round(
+(state.balance + amount) *
+100
+) / 100;
+
+
+state.transactions.unshift({
+
+name:
+"Prototype Deposit",
+
+date:
+"Just now",
+
+amount:
+amount,
+
+icon:
+"＋"
+
+});
+
+
+save();
+
+render();
+
+event.target.reset();
+
+
+alert(
+"Prototype funds added."
+);
+
+
+page("dashboard");
+
+}
+);
+
+
+/* REQUEST MONEY */
+
+document
+.getElementById("requestForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const from =
+document
+.getElementById("requestFrom")
+.value
+.trim();
+
+
+const amount =
+Number(
+document
+.getElementById("requestAmount")
+.value
+);
+
+
+if(
+!from ||
+!Number.isFinite(amount) ||
+amount <= 0
+){
+
+return alert(
+"Enter valid request details."
+);
+
+}
+
+
+state.transactions.unshift({
+
+name:
+"Money Request to " +
+from,
+
+date:
+"Just now",
+
+amount:
+0,
+
+icon:
+"↙",
+
+request:
+amount
+
+});
+
+
+save();
+
+render();
+
+event.target.reset();
+
+
+alert(
+"Money request created for " +
+money(amount) +
+"."
+);
+
+
+page("transactions");
+
+}
+);
+
+
+/* BILLS */
+
+function bill(name,amount){
+
+if(amount > state.balance){
+
+return alert(
+"Insufficient prototype balance."
+);
+
+}
+
+
+if(
+!confirm(
+"Pay " +
+money(amount) +
+" to " +
+name +
+"?"
+)
+){
+
+return;
+
+}
+
+
+state.balance =
+Math.round(
+(state.balance - amount) *
+100
+) / 100;
+
+
+state.transactions.unshift({
+
+name:name,
+
+date:"Just now",
+
+amount:-amount,
+
+icon:"▤"
+
+});
+
+
+save();
+
+render();
+
+
+alert(
+"Bill payment recorded in the prototype."
+);
+
+}
+
+
+/* BENEFICIARIES */
+
+document
+.getElementById("beneficiaryForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const name =
+document
+.getElementById("benName")
+.value
+.trim();
+
+
+const account =
+document
+.getElementById("benAccount")
+.value
+.trim();
+
+
+if(!name || !account){
+
+return alert(
+"Enter the beneficiary details."
+);
+
+}
+
+
+state.beneficiaries.push({
+
+name:name,
+
+account:account
+
+});
+
+
+save();
+
+render();
+
+event.target.reset();
+
+
+alert(
+"Beneficiary added."
+);
+
+}
+);
+
+
+/* REMOVE BENEFICIARY */
+
+function removeBen(index){
+
+if(
+!confirm(
+"Remove this beneficiary?"
+)
+){
+
+return;
+
+}
+
+
+state.beneficiaries.splice(
+index,
+1
+);
+
+save();
+
+render();
+
+}
+
+
+/* RESET */
+
+function resetData(){
+
+if(
+!confirm(
+"Reset all local CashFlow data?"
+)
+){
+
+return;
+
+}
+
+
+state =
+JSON.parse(
+JSON.stringify(DEFAULT)
+);
+
+save();
+
+render();
+
+page("dashboard");
+
+}
+
+
+/* STARTUP */
+
+window.addEventListener(
+"load",
+function(){
+
+setTimeout(
+function(){
+
+const loading =
+document.getElementById(
+"loadingScreen"
+);
+
+loading.style.opacity="0";
+
+
+setTimeout(
+function(){
+
+loading.remove();
+
+
+if(currentUser){
+
+openApp();
+
+}else{
+
+document
+.getElementById("login")
+.classList.remove("hidden");
+
+}
+
+},
+400
+);
+
+},
+1000
+);
+
+});
+
+
+/* INITIAL RENDER */
+
 render();
 
 </script>
