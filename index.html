@@ -19,12 +19,23 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer}
 .history-box{max-height:350px; overflow-y:auto; padding-right:4px}
-.history-box::-webkit-scrollbar{width:4px}
-.history-box::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:10px}
-.tx-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,0.1);border-radius:14px;padding:14px;margin-bottom:10px}
+
+/* GLASS CARDS - NO YELLOW */
+.tx-item{
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.12); /* GLASS */
+  backdrop-filter:blur(5px);
+  border:1px solid rgba(255,255,255,0.15);
+  color:#fff; /* WHITE TEXT */
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+}
 .tx-left{display:flex;gap:12px;align-items:center}
-.tx-icon{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center}
-.tx-amt{font-weight:700;font-size:15px}
+.tx-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center}
+.tx-title{font-weight:700;font-size:15px}
+.tx-date{font-size:12px;opacity:0.7}
+.tx-amt{font-weight:800;font-size:15px}
 .income{color:var(--green)}
 .expense{color:var(--red)}
 .send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px}
@@ -36,7 +47,6 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 </head>
 <body>
 
-<!-- DASHBOARD -->
 <div id="page1" class="page">
   <div class="topbar">
     <div><h2>Hello, John 👋</h2><small style="opacity:0.8">Welcome back</small></div>
@@ -56,101 +66,32 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
     <div class="action" onclick="alert('More')"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
   </div>
 
-  <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-    <h3 style="font-weight:700">Transaction History</h3>
-    <small style="opacity:0.7">See All</small>
-  </div>
+  <h3 style="font-weight:700;margin-bottom:12px">Transaction History</h3>
   
   <div class="history-box">
-    
     <div class="tx-item">
       <div class="tx-left"><div class="tx-icon"><i data-lucide="briefcase" style="color:var(--green)"></i></div>
-      <div><b>Salary Credit</b><br><small>Today, 09:15 AM</small></div></div>
+      <div><div class="tx-title">Salary Credit</div><div class="tx-date">Today, 09:15 AM</div></div></div>
       <div class="tx-amt income">+$2,000,000.00</div>
     </div>
 
     <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="users" style="color:var(--green)"></i></div>
-      <div><b>Client Payment</b><br><small>14 Mar, 11:45 AM</small></div></div>
-      <div class="tx-amt income">+$1,500,000.00</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="wifi" style="color:var(--red)"></i></div>
-      <div><b>Internet Bill</b><br><small>Yesterday, 8:30 PM</small></div></div>
-      <div class="tx-amt expense">-$500.78</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="shopping-cart" style="color:var(--red)"></i></div>
-      <div><b>Grocery Store</b><br><small>12 Mar, 3:20 PM</small></div></div>
-      <div class="tx-amt expense">-$1,250.00</div>
-    </div>
-
-    <!-- REMOVED HOME AND RENT -->
-    <!-- ADDED MATERIALS -->
-    <div class="tx-item">
       <div class="tx-left"><div class="tx-icon"><i data-lucide="hammer" style="color:var(--red)"></i></div>
-      <div><b>Building Materials</b><br><small>11 Mar, 2:10 PM</small></div></div>
+      <div><div class="tx-title">Building Materials</div><div class="tx-date">11 Mar, 2:10 PM</div></div></div>
       <div class="tx-amt expense">-$45,000.00</div>
     </div>
 
     <div class="tx-item">
       <div class="tx-left"><div class="tx-icon"><i data-lucide="wrench" style="color:var(--red)"></i></div>
-      <div><b>Hardware Supplies</b><br><small>10 Mar, 11:30 AM</small></div></div>
+      <div><div class="tx-title">Hardware Supplies</div><div class="tx-date">10 Mar, 11:30 AM</div></div></div>
       <div class="tx-amt expense">-$18,500.00</div>
     </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="smartphone" style="color:var(--red)"></i></div>
-      <div><b>Airtime Purchase</b><br><small>10 Mar, 6:45 PM</small></div></div>
-      <div class="tx-amt expense">-$20.00</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="trending-up" style="color:var(--green)"></i></div>
-      <div><b>Investment Return</b><br><small>28 Feb, 2:30 PM</small></div></div>
-      <div class="tx-amt income">+$250,000.00</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="utensils" style="color:var(--red)"></i></div>
-      <div><b>Restaurant</b><br><small>27 Feb, 8:15 PM</small></div></div>
-      <div class="tx-amt expense">-$120.50</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="gift" style="color:var(--green)"></i></div>
-      <div><b>Birthday Gift</b><br><small>25 Feb, 1:00 PM</small></div></div>
-      <div class="tx-amt income">+$500.00</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="tv" style="color:var(--red)"></i></div>
-      <div><b>Netflix Subscription</b><br><small>24 Feb, 12:00 AM</small></div></div>
-      <div class="tx-amt expense">-$15.99</div>
-    </div>
-
-    <div class="tx-item">
-      <div class="tx-left"><div class="tx-icon"><i data-lucide="plane" style="color:var(--red)"></i></div>
-      <div><b>Flight Booking</b><br><small>22 Feb, 4:20 PM</small></div></div>
-      <div class="tx-amt expense">-$2,450.00</div>
-    </div>
-
   </div>
 </div>
 
-<!-- SEND MONEY -->
 <div id="page2" class="page hid">
   <div class="send-card">
-    <div class="header">
-      <div class="back" onclick="showPage('page1')"><i data-lucide="arrow-left"></i></div>
-      <h2>Send Money</h2>
-    </div>
-    <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px"><small>Available Balance</small><h3>$3,501,439.22</h3></div>
-    <label>Recipient Name</label><input class="input" type="text" value="Michael Brown">
-    <label>Account Number</label><input class="input" type="text" value="0123456789">
-    <label>Amount ($)</label><input class="input" type="number" value="5250">
+    <div class="header"><div class="back" onclick="showPage('page1')"><i data-lucide="arrow-left"></i></div><h2>Send Money</h2></div>
     <button class="send-btn" onclick="alert('Transfer Sent!');showPage('page1')">Send Now</button>
   </div>
 </div>
