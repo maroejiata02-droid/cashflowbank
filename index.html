@@ -13,91 +13,117 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 .page{padding:20px;max-width:500px;margin:0 auto;animation:fadeIn 0.3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hid{display:none}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:20px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.2)}
 .balance-card h1{font-size:36px;font-weight:800;margin:8px 0}
 .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer}
-.history-box{max-height:350px; overflow-y:auto}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;font-size:13px;font-weight:600}
+.history-box{max-height:320px; overflow-y:auto; padding-right:4px}
 .tx-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.12);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:14px;margin-bottom:10px}
 .tx-left{display:flex;gap:12px;align-items:center}
 .tx-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center}
 .tx-amt{font-weight:800;font-size:15px}
 .income{color:var(--green)}
 .expense{color:var(--red)}
-.send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px}
+.reset-btn{width:100%;padding:12px;margin-top:12px;background:rgba(239,68,68,0.2);border:1px solid var(--red);border-radius:12px;color:#fff;font-weight:600;cursor:pointer}
+
+/* SEND PAGE */
+.send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,0.2)}
 .header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .back{cursor:pointer;padding:8px;background:rgba(255,255,255,0.1);border-radius:10px}
+.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px}
 .input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
+.input::placeholder{color:rgba(255,255,255,0.5)}
 .send-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 
-<!-- DASHBOARD -->
+<!-- PAGE 1: DASHBOARD -->
 <div id="page1" class="page">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-    <div><h2>Hello, John 👋</h2><small style="opacity:0.8">Welcome back</small></div>
+  <div class="topbar">
+    <div>
+      <h2>Hello, John 👋</h2>
+      <small style="opacity:0.8">Welcome back</small>
+    </div>
     <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center"><i data-lucide="user"></i></div>
   </div>
 
   <div class="balance-card">
     <small>Available Balance</small>
-    <h1 id="balance">$3,501,439.22</h1> <!-- ID ADDED -->
+    <h1 id="balance">$3,501,439.22</h1>
     <small>Account: **** 7756</small>
+    <button class="reset-btn" onclick="resetBalance()">🔄 Reset Balance</button> <!-- RESET BUTTON -->
   </div>
 
   <div class="actions">
     <div class="action" onclick="showPage('page2')"><i data-lucide="send"></i><br><span>Send</span></div>
-    <div class="action" onclick="alert('Request')"><i data-lucide="download"></i><br><span>Request</span></div>
-    <div class="action" onclick="alert('TopUp')"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
+    <div class="action" onclick="alert('Request Money')"><i data-lucide="download"></i><br><span>Request</span></div>
+    <div class="action" onclick="alert('Top Up')"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
     <div class="action" onclick="alert('More')"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
   </div>
 
   <h3 style="font-weight:700;margin-bottom:12px">Transaction History</h3>
   
-  <div class="history-box" id="history"> <!-- ID ADDED -->
-    <!-- TRANSACTIONS GO HERE -->
-  </div>
+  <div class="history-box" id="history"></div>
 </div>
 
-<!-- SEND MONEY -->
+<!-- PAGE 2: SEND MONEY -->
 <div id="page2" class="page hid">
   <div class="send-card">
     <div class="header">
       <div class="back" onclick="showPage('page1')"><i data-lucide="arrow-left"></i></div>
       <h2>Send Money</h2>
     </div>
-    <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px">
+
+    <div class="balance-preview">
       <small>Available Balance</small>
-      <h3 id="balance2">$3,501,439.22</h3> <!-- ID ADDED -->
+      <h3 id="balance2">$3,501,439.22</h3>
     </div>
+
     <label>Recipient Name</label>
     <input class="input" type="text" id="recipient" value="Michael Brown">
+
     <label>Account Number</label>
     <input class="input" type="text" id="account" value="0123456789">
+
     <label>Amount ($)</label>
     <input class="input" type="number" id="amount" value="5250">
-    <button class="send-btn" onclick="sendMoney()">Send Now</button> <!-- FUNCTION ADDED -->
+
+    <button class="send-btn" onclick="sendMoney()">Send Now</button>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
 
-let balance = 3501439.22; // STARTING BALANCE
+// LOAD FROM STORAGE OR DEFAULT
+let balance = localStorage.getItem('cashflow_balance') 
+  ? parseFloat(localStorage.getItem('cashflow_balance')) 
+  : 3501439.22;
 
-// Default transactions
-let transactions = [
-  {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"},
-  {name: "Building Materials", date: "11 Mar, 2:10 PM", amount: 45000, type: "expense", icon: "hammer"},
-  {name: "Hardware Supplies", date: "10 Mar, 11:30 AM", amount: 18500, type: "expense", icon: "wrench"}
-];
+let transactions = localStorage.getItem('cashflow_tx') 
+  ? JSON.parse(localStorage.getItem('cashflow_tx')) 
+  : [
+      {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"},
+      {name: "Client Payment", date: "14 Mar, 11:45 AM", amount: 1500000, type: "income", icon: "users"},
+      {name: "Building Materials", date: "11 Mar, 2:10 PM", amount: 45000, type: "expense", icon: "hammer"},
+      {name: "Hardware Supplies", date: "10 Mar, 11:30 AM", amount: 18500, type: "expense", icon: "wrench"}
+    ];
 
 function formatMoney(num){
   return "$" + num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
+function saveData(){
+  localStorage.setItem('cashflow_balance', balance);
+  localStorage.setItem('cashflow_tx', JSON.stringify(transactions));
+}
+
 function renderHistory(){
+  document.getElementById('balance').innerText = formatMoney(balance);
+  document.getElementById('balance2').innerText = formatMoney(balance);
+  
   const historyBox = document.getElementById('history');
   historyBox.innerHTML = "";
   transactions.forEach(tx => {
@@ -111,27 +137,27 @@ function renderHistory(){
       </div>
     `;
   });
-  lucide.createIcons(); // reload icons
+  lucide.createIcons();
 }
 
 function sendMoney(){
   const recipient = document.getElementById('recipient').value;
   const amount = parseFloat(document.getElementById('amount').value);
   
+  if(!amount || amount <= 0){
+    alert("Enter valid amount!");
+    return;
+  }
   if(amount > balance){
     alert("Insufficient Balance!");
     return;
   }
   
-  // 1. DEDUCT BALANCE
   balance = balance - amount;
-  document.getElementById('balance').innerText = formatMoney(balance);
-  document.getElementById('balance2').innerText = formatMoney(balance);
   
-  // 2. ADD TO HISTORY
   const now = new Date();
   const dateStr = `Today, ${now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}`;
-  transactions.unshift({ // add to top
+  transactions.unshift({
     name: `Transfer to ${recipient}`,
     date: dateStr,
     amount: amount,
@@ -139,11 +165,24 @@ function sendMoney(){
     icon: "send"
   });
   
+  saveData();
   renderHistory();
   
-  // 3. SUCCESS + GO BACK
   alert(`$${amount.toLocaleString()} Sent to ${recipient} successfully!`);
   showPage('page1');
+}
+
+function resetBalance(){ // NEW RESET FUNCTION
+  if(confirm("Are you sure you want to reset balance to $3,501,439.22? This will clear all transactions too.")){
+    balance = 3501439.22;
+    transactions = [
+      {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"},
+      {name: "Client Payment", date: "14 Mar, 11:45 AM", amount: 1500000, type: "income", icon: "users"}
+    ];
+    saveData();
+    renderHistory();
+    alert("Balance Reset Successfully!");
+  }
 }
 
 function showPage(id){
@@ -152,7 +191,7 @@ function showPage(id){
   document.getElementById(id).classList.remove('hid');
 }
 
-// LOAD HISTORY ON START
+// LOAD ON START
 renderHistory();
 </script>
 </body>
