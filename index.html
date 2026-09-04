@@ -2,995 +2,759 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-<title>CashFlow — Banking Prototype</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#020916">
+<title>Cashflowbank Demo</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Inter,Arial,Helvetica,sans-serif;
-}
-
-:root{
-  --bg:#070d17;
-  --panel:#0d1726;
-  --panel2:#111e30;
-  --border:#1d3048;
-  --blue:#2878ff;
-  --blue2:#1554d1;
-  --cyan:#26c6da;
-  --green:#20d39b;
-  --text:#f5f8ff;
-  --muted:#91a0b5;
-  --danger:#ff5470;
-}
-
+*{box-sizing:border-box}
 body{
-  background:
-    radial-gradient(circle at 90% 0%,#102b50 0,transparent 30%),
-    linear-gradient(180deg,#070d17,#091322 60%,#07101c);
-  color:var(--text);
-  min-height:100vh;
+margin:0;
+font-family:Inter,Arial,sans-serif;
+background:#020916;
+color:#fff
 }
-
-button,input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-#loading{
-  position:fixed;
-  inset:0;
-  background:#070d17;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.loading-content{
-  text-align:center;
-}
-
-.loading-logo{
-  width:82px;
-  height:82px;
-  border-radius:25px;
-  background:linear-gradient(135deg,#2878ff,#1244b5);
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:40px;
-  font-weight:900;
-  box-shadow:0 20px 60px #2878ff35;
-  animation:pulse 1.5s infinite;
-}
-
-.loading-title{
-  margin-top:20px;
-  font-size:30px;
-  font-weight:800;
-}
-
-.loading-title span{
-  color:#3f8cff;
-}
-
-.loading-sub{
-  color:var(--muted);
-  margin-top:8px;
-  font-size:13px;
-}
-
-.spinner{
-  width:32px;
-  height:32px;
-  border:3px solid #1d3048;
-  border-top-color:#3282ff;
-  border-radius:50%;
-  margin:25px auto 0;
-  animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.05)}
-}
-
-/* =========================
-   LOGIN
-========================= */
-
-.login-screen{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  padding:20px;
-}
-
-.login-box{
-  width:min(430px,100%);
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:28px;
-  padding:32px;
-  box-shadow:0 30px 90px #0008;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  font-size:23px;
-  font-weight:800;
-}
-
-.brand-mark{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#2878ff,#1646bd);
-  display:grid;
-  place-items:center;
-  font-weight:900;
-}
-
-.brand span{
-  color:#4b91ff;
-}
-
-.login-box h1{
-  font-size:30px;
-  margin-top:32px;
-}
-
-.login-box .muted{
-  margin-top:8px;
-}
-
-.muted{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.field{
-  margin-top:20px;
-}
-
-.field label{
-  display:block;
-  color:#aab7ca;
-  font-size:13px;
-  margin-bottom:8px;
-}
-
-.field input{
-  width:100%;
-  padding:14px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  outline:none;
-  background:#091321;
-  color:white;
-}
-
-.field input:focus{
-  border-color:var(--blue);
-}
-
-.primary{
-  width:100%;
-  border:0;
-  border-radius:14px;
-  padding:15px;
-  background:linear-gradient(135deg,#3182ff,#1756d5);
-  color:#fff;
-  font-weight:700;
-  margin-top:20px;
-}
-
-.demo-note{
-  margin-top:18px;
-  padding:13px;
-  border-radius:13px;
-  background:#101d2d;
-  color:#8292a8;
-  font-size:12px;
-  line-height:1.5;
-}
-
-/* =========================
-   APP
-========================= */
-
+button,input,select{font:inherit}
+button{cursor:pointer;color:inherit}
 .app{
-  min-height:100vh;
-  padding-bottom:100px;
+width:100%;
+max-width:540px;
+min-height:100vh;
+margin:auto;
+background:
+radial-gradient(circle at 75% 0,#092b62 0,transparent 28%),
+#020916;
+padding-bottom:90px
 }
 
-.topbar{
-  max-width:1200px;
-  margin:auto;
-  padding:26px 28px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+/* LOGO */
+.logo{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px
 }
-
-.greeting{
-  display:flex;
-  align-items:center;
-  gap:14px;
+.logoMark{
+width:55px;
+height:55px;
+border:5px solid #0782ff;
+border-radius:17px;
+display:grid;
+place-items:center;
+color:#168cff;
+font-size:32px;
+font-weight:900;
+box-shadow:0 0 30px #087fff55
 }
-
-.avatar{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#377fff,#143eaa);
-  font-weight:800;
-  font-size:17px;
+.logoText{
+font-weight:800;
+letter-spacing:1px;
+font-size:19px
 }
+.logoText span{color:#1789ff}
 
-.greeting small{
-  display:block;
-  color:#91a0b5;
-  margin-bottom:3px;
+/* LOADING */
+#loading{
+position:fixed;
+inset:0;
+z-index:999;
+display:grid;
+place-content:center;
+text-align:center;
+background:
+radial-gradient(circle at 50% 60%,#073c92 0,transparent 32%),
+#020916
 }
-
-.greeting strong{
-  font-size:20px;
+#loading p{
+color:#8291a8;
+margin:20px 0 60px
 }
-
-.top-icons{
-  display:flex;
-  gap:10px;
+.loader{
+width:min(360px,82vw)
 }
-
-.icon-btn{
-  width:43px;
-  height:43px;
-  border-radius:50%;
-  border:1px solid var(--border);
-  background:#0d1726;
-  color:white;
-  display:grid;
-  place-items:center;
-  position:relative;
+.progress{
+height:8px;
+background:#10233c;
+border-radius:99px;
+overflow:hidden
 }
-
-.badge{
-  position:absolute;
-  right:-3px;
-  top:-4px;
-  background:#ff3f68;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  font-size:10px;
-  display:grid;
-  place-items:center;
+.progressBar{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#0878ff,#20a3ff);
+box-shadow:0 0 18px #148cff
 }
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:0 28px;
+.loadingInfo{
+display:flex;
+justify-content:space-between;
+color:#8191a8;
+font-size:11px;
+margin-top:10px
 }
+.loadingInfo b{color:#1b8cff}
 
-/* =========================
-   UPDATE BAR
-========================= */
-
-.update{
-  background:#101c2d;
-  border:1px solid #1c3048;
-  border-radius:17px;
-  padding:15px 18px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#a8b6ca;
-  margin-bottom:18px;
+/* AUTH */
+.auth{
+padding:25px;
+min-height:100vh
 }
-
-.update strong{
-  color:#4b91ff;
+.authTop{
+display:flex;
+justify-content:space-between;
+margin-bottom:50px
 }
-
-.update-icon{
-  color:#3986ff;
-  font-size:20px;
+.authTop button{
+background:none;
+border:0;
+font-size:25px
 }
-
-/* =========================
-   BALANCE CARD
-========================= */
-
-.balance-card{
-  border-radius:27px;
-  overflow:hidden;
-  border:1px solid #24508b;
-  background:
-    radial-gradient(circle at 85% 20%,#276be050,transparent 28%),
-    linear-gradient(135deg,#153e93,#0d2454 55%,#0a1a31);
-  box-shadow:0 20px 55px #0005;
+.authBox{
+max-width:430px;
+margin:auto
 }
-
-.balance-main{
-  padding:28px 30px 30px;
-  min-height:225px;
-  position:relative;
+.authBox .logo{
+flex-direction:column;
+margin-bottom:40px
 }
-
-.balance-label{
-  color:#c4d4ec;
-  font-size:14px;
+.authBox h1{
+font-size:28px;
+margin-bottom:8px
 }
-
-.balance-amount{
-  font-size:48px;
-  font-weight:800;
-  margin:17px 0 12px;
-  letter-spacing:-1px;
+.muted{color:#8291a8}
+.form{margin-top:30px}
+label{
+display:block;
+font-size:12px;
+font-weight:bold;
+margin-bottom:18px
 }
-
-.balance-details{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#a9bfdf;
-  font-size:13px;
+input,select{
+width:100%;
+height:52px;
+border:1px solid #263a55;
+background:#071426;
+color:#fff;
+border-radius:12px;
+padding:0 14px;
+margin-top:8px;
+outline:none
 }
-
-.earnings{
-  margin-top:25px;
-  color:#b8c9e2;
+input:focus,select:focus{
+border-color:#178aff
 }
-
-.earnings strong{
-  color:var(--green);
-  margin-left:7px;
+.primary{
+width:100%;
+height:52px;
+border:0;
+border-radius:12px;
+background:linear-gradient(100deg,#0876ff,#118fff);
+font-weight:bold;
+box-shadow:0 10px 30px #006eff35
 }
-
-.add-money{
-  position:absolute;
-  right:25px;
-  top:27px;
-  border:1px solid #5597ff;
-  background:#2878ff;
-  color:white;
-  border-radius:25px;
-  padding:13px 20px;
-  font-weight:700;
+.link{
+border:0;
+background:none;
+color:#208fff
 }
-
-.balance-history{
-  background:#091728;
-  border-top:1px solid #214269;
-  padding:18px 28px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.forgot{
+display:block;
+margin:-5px 0 25px;
+font-size:12px;
+text-align:right
 }
-
-.history-left{
-  display:flex;
-  gap:12px;
-  align-items:center;
+.authSwitch{
+text-align:center;
+color:#8291a8;
+font-size:13px;
+margin:35px 0
 }
-
-.history-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:#102a4d;
-  color:#4c91ff;
-  display:grid;
-  place-items:center;
-}
-
-.view-all{
-  color:#438dff;
-  font-weight:700;
-  background:none;
-  border:0;
-}
-
-/* =========================
-   QUICK ACTIONS
-========================= */
-
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin:24px 0;
-}
-
-.quick{
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px 12px;
-  text-align:center;
-  color:white;
-  transition:.2s;
-}
-
-.quick:hover{
-  transform:translateY(-3px);
-  border-color:#2b6bd0;
-}
-
-.quick-icon{
-  width:56px;
-  height:56px;
-  border-radius:17px;
-  background:linear-gradient(135deg,#205ac5,#133b83);
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:24px;
-}
-
-.quick strong{
-  display:block;
-  margin-top:12px;
-}
-
-.quick small{
-  color:#8190a5;
-  display:block;
-  margin-top:5px;
-}
-
-/* =========================
-   SECURITY BANNER
-========================= */
-
 .security{
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:21px;
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-bottom:24px;
+display:flex;
+justify-content:center;
+gap:10px;
+text-align:center;
+font-size:11px;
+color:#8190a5
+}
+.securityIcon{color:#18d19b}
+
+/* MAIN */
+main{
+padding:22px 18px
+}
+.top{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px
+}
+.avatar{
+width:48px;
+height:48px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#466aff,#0b5fff);
+font-weight:bold;
+font-size:20px
+}
+.greeting{
+flex:1
+}
+.greeting small{
+color:#8291a8
+}
+.greeting h3{
+margin:3px 0;
+font-size:18px
+}
+.topIcons{
+display:flex;
+gap:3px
+}
+.topIcons button{
+background:none;
+border:0;
+font-size:18px;
+position:relative
+}
+.badge{
+position:absolute;
+right:-3px;
+top:-4px;
+background:#187eff;
+font-size:8px;
+width:15px;
+height:15px;
+border-radius:50%;
+display:grid;
+place-items:center
 }
 
-.security-icon{
-  width:53px;
-  height:53px;
-  border-radius:50%;
-  background:#123c36;
-  color:#31d7a1;
-  display:grid;
-  place-items:center;
-  font-size:22px;
+/* NOTICE */
+.notice{
+display:flex;
+align-items:center;
+gap:9px;
+border:1px solid #173b6c;
+background:#061b3a;
+border-radius:12px;
+padding:13px;
+font-size:10px;
+color:#b7c5d8;
+margin-bottom:20px
+}
+.notice strong{color:#3a96ff}
+
+/* BALANCE */
+.balance{
+border:1px solid #176be5;
+border-radius:17px;
+overflow:hidden;
+background:linear-gradient(135deg,#1746be,#09256c);
+position:relative;
+margin-bottom:13px
+}
+.balanceTop{
+display:flex;
+justify-content:space-between;
+padding:20px
+}
+.balanceLabel{
+font-size:12px;
+color:#d3e1fb
+}
+.balanceAmount{
+display:block;
+font-size:37px;
+font-weight:bold;
+margin-top:7px
+}
+.addMoney{
+border:0;
+background:#1679ff;
+border-radius:25px;
+height:42px;
+padding:0 15px;
+font-weight:bold
+}
+.earnings{
+padding:0 20px 18px;
+font-size:11px;
+color:#b5c6df
+}
+.earnings strong{
+color:#15d39c;
+margin-left:12px
+}
+.chart{
+height:70px;
+position:absolute;
+right:0;
+bottom:55px;
+width:55%;
+opacity:.8
+}
+.chart svg{
+width:100%;
+height:100%
+}
+.chart polyline{
+fill:none;
+stroke:#198cff;
+stroke-width:3
+}
+.history{
+width:100%;
+position:relative;
+border:0;
+border-top:1px solid #ffffff19;
+background:#03142dcc;
+padding:16px;
+display:flex;
+justify-content:space-between
+}
+.history span:last-child{
+color:#3c94ff
 }
 
-.security-text{
-  flex:1;
+/* QUICK */
+.quick{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+padding:12px 5px;
+border:1px solid #1d304a;
+background:#071426;
+border-radius:14px;
+margin-bottom:13px
+}
+.quick button{
+border:0;
+background:none;
+text-align:center
+}
+.quickIcon{
+width:43px;
+height:43px;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:#0d2546;
+color:#238aff;
+margin:auto;
+font-size:20px
+}
+.quick b{
+display:block;
+font-size:9px;
+margin-top:6px
 }
 
-.security-text strong{
-  display:block;
-  margin-bottom:5px;
+/* CARDS */
+.card{
+border:1px solid #1d3049;
+background:#071426;
+border-radius:14px;
+overflow:hidden;
+margin-bottom:13px
+}
+.cardTitle{
+display:flex;
+justify-content:space-between;
+padding:15px;
+font-size:12px
+}
+.cardTitle button{
+background:none;
+border:0;
+color:#3c94ff;
+font-size:10px
 }
 
-.security-text span{
-  color:#8d9db1;
-  font-size:13px;
+/* SPENDING */
+.spendingBody{
+display:flex;
+align-items:center;
+gap:17px;
+padding:4px 14px 18px
 }
-
-.verify{
-  border:1px solid #24599f;
-  background:#102b4d;
-  color:#4b91ff;
-  border-radius:22px;
-  padding:11px 18px;
-  font-weight:700;
+.donut{
+width:122px;
+height:122px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:conic-gradient(
+#1680ff 0 34%,
+#28bd70 34% 55%,
+#ffd23e 55% 71%,
+#ff6250 71% 86%,
+#925be7 86%
+)
 }
-
-/* =========================
-   SERVICES
-========================= */
-
-.section-card{
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:23px;
-  margin-bottom:24px;
+.donutInner{
+width:80px;
+height:80px;
+border-radius:50%;
+background:#071426;
+display:grid;
+place-content:center;
+text-align:center
 }
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
+.donutInner b{font-size:14px}
+.donutInner small{
+font-size:8px;
+color:#7f90a7
 }
-
-.section-head h2{
-  font-size:21px;
+.legend{
+flex:1;
+font-size:9px
 }
-
-.section-link{
-  color:#438dff;
-  background:none;
-  border:0;
-  font-weight:700;
+.legend div{
+display:flex;
+gap:7px;
+margin:9px 0
 }
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
+.legend b{margin-left:auto}
+.dot{
+width:7px;
+height:7px;
+border-radius:50%
 }
+.blue{background:#1680ff}
+.green{background:#28bd70}
+.yellow{background:#ffd23e}
+.red{background:#ff6250}
+.purple{background:#925be7}
 
-.service{
-  background:#101c2c;
-  border:1px solid #1b2c42;
-  border-radius:17px;
-  min-height:115px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  color:white;
-}
-
-.service-icon{
-  color:#3986ff;
-  font-size:26px;
-}
-
-.service span{
-  font-size:13px;
-}
-
-/* =========================
-   SAVINGS PROMO
-========================= */
-
-.savings{
-  background:
-    radial-gradient(circle at 10% 50%,#173e74,transparent 35%),
-    linear-gradient(100deg,#0d2340,#0b192b);
-  border:1px solid #1d4777;
-  border-radius:22px;
-  padding:22px 25px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:24px;
-}
-
-.savings-left{
-  display:flex;
-  align-items:center;
-  gap:17px;
-}
-
-.pig{
-  font-size:45px;
-}
-
-.savings h2{
-  font-size:19px;
-}
-
-.savings p{
-  color:#8fa2bb;
-  margin-top:6px;
-}
-
-.savings p strong{
-  color:#28d5a0;
-}
-
-.savings button{
-  background:#2878ff;
-  color:white;
-  border:0;
-  border-radius:23px;
-  padding:13px 21px;
-  font-weight:700;
-}
-
-/* =========================
-   PAGES
-========================= */
-
-.page{
-  max-width:800px;
-  margin:30px auto;
-}
-
-.page-title{
-  margin-bottom:20px;
-}
-
-.page-title h1{
-  font-size:30px;
-  margin-bottom:6px;
-}
-
-.form-panel{
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:25px;
-}
-
-.amount-input{
-  font-size:22px!important;
-}
-
-/* transactions */
-
+/* TRANSACTIONS */
 .transaction{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:17px 0;
-  border-bottom:1px solid #19283b;
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 15px;
+border-top:1px solid #172a42
+}
+.transactionIcon{
+width:37px;
+height:37px;
+border-radius:50%;
+background:#102845;
+display:grid;
+place-items:center
+}
+.transactionInfo{
+display:flex;
+flex-direction:column;
+gap:4px
+}
+.transactionInfo b{font-size:11px}
+.transactionInfo small{
+font-size:8px;
+color:#7789a0
+}
+.transactionAmount{
+margin-left:auto;
+font-size:11px
+}
+.positive{color:#16d49c}
+.negative{color:#ff6871}
+
+/* SECURITY */
+.securityBanner{
+display:flex;
+align-items:center;
+gap:10px;
+border:1px solid #1d3049;
+background:#071426;
+border-radius:14px;
+padding:14px;
+margin-bottom:13px
+}
+.secCircle{
+width:39px;
+height:39px;
+border-radius:50%;
+background:#064c3b;
+display:grid;
+place-items:center;
+color:#19d49c
+}
+.secText{
+display:flex;
+flex-direction:column;
+gap:4px
+}
+.secText b{font-size:12px}
+.secText small{
+font-size:9px;
+color:#8090a6
+}
+.verify{
+margin-left:auto;
+border:1px solid #193e70;
+background:#092347;
+color:#4598ff;
+border-radius:20px;
+padding:8px 10px;
+font-size:9px
 }
 
-.transaction:last-child{
-  border-bottom:0;
+/* SERVICES */
+.servicesGrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:7px;
+padding:0 9px 14px
+}
+.service{
+min-height:70px;
+border:1px solid #1c3049;
+background:#09172b;
+border-radius:10px
+}
+.serviceIcon{
+display:block;
+font-size:19px;
+color:#268bff;
+margin:9px 0 6px
+}
+.service b{font-size:7px}
+
+/* SAVINGS */
+.savingsBanner{
+display:flex;
+align-items:center;
+gap:9px;
+border:1px solid #164d9c;
+background:linear-gradient(90deg,#062457,#07316d);
+border-radius:14px;
+padding:12px;
+margin-bottom:10px
+}
+.pig{font-size:32px}
+.savingText{flex:1}
+.savingText b{
+display:block;
+font-size:10px
+}
+.savingText small{
+color:#8da1ba;
+font-size:8px
+}
+.start{
+border:0;
+background:#087bff;
+border-radius:20px;
+padding:9px 11px;
+font-size:8px
 }
 
-.tx-left{
-  display:flex;
-  align-items:center;
-  gap:13px;
+/* NAVIGATION */
+.nav{
+position:fixed;
+z-index:50;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:min(500px,calc(100% - 24px));
+display:grid;
+grid-template-columns:repeat(5,1fr);
+padding:8px 3px;
+background:#091526ee;
+border:1px solid #203651;
+border-radius:19px;
+backdrop-filter:blur(18px)
+}
+.nav button{
+border:0;
+background:none;
+color:#8291a8;
+font-size:9px
+}
+.nav button.active{color:#258bff}
+.navIcon{
+font-size:19px;
+display:block;
+margin-bottom:3px
 }
 
-.tx-icon{
-  width:44px;
-  height:44px;
-  border-radius:13px;
-  background:#122137;
-  display:grid;
-  place-items:center;
+/* PAGES */
+.page{
+display:none
+}
+.page.active{
+display:block
+}
+.pageHeader{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:25px
+}
+.pageHeader button{
+border:0;
+background:none;
+font-size:20px
+}
+.pageHeader h2{
+font-size:19px
 }
 
-.tx-name{
-  font-weight:700;
+/* TRANSFER */
+.tabs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+border-bottom:1px solid #25364c;
+margin-bottom:25px
+}
+.tabs button{
+border:0;
+background:none;
+color:#8391a6;
+padding:12px;
+font-size:11px
+}
+.tabs .selected{
+color:#168cff;
+border-bottom:2px solid #168cff
+}
+.transferBox{
+margin-bottom:18px
+}
+.transferBox label{
+margin-bottom:7px
+}
+.inputRow{
+display:flex;
+align-items:center;
+gap:8px;
+height:52px;
+background:#071426;
+border:1px solid #263a55;
+border-radius:12px;
+padding:0 12px
+}
+.inputRow input,.inputRow select{
+border:0;
+margin:0;
+padding:0;
+height:100%
+}
+.recipients{
+margin-top:25px
+}
+.recipient{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 15px;
+border-top:1px solid #172a42
+}
+.recipientAvatar{
+width:37px;
+height:37px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:#123052;
+color:#20a0ff;
+font-size:10px;
+font-weight:bold
+}
+.recipientInfo{
+display:flex;
+flex-direction:column;
+gap:4px
+}
+.recipientInfo b{font-size:10px}
+.recipientInfo small{
+font-size:8px;
+color:#74869d
+}
+.recipientArrow{
+margin-left:auto;
+color:#238bff
 }
 
-.tx-date{
-  color:#718096;
-  font-size:12px;
-  margin-top:4px;
+/* ACCOUNTS */
+.account{
+border:1px solid #176be5;
+border-radius:16px;
+background:linear-gradient(135deg,#123eaa,#081e59);
+padding:22px;
+margin-bottom:13px
+}
+.account.secondary{
+background:#07182f;
+border-color:#213a59
+}
+.account span,.account small{
+display:block;
+color:#bdcbe1;
+font-size:11px
+}
+.account strong{
+display:block;
+font-size:31px;
+margin:15px 0
+}
+.outline{
+width:100%;
+height:50px;
+border:1px solid #253954;
+background:#09172a;
+border-radius:11px;
+color:#298eff
 }
 
-.plus{
-  color:#25d29a;
-  font-weight:700;
+/* PROFILE */
+.profile{
+text-align:center;
+padding:20px
 }
-
-.minus{
-  color:#ff6178;
-  font-weight:700;
+.bigAvatar{
+width:84px;
+height:84px;
+border-radius:50%;
+display:grid;
+place-items:center;
+margin:auto;
+background:linear-gradient(135deg,#466aff,#0b5fff);
+font-size:30px;
+font-weight:bold
 }
-
-/* =========================
-   PIN MODAL
-========================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#0009;
-  backdrop-filter:blur(8px);
-  z-index:5000;
-  display:grid;
-  place-items:center;
-  padding:20px;
+.profile h2{margin:14px 0 5px}
+.profile p{color:#8291a8;font-size:12px}
+.menu{
+width:100%;
+height:54px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#071426;
+border:1px solid #1c3049;
+border-radius:12px;
+margin-bottom:8px;
+padding:0 15px
 }
+.menu span{font-size:12px}
 
-.modal-box{
-  width:min(400px,100%);
-  background:#0d1726;
-  border:1px solid #253b57;
-  border-radius:25px;
-  padding:28px;
-  text-align:center;
-  box-shadow:0 30px 90px #0009;
+/* SIMPLE */
+.simpleIcon{
+font-size:55px;
+text-align:center;
+margin:70px 0 20px
 }
+.center{text-align:center}
 
-.pin-lock{
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  background:#102d53;
-  color:#418dff;
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:27px;
+/* MOBILE */
+@media(min-width:700px){
+.app{
+border-left:1px solid #14263d;
+border-right:1px solid #14263d
 }
-
-.modal-box h2{
-  margin-top:17px;
-}
-
-.modal-box p{
-  color:#8393a9;
-  font-size:13px;
-  margin-top:7px;
-}
-
-.pin-dots{
-  display:flex;
-  justify-content:center;
-  gap:13px;
-  margin:25px 0;
-}
-
-.pin-dot{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  border:2px solid #58708e;
-}
-
-.pin-dot.filled{
-  background:#3787ff;
-  border-color:#3787ff;
-}
-
-.pin-input{
-  text-align:center;
-  font-size:25px!important;
-  letter-spacing:12px;
-}
-
-/* =========================
-   SUCCESS
-========================= */
-
-.success{
-  max-width:650px;
-  margin:50px auto;
-  text-align:center;
-}
-
-.success-check{
-  width:92px;
-  height:92px;
-  border-radius:50%;
-  background:#19c894;
-  color:white;
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:47px;
-  box-shadow:0 15px 45px #19c89430;
-}
-
-.success h1{
-  font-size:36px;
-  margin-top:25px;
-}
-
-.success-sub{
-  color:#8999ad;
-  margin:12px 0 25px;
-  line-height:1.6;
-}
-
-.receipt{
-  background:#0d1726;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:8px 20px;
-  text-align:left;
-}
-
-.receipt-row{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  padding:17px 0;
-  border-bottom:1px solid #1b2a3c;
-}
-
-.receipt-row:last-child{
-  border-bottom:0;
-}
-
-.receipt-row span:first-child{
-  color:#8190a4;
-}
-
-.receipt-row span:last-child{
-  font-weight:600;
-  text-align:right;
-}
-
-.success .primary{
-  margin-top:22px;
-}
-
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:15px;
-  width:min(650px,calc(100% - 28px));
-  background:#0c1421eF;
-  border:1px solid #27364a;
-  backdrop-filter:blur(18px);
-  border-radius:30px;
-  padding:8px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  z-index:1000;
-  box-shadow:0 20px 60px #0008;
-}
-
-.nav-btn{
-  border:0;
-  background:none;
-  color:#78879a;
-  padding:8px 4px;
-  border-radius:23px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-  font-size:11px;
-}
-
-.nav-btn.active{
-  background:#17325a;
-  color:#3986ff;
-}
-
-.nav-icon{
-  font-size:20px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:800px){
-
-  .container{
-    padding:0 16px;
-  }
-
-  .topbar{
-    padding:20px 16px 15px;
-  }
-
-  .balance-amount{
-    font-size:38px;
-  }
-
-  .add-money{
-    position:static;
-    margin-top:20px;
-  }
-
-  .balance-main{
-    min-height:260px;
-  }
-
-  .quick-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .services{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .savings{
-    align-items:flex-start;
-    gap:15px;
-  }
-
-  .savings button{
-    white-space:nowrap;
-  }
-}
-
-@media(max-width:500px){
-
-  .greeting strong{
-    font-size:17px;
-  }
-
-  .avatar{
-    width:46px;
-    height:46px;
-  }
-
-  .top-icons .icon-btn:nth-child(2){
-    display:none;
-  }
-
-  .update{
-    font-size:12px;
-  }
-
-  .balance-main{
-    padding:23px;
-  }
-
-  .balance-history{
-    padding:16px 20px;
-  }
-
-  .services{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .service{
-    min-height:95px;
-  }
-
-  .security{
-    align-items:flex-start;
-  }
-
-  .verify{
-    display:none;
-  }
-
-  .savings{
-    flex-direction:column;
-  }
-
-  .savings button{
-    width:100%;
-  }
-
-  .success{
-    margin:30px 16px;
-  }
-
-  .success h1{
-    font-size:30px;
-  }
-
-  .receipt-row{
-    font-size:13px;
-  }
 }
 </style>
 </head>
@@ -999,1137 +763,1156 @@ button{
 
 <!-- LOADING -->
 <div id="loading">
-  <div class="loading-content">
-    <div class="loading-logo">C</div>
-    <div class="loading-title">Cash<span>Flow</span></div>
-    <div class="loading-sub">Secure banking experience</div>
-    <div class="spinner"></div>
+  <div class="logo">
+    <div class="logoMark">C</div>
+    <div class="logoText">CASH<span>FLOW</span>BANK</div>
+  </div>
+
+  <p>Banking that moves with you.</p>
+
+  <div class="loader">
+    <div class="progress">
+      <div class="progressBar" id="progressBar"></div>
+    </div>
+
+    <div class="loadingInfo">
+      <span>Loading your experience...</span>
+      <b id="percent">0%</b>
+    </div>
   </div>
 </div>
 
-<!-- LOGIN -->
-<section id="loginScreen" class="login-screen hidden">
-  <div class="login-box">
 
-    <div class="brand">
-      <div class="brand-mark">C</div>
-      Cash<span>Flow</span>
+<div class="app">
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="page auth">
+
+  <div class="authTop">
+    <button>←</button>
+    <span>🛡️</span>
+  </div>
+
+  <div class="authBox">
+
+    <div class="logo">
+      <div class="logoMark">C</div>
+      <div class="logoText">CASH<span>FLOW</span>BANK</div>
     </div>
 
-    <h1>Welcome back</h1>
-    <p class="muted">Sign in to your CashFlow prototype.</p>
+    <h1>Sign in to your account</h1>
+    <p class="muted">Welcome back! Please enter your details.</p>
 
-    <form id="loginForm">
+    <form class="form" onsubmit="login(event)">
 
-      <div class="field">
-        <label>Email</label>
-        <input id="email" type="email" placeholder="you@example.com" required>
-      </div>
+      <label>
+        Email address
+        <input type="email" placeholder="Enter your email" required>
+      </label>
 
-      <div class="field">
-        <label>Password</label>
-        <input id="password" type="password" placeholder="••••••••" required>
-      </div>
+      <label>
+        Password
+        <input type="password" placeholder="Enter your password" required>
+      </label>
 
-      <button class="primary">Sign In</button>
+      <button type="button" class="link forgot">
+        Forgot password?
+      </button>
+
+      <button class="primary">
+        Log in
+      </button>
 
     </form>
 
-    <div class="demo-note">
-      Demo only — this application does not connect to real financial accounts
-      or transfer real money.
+    <p class="authSwitch">
+      New to Cashflowbank?
+      <button class="link" onclick="show('signup')">
+        Sign up
+      </button>
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ================= SIGN UP ================= -->
+
+<section id="signup" class="page auth">
+
+  <div class="authTop">
+    <button onclick="show('login')">←</button>
+    <span>🛡️</span>
+  </div>
+
+  <div class="authBox">
+
+    <div class="logo">
+      <div class="logoMark">C</div>
+      <div class="logoText">CASH<span>FLOW</span>BANK</div>
+    </div>
+
+    <h1>Create your account</h1>
+    <p class="muted">Let's get you started.</p>
+
+    <form class="form" onsubmit="signup(event)">
+
+      <label>
+        Full name
+        <input type="text" placeholder="Enter your full name" required>
+      </label>
+
+      <label>
+        Email address
+        <input type="email" placeholder="Enter your email" required>
+      </label>
+
+      <label>
+        Create password
+        <input type="password" placeholder="Create a strong password" required>
+      </label>
+
+      <label>
+        Phone number
+        <input type="tel" placeholder="Enter your phone number" required>
+      </label>
+
+      <button class="primary">
+        Open account
+      </button>
+
+    </form>
+
+    <p class="authSwitch">
+      Already have an account?
+      <button class="link" onclick="show('login')">
+        Log in
+      </button>
+    </p>
+
+    <div class="security">
+      🛡️
+      <span>
+        Your data is protected with<br>
+        <b>bank-grade security</b>.
+      </span>
     </div>
 
   </div>
 </section>
 
-<!-- APP -->
-<div id="app" class="app hidden">
 
-  <!-- TOP -->
-  <header class="topbar">
+<!-- ================= DASHBOARD ================= -->
 
-    <div class="greeting">
-      <div class="avatar">JD</div>
+<section id="dashboard" class="page">
 
-      <div>
-        <small>Good Morning,</small>
-        <strong>John Doe</strong>
-      </div>
-    </div>
+<main>
 
-    <div class="top-icons">
+<div class="top">
 
-      <button class="icon-btn" onclick="showNotice('CashFlow Support')">
-        ?
-      </button>
+  <div class="avatar">A</div>
 
-      <button class="icon-btn" onclick="showNotice('No new notifications.')">
-        ♧
-      </button>
+  <div class="greeting">
+    <small>Good morning,</small>
+    <h3>Hi Alex 👋</h3>
+  </div>
 
-      <button class="icon-btn" onclick="showNotice('You have 3 notifications.')">
-        ♧
-        <span class="badge">3</span>
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- DASHBOARD -->
-  <main id="dashboard" class="container">
-
-    <div class="update">
-      <span class="update-icon">◈</span>
-      <div>
-        <strong>System Update:</strong>
-        CashFlow services are available.
-      </div>
-    </div>
-
-    <!-- BALANCE -->
-    <section class="balance-card">
-
-      <div class="balance-main">
-
-        <div class="balance-label">
-          Available Balance 👁
-        </div>
-
-        <div id="balance" class="balance-amount">
-          $2,478.60
-        </div>
-
-        <div class="balance-details">
-          Checking Account
-          <span>•••• 4821</span>
-        </div>
-
-        <div class="earnings">
-          Today's Earnings
-          <strong>+$12.45</strong>
-        </div>
-
-        <button class="add-money" onclick="addMoney()">
-          + Add Money
-        </button>
-
-      </div>
-
-      <div class="balance-history">
-
-        <div class="history-left">
-          <div class="history-icon">▣</div>
-
-          <div>
-            <strong>Transaction History</strong>
-          </div>
-        </div>
-
-        <button class="view-all" onclick="showPage('transactions')">
-          View All →
-        </button>
-
-      </div>
-
-    </section>
-
-    <!-- QUICK ACTIONS -->
-    <section class="quick-grid">
-
-      <button class="quick" onclick="showPage('transfer')">
-        <div class="quick-icon">↑</div>
-        <strong>Send Money</strong>
-        <small>To Contact</small>
-      </button>
-
-      <button class="quick" onclick="showNotice('Bank transfer feature opened.')">
-        <div class="quick-icon">🏦</div>
-        <strong>To Bank</strong>
-        <small>Bank Transfer</small>
-      </button>
-
-      <button class="quick" onclick="showNotice('Savings section opened.')">
-        <div class="quick-icon">★</div>
-        <strong>Save</strong>
-        <small>Save Money</small>
-      </button>
-
-      <button class="quick" onclick="showNotice('Loan center opened.')">
-        <div class="quick-icon">◉</div>
-        <strong>Loan</strong>
-        <small>Get Loan</small>
-      </button>
-
-    </section>
-
-    <!-- SECURITY -->
-    <section class="security">
-
-      <div class="security-icon">✓</div>
-
-      <div class="security-text">
-        <strong>Secure Your Account</strong>
-        <span>Complete your profile verification</span>
-      </div>
-
-      <button class="verify" onclick="showNotice('Verification is available in this prototype.')">
-        Verify Now
-      </button>
-
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section-card">
-
-      <div class="section-head">
-        <h2>Services</h2>
-        <button class="section-link">
-          View All →
-        </button>
-      </div>
-
-      <div class="services">
-
-        <button class="service" onclick="showNotice('Airtime service selected.')">
-          <div class="service-icon">▣</div>
-          <span>Airtime</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Data service selected.')">
-          <div class="service-icon">↕</div>
-          <span>Data</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Electricity service selected.')">
-          <div class="service-icon">ϟ</div>
-          <span>Electricity</span>
-        </button>
-
-        <button class="service" onclick="showNotice('TV service selected.')">
-          <div class="service-icon">▣</div>
-          <span>TV</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Internet service selected.')">
-          <div class="service-icon">⌁</div>
-          <span>Internet</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Savings selected.')">
-          <div class="service-icon">◎</div>
-          <span>Savings</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Loan Center selected.')">
-          <div class="service-icon">$</div>
-          <span>Loan Center</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Insurance selected.')">
-          <div class="service-icon">◇</div>
-          <span>Insurance</span>
-        </button>
-
-        <button class="service" onclick="showNotice('Gift Card selected.')">
-          <div class="service-icon">▭</div>
-          <span>Gift Card</span>
-        </button>
-
-        <button class="service" onclick="showNotice('More services selected.')">
-          <div class="service-icon">•••</div>
-          <span>More</span>
-        </button>
-
-      </div>
-
-    </section>
-
-    <!-- SAVINGS -->
-    <section class="savings">
-
-      <div class="savings-left">
-        <div class="pig">🐷</div>
-
-        <div>
-          <h2>Start Fixed Savings with CashFlow</h2>
-          <p>
-            Build your savings and earn up to
-            <strong>10%</strong> interest.
-          </p>
-        </div>
-      </div>
-
-      <button onclick="showNotice('Savings setup opened.')">
-        Start Saving →
-      </button>
-
-    </section>
-
-  </main>
-
-  <!-- TRANSFER PAGE -->
-  <section id="transferPage" class="page hidden">
-
-    <div class="page-title">
-      <h1>Send Money</h1>
-      <p class="muted">Send a prototype transfer to a recipient.</p>
-    </div>
-
-    <div class="form-panel">
-
-      <div class="field">
-        <label>Recipient Name</label>
-        <input id="recipient" placeholder="Recipient name">
-      </div>
-
-      <div class="field">
-        <label>Account Number</label>
-        <input id="recipientAccount" placeholder="Account number">
-      </div>
-
-      <div class="field">
-        <label>Amount</label>
-        <input
-          id="transferAmount"
-          class="amount-input"
-          type="number"
-          min="0.01"
-          step="0.01"
-          placeholder="0.00"
-        >
-      </div>
-
-      <div class="field">
-        <label>Memo</label>
-        <input id="memo" placeholder="Optional memo">
-      </div>
-
-      <button class="primary" onclick="reviewTransfer()">
-        Continue
-      </button>
-
-      <div class="demo-note">
-        Prototype mode — no real funds are transferred.
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- TRANSACTIONS PAGE -->
-  <section id="transactionsPage" class="page hidden">
-
-    <div class="page-title">
-      <h1>Transactions</h1>
-      <p class="muted">Your recent CashFlow prototype activity.</p>
-    </div>
-
-    <div class="form-panel" id="transactionList"></div>
-
-  </section>
-
-  <!-- CARDS PAGE -->
-  <section id="cardsPage" class="page hidden">
-
-    <div class="page-title">
-      <h1>My Cards</h1>
-      <p class="muted">Manage your CashFlow prototype card.</p>
-    </div>
-
-    <div class="form-panel">
-
-      <div style="
-        background:linear-gradient(135deg,#121c2d,#2458a9);
-        border-radius:20px;
-        padding:25px;
-        min-height:210px;
-      ">
-
-        <strong style="font-size:20px">CashFlow</strong>
-
-        <div style="
-          width:45px;
-          height:32px;
-          background:#d8dce2;
-          border-radius:7px;
-          margin-top:35px;
-        "></div>
-
-        <div style="
-          letter-spacing:3px;
-          margin-top:25px;
-        ">
-          •••• •••• •••• 4821
-        </div>
-
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          margin-top:15px;
-          font-size:12px;
-        ">
-          <span>JOHN DOE</span>
-          <span>PROTOTYPE</span>
-        </div>
-
-      </div>
-
-      <div class="transaction">
-        <span>Card Status</span>
-        <strong class="plus">Active</strong>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PROFILE PAGE -->
-  <section id="profilePage" class="page hidden">
-
-    <div class="page-title">
-      <h1>Profile</h1>
-      <p class="muted">Manage your CashFlow profile.</p>
-    </div>
-
-    <div class="form-panel">
-
-      <div class="transaction">
-        <span>Name</span>
-        <strong>John Doe</strong>
-      </div>
-
-      <div class="transaction">
-        <span>Email</span>
-        <strong>john@example.com</strong>
-      </div>
-
-      <div class="transaction">
-        <span>Account</span>
-        <strong>•••• 4821</strong>
-      </div>
-
-      <div class="transaction">
-        <span>Account Status</span>
-        <strong class="plus">Active</strong>
-      </div>
-
-      <button class="primary" onclick="logout()">
-        Logout
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-
-    <button class="nav-btn active" data-page="dashboard" onclick="showPage('dashboard')">
-      <span class="nav-icon">⌂</span>
-      Home
+  <div class="topIcons">
+    <button>♧</button>
+    <button>⌾</button>
+    <button>
+      ♧
+      <i class="badge">2</i>
     </button>
-
-    <button class="nav-btn" data-page="transactions" onclick="showPage('transactions')">
-      <span class="nav-icon">◷</span>
-      Transactions
-    </button>
-
-    <button class="nav-btn" data-page="transfer" onclick="showPage('transfer')">
-      <span class="nav-icon">↑</span>
-      Pay
-    </button>
-
-    <button class="nav-btn" data-page="cards" onclick="showPage('cards')">
-      <span class="nav-icon">▭</span>
-      Cards
-    </button>
-
-    <button class="nav-btn" data-page="profile" onclick="showPage('profile')">
-      <span class="nav-icon">●</span>
-      Profile
-    </button>
-
-  </nav>
-
-</div>
-
-<!-- PIN MODAL -->
-<div id="pinModal" class="modal hidden">
-
-  <div class="modal-box">
-
-    <div class="pin-lock">🔐</div>
-
-    <h2>Enter Payment PIN</h2>
-
-    <p>
-      Enter your 4-digit prototype PIN to continue.
-    </p>
-
-    <div class="pin-dots">
-      <div class="pin-dot" id="dot1"></div>
-      <div class="pin-dot" id="dot2"></div>
-      <div class="pin-dot" id="dot3"></div>
-      <div class="pin-dot" id="dot4"></div>
-    </div>
-
-    <input
-      id="pinInput"
-      class="pin-input"
-      type="password"
-      maxlength="4"
-      inputmode="numeric"
-      placeholder="••••"
-      oninput="updatePinDots()"
-    >
-
-    <button class="primary" onclick="confirmTransfer()">
-      Confirm Transfer
-    </button>
-
-    <button
-      onclick="closePin()"
-      style="
-        width:100%;
-        margin-top:10px;
-        padding:13px;
-        border-radius:13px;
-        border:1px solid #26384f;
-        background:#101b2b;
-        color:#9eacbf;
-      "
-    >
-      Cancel
-    </button>
-
   </div>
 
 </div>
 
-<!-- SUCCESS -->
-<section id="successPage" class="page hidden">
 
-  <div class="success">
+<div class="notice">
+  🔊
+  <span>
+    <strong>System Update:</strong>
+    CashFlow is fully operational with all services.
+  </span>
+  ›
+</div>
 
-    <div class="success-check">✓</div>
 
-    <h1>Transaction Successful!</h1>
+<!-- BALANCE -->
 
-    <p class="success-sub" id="successText">
-      Your prototype transfer has been completed.
-    </p>
+<section class="balance">
 
-    <div class="receipt">
+  <div class="balanceTop">
 
-      <div class="receipt-row">
-        <span>✓ Amount</span>
-        <span id="receiptAmount">$0.00</span>
-      </div>
+    <div>
+      <span class="balanceLabel">
+        Available Balance 👁
+      </span>
 
-      <div class="receipt-row">
-        <span>✓ Transaction reference</span>
-        <span id="receiptReference">CF-000000</span>
-      </div>
-
-      <div class="receipt-row">
-        <span>✓ Recipient</span>
-        <span id="receiptRecipient">Recipient</span>
-      </div>
-
-      <div class="receipt-row">
-        <span>✓ Account</span>
-        <span id="receiptAccount">••••</span>
-      </div>
-
-      <div class="receipt-row">
-        <span>✓ Date</span>
-        <span id="receiptDate">—</span>
-      </div>
-
-      <div class="receipt-row">
-        <span>✓ Available Balance</span>
-        <span id="receiptBalance">$0.00</span>
-      </div>
-
+      <strong class="balanceAmount">
+        $8,542.68
+      </strong>
     </div>
 
-    <button class="primary" onclick="showPage('dashboard')">
-      Back to Dashboard
+    <button class="addMoney" onclick="alert('Demo: Add Money')">
+      ＋ Add Money
     </button>
 
   </div>
+
+  <div class="earnings">
+    Today's Earnings
+    <strong>+$12.45</strong>
+  </div>
+
+  <div class="chart">
+    <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+      <polyline points="
+      0,100
+      35,90
+      60,98
+      90,65
+      125,82
+      155,55
+      190,68
+      220,40
+      250,52
+      280,27
+      315,43
+      345,14
+      375,25
+      400,4"/>
+    </svg>
+  </div>
+
+  <button class="history" onclick="show('transactions')">
+    <span>▣ Transaction History</span>
+    <span>View All ›</span>
+  </button>
 
 </section>
+
+
+<!-- QUICK ACTIONS -->
+
+<div class="quick">
+
+<button onclick="show('transfer')">
+  <span class="quickIcon">↗</span>
+  <b>Transfer</b>
+</button>
+
+<button onclick="show('bills')">
+  <span class="quickIcon">▤</span>
+  <b>Pay Bills</b>
+</button>
+
+<button onclick="show('deposit')">
+  <span class="quickIcon">↓</span>
+  <b>Deposit</b>
+</button>
+
+<button onclick="show('more')">
+  <span class="quickIcon">•••</span>
+  <b>More</b>
+</button>
+
+</div>
+
+
+<!-- SPENDING -->
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>Spending Overview</b>
+  <button>This Month⌄</button>
+</div>
+
+<div class="spendingBody">
+
+<div class="donut">
+  <div class="donutInner">
+    <b>$2,832</b>
+    <small>Total Spent</small>
+  </div>
+</div>
+
+<div class="legend">
+
+<div>
+  <i class="dot blue"></i>
+  Shopping
+  <b>$962</b>
+</div>
+
+<div>
+  <i class="dot green"></i>
+  Food & Dining
+  <b>$584</b>
+</div>
+
+<div>
+  <i class="dot yellow"></i>
+  Transport
+  <b>$448</b>
+</div>
+
+<div>
+  <i class="dot red"></i>
+  Bills
+  <b>$420</b>
+</div>
+
+<div>
+  <i class="dot purple"></i>
+  Entertainment
+  <b>$418</b>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- TRANSACTIONS -->
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>Recent Transactions</b>
+  <button onclick="show('transactions')">
+    View All
+  </button>
+</div>
+
+<div class="transaction">
+  <div class="transactionIcon">🛒</div>
+  <div class="transactionInfo">
+    <b>Whole Foods Market</b>
+    <small>Groceries · Today</small>
+  </div>
+  <strong class="transactionAmount negative">
+    -$68.24
+  </strong>
+</div>
+
+<div class="transaction">
+  <div class="transactionIcon">💵</div>
+  <div class="transactionInfo">
+    <b>Direct Deposit</b>
+    <small>Salary · Yesterday</small>
+  </div>
+  <strong class="transactionAmount positive">
+    +$2,500.00
+  </strong>
+</div>
+
+<div class="transaction">
+  <div class="transactionIcon">☕</div>
+  <div class="transactionInfo">
+    <b>Starbucks</b>
+    <small>Coffee · Aug 21</small>
+  </div>
+  <strong class="transactionAmount negative">
+    -$5.45
+  </strong>
+</div>
+
+</section>
+
+
+<!-- SECURITY -->
+
+<div class="securityBanner">
+
+<div class="secCircle">🔒</div>
+
+<div class="secText">
+  <b>Secure Your Account</b>
+  <small>Complete your profile verification</small>
+</div>
+
+<button class="verify" onclick="show('profile')">
+  Verify Now
+</button>
+
+</div>
+
+
+<!-- SERVICES -->
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>Services</b>
+  <button>View All ›</button>
+</div>
+
+<div class="servicesGrid">
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">▣</span>
+  <b>Airtime</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">⌁</span>
+  <b>Data</b>
+</button>
+
+<button class="service" onclick="show('bills')">
+  <span class="serviceIcon">ϟ</span>
+  <b>Electricity</b>
+</button>
+
+<button class="service" onclick="show('bills')">
+  <span class="serviceIcon">▤</span>
+  <b>TV</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">⌁</span>
+  <b>Internet</b>
+</button>
+
+<button class="service" onclick="show('savings')">
+  <span class="serviceIcon">🐷</span>
+  <b>Savings</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">🏦</span>
+  <b>Loan Center</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">♢</span>
+  <b>Insurance</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">▣</span>
+  <b>Gift Card</b>
+</button>
+
+<button class="service" onclick="show('more')">
+  <span class="serviceIcon">•••</span>
+  <b>More</b>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SAVINGS -->
+
+<div class="savingsBanner">
+
+<div class="pig">🐷</div>
+
+<div class="savingText">
+  <b>Start Fixed Savings with CashFlow</b>
+  <small>
+    Earn up to <strong style="color:#16d49c">10%</strong>
+    interest on your savings.
+  </small>
+</div>
+
+<button class="start" onclick="show('savings')">
+  Start Saving ›
+</button>
+
+</div>
+
+</main>
+</section>
+
+
+<!-- ================= TRANSFER ================= -->
+
+<section id="transfer" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>Pay & Transfer</h2>
+  <button>⚙</button>
+</div>
+
+<div class="tabs">
+  <button class="selected">Send Money</button>
+  <button>To Bank</button>
+  <button onclick="show('bills')">Pay Bills</button>
+</div>
+
+<form onsubmit="transfer(event)">
+
+<div class="transferBox">
+<label>Recipient</label>
+
+<div class="inputRow">
+  👥
+  <select required>
+    <option value="">Select recipient</option>
+    <option>Junior McHenry</option>
+    <option>Sophie Okoro</option>
+    <option>Alex Cooper</option>
+    <option>Bright Bank PLC</option>
+  </select>
+</div>
+</div>
+
+
+<div class="transferBox">
+<label>Amount</label>
+
+<div class="inputRow">
+  $
+  <input
+    type="number"
+    placeholder="Enter amount"
+    min="1"
+    required
+  >
+  <small>USD</small>
+</div>
+</div>
+
+
+<div class="transferBox">
+<label>Memo <small>(Optional)</small></label>
+
+<input
+  type="text"
+  placeholder="Add a note"
+>
+</div>
+
+<button class="primary">
+  Review Transfer
+</button>
+
+</form>
+
+
+<section class="card recipients">
+
+<div class="cardTitle">
+  <b>Recent Recipients</b>
+  <button>View All</button>
+</div>
+
+
+<div class="recipient">
+  <div class="recipientAvatar">JM</div>
+
+  <div class="recipientInfo">
+    <b>Junior McHenry</b>
+    <small>+1 (555) 123-4567</small>
+  </div>
+
+  <span class="recipientArrow">›</span>
+</div>
+
+
+<div class="recipient">
+  <div class="recipientAvatar">SO</div>
+
+  <div class="recipientInfo">
+    <b>Sophie Okoro</b>
+    <small>+1 (555) 123-4567</small>
+  </div>
+
+  <span class="recipientArrow">›</span>
+</div>
+
+
+<div class="recipient">
+  <div class="recipientAvatar">AC</div>
+
+  <div class="recipientInfo">
+    <b>Alex Cooper</b>
+    <small>+1 (555) 123-4567</small>
+  </div>
+
+  <span class="recipientArrow">›</span>
+</div>
+
+</section>
+
+<p class="muted center">
+  🛡️ All transactions are encrypted and protected
+  with bank-grade security.
+</p>
+
+</main>
+</section>
+
+
+<!-- ================= ACCOUNTS ================= -->
+
+<section id="accounts" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <h2>Accounts</h2>
+  <button>＋</button>
+</div>
+
+<div class="account">
+
+<span>Cashflow Checking</span>
+
+<strong>$8,542.68</strong>
+
+<small>•••• 4821</small>
+
+</div>
+
+
+<div class="account secondary">
+
+<span>Cashflow Savings</span>
+
+<strong>$3,210.00</strong>
+
+<small>•••• 9044</small>
+
+</div>
+
+
+<button class="outline">
+  ＋ Add account
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= TRANSACTIONS ================= -->
+
+<section id="transactions" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>Transactions</h2>
+  <button>⌕</button>
+</div>
+
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>Transaction History</b>
+  <button>Filter</button>
+</div>
+
+
+<div class="transaction">
+  <div class="transactionIcon">🛒</div>
+  <div class="transactionInfo">
+    <b>Whole Foods Market</b>
+    <small>Groceries · Today</small>
+  </div>
+  <strong class="transactionAmount negative">
+    -$68.24
+  </strong>
+</div>
+
+
+<div class="transaction">
+  <div class="transactionIcon">💵</div>
+  <div class="transactionInfo">
+    <b>Direct Deposit</b>
+    <small>Salary · Yesterday</small>
+  </div>
+  <strong class="transactionAmount positive">
+    +$2,500.00
+  </strong>
+</div>
+
+
+<div class="transaction">
+  <div class="transactionIcon">☕</div>
+  <div class="transactionInfo">
+    <b>Starbucks</b>
+    <small>Coffee · Aug 21</small>
+  </div>
+  <strong class="transactionAmount negative">
+    -$5.45
+  </strong>
+</div>
+
+
+<div class="transaction">
+  <div class="transactionIcon">N</div>
+  <div class="transactionInfo">
+    <b>Netflix</b>
+    <small>Subscription · Aug 20</small>
+  </div>
+  <strong class="transactionAmount negative">
+    -$15.49
+  </strong>
+</div>
+
+
+<div class="transaction">
+  <div class="transactionIcon">↔</div>
+  <div class="transactionInfo">
+    <b>Transfer from Savings</b>
+    <small>Internal transfer · Aug 19</small>
+  </div>
+  <strong class="transactionAmount positive">
+    +$300.00
+  </strong>
+</div>
+
+</section>
+
+</main>
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section id="profile" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <h2>Profile</h2>
+  <button>⚙</button>
+</div>
+
+<div class="profile">
+
+<div class="bigAvatar">A</div>
+
+<h2>Alex Johnson</h2>
+
+<p>alex@example.com</p>
+
+</div>
+
+
+<button class="menu">
+  <span>Personal information</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Security & privacy</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Notifications</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>App preferences</span>
+  <b>›</b>
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= SAVINGS ================= -->
+
+<section id="savings" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>Savings</h2>
+  <button>＋</button>
+</div>
+
+<div class="account">
+
+<span>Cashflow Savings</span>
+
+<strong>$3,210.00</strong>
+
+<small>•••• 9044</small>
+
+</div>
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>My Savings Goal</b>
+  <button>Manage</button>
+</div>
+
+<div style="padding:20px">
+
+<b>Emergency Fund</b>
+
+<div style="
+height:10px;
+background:#172c47;
+border-radius:20px;
+margin:15px 0;
+overflow:hidden">
+
+<div style="
+width:64%;
+height:100%;
+background:#168cff">
+</div>
+
+</div>
+
+<small class="muted">
+$3,210 of $5,000
+</small>
+
+</div>
+
+</section>
+
+<button class="primary" onclick="alert('Demo: Savings goal created')">
+  + Create Savings Goal
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= BILLS ================= -->
+
+<section id="bills" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>Pay Bills</h2>
+  <button>＋</button>
+</div>
+
+<div class="quick">
+
+<button>
+<span class="quickIcon">ϟ</span>
+<b>Electricity</b>
+</button>
+
+<button>
+<span class="quickIcon">▣</span>
+<b>TV</b>
+</button>
+
+<button>
+<span class="quickIcon">⌁</span>
+<b>Internet</b>
+</button>
+
+<button>
+<span class="quickIcon">▤</span>
+<b>Other</b>
+</button>
+
+</div>
+
+<section class="card">
+
+<div class="cardTitle">
+  <b>Upcoming Bills</b>
+</div>
+
+<div class="transaction">
+  <div class="transactionIcon">ϟ</div>
+
+  <div class="transactionInfo">
+    <b>Electricity</b>
+    <small>Due Sep 8</small>
+  </div>
+
+  <strong>$85.00</strong>
+</div>
+
+<div class="transaction">
+  <div class="transactionIcon">▣</div>
+
+  <div class="transactionInfo">
+    <b>Internet</b>
+    <small>Due Sep 12</small>
+  </div>
+
+  <strong>$65.00</strong>
+</div>
+
+</section>
+
+<button class="primary" onclick="alert('Demo: Bill payment')">
+  Pay a Bill
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= MORE ================= -->
+
+<section id="more" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>More</h2>
+  <button>⚙</button>
+</div>
+
+<button class="menu">
+  <span>Cards</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Loans</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Insurance</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Gift Cards</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Help Center</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>Security Center</span>
+  <b>›</b>
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= DEPOSIT ================= -->
+
+<section id="deposit" class="page">
+
+<main>
+
+<div class="pageHeader">
+  <button onclick="show('dashboard')">←</button>
+  <h2>Deposit</h2>
+  <button>?</button>
+</div>
+
+<div class="simpleIcon">💰</div>
+
+<h2 class="center">
+  Add Money
+</h2>
+
+<p class="muted center">
+  Choose how you'd like to add money to your
+  Cashflowbank demo account.
+</p>
+
+<br>
+
+<button class="menu">
+  <span>🏦 Bank Transfer</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>💳 Debit Card</span>
+  <b>›</b>
+</button>
+
+<button class="menu">
+  <span>▣ Direct Deposit</span>
+  <b>›</b>
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="nav">
+
+<button id="navHome" onclick="show('dashboard')" class="active">
+  <span class="navIcon">⌂</span>
+  Home
+</button>
+
+<button onclick="show('accounts')">
+  <span class="navIcon">▣</span>
+  Accounts
+</button>
+
+<button onclick="show('transfer')">
+  <span class="navIcon">↗</span>
+  Pay
+</button>
+
+<button onclick="show('savings')">
+  <span class="navIcon">▱</span>
+  Budget
+</button>
+
+<button onclick="show('more')">
+  <span class="navIcon">☰</span>
+  More
+</button>
+
+</nav>
+
+</div>
+
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* ===============================
+   LOADING SCREEN
+================================ */
 
-const DEFAULT_STATE = {
-  balance:2478.60,
+let progress=0;
 
-  transactions:[
-    {
-      name:"Grocery Store",
-      date:"Today • 10:42 AM",
-      amount:-86.42,
-      icon:"🛒"
-    },
-    {
-      name:"Salary Deposit",
-      date:"Yesterday • 8:15 AM",
-      amount:3250,
-      icon:"💼"
-    },
-    {
-      name:"Electricity",
-      date:"Sep 2 • 2:30 PM",
-      amount:-124.75,
-      icon:"⚡"
-    },
-    {
-      name:"Coffee Shop",
-      date:"Sep 2 • 9:21 AM",
-      amount:-8.50,
-      icon:"☕"
-    }
-  ]
-};
+const loadingTimer=setInterval(()=>{
 
-let state = JSON.parse(
-  localStorage.getItem("cashflow_demo_state")
-) || DEFAULT_STATE;
+progress+=2;
 
-let pendingTransfer = null;
+document.getElementById("progressBar").style.width=
+progress+"%";
 
-/*
-  Demo PIN.
+document.getElementById("percent").innerText=
+progress+"%";
 
-  This is deliberately only a prototype value.
-  It is not suitable for real financial authentication.
-*/
-const DEMO_PIN = "1234";
+if(progress>=100){
 
-/* =========================
-   HELPERS
-========================= */
+clearInterval(loadingTimer);
 
-function money(value){
-  return new Intl.NumberFormat("en-US",{
-    style:"currency",
-    currency:"USD"
-  }).format(value);
-}
+setTimeout(()=>{
 
-function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g,function(c){
-    return {
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[c];
-  });
-}
+document.getElementById("loading").style.display="none";
 
-function saveState(){
-  localStorage.setItem(
-    "cashflow_demo_state",
-    JSON.stringify(state)
-  );
-}
+show("login");
 
-/* =========================
-   START
-========================= */
-
-window.addEventListener("load",function(){
-
-  setTimeout(function(){
-
-    document.getElementById("loading")
-      .classList.add("hidden");
-
-    if(localStorage.getItem("cashflow_logged_in")==="true"){
-
-      document.getElementById("app")
-        .classList.remove("hidden");
-
-      render();
-
-    }else{
-
-      document.getElementById("loginScreen")
-        .classList.remove("hidden");
-
-    }
-
-  },1000);
-
-});
-
-/* =========================
-   LOGIN
-========================= */
-
-document.getElementById("loginForm")
-.addEventListener("submit",function(e){
-
-  e.preventDefault();
-
-  localStorage.setItem(
-    "cashflow_logged_in",
-    "true"
-  );
-
-  document.getElementById("loginScreen")
-    .classList.add("hidden");
-
-  document.getElementById("app")
-    .classList.remove("hidden");
-
-  render();
-
-});
-
-/* =========================
-   RENDER
-========================= */
-
-function render(){
-
-  document.getElementById("balance")
-    .textContent=money(state.balance);
-
-  renderTransactions();
+},400);
 
 }
 
-function renderTransactions(){
+},30);
 
-  const list =
-    document.getElementById("transactionList");
 
-  if(!list) return;
-
-  list.innerHTML =
-    state.transactions.map(function(tx){
-
-      const positive=tx.amount>=0;
-
-      return `
-        <div class="transaction">
-
-          <div class="tx-left">
-
-            <div class="tx-icon">
-              ${escapeHTML(tx.icon)}
-            </div>
-
-            <div>
-              <div class="tx-name">
-                ${escapeHTML(tx.name)}
-              </div>
-
-              <div class="tx-date">
-                ${escapeHTML(tx.date)}
-              </div>
-            </div>
-
-          </div>
-
-          <div class="${positive ? "plus":"minus"}">
-            ${positive ? "+" : ""}
-            ${money(tx.amount)}
-          </div>
-
-        </div>
-      `;
-
-    }).join("");
-
-}
-
-/* =========================
+/* ===============================
    PAGE NAVIGATION
-========================= */
+================================ */
 
-function showPage(name){
+function show(page){
 
-  const pages=[
-    "dashboard",
-    "transfer",
-    "transactions",
-    "cards",
-    "profile",
-    "success"
-  ];
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
 
-  pages.forEach(function(page){
+const target=document.getElementById(page);
 
-    const el=document.getElementById(
-      page==="dashboard"
-      ? "dashboard"
-      : page+"Page"
-    );
+if(target){
+target.classList.add("active");
+}
 
-    if(el){
-      el.classList.toggle(
-        "hidden",
-        page!==name
-      );
-    }
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-  });
+document.querySelectorAll(".nav button").forEach(b=>{
+b.classList.remove("active");
+});
 
-  document.querySelectorAll(".nav-btn")
-    .forEach(function(btn){
-
-      btn.classList.toggle(
-        "active",
-        btn.dataset.page===name
-      );
-
-    });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+if(page==="dashboard"){
+document.getElementById("navHome").classList.add("active");
+}
 
 }
 
-/* =========================
-   TRANSFER
-========================= */
 
-function reviewTransfer(){
+/* ===============================
+   LOGIN DEMO
+================================ */
 
-  const recipient =
-    document.getElementById("recipient")
-      .value.trim();
+function login(event){
 
-  const account =
-    document.getElementById("recipientAccount")
-      .value.trim();
+event.preventDefault();
 
-  const amount =
-    Number(
-      document.getElementById("transferAmount")
-        .value
-    );
-
-  const memo =
-    document.getElementById("memo")
-      .value.trim();
-
-  if(!recipient){
-    showNotice("Please enter a recipient.");
-    return;
-  }
-
-  if(!account){
-    showNotice("Please enter an account number.");
-    return;
-  }
-
-  if(!amount || amount<=0){
-    showNotice("Please enter a valid amount.");
-    return;
-  }
-
-  if(amount>state.balance){
-    showNotice("Insufficient prototype balance.");
-    return;
-  }
-
-  pendingTransfer={
-    recipient:recipient,
-    account:account,
-    amount:amount,
-    memo:memo
-  };
-
-  document.getElementById("pinInput").value="";
-
-  updatePinDots();
-
-  document.getElementById("pinModal")
-    .classList.remove("hidden");
-
-  setTimeout(function(){
-    document.getElementById("pinInput").focus();
-  },100);
+show("dashboard");
 
 }
 
-/* =========================
-   PIN
-========================= */
 
-function updatePinDots(){
+/* ===============================
+   SIGN UP DEMO
+================================ */
 
-  const value=
-    document.getElementById("pinInput").value;
+function signup(event){
 
-  for(let i=1;i<=4;i++){
+event.preventDefault();
 
-    document.getElementById("dot"+i)
-      .classList.toggle(
-        "filled",
-        value.length>=i
-      );
-
-  }
-
-}
-
-function closePin(){
-
-  document.getElementById("pinModal")
-    .classList.add("hidden");
-
-  pendingTransfer=null;
-
-}
-
-function confirmTransfer(){
-
-  if(!pendingTransfer){
-    closePin();
-    return;
-  }
-
-  const pin =
-    document.getElementById("pinInput")
-      .value;
-
-  if(pin.length!==4){
-    showNotice("Enter your 4-digit payment PIN.");
-    return;
-  }
-
-  /*
-    Prototype-only PIN validation.
-  */
-  if(pin!==DEMO_PIN){
-
-    showNotice(
-      "Incorrect prototype PIN. Demo PIN: 1234"
-    );
-
-    return;
-  }
-
-  const transfer=pendingTransfer;
-
-  state.balance -= transfer.amount;
-
-  const now=new Date();
-
-  const date=now.toLocaleString(
-    "en-US",
-    {
-      month:"short",
-      day:"numeric",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-  const reference=
-    "CF-"+Date.now()
-      .toString()
-      .slice(-8);
-
-  state.transactions.unshift({
-
-    name:"Transfer to "+transfer.recipient,
-
-    date:date,
-
-    amount:-transfer.amount,
-
-    icon:"↑"
-
-  });
-
-  saveState();
-
-  document.getElementById("pinModal")
-    .classList.add("hidden");
-
-  pendingTransfer=null;
-
-  document.getElementById("receiptAmount")
-    .textContent=money(transfer.amount);
-
-  document.getElementById("receiptReference")
-    .textContent=reference;
-
-  document.getElementById("receiptRecipient")
-    .textContent=transfer.recipient;
-
-  document.getElementById("receiptAccount")
-    .textContent=
-      "•••• "+transfer.account.slice(-4);
-
-  document.getElementById("receiptDate")
-    .textContent=date;
-
-  document.getElementById("receiptBalance")
-    .textContent=money(state.balance);
-
-  document.getElementById("successText")
-    .textContent=
-      "Your prototype transfer of "+
-      money(transfer.amount)+
-      " to "+
-      transfer.recipient+
-      " was completed.";
-
-  document.getElementById("recipient")
-    .value="";
-
-  document.getElementById("recipientAccount")
-    .value="";
-
-  document.getElementById("transferAmount")
-    .value="";
-
-  document.getElementById("memo")
-    .value="";
-
-  render();
-
-  showPage("success");
-
-}
-
-/* =========================
-   ADD MONEY
-========================= */
-
-function addMoney(){
-
-  const amount=prompt(
-    "Enter prototype amount to add:"
-  );
-
-  if(amount===null) return;
-
-  const value=Number(amount);
-
-  if(!value || value<=0){
-
-    showNotice(
-      "Please enter a valid amount."
-    );
-
-    return;
-  }
-
-  state.balance += value;
-
-  state.transactions.unshift({
-
-    name:"Prototype Deposit",
-
-    date:"Just now",
-
-    amount:value,
-
-    icon:"＋"
-
-  });
-
-  saveState();
-
-  render();
-
-  showNotice(
-    money(value)+
-    " added to the prototype balance."
-  );
-
-}
-
-/* =========================
-   NOTICES
-========================= */
-
-function showNotice(message){
-
-  const modal=document.createElement("div");
-
-  modal.className="modal";
-
-  modal.innerHTML=`
-
-    <div class="modal-box">
-
-      <div class="pin-lock">✓</div>
-
-      <h2>${escapeHTML(message)}</h2>
-
-      <button
-        class="primary"
-        onclick="this.closest('.modal').remove()"
-      >
-        OK
-      </button>
-
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-}
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout(){
-
-  localStorage.removeItem(
-    "cashflow_logged_in"
-  );
-
-  location.reload();
-
-}
-
-/* =========================
-   KEYBOARD PIN
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(e){
-
-    if(e.key==="Escape"){
-
-      const modal=
-        document.getElementById("pinModal");
-
-      if(modal &&
-         !modal.classList.contains("hidden")){
-
-        closePin();
-
-      }
-
-    }
-
-  }
+alert(
+"Demo account created successfully."
 );
+
+show("dashboard");
+
+}
+
+
+/* ===============================
+   TRANSFER DEMO
+================================ */
+
+function transfer(event){
+
+event.preventDefault();
+
+alert(
+"Demo only — no real transfer was made."
+);
+
+}
+
+
+/* ===============================
+   INITIAL SCREEN
+================================ */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+
+});
 
 </script>
 
