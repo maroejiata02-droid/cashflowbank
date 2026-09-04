@@ -3,143 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - CASHFLOW BANK</title>
-<link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CASHFLOW BANK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #6e8b3d, #2b1055);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+:root{--purple1:#6e8b3d; --purple2:#2b1055; --purpleBtn:#7c3aed; --purpleBtn2:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
+.hid{display:none!important}
+
+/* SAME BACKGROUND FOR BOTH */
+.bg-gradient{
+  background: linear-gradient(135deg, var(--purple1), var(--purple2));
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
 }
 
-.login-form {
-  background: #ffffff;
-  padding: 32px;
-  border-radius: 20px;
-  max-width: 420px;
-  width: 90%;
-  border: 1px solid #e0e0e7;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
+/* 1. LOADING PAGE */
+.loading-box{background:#fff;border-radius:20px;padding:32px;max-width:420px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.loading-logo{font-size:32px;font-weight:900;margin-bottom:20px}
+.loading-logo span:first-child{color:var(--purpleBtn)} .loading-logo span:last-child{color:var(--purple2)}
+.loading-box h2{font-size:24px;margin-bottom:8px}
+.loading-box p{color:#6b7280;margin-bottom:24px;font-size:14px}
+.features{text-align:left;margin:20px 0}
+.feature{display:flex;gap:12px;margin-bottom:14px}
+.feature-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--purpleBtn),var(--purpleBtn2));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.btn-purple{width:100%;padding:14px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer}
+.btn-purple:hover{transform:translateY(-2px)}
+.login-link{margin-top:16px;font-size:14px}
 
-.form-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 8px;
-}
+/* 2. LOGIN PAGE - SAME AS YOUR PIC */
+.login-form{background:#ffffff;padding:32px;border-radius:20px;max-width:420px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+.form-title{font-size:28px;font-weight:700;color:#111827;margin-bottom:8px}
+.form-subtitle{font-size:14px;color:#6b7280;margin-bottom:24px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.input-wrap{position:relative}
+.form-input{width:100%;padding:12px 40px 12px 40px;border:1px solid #d1d5db;border-radius:10px;font-size:14px}
+.form-input:focus{border-color:var(--purpleBtn);box-shadow:0 0 0 3px rgba(124,58,237,0.15);outline:none}
+.input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#9ca3af}
+.eye-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer}
 
-.form-subtitle {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 24px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.input-wrap {
-  position: relative;
-}
-
-.form-input {
-  width: 100%;
-  padding: 12px 40px 12px 40px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-size: 14px;
-  background: #fff;
-}
-
-.form-input:focus {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
-  outline: none;
-}
-
-.input-icon {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-}
-
-.eye-icon {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  cursor: pointer;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, #7c3aed, #a855f7);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
-}
+/* 3. DASHBOARD - SIMPLE */
+.dashboard{padding:20px;color:#fff;background:linear-gradient(135deg, var(--purple1), var(--purple2));min-height:100vh}
 </style>
 </head>
 <body>
 
-<form class="login-form" onsubmit="event.preventDefault(); alert('Login Successful!')">
-  <h2 class="form-title">Login</h2>
-  <p class="form-subtitle">Welcome back! Login to your account.</p>
-
-  <div class="form-group">
-    <label class="form-label">Full Name</label>
-    <div class="input-wrap">
-      <span class="input-icon">👤</span>
-      <input type="text" class="form-input" placeholder="John Doe" required>
+<!-- 1. LOADING PAGE -->
+<div id="loading" class="bg-gradient">
+  <div class="loading-box">
+    <div class="loading-logo"><span>CASH</span><span>FLOW</span></div>
+    <h2>Welcome to Cashflow</h2>
+    <p>Your secure digital banking solution</p>
+    
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <div><b>Bank Level Security</b><br><small style="color:#6b7280">Your money is safe with us</small></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <div><b>Instant Transfers</b><br><small style="color:#6b7280">Send money in seconds</small></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div><b>Track Expenses</b><br><small style="color:#6b7280">Manage all your spending</small></div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label class="form-label">Email Address</label>
-    <div class="input-wrap">
-      <span class="input-icon">✉️</span>
-      <input type="email" class="form-input" placeholder="john@example.com" required>
+    <button class="btn-purple" onclick="show('login')">Get Started →</button>
+    <div class="login-link">Already have an account? <a onclick="show('login')" style="color:var(--purpleBtn);font-weight:700;cursor:pointer">Login</a></div>
+  </div>
+</div>
+
+<!-- 2. LOGIN PAGE -->
+<div id="login" class="bg-gradient hid">
+  <form class="login-form" onsubmit="event.preventDefault(); show('dash')">
+    <h2 class="form-title">Login</h2>
+    <p class="form-subtitle">Welcome back! Login to your account.</p>
+
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <div class="input-wrap">
+        <span class="input-icon">👤</span>
+        <input type="text" class="form-input" placeholder="Sun" value="Sun" required>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label class="form-label">Password</label>
-    <div class="input-wrap">
-      <span class="input-icon">🔒</span>
-      <input type="password" class="form-input" placeholder="••••" required>
-      <span class="eye-icon">👁️</span>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <div class="input-wrap">
+        <span class="input-icon">✉️</span>
+        <input type="email" class="form-input" placeholder="test@test.com" value="test@test.com" required>
+      </div>
     </div>
-  </div>
 
-  <button type="submit" class="submit-btn">Login</button>
-</form>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-wrap">
+        <span class="input-icon">🔒</span>
+        <input type="password" class="form-input" placeholder="••••" value="1234" required>
+        <span class="eye-icon">👁️</span>
+      </div>
+    </div>
 
+    <button type="submit" class="btn-purple">Login</button>
+  </form>
+</div>
+
+<!-- 3. DASHBOARD -->
+<div id="dash" class="dashboard hid">
+  <h1>Welcome Sun 👋</h1>
+  <p>Balance: $8,182.80</p>
+  <button class="btn-purple" style="margin-top:20px" onclick="show('loading')">Logout</button>
+</div>
+
+<script>
+function show(id){
+  ['loading','login','dash'].forEach(x=>document.getElementById(x).classList.add('hid'));
+  document.getElementById(id).classList.remove('hid');
+}
+</script>
 </body>
 </html>
