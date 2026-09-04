@@ -4,68 +4,205 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CASHFLOW BANK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-body{background:linear-gradient(180deg,#6e8b3d 0%,#2b1055 100%);min-height:100vh;color:#fff;font-family:Arial;margin:0}
-.page{padding:20px;max-width:500px;margin:0 auto}
-.hid{display:none}
-.btn{width:100%;padding:16px;background:#7c3aed;border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;margin-top:10px}
-.input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid #fff;border-radius:12px;color:#fff;margin-bottom:10px}
-.card{background:rgba(255,255,255,0.15);border-radius:20px;padding:20px;margin:20px 0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
+body{background:linear-gradient(180deg,#6e8b3d 0%,#2b1055 100%);min-height:100vh;color:#fff}
+.page{padding:20px;max-width:500px;margin:0 auto;height:100vh}
+.hid{display:none!important}
+
+/* LOADING PAGE - PERFECT */
+.welcome-page{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:center;
+  padding:60px 20px 40px 20px
+}
+.logo{font-size:56px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
+.sub{font-size:18px;font-weight:600;opacity:0.95;margin-bottom:8px}
+.desc{font-size:14px;opacity:0.8;line-height:1.6;margin-bottom:30px}
+
+.feature{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:rgba(255,255,255,0.12);
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:12px;
+  text-align:left;
+  font-size:15px;
+  font-weight:500;
+  border:1px solid rgba(255,255,255,0.1)
+}
+.feature i{color:#22c55e;width:20px;height:20px}
+
+.stats{
+  display:flex;
+  justify-content:space-around;
+  margin:30px 0;
+  background:rgba(255,255,255,0.08);
+  padding:20px;
+  border-radius:16px
+}
+.stat h3{font-size:22px;font-weight:900}
+.stat small{opacity:0.8;font-size:12px}
+
+.btn-primary{
+  width:100%;
+  padding:18px;
+  background:#fff;
+  border:none;
+  border-radius:14px;
+  color:#2b1055;
+  font-weight:900;
+  font-size:17px;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2)
+}
+.btn-outline{
+  width:100%;
+  padding:18px;
+  background:transparent;
+  border:2px solid #fff;
+  border-radius:14px;
+  color:#fff;
+  font-weight:900;
+  font-size:17px;
+  cursor:pointer
+}
+
+/* OTHER PAGES SIMPLE */
+.card{background:rgba(255,255,255,0.15);border-radius:20px;padding:24px;margin-top:60px}
+.input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
+.btn{width:100%;padding:16px;background:#7c3aed;border:none;border-radius:12px;color:#fff;font-weight:800;font-size:16px}
 </style>
 </head>
 <body>
 
-<div id="p0" class="page">
-<h1 style="text-align:center;font-size:40px">CASHFLOW</h1>
-<button class="btn" onclick="go('p1')">Create Account</button>
-<button class="btn" onclick="go('p2')" style="background:transparent;border:2px solid #fff">Login</button>
+<!-- PAGE 0: LOADING/WELCOME - FIXED -->
+<div id="page0" class="page welcome-page">
+  <div>
+    <div class="logo">CASHFLOW</div>
+    <p class="sub">Your Trusted Digital Bank for the Future</p>
+    <p class="desc">Bank smarter, save faster, and send money instantly. Join over 1 million users who trust Cashflow.</p>
+
+    <div class="feature"><i data-lucide="shield-check"></i> <span><b>Bank-Level Security</b> - 256-bit encryption</span></div>
+    <div class="feature"><i data-lucide="zap"></i> <span><b>Instant Transfers</b> - Send in seconds</span></div>
+    <div class="feature"><i data-lucide="clock"></i> <span><b>No Hidden Fees</b> - What you see is what you pay</span></div>
+    <div class="feature"><i data-lucide="globe"></i> <span><b>Global Access</b> - Bank from anywhere</span></div>
+
+    <div class="stats">
+      <div class="stat"><h3>1M+</h3><small>Users</small></div>
+      <div class="stat"><h3>$2B+</h3><small>Transacted</small></div>
+      <div class="stat"><h3>4.9★</h3><small>Rating</small></div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
+    <button class="btn-outline" onclick="showPage('page2')" style="margin-top:12px">Login</button>
+  </div>
 </div>
 
-<div id="p1" class="page hid"><div class="card">
-<h2>Create Account</h2>
-<input class="input" id="n" placeholder="Full Name">
-<input class="input" id="e" placeholder="Email">
-<input class="input" id="pw" type="password" placeholder="Password">
-<button class="btn" onclick="reg()">Create</button>
-</div></div>
-
-<div id="p2" class="page hid"><div class="card">
-<h2>Login</h2>
-<input class="input" id="em" value="john@email.com">
-<input class="input" id="pa" type="password" value="123456">
-<button class="btn" onclick="log()">Login</button>
-</div></div>
-
-<div id="p3" class="page hid">
-<h2 id="gr">Hello</h2>
-<div class="card">
-<small>Balance</small>
-<h1 id="bal">$3,501,439.22</h1>
-</div>
-<button class="btn" onclick="go('p4')">Send Money</button>
-<button class="btn" onclick="out()" style="background:red">Logout</button>
-<div id="tx"></div>
+<!-- PAGE 1: REGISTER -->
+<div id="page1" class="page hid">
+  <div class="card">
+    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer">← Back</div>
+    <h2>Create Account</h2>
+    <input class="input" type="text" id="regName" placeholder="Full Name">
+    <input class="input" type="email" id="regEmail" placeholder="Email">
+    <input class="input" type="password" id="regPassword" placeholder="Password">
+    <button class="btn" onclick="register()">Create Account</button>
+  </div>
 </div>
 
-<div id="p4" class="page hid"><div class="card">
-<h2>Send Money</h2>
-<h3 id="bal2">$3,501,439.22</h3>
-<input class="input" id="rec" placeholder="Recipient">
-<input class="input" id="amt" type="number" placeholder="Amount">
-<button class="btn" onclick="send()">Send Now</button>
-</div></div>
+<!-- PAGE 2: LOGIN -->
+<div id="page2" class="page hid">
+  <div class="card">
+    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer">← Back</div>
+    <h2>Login</h2>
+    <input class="input" type="email" id="email" value="john@email.com">
+    <input class="input" type="password" id="password" value="123456">
+    <button class="btn" onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- PAGE 3: DASHBOARD -->
+<div id="page3" class="page hid">
+  <h2 id="greeting">Hello</h2>
+  <div class="card">
+    <small>Available Balance</small>
+    <h1 id="balance">$3,501,439.22</h1>
+  </div>
+  <button class="btn" onclick="showPage('page4')">Send Money</button>
+  <button class="btn" onclick="logout()" style="background:red;margin-top:10px">Logout</button>
+</div>
+
+<!-- PAGE 4: SEND -->
+<div id="page4" class="page hid">
+  <div class="card">
+    <div onclick="showPage('page3')" style="margin-bottom:16px;cursor:pointer">← Back</div>
+    <h2>Send Money</h2>
+    <h3 id="balance2">$3,501,439.22</h3>
+    <input class="input" type="text" id="recipient" placeholder="Recipient Name">
+    <input class="input" type="number" id="amount" placeholder="Amount">
+    <button class="btn" onclick="sendMoney()">Send Now</button>
+  </div>
+</div>
 
 <script>
-let bal=3501439.22; let tx=[{n:"Bonus",a:2000000,t:"+"}];
-function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.add('hid'));document.getElementById(id).classList.remove('hid')}
-function fmt(x){return "$"+x.toLocaleString()}
-function reg(){let name=document.getElementById('n').value;localStorage.setItem('user',name);document.getElementById('gr').innerText="Hello "+name;go('p3');show();}
-function log(){let name=document.getElementById('em').value.split('@')[0];localStorage.setItem('user',name);document.getElementById('gr').innerText="Hello "+name;go('p3');show();}
-function out(){localStorage.removeItem('user');go('p0')}
-function show(){document.getElementById('bal').innerText=fmt(bal);document.getElementById('bal2').innerText=fmt(bal);let d=document.getElementById('tx'); d.innerHTML="";tx.forEach(x=>{d.innerHTML+=`<div class="card">${x.n} <b>${x.t}${fmt(x.a)}</b></div>`})}
-function send(){let r=document.getElementById('rec').value;let a=parseFloat(document.getElementById('amt').value);if(a>bal){alert("No money")}else{bal=bal-a; tx.unshift({n:"To "+r,a:a,t:"-"});show(); alert("Sent!"); go('p3');}}
-if(localStorage.getItem('user')){document.getElementById('gr').innerText="Hello "+localStorage.getItem('user');go('p3');show();}
+lucide.createIcons();
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hid'));
+  document.getElementById(id).classList.remove('hid');
+}
+
+let balance = 3501439.22;
+
+function formatMoney(n){ return "$" + n.toLocaleString('en-US', {minimumFractionDigits: 2}); }
+
+function register(){
+  const name = document.getElementById('regName').value;
+  localStorage.setItem('cashflow_user', name);
+  document.getElementById('greeting').innerText = "Hello " + name;
+  document.getElementById('balance').innerText = formatMoney(balance);
+  document.getElementById('balance2').innerText = formatMoney(balance);
+  showPage('page3');
+}
+
+function login(){
+  const name = document.getElementById('email').value.split('@')[0];
+  localStorage.setItem('cashflow_user', name);
+  document.getElementById('greeting').innerText = "Hello " + name;
+  document.getElementById('balance').innerText = formatMoney(balance);
+  document.getElementById('balance2').innerText = formatMoney(balance);
+  showPage('page3');
+}
+
+function logout(){ localStorage.removeItem('cashflow_user'); showPage('page0'); }
+
+function sendMoney(){
+  const amount = parseFloat(document.getElementById('amount').value);
+  if(amount > balance){ alert("No money!"); return; }
+  balance = balance - amount;
+  alert("Sent!");
+  document.getElementById('balance').innerText = formatMoney(balance);
+  document.getElementById('balance2').innerText = formatMoney(balance);
+  showPage('page3');
+}
+
+if(localStorage.getItem('cashflow_user')){
+  document.getElementById('greeting').innerText = "Hello " + localStorage.getItem('cashflow_user');
+  document.getElementById('balance').innerText = formatMoney(balance);
+  document.getElementById('balance2').innerText = formatMoney(balance);
+  showPage('page3');
+} else {
+  showPage('page0');
+}
 </script>
 </body>
 </html>
