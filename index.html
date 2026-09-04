@@ -14,24 +14,26 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .hid{display:none}
 
-/* LOADING PAGE */
-.loading-page{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;padding:30px}
-.loading-logo{font-size:48px;font-weight:900;margin-bottom:16px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.loading-text{font-size:16px;opacity:0.9;margin-bottom:30px;line-height:1.6}
-.features{width:100%;margin-top:20px}
+/* WELCOME PAGE */
+.welcome-page{display:flex;flex-direction:column;justify-content:space-between;height:100vh;text-align:center;padding:40px 20px}
+.welcome-top{margin-top:60px}
+.welcome-logo{font-size:52px;font-weight:900;margin-bottom:16px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.welcome-text{font-size:16px;opacity:0.9;margin-bottom:30px;line-height:1.6}
+.features{width:100%;margin:30px 0}
 .feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:14px;border-radius:12px;margin-bottom:10px;text-align:left}
 .feature i{color:var(--green)}
-.spinner{width:40px;height:40px;border:4px solid rgba(255,255,255,0.2);border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite;margin-top:20px}
-@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.welcome-bottom{display:flex;flex-direction:column;gap:12px}
+.btn-primary{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
+.btn-outline{width:100%;padding:16px;background:transparent;border:2px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 
-/* LOGIN PAGE */
-.login-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
+/* LOGIN / REGISTER PAGE */
+.auth-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
 .logo{text-align:center;margin-bottom:24px;font-size:32px;font-weight:800}
-.login-box h2{text-align:center;margin-bottom:8px;font-size:24px}
-.login-box p{text-align:center;opacity:0.8;margin-bottom:24px;font-size:14px}
 .input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
 .input::placeholder{color:rgba(255,255,255,0.5)}
 .btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-top:8px}
+.link{text-align:center;margin-top:16px;font-size:14px;opacity:0.8}
+.link span{color:#a855f7;font-weight:700;cursor:pointer}
 
 /* DASHBOARD */
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
@@ -56,38 +58,66 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 </head>
 <body>
 
-<!-- PAGE 0: LOADING / SPLASH -->
-<div id="page0" class="page loading-page">
-  <div class="loading-logo">CASHFLOW BANK</div>
-  <p class="loading-text">Your Trusted Digital Bank for the Future</p>
+<!-- PAGE 0: WELCOME SCREEN -->
+<div id="page0" class="page welcome-page">
+  <div class="welcome-top">
+    <div class="welcome-logo">CASHFLOW</div>
+    <p class="welcome-text">Your Trusted Digital Bank for the Future</p>
 
-  <div class="features">
-    <div class="feature"><i data-lucide="shield-check"></i> <b>Safe & Secure</b> - Bank level encryption</div>
-    <div class="feature"><i data-lucide="clock"></i> <b>Available 24/7</b> - Send money anytime</div>
-    <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b> - Money moves in seconds</div>
-    <div class="feature"><i data-lucide="globe"></i> <b>Trusted Worldwide</b> - Over 1M+ customers</div>
+    <div class="features">
+      <div class="feature"><i data-lucide="shield-check"></i> <b>Safe & Secure</b> - Bank level encryption</div>
+      <div class="feature"><i data-lucide="clock"></i> <b>Available 24/7</b> - Send money anytime, anywhere</div>
+      <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b> - Money moves in seconds</div>
+      <div class="feature"><i data-lucide="globe"></i> <b>Trusted Worldwide</b> - Over 1M+ customers</div>
+    </div>
   </div>
 
-  <div class="spinner"></div>
-  <small style="opacity:0.7;margin-top:12px">Loading your account...</small>
+  <div class="welcome-bottom">
+    <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
+    <button class="btn-outline" onclick="showPage('page2')">Login</button>
+  </div>
 </div>
 
-<!-- PAGE 1: LOGIN -->
+<!-- PAGE 1: CREATE ACCOUNT -->
 <div id="page1" class="page hid">
-  <div class="login-box">
+  <div class="auth-box">
+    <div class="back" onclick="showPage('page0')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i></div>
     <div class="logo">CASHFLOW</div>
-    <h2>Welcome Back</h2>
-    <p>Login to access your account</p>
+    <h2 style="text-align:center;margin-bottom:8px">Create Account</h2>
+    <p style="text-align:center;opacity:0.8;margin-bottom:24px;font-size:14px">Join us in 30 seconds</p>
+    
+    <label>Full Name</label>
+    <input class="input" type="text" id="regName" placeholder="John Doe">
+    <label>Email</label>
+    <input class="input" type="email" id="regEmail" placeholder="john@email.com">
+    <label>Password</label>
+    <input class="input" type="password" id="regPassword" placeholder="Create password">
+    
+    <button class="btn" onclick="register()">Create Account</button>
+    <div class="link">Already have an account? <span onclick="showPage('page2')">Login</span></div>
+  </div>
+</div>
+
+<!-- PAGE 2: LOGIN -->
+<div id="page2" class="page hid">
+  <div class="auth-box">
+    <div class="back" onclick="showPage('page0')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i></div>
+    <div class="logo">CASHFLOW</div>
+    <h2 style="text-align:center;margin-bottom:8px">Welcome Back</h2>
+    <p style="text-align:center;opacity:0.8;margin-bottom:24px;font-size:14px">Login to access your account</p>
+    
     <label>Email</label>
     <input class="input" type="email" id="email" placeholder="john@email.com" value="john@email.com">
     <label>Password</label>
     <input class="input" type="password" id="password" placeholder="Enter password" value="123456">
+    
     <button class="btn" onclick="login()">Login</button>
+    <div class="link">Don't have an account? <span onclick="showPage('page1')">Create Account</span></div>
   </div>
 </div>
 
-<!-- PAGE 2: DASHBOARD -->
-<div id="page2" class="page hid">
+<!-- PAGE 3: DASHBOARD -->
+<div id="page3" class="page hid">
   <div class="topbar">
     <div>
       <h2 id="greeting">Hello, John 👋</h2>
@@ -107,7 +137,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
   </div>
 
   <div class="actions">
-    <div class="action" onclick="showPage('page3')"><i data-lucide="send"></i><br><span>Send</span></div>
+    <div class="action" onclick="showPage('page4')"><i data-lucide="send"></i><br><span>Send</span></div>
     <div class="action" onclick="alert('Request Money')"><i data-lucide="download"></i><br><span>Request</span></div>
     <div class="action" onclick="alert('Top Up')"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
     <div class="action" onclick="alert('More')"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
@@ -117,11 +147,11 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
   <div class="history-box" id="history"></div>
 </div>
 
-<!-- PAGE 3: SEND MONEY -->
-<div id="page3" class="page hid">
+<!-- PAGE 4: SEND MONEY -->
+<div id="page4" class="page hid">
   <div class="send-card">
     <div class="header">
-      <div class="back" onclick="showPage('page2')"><i data-lucide="arrow-left"></i></div>
+      <div class="back" onclick="showPage('page3')"><i data-lucide="arrow-left"></i></div>
       <h2>Send Money</h2>
     </div>
     <div class="balance-preview">
@@ -141,15 +171,11 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 <script>
 lucide.createIcons();
 
-// AUTO GO TO LOGIN AFTER 3 SECONDS
-setTimeout(() => {
-  if(localStorage.getItem('cashflow_user')){
-    showPage('page2');
-    renderHistory();
-  } else {
-    showPage('page1');
-  }
-}, 3000);
+// CHECK IF ALREADY LOGGED IN
+if(localStorage.getItem('cashflow_user')){
+  showPage('page3');
+  renderHistory();
+}
 
 // LOAD DATA
 let balance = localStorage.getItem('cashflow_balance')? parseFloat(localStorage.getItem('cashflow_balance')) : 3501439.22;
@@ -165,6 +191,19 @@ function saveData(){
   localStorage.setItem('cashflow_tx', JSON.stringify(transactions));
 }
 
+function register(){
+  const name = document.getElementById('regName').value;
+  const email = document.getElementById('regEmail').value;
+  const password = document.getElementById('regPassword').value;
+  if(!name ||!email ||!password){ alert("Fill all fields"); return; }
+  
+  localStorage.setItem('cashflow_user', name);
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
+  showPage('page3');
+  renderHistory();
+  alert("Account Created Successfully!");
+}
+
 function login(){
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -172,14 +211,14 @@ function login(){
   const name = email.split('@')[0];
   localStorage.setItem('cashflow_user', name);
   document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
-  showPage('page2');
+  showPage('page3');
   renderHistory();
 }
 
 function logout(){
   if(confirm("Logout?")){
     localStorage.removeItem('cashflow_user');
-    location.reload(); // go back to loading
+    showPage('page0');
   }
 }
 
@@ -214,7 +253,7 @@ function sendMoney(){
   saveData();
   renderHistory();
   alert(`$${amount.toLocaleString()} Sent to ${recipient} successfully!`);
-  showPage('page2');
+  showPage('page3');
 }
 
 function resetBalance(){
@@ -231,7 +270,8 @@ function showPage(id){
   document.getElementById('page0').classList.add('hid');
   document.getElementById('page1').classList.add('hid');
   document.getElementById('page2').classList.add('hid');
-  document.getElementById('page3').classList.add('hid');
+  document.getElementById('page3').class lots.add('hid');
+  document.getElementById('page4').classList.add('hid');
   document.getElementById(id).classList.remove('hid');
 }
 </script>
