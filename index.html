@@ -4,61 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CASHFLOW BANK</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d1117;--card:#161b22;--card2:#21262d;--text:#c9d1d9;--muted:#8b949e;--blue:#007bff;--green:#10b981;--red:#ef4444;--border:#30363d;--orange:#f97316}
+:root{--bg:#f5f5f5;--card:#ffffff;--text:#000;--muted:#8a8a8e;--blue:#007bff;--green:#10b981;--red:#ef4444;--purple:#4c1d95;--orange:#f97316}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
 body{background:var(--bg);color:var(--text)}
 .hid{display:none!important}
 
-/* 1. LOADING PAGE */
+/* 1. LOADING */
 .loading-page{min-height:100vh;padding:24px;padding-bottom:70px;background:#fff8f0;color:#000}
 .logo{font-size:24px;font-weight:900;margin-bottom:24px}
 .logo .cashflow{color:#f97316}.logo .bank{color:#475569}
 .feature{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px}
-.feature h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px}
-.feature p{font-size:13px;color:#64748b}
 .cta{background:#f97316;border-radius:12px;padding:20px;text-align:center;color:#fff;margin-top:16px}
 .btn-white{background:#fff;color:#f97316;border:none;padding:10px 20px;border-radius:50px;font-weight:700;cursor:pointer}
-.login-link{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:14px;text-align:center;font-size:14px;border-top:1px solid #e2e8f0}
-.login-link a{color:#f97316;font-weight:700;cursor:pointer}
+.login-link{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:14px;text-align:center}
 
-/* 2. NEW LOGIN PAGE - LIKE YOUR PIC */
+/* 2. LOGIN */
 .login-page{background:#0d1117;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.login-form{display:flex;flex-direction:column;gap:10px;max-width:300px;width:100%;margin:0 auto;padding:20px;background:#1e1e1e;border-radius:8px;color:#fff}
+.login-form{display:flex;flex-direction:column;gap:10px;max-width:300px;width:100%;padding:20px;background:#1e1e1e;border-radius:8px;color:#fff}
 .login-form h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:10px}
-.login-form input{padding:10px;border:none;border-radius:5px;background:#2d2d2d;color:#fff;font-size:14px}
-.login-form input::placeholder{color:#8b949e}
-.login-form button{padding:10px;border:none;border-radius:5px;background:#007bff;color:#fff;cursor:pointer;font-weight:700;font-size:15px;margin-top:5px}
-.login-form button:hover{background:#0056b3}
+.login-form input{padding:10px;border:none;border-radius:5px;background:#2d2d2d;color:#fff}
+.login-form button{padding:10px;border:none;border-radius:5px;background:#007bff;color:#fff;cursor:pointer;font-weight:700}
 .signup{text-align:center;font-size:13px;color:#8b949e;margin-top:10px}
-.signup a{color:#007bff;text-decoration:none;font-weight:600;cursor:pointer}
+.signup a{color:#007bff;font-weight:600;cursor:pointer}
 
-/* 3. DASHBOARD */
-.top{display:flex;justify-content:space-between;padding:14px 16px;background:#010409;border-bottom:1px solid var(--border)}
-.dashboard{padding:16px;padding-bottom:100px}
-.balance{background:linear-gradient(135deg, #2563eb 0%, #1e40af 100%);padding:20px;border-radius:16px;margin-bottom:12px}
-.balance h1{font-size:26px;font-weight:800;margin-top:6px}
-.limit{background:var(--card2);padding:10px 14px;border-radius:8px;margin-bottom:20px;font-size:13px}
-.limit span{color:var(--orange);font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.btn{background:var(--card2);padding:14px;border-radius:12px;text-align:center;cursor:pointer;border:1px solid var(--border)}
-.tx{background:var(--card);border-radius:12px;padding:8px;border:1px solid var(--border)}
-.tx-row{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--border)}
-.debit{color:var(--red);font-weight:700}
-.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:12px;border-top:1px solid var(--border)}
-.nav div{color:var(--muted);font-size:12px;cursor:pointer}
-.nav .active{color:var(--blue)}
+/* 3. NEW DASHBOARD - LIKE YOUR PIC */
+.header{padding:16px;background:var(--bg)}
+.header h1{font-size:24px;font-weight:800}
+.header p{color:var(--muted);font-size:14px}
+.top-icons{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-bottom:10px}
+.bell{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+.bell::after{content:'';width:8px;height:8px;background:red;border-radius:50%;position:absolute;top:6px;right:6px}
+.avatar{width:40px;height:40px;border-radius:50%;background:#333}
+
+.card-wrapper{padding:0 16px}
+.balance-card{background:linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);border-radius:20px;padding:20px;color:white;position:relative;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;font-size:12px;letter-spacing:2px}
+.card-balance{font-size:12px;opacity:0.8;margin-bottom:4px}
+.card-amount{font-size:28px;font-weight:800;margin-bottom:20px}
+.card-bottom{display:flex;justify-content:space-between;font-size:12px}
+.card-name{opacity:0.9}
+.add-card{position:absolute;right:16px;bottom:-18px;background:#000;color:#fff;border:none;padding:10px 16px;border-radius:50px;display:flex;align-items:center;gap:6px;font-weight:600;cursor:pointer}
+
+.actions{display:flex;justify-content:space-around;padding:30px 16px 20px}
+.action-item{text-align:center;cursor:pointer}
+.action-icon{width:50px;height:50px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.action-item span{font-size:12px;color:#555}
+
+.expenses{padding:0 16px 100px}
+.exp-header{display:flex;justify-content:space-between;margin-bottom:16px}
+.exp-header h3{font-weight:700}
+.exp-header a{color:var(--blue);font-size:13px;font-weight:600;cursor:pointer}
+.exp-item{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:14px;border-radius:12px;margin-bottom:10px}
+.exp-left{display:flex;align-items:center;gap:12px}
+.exp-icon{width:40px;height:40px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.exp-info div:first-child{font-weight:600;font-size:14px}
+.exp-info div:last-child{font-size:12px;color:var(--muted)}
+.exp-amount{font-weight:700}
+
+.bottom-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#000;border-radius:50px;padding:6px;display:flex;gap:4px}
+.nav-btn{padding:10px 18px;border-radius:50px;color:#fff;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.nav-btn.active{background:#fff;color:#000}
 
 /* 4. TRANSFER + MODAL */
 .page{padding:20px}
-.page input{width:100%;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);margin-bottom:16px}
+.page input{width:100%;padding:14px;background:var(--card);border:1px solid #ddd;border-radius:8px;margin-bottom:16px}
 .btn-blue{width:100%;padding:14px;background:var(--blue);color:white;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer}
-.btn-blue:disabled{background:#30363d}
 .modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:999}
 .modal-box{background:var(--card);border-radius:20px;padding:24px;width:90%;max-width:400px;text-align:center}
 .pins{display:flex;gap:10px;justify-content:center;margin:20px 0}
-.pins input{width:50px;height:50px;text-align:center;font-size:24px;background:#0f172a;border:2px solid var(--border);border-radius:12px;color:white}
+.pins input{width:50px;height:50px;text-align:center;font-size:24px;background:#f5f5f5;border:2px solid #ddd;border-radius:12px}
 </style>
 </head>
 <body>
@@ -88,10 +104,10 @@ body{background:var(--bg);color:var(--text)}
   <div class="feature"><h3>24/7 Support</h3><p>Our support team is always here to help you.</p></div>
   <div class="feature"><h3>Best Rates</h3><p>We offer the best exchange rates with zero hidden fees.</p></div>
   <div class="cta"><h2>Ready to Get Started?</h2><button class="btn-white" onclick="show('dash')">Get Started →</button></div>
-  <div class="login-link">Already have an account? <a onclick="show('login')">Login</a></div>
+  <div class="login-link">Already have an account? <a onclick="show('login')" style="color:#f97316;font-weight:700">Login</a></div>
 </div>
 
-<!-- 2. LOGIN - NEW DESIGN -->
+<!-- 2. LOGIN -->
 <div id="login" class="login-page hid">
   <form class="login-form" onsubmit="event.preventDefault(); show('dash')">
     <h2>Login</h2>
@@ -102,27 +118,58 @@ body{background:var(--bg);color:var(--text)}
   </form>
 </div>
 
-<!-- 3. DASHBOARD -->
-<div id="dash" class="hid">
-  <div class="top"><div>☰</div><div>CASHFLOW BANK</div><div onclick="show('profile')">👤</div></div>
-  <div class="dashboard">
-    <div>Good morning, <b>Sun 👋</b></div>
-    <div class="balance"><small>Available Balance</small><h1 id="bal">USD 7,865,200</h1></div>
-    <div class="limit">Daily Transfer Limit: <span id="used">$25,000</span> / $1,000,000</div>
-    <div style="font-weight:700;margin:20px 0 10px">Quick Actions</div>
-    <div class="grid">
-      <div class="btn" onclick="show('transfer')">Transfer</div>
-      <div class="btn" onclick="show('history')">History</div>
-      <div class="btn" onclick="show('profile')">Profile</div>
+<!-- 3. NEW DASHBOARD -->
+<div id="dash" class="hid" style="background:var(--bg);min-height:100vh">
+  <div class="header">
+    <div class="top-icons">
+      <div class="bell">🔔</div>
+      <div class="avatar"></div>
     </div>
-    <div style="font-weight:700;margin:20px 0 10px">Recent Transactions</div>
-    <div class="tx" id="recent"></div>
+    <h1>Hello Sun</h1>
+    <p>Let's save your money.</p>
   </div>
-  <div class="nav">
-    <div class="active" onclick="show('dash')">Home</div>
-    <div onclick="show('transfer')">Transfer</div>
-    <div onclick="show('history')">History</div>
-    <div onclick="show('profile')">Profile</div>
+
+  <div class="card-wrapper">
+    <div class="balance-card">
+      <div class="card-top">
+        <div>•••• •••• 2585</div>
+      </div>
+      <div class="card-balance">Balance</div>
+      <div class="card-amount" id="bal">$8,182.80</div>
+      <div class="card-bottom">
+        <div>
+          <div style="opacity:0.7">Name</div>
+          <div class="card-name">dailyflutterui</div>
+        </div>
+        <div>
+          <div style="opacity:0.7">Exp Date</div>
+          <div>08/26</div>
+        </div>
+      </div>
+      <button class="add-card" onclick="alert('Add Card')">+ Add Card</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="action-item" onclick="show('transfer')"><div class="action-icon">↗</div><span>Send</span></div>
+    <div class="action-item"><div class="action-icon">↙</div><span>Request</span></div>
+    <div class="action-item"><div class="action-icon">💳</div><span>TopUp</span></div>
+    <div class="action-item"><div class="action-icon">⊞</div><span>More</span></div>
+  </div>
+
+  <div class="expenses">
+    <div class="exp-header">
+      <h3>Manage Expenses</h3>
+      <a onclick="show('history')">View All</a>
+    </div>
+    <div id="expList"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-btn active">🏠 Home</div>
+    <div class="nav-btn" onclick="show('history')">📄</div>
+    <div class="nav-btn">📊</div>
+    <div class="nav-btn" onclick="show('profile')">👤</div>
   </div>
 </div>
 
@@ -138,25 +185,25 @@ body{background:var(--bg);color:var(--text)}
   <input id="accNo" placeholder="Enter account number">
   <label>Account holder:</label>
   <input id="accName" placeholder="Enter account name">
-  <button class="btn-blue" id="sendBtn" onclick="startTransfer()">Continue to next step</button>
+  <button class="btn-blue" onclick="startTransfer()">Continue to next step</button>
   <p id="err" style="color:var(--red);text-align:center;margin-top:10px"></p>
 </div>
 
 <!-- 5. HISTORY -->
-<div id="history" class="page hid">
+<div id="history" class="page hid" style="background:var(--bg);min-height:100vh">
   <div onclick="show('dash')">← Back</div>
   <h2 style="margin:20px 0">Transaction History</h2>
-  <div class="tx" id="allTx"></div>
+  <div id="allTx"></div>
 </div>
 
 <!-- 6. PROFILE -->
 <div id="profile" class="page hid">
   <div onclick="show('dash')">← Back</div>
   <div style="text-align:center;padding:30px 0">
-    <div style="width:80px;height:80px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin:0 auto">S</div>
+    <div style="width:80px;height:80px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin:0 auto;color:#fff">S</div>
     <h2>Sun</h2>
   </div>
-  <div style="background:var(--card2);border-radius:12px">
+  <div style="background:var(--card);border-radius:12px">
     <div style="padding:16px" onclick="show('changePin')">Change Payment PIN</div>
     <div style="padding:16px" onclick="resetAll()">Reset Balance + Limit</div>
   </div>
@@ -173,16 +220,18 @@ body{background:var(--bg);color:var(--text)}
 </div>
 
 <script>
-let balance = 7865200;
+let balance = 8182.80;
 let DAILY = 1000000;
 let PIN = localStorage.getItem('pin') || '0000';
 let today = new Date().toDateString();
 let daily = JSON.parse(localStorage.getItem('daily')) || {date:today, used:25000};
 if(daily.date != today) daily = {date:today, used:0};
 let txs = JSON.parse(localStorage.getItem('txs')) || [
-  {ref:"CFB/DR6XWWE3", amt:-10000, date:"Today"},
-  {ref:"CFB/XW1TUM3U", amt:-5000, date:"Today"},
-  {ref:"CFB/1KFASCH6", amt:-5000, date:"Yesterday"}
+  {name:"House Rent", icon:"🏠", amt:300.00, date:"10:00 am 15 March, 2025"},
+  {name:"Internet Bill", icon:"📶", amt:85.00, date:"12:00 pm 15 March, 2025"},
+  {name:"Groceries", icon:"🛒", amt:240.00, date:"09:30 am 14 March, 2025"},
+  {name:"Transport", icon:"🚌", amt:280.00, date:"08:15 am 14 March, 2025"},
+  {name:"Coffee & Snacks", icon:"☕", amt:24.90, date:"11:20 am 13 March, 2025"}
 ];
 let tempTransfer = {};
 
@@ -193,15 +242,22 @@ function show(id){
 }
 
 function updateUI(){
-  document.getElementById('bal').innerText = 'USD ' + balance.toLocaleString();
-  document.getElementById('used').innerText = '$' + daily.used.toLocaleString();
-  let left = DAILY - daily.used;
-  document.getElementById('sendBtn').disabled = left <= 0;
-  document.getElementById('sendBtn').innerText = left <= 0 ? 'Daily Limit Reached' : 'Continue to next step';
+  document.getElementById('bal').innerText = '$' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
   
   let html = '';
-  txs.slice(0,5).forEach(t=> html += `<div class="tx-row"><div>${t.ref}<br><small style="color:var(--muted)">${t.date}</small></div><div class="debit">-${Math.abs(t.amt).toLocaleString()} USD</div></div>`);
-  document.getElementById('recent').innerHTML = html;
+  txs.slice(0,5).forEach(t=> {
+    html += `<div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-icon">${t.icon}</div>
+        <div class="exp-info">
+          <div>${t.name}</div>
+          <div>${t.date}</div>
+        </div>
+      </div>
+      <div class="exp-amount">$${t.amt.toFixed(2)}</div>
+    </div>`;
+  });
+  document.getElementById('expList').innerHTML = html;
   document.getElementById('allTx').innerHTML = html;
 }
 
@@ -213,7 +269,6 @@ function startTransfer(){
   
   if(!amt || !name || !acc){document.getElementById('err').innerText = 'Fill all fields';return}
   if(amt > balance){document.getElementById('err').innerText = 'Insufficient balance';return}
-  if(amt > DAILY - daily.used){document.getElementById('err').innerText = 'Exceeds daily limit';return}
   
   tempTransfer = {amt:amt, name:name};
   document.getElementById('pinText').innerText = `Send $${amt.toLocaleString()} to ${name}?`;
@@ -227,11 +282,9 @@ function doTransfer(){
   if(pin != PIN){alert('Wrong PIN! Default is 0000');return}
   
   balance -= tempTransfer.amt;
-  daily.used += tempTransfer.amt;
-  let newTx = {ref:'CFB/'+Math.random().toString(36).substr(2,8).toUpperCase(), amt:-tempTransfer.amt, date:'Just now'};
+  let newTx = {name:"Transfer to "+tempTransfer.name, icon:"↗", amt:tempTransfer.amt, date:"Just now"};
   txs.unshift(newTx);
   
-  localStorage.setItem('daily',JSON.stringify(daily));
   localStorage.setItem('txs',JSON.stringify(txs));
   
   alert('Transfer Successful!');
@@ -254,8 +307,7 @@ function changePin(){
 
 function resetAll(){
   if(confirm('Reset everything?')){
-    balance = 7865200;
-    daily = {date:today, used:0};
+    balance = 8182.80;
     txs = [];
     localStorage.clear();
     updateUI();
