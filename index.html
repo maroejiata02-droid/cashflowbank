@@ -12,64 +12,62 @@
   --purple2:#2b1055; 
   --purpleBtn:#7c3aed; 
   --purpleBtn2:#a855f7;
+  --greenBtn:#22c55e;
+  --red:#ef4444;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
-
-/* FIX 1: BODY NOW HAS THE GRADIENT */
 body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
-
 .hid{display:none!important}
-.dashboard{padding:20px;max-width:500px;margin:0 auto}
 
-/* FIX 2: CARD IS NOW GLASS LIKE DASHBOARD */
+/* DASHBOARD */
+.dashboard{padding:20px;max-width:500px;margin:0 auto}
+.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center;cursor:pointer}
+
+/* SEND MONEY - GLASS CARD */
 .send-card{
-  background:rgba(255,255,255,0.15); /* glass effect */
+  background:rgba(255,255,255,0.15);
   backdrop-filter:blur(10px);
-  color:#fff; /* text now white */
+  color:#fff;
   border-radius:24px;
   padding:24px;
   border:1px solid rgba(255,255,255,0.2)
 }
-.header{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:#fff}
-.header h2{font-size:20px;font-weight:800}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .back-arrow{cursor:pointer;padding:8px;border-radius:10px}
 .back-arrow:hover{background:rgba(255,255,255,0.1)}
-
-.balance-preview{
-  background:linear-gradient(135deg,#4f46e5,#7c3aed);
-  color:#fff;border-radius:16px;padding:16px;margin-bottom:20px
-}
-
-/* INPUTS NOW GLASS TOO */
-.input-group{margin-bottom:16px}
-.input-group label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);display:block;margin-bottom:6px}
-.input-box{position:relative}
+.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px;padding:16px;margin-bottom:20px}
+.input-box{position:relative;margin-bottom:16px}
 .input-box input{
   width:100%;padding:14px 14px 14px 44px;
-  background:rgba(255,255,255,0.1); /* transparent input */
+  background:rgba(255,255,255,0.1);
   border:1.5px solid rgba(255,255,255,0.3);
   border-radius:12px;font-size:15px;color:#fff
 }
-.input-box input::placeholder{color:rgba(255,255,255,0.5)}
 .input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#fff;width:20px;height:20px}
-
-/* FEE BOX GLASS */
-.fee-box{background:rgba(255,255,255,0.1);border-radius:12px;padding:12px;margin:16px 0;color:#fff}
-.fee-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
-
-.pin-dots{display:flex;gap:10px;justify-content:center;margin:16px 0}
-.dot{width:14px;height:14px;border:2px solid rgba(255,255,255,0.5);border-radius:50%}
-.dot.filled{background:#fff;border-color:#fff}
-
+.fee-box{background:rgba(255,255,255,0.1);border-radius:12px;padding:12px;margin:16px 0}
 .btn-purple{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 
-<!-- SEND MONEY PAGE - NOW SAME COLOR AS DASHBOARD -->
-<div id="transfer" class="dashboard">
+<!-- 1. DASHBOARD -->
+<div id="dash" class="dashboard">
+  <div class="balance-card">
+    <small>Available Balance</small>
+    <h1>$3,501,439.22</h1>
+  </div>
+  <div class="actions">
+    <div class="action" onclick="show('transfer')"><i data-lucide="send"></i><br><span>Send</span></div>
+  </div>
+</div>
+
+<!-- 2. SEND MONEY -->
+<div id="transfer" class="dashboard hid">
   <div class="send-card">
     <div class="header">
+      <!-- FIX: ADDED onclick="show('dash')" BACK -->
       <div class="back-arrow" onclick="show('dash')">
         <i data-lucide="arrow-left"></i>
       </div>
@@ -77,63 +75,46 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
     </div>
 
     <div class="balance-preview">
-      <small style="opacity:0.8">Available Balance</small>
+      <small>Available Balance</small>
       <h3>$3,501,439.22</h3>
     </div>
 
-    <div class="input-group">
-      <label>Recipient Name</label>
-      <div class="input-box">
-        <i data-lucide="user" class="input-icon"></i>
-        <input id="accName" type="text" placeholder="Michael Brown">
-      </div>
+    <label>Recipient Name</label>
+    <div class="input-box">
+      <i data-lucide="user" class="input-icon"></i>
+      <input type="text" value="Michael Brown">
     </div>
 
-    <div class="input-group">
-      <label>Account Number</label>
-      <div class="input-box">
-        <i data-lucide="credit-card" class="input-icon"></i>
-        <input id="accNum" type="text" placeholder="0123456789" maxlength="10">
-      </div>
+    <label>Account Number</label>
+    <div class="input-box">
+      <i data-lucide="credit-card" class="input-icon"></i>
+      <input type="text" value="0123456789">
     </div>
 
-    <div class="input-group">
-      <label>Amount ($)</label>
-      <div class="input-box">
-        <i data-lucide="dollar-sign" class="input-icon"></i>
-        <input id="amount" type="number" placeholder="0.00" oninput="calcFee()">
-      </div>
+    <label>Amount ($)</label>
+    <div class="input-box">
+      <i data-lucide="dollar-sign" class="input-icon"></i>
+      <input type="number" value="0.00">
     </div>
 
     <div class="fee-box">
-      <div class="fee-row"><span>Amount</span><span id="feeAmt">$0.00</span></div>
-      <div class="fee-row"><span>Transfer Fee</span><span id="fee">$0.00</span></div>
-      <div class="fee-row" style="font-weight:700;border-top:1px solid rgba(255,255,255,0.2);padding-top:8px;margin-top:8px">
-        <span>Total Debit</span><span id="total">$0.00</span>
-      </div>
+      <div style="display:flex;justify-content:space-between"><span>Amount</span><span>$0.00</span></div>
+      <div style="display:flex;justify-content:space-between"><span>Transfer Fee</span><span>$0.00</span></div>
+      <div style="display:flex;justify-content:space-between;font-weight:700"><span>Total Debit</span><span>$0.00</span></div>
     </div>
 
-    <label style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.8)">Enter 4-Digit PIN</label>
-    <div class="pin-dots" id="pinDots">
-      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-    </div>
-
-    <button class="btn-purple">
-      <i data-lucide="send"></i> Send Now
-    </button>
+    <button class="btn-purple">Send Now</button>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
-function calcFee(){
-  let amt = parseFloat(document.getElementById('amount').value) || 0;
-  let fee = amt * 0.002;
-  if(fee < 1 && amt > 0) fee = 1;
-  let total = amt + fee;
-  document.getElementById('feeAmt').innerText = '$' + amt.toLocaleString(undefined,{minimumFractionDigits:2});
-  document.getElementById('fee').innerText = '$' + fee.toLocaleString(undefined,{minimumFractionDigits:2});
-  document.getElementById('total').innerText = '$' + total.toLocaleString(undefined,{minimumFractionDigits:2});
+
+// FIX: FULL SHOW FUNCTION TO SWITCH PAGES
+function show(id){
+  document.getElementById('dash').classList.add('hid');
+  document.getElementById('transfer').classList.add('hid');
+  document.getElementById(id).classList.remove('hid');
 }
 </script>
 </body>
