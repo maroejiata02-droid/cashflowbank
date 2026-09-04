@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CashFlow Bank — Prototype</title>
+<title>CashFlow Bank</title>
 
 <style>
 *{
@@ -30,7 +30,86 @@ button{
   display:none!important;
 }
 
-/* LOGIN */
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loadingScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#fff,#fff4f4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity:.4s ease;
+}
+
+.loading-box{
+  text-align:center;
+}
+
+.loading-logo{
+  width:78px;
+  height:78px;
+  border-radius:20px;
+  background:#e51b23;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:44px;
+  font-weight:900;
+  margin:0 auto 20px;
+  box-shadow:0 12px 30px #e51b2330;
+  animation:logoPulse 1.4s infinite;
+}
+
+.loading-name{
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.loading-name span{
+  color:#e51b23;
+}
+
+.loading-text{
+  color:#777;
+  font-size:14px;
+  margin-bottom:22px;
+}
+
+.loading-spinner{
+  width:34px;
+  height:34px;
+  border:4px solid #eee;
+  border-top-color:#e51b23;
+  border-radius:50%;
+  margin:auto;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes logoPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.05);
+  }
+}
+
+/* =========================
+   LOGIN
+========================= */
+
 .login{
   min-height:100vh;
   display:grid;
@@ -119,6 +198,17 @@ button{
   background:#c9151c;
 }
 
+.secondary{
+  width:100%;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#333;
+  padding:13px;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
 .notice{
   margin-top:16px;
   padding:12px;
@@ -130,7 +220,10 @@ button{
   line-height:1.5;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .header{
   height:72px;
   background:#fff;
@@ -151,6 +244,11 @@ button{
   gap:15px;
 }
 
+.notification{
+  cursor:pointer;
+  font-size:20px;
+}
+
 .avatar{
   width:40px;
   height:40px;
@@ -160,20 +258,28 @@ button{
   display:grid;
   place-items:center;
   font-weight:bold;
+  cursor:pointer;
 }
 
 .mobile-menu{
   display:none;
   font-size:24px;
+  cursor:pointer;
 }
 
-/* LAYOUT */
+/* =========================
+   LAYOUT
+========================= */
+
 .layout{
   display:flex;
   min-height:calc(100vh - 72px);
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
   width:245px;
   background:#fff;
@@ -195,6 +301,7 @@ button{
   margin-bottom:5px;
   color:#555;
   cursor:pointer;
+  transition:.2s;
 }
 
 .menu-item:hover{
@@ -208,11 +315,30 @@ button{
   font-weight:bold;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
 .main{
   flex:1;
   padding:32px;
   max-width:1500px;
+}
+
+.screen{
+  animation:fadeIn .2s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .welcome{
@@ -224,7 +350,10 @@ button{
   margin-bottom:7px;
 }
 
-/* BALANCE */
+/* =========================
+   BALANCE
+========================= */
+
 .balance-card{
   background:linear-gradient(135deg,#e51b23,#b90009);
   color:#fff;
@@ -232,6 +361,19 @@ button{
   padding:28px;
   min-height:205px;
   box-shadow:0 10px 25px #e51b2330;
+  position:relative;
+  overflow:hidden;
+}
+
+.balance-card:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:35px solid #ffffff15;
+  border-radius:50%;
+  right:-90px;
+  top:-100px;
 }
 
 .balance{
@@ -240,7 +382,10 @@ button{
   margin:15px 0 22px;
 }
 
-/* ACTIONS */
+/* =========================
+   ACTIONS
+========================= */
+
 .actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -258,6 +403,7 @@ button{
 
 .action:hover{
   border-color:#e51b23;
+  transform:translateY(-2px);
 }
 
 .action-icon{
@@ -277,20 +423,30 @@ button{
   font-weight:bold;
 }
 
-/* GRID */
+/* =========================
+   GRID
+========================= */
+
 .grid{
   display:grid;
   grid-template-columns:1.5fr 1fr;
   gap:24px;
 }
 
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
+
 .card{
   background:#fff;
   border:1px solid #eee;
   border-radius:17px;
   padding:24px;
   margin-bottom:24px;
+}
+
+.card h2{
+  margin-bottom:10px;
 }
 
 .card-head{
@@ -307,7 +463,10 @@ button{
   font-weight:bold;
 }
 
-/* TRANSACTIONS */
+/* =========================
+   TRANSACTIONS
+========================= */
+
 .txn{
   display:flex;
   justify-content:space-between;
@@ -356,26 +515,51 @@ button{
   font-weight:bold;
 }
 
-/* SUMMARY */
+/* =========================
+   SUMMARY
+========================= */
+
 .row{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:15px 0;
   border-bottom:1px solid #eee;
 }
 
-/* BANK CARD */
+.row:last-child{
+  border-bottom:0;
+}
+
+/* =========================
+   BANK CARD
+========================= */
+
 .bank-card{
   background:linear-gradient(135deg,#181818,#3d3d3d);
   color:#fff;
   border-radius:17px;
   padding:22px;
   min-height:170px;
+  position:relative;
+  overflow:hidden;
+}
+
+.bank-card:after{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  border:30px solid #e51b2330;
+  border-radius:50%;
+  right:-70px;
+  bottom:-90px;
 }
 
 .card-brand{
   color:#ed1c24;
   font-weight:900;
+  font-size:19px;
 }
 
 .chip{
@@ -402,21 +586,53 @@ button{
   max-width:680px;
 }
 
-/* MOBILE */
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty{
+  padding:25px 5px;
+  color:#888;
+  text-align:center;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 .bottom{
   display:none;
 }
 
 @media(max-width:900px){
-  .mobile-menu{display:block;}
-  .sidebar{display:none;}
-  .main{padding:20px 16px 90px;}
-  .actions{grid-template-columns:repeat(2,1fr);}
-  .grid{grid-template-columns:1fr;}
-  .header{padding:0 18px;}
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    padding:20px 16px 90px;
+  }
+
+  .actions{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .header{
+    padding:0 18px;
+  }
 }
 
 @media(max-width:600px){
+
   .bottom{
     position:fixed;
     display:flex;
@@ -429,410 +645,2108 @@ button{
     z-index:200;
     justify-content:space-around;
   }
+
   .bottom button{
     border:0;
     background:none;
     color:#777;
     font-size:11px;
   }
+
   .bottom button b{
     display:block;
     font-size:19px;
   }
+
   .bottom button.active{
     color:#e51b23;
   }
-  .balance{font-size:34px;}
+
+  .balance{
+    font-size:34px;
+  }
+
+  .welcome h1{
+    font-size:25px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<section id="login" class="login">
+<!-- =========================
+     INITIAL LOADING
+========================= -->
+
+<div id="loadingScreen">
+  <div class="loading-box">
+
+    <div class="loading-logo">C</div>
+
+    <div class="loading-name">
+      Cash<span>Flow</span>
+    </div>
+
+    <div class="loading-text">
+      Secure banking experience
+    </div>
+
+    <div class="loading-spinner"></div>
+
+  </div>
+</div>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="login" class="login hidden">
+
   <div class="login-box">
+
     <div class="logo">
       <div class="mark">C</div>
       Cash<span>Flow</span>
     </div>
+
     <h1>Welcome back</h1>
-    <p class="muted">Sign in to your CashFlow account.</p>
+
+    <p class="muted">
+      Sign in to your CashFlow account.
+    </p>
+
     <form id="loginForm">
+
       <div class="field">
         <label>Email</label>
-        <input id="email" type="email" autocomplete="username" required>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
       </div>
+
       <div class="field">
         <label>Password</label>
-        <input id="password" type="password" autocomplete="current-password" required>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
       </div>
-      <button class="primary" type="submit">Sign In</button>
+
+      <button class="primary" type="submit">
+        Sign In
+      </button>
+
     </form>
+
     <div class="notice">
       CashFlow is a browser-based prototype. It does not connect to real bank accounts or move real money.
     </div>
+
   </div>
+
 </section>
 
-<!-- APPLICATION -->
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
 <section id="app" class="hidden">
+
 <header class="header">
+
   <div class="header-left">
-    <div class="mobile-menu" onclick="toggleMenu()">☰</div>
-    <div class="logo"><div class="mark">C</div>Cash<span>Flow</span></div>
+
+    <div
+      class="mobile-menu"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </div>
+
+    <div class="logo">
+      <div class="mark">C</div>
+      Cash<span>Flow</span>
+    </div>
+
   </div>
+
   <div class="header-right">
-    <span>🔔</span>
-    <div class="avatar">JD</div>
+
+    <span
+      class="notification"
+      onclick="showAlert('You have no new notifications.')"
+    >
+      🔔
+    </span>
+
+    <div
+      class="avatar"
+      onclick="page('settings')"
+    >
+      JD
+    </div>
+
   </div>
+
 </header>
 
+
 <div class="layout">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
 <aside id="sidebar" class="sidebar">
-  <div class="menu-title">Menu</div>
-  <div class="menu-item active" data-page="dashboard" onclick="page('dashboard')">⌂ &nbsp; Dashboard</div>
-  <div class="menu-item" data-page="transfer" onclick="page('transfer')">↔ &nbsp; Transfer Money</div>
-  <div class="menu-item" data-page="transactions" onclick="page('transactions')">▣ &nbsp; Transactions</div>
-  <div class="menu-item" data-page="bills" onclick="page('bills')">▤ &nbsp; Bills & Payments</div>
-  <div class="menu-item" data-page="cards" onclick="page('cards')">▥ &nbsp; Cards</div>
-  <div class="menu-item" data-page="beneficiaries" onclick="page('beneficiaries')">♙ &nbsp; Beneficiaries</div>
-  <div class="menu-title" style="margin-top:25px">Account</div>
-  <div class="menu-item" data-page="settings" onclick="page('settings')">⚙ &nbsp; Settings</div>
-  <div class="menu-item" onclick="logout()">↪ &nbsp; Logout</div>
+
+  <div class="menu-title">
+    Menu
+  </div>
+
+  <div
+    class="menu-item active"
+    data-page="dashboard"
+    onclick="page('dashboard')"
+  >
+    ⌂ &nbsp; Dashboard
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="transfer"
+    onclick="page('transfer')"
+  >
+    ↔ &nbsp; Transfer Money
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="transactions"
+    onclick="page('transactions')"
+  >
+    ▣ &nbsp; Transactions
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="bills"
+    onclick="page('bills')"
+  >
+    ▤ &nbsp; Bills & Payments
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="cards"
+    onclick="page('cards')"
+  >
+    ▥ &nbsp; Cards
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="beneficiaries"
+    onclick="page('beneficiaries')"
+  >
+    ♙ &nbsp; Beneficiaries
+  </div>
+
+  <div
+    class="menu-title"
+    style="margin-top:25px"
+  >
+    Account
+  </div>
+
+  <div
+    class="menu-item"
+    data-page="settings"
+    onclick="page('settings')"
+  >
+    ⚙ &nbsp; Settings
+  </div>
+
+  <div
+    class="menu-item"
+    onclick="logout()"
+  >
+    ↪ &nbsp; Logout
+  </div>
+
 </aside>
 
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="main">
-<!-- DASHBOARD -->
-<div id="dashboard-page" class="screen">
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<div
+  id="dashboard-page"
+  class="screen"
+>
+
   <div class="welcome">
-    <h1>Good afternoon, John 👋</h1>
-    <p class="muted">Here's what's happening with your account.</p>
+
+    <h1>
+      Good afternoon, John 👋
+    </h1>
+
+    <p class="muted">
+      Here's what's happening with your account.
+    </p>
+
   </div>
+
+
   <section class="balance-card">
-    <div>AVAILABLE BALANCE</div>
-    <div id="balance" class="balance"></div>
-    <div>Checking Account •••• 4821</div>
-  </section>
-  <section class="actions">
-    <button class="action" onclick="page('transfer')"><div class="action-icon">↗</div><p>Send Money</p></button>
-    <button class="action" onclick="page('request')"><div class="action-icon">↙</div><p>Request Money</p></button>
-    <button class="action" onclick="page('bills')"><div class="action-icon">▤</div><p>Pay Bills</p></button>
-    <button class="action" onclick="page('addmoney')"><div class="action-icon">＋</div><p>Add Money</p></button>
-  </section>
-  <div class="grid">
-    <section class="card">
-      <div class="card-head">
-        <h2>Recent Transactions</h2>
-        <button class="link" onclick="page('transactions')">View All</button>
-      </div>
-      <div id="recent"></div>
-    </section>
-    <section>
-      <div class="card">
-        <h2>Account Summary</h2>
-        <div class="row"><span>Account</span><b>Checking</b></div>
-        <div class="row"><span>Status</span><b class="plus">Active</b></div>
-        <div class="row"><span>Account</span><b>•••• 4821</b></div>
-      </div>
-      <div class="bank-card">
-        <div class="card-brand">CashFlow</div>
-        <div class="chip"></div>
-        <div class="card-number">•••• •••• •••• 4821</div>
-        <div class="card-bottom"><span>JOHN DOE</span><span>PROTOTYPE</span></div>
-      </div>
-    </section>
-  </div>
-</div>
 
-<!-- TRANSFER -->
-<div id="transfer-page" class="screen hidden">
-  <div class="welcome"><h1>Transfer Money</h1><p class="muted">Record a transfer in your CashFlow prototype.</p></div>
-  <section class="card form-card">
-    <div class="notice">No real money is sent. The transaction is stored only in this browser.</div>
-    <form id="transferForm">
-      <div class="field"><label>Recipient</label><input id="recipient" required></div>
-      <div class="field"><label>Account Number</label><input id="recipientAccount" required></div>
-      <div class="field"><label>Amount</label><input id="transferAmount" type="number" min=".01" step=".01" required></div>
-      <div class="field"><label>Memo</label><input id="memo"></div>
-      <button class="primary" type="submit">Review Transfer</button>
-    </form>
-  </section>
-</div>
-
-<!-- TRANSACTIONS -->
-<div id="transactions-page" class="screen hidden">
-  <div class="welcome"><h1>Transactions</h1><p class="muted">All CashFlow prototype activity.</p></div>
-  <section class="card"><div id="allTransactions"></div></section>
-</div>
-
-<!-- REQUEST MONEY -->
-<div id="request-page" class="screen hidden">
-  <div class="welcome"><h1>Request Money</h1></div>
-  <section class="card form-card">
-    <form id="requestForm">
-      <div class="field"><label>From</label><input id="requestFrom" required></div>
-      <div class="field"><label>Amount</label><input id="requestAmount" type="number" min=".01" step=".01" required></div>
-      <button class="primary" type="submit">Create Request</button>
-    </form>
-  </section>
-</div>
-
-<!-- ADD MONEY -->
-<div id="addmoney-page" class="screen hidden">
-  <div class="welcome"><h1>Add Money</h1></div>
-  <section class="card form-card">
-    <div class="notice">This changes the local prototype balance only.</div>
-    <form id="addForm">
-      <div class="field"><label>Amount</label><input id="addAmount" type="number" min=".01" step=".01" required></div>
-      <button class="primary" type="submit">Add Prototype Funds</button>
-    </form>
-  </section>
-</div>
-
-<!-- BILLS -->
-<div id="bills-page" class="screen hidden">
-  <div class="welcome"><h1>Bills & Payments</h1></div>
-  <section class="card">
-    <div class="txn"><span>⚡ Electric Company<br><small>$124.75</small></span><button class="link" onclick="bill('Electric Company',124.75)">Pay</button></div>
-    <div class="txn"><span>🌐 Internet<br><small>$79.99</small></span><button class="link" onclick="bill('Internet',79.99)">Pay</button></div>
-    <div class="txn"><span>📱 Mobile Phone<br><small>$65.00</small></span><button class="link" onclick="bill('Mobile Phone',65)">Pay</button></div>
-  </section>
-</div>
-
-<!-- CARDS -->
-<div id="cards-page" class="screen hidden">
-  <div class="welcome"><h1>My Cards</h1></div>
-  <section class="card" style="max-width:600px">
-    <div class="bank-card">
-      <div class="card-brand">CashFlow</div>
-      <div class="chip"></div>
-      <div class="card-number">•••• •••• •••• 4821</div>
-      <div class="card-bottom"><span>JOHN DOE</span><span>PROTOTYPE</span></div>
+    <div>
+      AVAILABLE BALANCE
     </div>
-    <div class="row"><span>Status</span><b class="plus">Active</b></div>
+
+    <div
+      id="balance"
+      class="balance"
+    ></div>
+
+    <div>
+      Checking Account •••• 4821
+    </div>
+
   </section>
+
+
+  <section class="actions">
+
+    <button
+      class="action"
+      onclick="page('transfer')"
+    >
+      <div class="action-icon">↗</div>
+      <p>Send Money</p>
+    </button>
+
+    <button
+      class="action"
+      onclick="page('request')"
+    >
+      <div class="action-icon">↙</div>
+      <p>Request Money</p>
+    </button>
+
+    <button
+      class="action"
+      onclick="page('bills')"
+    >
+      <div class="action-icon">▤</div>
+      <p>Pay Bills</p>
+    </button>
+
+    <button
+      class="action"
+      onclick="page('addmoney')"
+    >
+      <div class="action-icon">＋</div>
+      <p>Add Money</p>
+    </button>
+
+  </section>
+
+
+  <div class="grid">
+
+    <section class="card">
+
+      <div class="card-head">
+
+        <h2>
+          Recent Transactions
+        </h2>
+
+        <button
+          class="link"
+          onclick="page('transactions')"
+        >
+          View All
+        </button>
+
+      </div>
+
+      <div id="recent"></div>
+
+    </section>
+
+
+    <section>
+
+      <div class="card">
+
+        <h2>
+          Account Summary
+        </h2>
+
+        <div class="row">
+          <span>Account</span>
+          <b>Checking</b>
+        </div>
+
+        <div class="row">
+          <span>Status</span>
+          <b class="plus">Active</b>
+        </div>
+
+        <div class="row">
+          <span>Account</span>
+          <b>•••• 4821</b>
+        </div>
+
+      </div>
+
+
+      <div class="bank-card">
+
+        <div class="card-brand">
+          CashFlow
+        </div>
+
+        <div class="chip"></div>
+
+        <div class="card-number">
+          •••• •••• •••• 4821
+        </div>
+
+        <div class="card-bottom">
+          <span>JOHN DOE</span>
+          <span>PROTOTYPE</span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
 </div>
 
-<!-- BENEFICIARIES -->
-<div id="beneficiaries-page" class="screen hidden">
-  <div class="welcome"><h1>Beneficiaries</h1></div>
+
+<!-- =========================
+     TRANSFER
+========================= -->
+
+<div
+  id="transfer-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Transfer Money
+    </h1>
+
+    <p class="muted">
+      Record a transfer in your CashFlow prototype.
+    </p>
+
+  </div>
+
   <section class="card form-card">
-    <form id="beneficiaryForm">
-      <div class="field"><label>Name</label><input id="benName" required></div>
-      <div class="field"><label>Account</label><input id="benAccount" required></div>
-      <button class="primary" type="submit">Add Beneficiary</button>
+
+    <div class="notice">
+      No real money is sent. The transaction is stored only in this browser.
+    </div>
+
+    <form id="transferForm">
+
+      <div class="field">
+
+        <label>
+          Recipient
+        </label>
+
+        <input
+          id="recipient"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Account Number
+        </label>
+
+        <input
+          id="recipientAccount"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Amount
+        </label>
+
+        <input
+          id="transferAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Memo
+        </label>
+
+        <input id="memo">
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Review Transfer
+      </button>
+
     </form>
-    <div id="beneficiaries"></div>
+
   </section>
+
 </div>
 
-<!-- SETTINGS -->
-<div id="settings-page" class="screen hidden">
-  <div class="welcome"><h1>Settings</h1></div>
-  <section class="card form-card">
-    <div class="row"><span>Email alerts</span><input type="checkbox" checked></div>
-    <div class="row"><span>Transaction alerts</span><input type="checkbox" checked></div>
-    <div class="row"><span>Reset local data</span><button class="link" onclick="resetData()">Reset</button></div>
-    <div class="row"><span>Session</span><button class="link" onclick="logout()">Logout</button></div>
+
+<!-- =========================
+     TRANSACTIONS
+========================= -->
+
+<div
+  id="transactions-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Transactions
+    </h1>
+
+    <p class="muted">
+      All CashFlow prototype activity.
+    </p>
+
+  </div>
+
+  <section class="card">
+
+    <div id="allTransactions"></div>
+
   </section>
+
 </div>
+
+
+<!-- =========================
+     REQUEST MONEY
+========================= -->
+
+<div
+  id="request-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Request Money
+    </h1>
+
+    <p class="muted">
+      Create a local money request.
+    </p>
+
+  </div>
+
+  <section class="card form-card">
+
+    <form id="requestForm">
+
+      <div class="field">
+
+        <label>
+          From
+        </label>
+
+        <input
+          id="requestFrom"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Amount
+        </label>
+
+        <input
+          id="requestAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          required
+        >
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Create Request
+      </button>
+
+    </form>
+
+  </section>
+
+</div>
+
+
+<!-- =========================
+     ADD MONEY
+========================= -->
+
+<div
+  id="addmoney-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Add Money
+    </h1>
+
+    <p class="muted">
+      Add local prototype funds.
+    </p>
+
+  </div>
+
+  <section class="card form-card">
+
+    <div class="notice">
+      This changes the local prototype balance only.
+    </div>
+
+    <form id="addForm">
+
+      <div class="field">
+
+        <label>
+          Amount
+        </label>
+
+        <input
+          id="addAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          required
+        >
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Add Prototype Funds
+      </button>
+
+    </form>
+
+  </section>
+
+</div>
+
+
+<!-- =========================
+     BILLS
+========================= -->
+
+<div
+  id="bills-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Bills & Payments
+    </h1>
+
+    <p class="muted">
+      Manage your local prototype bills.
+    </p>
+
+  </div>
+
+  <section class="card">
+
+    <div class="txn">
+
+      <span>
+        ⚡ Electric Company
+        <br>
+        <small>$124.75</small>
+      </span>
+
+      <button
+        class="link"
+        onclick="bill('Electric Company',124.75)"
+      >
+        Pay
+      </button>
+
+    </div>
+
+
+    <div class="txn">
+
+      <span>
+        🌐 Internet
+        <br>
+        <small>$79.99</small>
+      </span>
+
+      <button
+        class="link"
+        onclick="bill('Internet',79.99)"
+      >
+        Pay
+      </button>
+
+    </div>
+
+
+    <div class="txn">
+
+      <span>
+        📱 Mobile Phone
+        <br>
+        <small>$65.00</small>
+      </span>
+
+      <button
+        class="link"
+        onclick="bill('Mobile Phone',65)"
+      >
+        Pay
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- =========================
+     CARDS
+========================= -->
+
+<div
+  id="cards-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      My Cards
+    </h1>
+
+  </div>
+
+  <section
+    class="card"
+    style="max-width:600px"
+  >
+
+    <div class="bank-card">
+
+      <div class="card-brand">
+        CashFlow
+      </div>
+
+      <div class="chip"></div>
+
+      <div class="card-number">
+        •••• •••• •••• 4821
+      </div>
+
+      <div class="card-bottom">
+        <span>JOHN DOE</span>
+        <span>PROTOTYPE</span>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <span>
+        Status
+      </span>
+
+      <b class="plus">
+        Active
+      </b>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- =========================
+     BENEFICIARIES
+========================= -->
+
+<div
+  id="beneficiaries-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Beneficiaries
+    </h1>
+
+    <p class="muted">
+      Save recipients locally for this browser.
+    </p>
+
+  </div>
+
+  <section class="card form-card">
+
+    <form id="beneficiaryForm">
+
+      <div class="field">
+
+        <label>
+          Name
+        </label>
+
+        <input
+          id="benName"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Account
+        </label>
+
+        <input
+          id="benAccount"
+          required
+        >
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Add Beneficiary
+      </button>
+
+    </form>
+
+    <div id="beneficiaries"></div>
+
+  </section>
+
+</div>
+
+
+<!-- =========================
+     SETTINGS
+========================= -->
+
+<div
+  id="settings-page"
+  class="screen hidden"
+>
+
+  <div class="welcome">
+
+    <h1>
+      Settings
+    </h1>
+
+    <p class="muted">
+      Manage your local prototype settings.
+    </p>
+
+  </div>
+
+  <section class="card form-card">
+
+    <div class="row">
+
+      <span>
+        Email alerts
+      </span>
+
+      <input
+        type="checkbox"
+        checked
+      >
+
+    </div>
+
+
+    <div class="row">
+
+      <span>
+        Transaction alerts
+      </span>
+
+      <input
+        type="checkbox"
+        checked
+      >
+
+    </div>
+
+
+    <div class="row">
+
+      <span>
+        Reset local data
+      </span>
+
+      <button
+        class="link"
+        onclick="resetData()"
+      >
+        Reset
+      </button>
+
+    </div>
+
+
+    <div class="row">
+
+      <span>
+        Session
+      </span>
+
+      <button
+        class="link"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
 </main>
 </div>
 
-<!-- MOBILE NAV -->
+
+<!-- =========================
+     MOBILE NAVIGATION
+========================= -->
+
 <div class="bottom">
-  <button class="active" data-page="dashboard" onclick="page('dashboard')"><b>⌂</b>Home</button>
-  <button data-page="transfer" onclick="page('transfer')"><b>↔</b>Transfer</button>
-  <button data-page="transactions" onclick="page('transactions')"><b>▣</b>Activity</button>
-  <button data-page="settings" onclick="page('settings')"><b>⚙</b>Settings</button>
+
+  <button
+    class="active"
+    data-page="dashboard"
+    onclick="page('dashboard')"
+  >
+    <b>⌂</b>
+    Home
+  </button>
+
+  <button
+    data-page="transfer"
+    onclick="page('transfer')"
+  >
+    <b>↔</b>
+    Transfer
+  </button>
+
+  <button
+    data-page="transactions"
+    onclick="page('transactions')"
+  >
+    <b>▣</b>
+    Activity
+  </button>
+
+  <button
+    data-page="settings"
+    onclick="page('settings')"
+  >
+    <b>⚙</b>
+    Settings
+  </button>
+
 </div>
+
 </section>
 
+
 <script>
+
+/* =========================
+   DEFAULT DATA
+========================= */
+
 const DEFAULT = {
+
   balance:24680.50,
+
   transactions:[
-    {name:"Grocery Store",date:"Today • 10:42 AM",amount:-86.42,icon:"🛒"},
-    {name:"Salary Deposit",date:"Yesterday • 8:15 AM",amount:3250,icon:"💼"},
-    {name:"Electric Company",date:"Sep 2 • 2:30 PM",amount:-124.75,icon:"⚡"},
-    {name:"Coffee Shop",date:"Sep 2 • 9:21 AM",amount:-8.50,icon:"☕"}
+
+    {
+      name:"Grocery Store",
+      date:"Today • 10:42 AM",
+      amount:-86.42,
+      icon:"🛒"
+    },
+
+    {
+      name:"Salary Deposit",
+      date:"Yesterday • 8:15 AM",
+      amount:3250,
+      icon:"💼"
+    },
+
+    {
+      name:"Electric Company",
+      date:"Sep 2 • 2:30 PM",
+      amount:-124.75,
+      icon:"⚡"
+    },
+
+    {
+      name:"Coffee Shop",
+      date:"Sep 2 • 9:21 AM",
+      amount:-8.50,
+      icon:"☕"
+    }
+
   ],
+
   beneficiaries:[]
+
 };
 
-let state = JSON.parse(localStorage.getItem("cashflow_state") || JSON.stringify(DEFAULT));
+
+/* =========================
+   STATE
+========================= */
+
+let state =
+  JSON.parse(
+    localStorage.getItem("cashflow_state") ||
+    JSON.stringify(DEFAULT)
+  );
+
+
+/* =========================
+   MONEY FORMAT
+========================= */
 
 const money = number => {
-  return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(number);
+
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      style:"currency",
+      currency:"USD"
+    }
+  ).format(number);
+
 };
 
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
 function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g, character => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[character]));
+
+  return String(value).replace(
+    /[&<>"']/g,
+    character => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[character])
+  );
+
 }
+
+
+/* =========================
+   SAVE DATA
+========================= */
 
 function save(){
-  localStorage.setItem("cashflow_state", JSON.stringify(state));
+
+  localStorage.setItem(
+    "cashflow_state",
+    JSON.stringify(state)
+  );
+
 }
+
+
+/* =========================
+   RENDER
+========================= */
 
 function render(){
-  const balance = document.getElementById("balance");
-  if(balance){ balance.textContent = money(state.balance); }
 
-  const html = state.transactions.map(transaction => {
-    const positive = transaction.amount >= 0;
-    return `
-      <div class="txn">
-        <div class="txn-left">
-          <div class="txn-icon">${escapeHTML(transaction.icon)}</div>
-          <div>
-            <div class="txn-name">${escapeHTML(transaction.name)}</div>
-            <div class="txn-date">${escapeHTML(transaction.date)}</div>
-          </div>
-        </div>
-        <div class="${positive ? "plus" : "minus"}">${positive ? "+" : "-"}${money(Math.abs(transaction.amount))}</div>
-      </div>
-    `;
-  }).join("") || "<p class='muted'>No transactions yet.</p>";
+  const balance =
+    document.getElementById("balance");
 
-  const recent = document.getElementById("recent");
-  const all = document.getElementById("allTransactions");
-  if(recent){ recent.innerHTML = html; }
-  if(all){ all.innerHTML = html; }
+  if(balance){
 
-  const beneficiaryContainer = document.getElementById("beneficiaries");
-  if(beneficiaryContainer){
-    beneficiaryContainer.innerHTML = state.beneficiaries.map((beneficiary,index) => `
-      <div class="row">
-        <span><b>${escapeHTML(beneficiary.name)}</b><br><small>${escapeHTML(beneficiary.account)}</small></span>
-        <button class="link" onclick="removeBen(${index})">Remove</button>
-      </div>
-    `).join("");
+    balance.textContent =
+      money(state.balance);
+
   }
+
+
+  const html =
+    state.transactions.map(transaction => {
+
+      const positive =
+        transaction.amount >= 0;
+
+      return `
+
+        <div class="txn">
+
+          <div class="txn-left">
+
+            <div class="txn-icon">
+              ${escapeHTML(transaction.icon)}
+            </div>
+
+            <div>
+
+              <div class="txn-name">
+                ${escapeHTML(transaction.name)}
+              </div>
+
+              <div class="txn-date">
+                ${escapeHTML(transaction.date)}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="${positive ? "plus" : "minus"}">
+
+            ${positive ? "+" : "-"}${money(
+              Math.abs(transaction.amount)
+            )}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("")
+
+    ||
+    "<div class='empty'>No transactions yet.</div>";
+
+
+  const recent =
+    document.getElementById("recent");
+
+  const all =
+    document.getElementById("allTransactions");
+
+
+  if(recent){
+
+    recent.innerHTML =
+      state.transactions
+        .slice(0,5)
+        .map(transaction => {
+
+          const positive =
+            transaction.amount >= 0;
+
+          return `
+
+            <div class="txn">
+
+              <div class="txn-left">
+
+                <div class="txn-icon">
+                  ${escapeHTML(transaction.icon)}
+                </div>
+
+                <div>
+
+                  <div class="txn-name">
+                    ${escapeHTML(transaction.name)}
+                  </div>
+
+                  <div class="txn-date">
+                    ${escapeHTML(transaction.date)}
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="${positive ? "plus" : "minus"}">
+
+                ${positive ? "+" : "-"}${money(
+                  Math.abs(transaction.amount)
+                )}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join("")
+
+        ||
+        "<div class='empty'>No transactions yet.</div>";
+
+  }
+
+
+  if(all){
+
+    all.innerHTML = html;
+
+  }
+
+
+  const beneficiaryContainer =
+    document.getElementById("beneficiaries");
+
+
+  if(beneficiaryContainer){
+
+    beneficiaryContainer.innerHTML =
+      state.beneficiaries.map(
+        (beneficiary,index) => `
+
+          <div class="row">
+
+            <span>
+
+              <b>
+                ${escapeHTML(beneficiary.name)}
+              </b>
+
+              <br>
+
+              <small>
+                ${escapeHTML(beneficiary.account)}
+              </small>
+
+            </span>
+
+            <button
+              class="link"
+              onclick="removeBen(${index})"
+            >
+              Remove
+            </button>
+
+          </div>
+
+        `
+      ).join("")
+
+      ||
+
+      "<div class='empty'>No beneficiaries added.</div>";
+
+  }
+
 }
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
 
 function page(name){
-  document.querySelectorAll(".screen").forEach(screen => { screen.classList.add("hidden"); });
-  const selected = document.getElementById(name + "-page");
-  if(!selected){ return; }
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+
+      screen.classList.add("hidden");
+
+    });
+
+
+  const selected =
+    document.getElementById(
+      name + "-page"
+    );
+
+
+  if(!selected){
+
+    return;
+
+  }
+
+
   selected.classList.remove("hidden");
-  document.querySelectorAll("[data-page]").forEach(item => { item.classList.toggle("active", item.dataset.page === name); });
-  const sidebar = document.getElementById("sidebar");
-  if(window.innerWidth < 900){ sidebar.style.display = "none"; }
+
+
+  document
+    .querySelectorAll("[data-page]")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.page === name
+      );
+
+    });
+
+
+  const sidebar =
+    document.getElementById("sidebar");
+
+
+  if(window.innerWidth < 900){
+
+    sidebar.style.display = "none";
+
+  }
+
+
   render();
+
   window.scrollTo(0,0);
+
 }
 
+
+/* =========================
+   MOBILE MENU
+========================= */
+
 function toggleMenu(){
-  const sidebar = document.getElementById("sidebar");
-  if(sidebar.style.display === "block"){ sidebar.style.display = "none"; }
-  else{
+
+  const sidebar =
+    document.getElementById("sidebar");
+
+
+  if(sidebar.style.display === "block"){
+
+    sidebar.style.display = "none";
+
+  }else{
+
     sidebar.style.display = "block";
+
     sidebar.style.position = "fixed";
     sidebar.style.top = "72px";
     sidebar.style.bottom = "0";
     sidebar.style.left = "0";
     sidebar.style.zIndex = "150";
     sidebar.style.overflowY = "auto";
+
   }
+
 }
 
-document.getElementById("loginForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  if(!email || !password){ alert("Enter your login details."); return; }
-  sessionStorage.setItem("cashflow_session","1");
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
-  page("dashboard");
-});
+
+/* =========================
+   ALERT
+========================= */
+
+function showAlert(message){
+
+  alert(message);
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+document
+  .getElementById("loginForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+
+      if(!email || !password){
+
+        alert(
+          "Enter your login details."
+        );
+
+        return;
+
+      }
+
+
+      const loader =
+        document.createElement("div");
+
+
+      loader.id =
+        "loginLoading";
+
+
+      loader.innerHTML = `
+
+        <div class="loading-box">
+
+          <div class="loading-logo">
+            C
+          </div>
+
+          <div class="loading-name">
+            Cash<span>Flow</span>
+          </div>
+
+          <div class="loading-text">
+            Signing you in...
+          </div>
+
+          <div class="loading-spinner"></div>
+
+        </div>
+
+      `;
+
+
+      Object.assign(
+        loader.style,
+        {
+          position:"fixed",
+          inset:"0",
+          background:"#fff",
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center",
+          zIndex:"10000",
+          transition:"opacity .3s ease"
+        }
+      );
+
+
+      document.body.appendChild(loader);
+
+
+      setTimeout(function(){
+
+        sessionStorage.setItem(
+          "cashflow_session",
+          "1"
+        );
+
+
+        document
+          .getElementById("login")
+          .classList.add("hidden");
+
+
+        document
+          .getElementById("app")
+          .classList.remove("hidden");
+
+
+        loader.style.opacity = "0";
+
+
+        setTimeout(function(){
+
+          loader.remove();
+
+          page("dashboard");
+
+        },300);
+
+      },1000);
+
+    }
+  );
+
+
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
-  if(!confirm("Log out?")){ return; }
-  sessionStorage.removeItem("cashflow_session");
-  document.getElementById("app").classList.add("hidden");
-  document.getElementById("login").classList.remove("hidden");
-  document.getElementById("email").value = "";
-  document.getElementById("password").value = "";
+
+  if(
+    !confirm(
+      "Are you sure you want to logout?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  sessionStorage.removeItem(
+    "cashflow_session"
+  );
+
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("login")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("email")
+    .value = "";
+
+
+  document
+    .getElementById("password")
+    .value = "";
+
 }
 
-document.getElementById("transferForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  const recipient = document.getElementById("recipient").value.trim();
-  const account = document.getElementById("recipientAccount").value.trim();
-  const amount = Number(document.getElementById("transferAmount").value);
-  if(!recipient || !account || amount <= 0){ alert("Enter valid transfer details."); return; }
-  if(amount > state.balance){ alert("Insufficient prototype balance."); return; }
-  const confirmed = confirm("Confirm transfer of " + money(amount) + " to " + recipient + "?");
-  if(!confirmed){ return; }
-  state.balance = Math.round((state.balance - amount) * 100) / 100;
-  state.transactions.unshift({name:"Transfer to " + recipient,date:"Just now",amount:-amount,icon:"↗"});
-  save(); render(); event.target.reset();
-  alert("Transfer recorded in the prototype.");
-  page("transactions");
-});
 
-document.getElementById("addForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  const amount = Number(document.getElementById("addAmount").value);
-  if(amount <= 0){ return; }
-  state.balance += amount;
-  state.transactions.unshift({name:"Prototype Deposit",date:"Just now",amount:amount,icon:"＋"});
-  save(); render(); event.target.reset();
-  alert("Prototype funds added.");
-  page("dashboard");
-});
+/* =========================
+   TRANSFER
+========================= */
 
-/* REQUEST MONEY - UPDATED */
-document.getElementById("requestForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  const from = document.getElementById("requestFrom").value.trim();
-  const amount = Number(document.getElementById("requestAmount").value);
-  if(!from || amount <= 0){ alert("Enter valid details."); return; }
-  state.balance += amount; // Added to balance
-  state.transactions.unshift({name:"Money Request from " + from,date:"Just now",amount:amount,icon:"↙"});
-  save(); render(); event.target.reset();
-  alert("Request created for " + money(amount) + " from " + from + ".");
-  page("dashboard");
-});
+document
+  .getElementById("transferForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const recipient =
+        document
+          .getElementById("recipient")
+          .value
+          .trim();
+
+
+      const account =
+        document
+          .getElementById("recipientAccount")
+          .value
+          .trim();
+
+
+      const amount =
+        Number(
+          document
+            .getElementById("transferAmount")
+            .value
+        );
+
+
+      const memo =
+        document
+          .getElementById("memo")
+          .value
+          .trim();
+
+
+      if(
+        !recipient ||
+        !account ||
+        !Number.isFinite(amount) ||
+        amount <= 0
+      ){
+
+        alert(
+          "Enter valid transfer details."
+        );
+
+        return;
+
+      }
+
+
+      if(amount > state.balance){
+
+        alert(
+          "Insufficient prototype balance."
+        );
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          "Confirm transfer of " +
+          money(amount) +
+          " to " +
+          recipient +
+          "?"
+        );
+
+
+      if(!confirmed){
+
+        return;
+
+      }
+
+
+      state.balance =
+        Math.round(
+          (state.balance - amount) *
+          100
+        ) / 100;
+
+
+      state.transactions.unshift({
+
+        name:
+          "Transfer to " +
+          recipient,
+
+        date:
+          "Just now",
+
+        amount:
+          -amount,
+
+        icon:
+          "↗",
+
+        memo:
+          memo
+
+      });
+
+
+      save();
+
+      render();
+
+      event.target.reset();
+
+
+      alert(
+        "Transfer recorded in the prototype."
+      );
+
+
+      page("transactions");
+
+    }
+  );
+
+
+/* =========================
+   ADD MONEY
+========================= */
+
+document
+  .getElementById("addForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const amount =
+        Number(
+          document
+            .getElementById("addAmount")
+            .value
+        );
+
+
+      if(
+        !Number.isFinite(amount) ||
+        amount <= 0
+      ){
+
+        alert(
+          "Enter a valid amount."
+        );
+
+        return;
+
+      }
+
+
+      state.balance =
+        Math.round(
+          (state.balance + amount) *
+          100
+        ) / 100;
+
+
+      state.transactions.unshift({
+
+        name:
+          "Prototype Deposit",
+
+        date:
+          "Just now",
+
+        amount:
+          amount,
+
+        icon:
+          "＋"
+
+      });
+
+
+      save();
+
+      render();
+
+      event.target.reset();
+
+
+      alert(
+        "Prototype funds added."
+      );
+
+
+      page("dashboard");
+
+    }
+  );
+
+
+/* =========================
+   REQUEST MONEY
+========================= */
+
+document
+  .getElementById("requestForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const from =
+        document
+          .getElementById("requestFrom")
+          .value
+          .trim();
+
+
+      const amount =
+        Number(
+          document
+            .getElementById("requestAmount")
+            .value
+        );
+
+
+      if(
+        !from ||
+        !Number.isFinite(amount) ||
+        amount <= 0
+      ){
+
+        alert(
+          "Enter valid request details."
+        );
+
+        return;
+
+      }
+
+
+      /*
+        A request is recorded as a request.
+        It does NOT increase the balance until
+        funds are actually received.
+      */
+
+      state.transactions.unshift({
+
+        name:
+          "Money Request to " +
+          from,
+
+        date:
+          "Just now",
+
+        amount:
+          0,
+
+        icon:
+          "↙",
+
+        request:
+          amount
+
+      });
+
+
+      save();
+
+      render();
+
+      event.target.reset();
+
+
+      alert(
+        "Money request created for " +
+        money(amount) +
+        "."
+      );
+
+
+      page("transactions");
+
+    }
+  );
+
+
+/* =========================
+   BILLS
+========================= */
 
 function bill(name,amount){
-  if(amount > state.balance){ alert("Insufficient prototype balance."); return; }
-  if(!confirm("Pay " + money(amount) + " to " + name + "?")){ return; }
-  state.balance -= amount;
-  state.transactions.unshift({name:name,date:"Just now",amount:-amount,icon:"▤"});
-  save(); render();
-  alert("Bill payment recorded in the prototype.");
+
+  if(amount > state.balance){
+
+    alert(
+      "Insufficient prototype balance."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "Pay " +
+      money(amount) +
+      " to " +
+      name +
+      "?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  state.balance =
+    Math.round(
+      (state.balance - amount) *
+      100
+    ) / 100;
+
+
+  state.transactions.unshift({
+
+    name:name,
+
+    date:"Just now",
+
+    amount:-amount,
+
+    icon:"▤"
+
+  });
+
+
+  save();
+
+  render();
+
+
+  alert(
+    "Bill payment recorded in the prototype."
+  );
+
 }
 
-document.getElementById("beneficiaryForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  const name = document.getElementById("benName").value.trim();
-  const account = document.getElementById("benAccount").value.trim();
-  if(!name || !account){ return; }
-  state.beneficiaries.push({name:name,account:account});
-  save(); render(); event.target.reset();
-  alert("Beneficiary added.");
-});
+
+/* =========================
+   BENEFICIARIES
+========================= */
+
+document
+  .getElementById("beneficiaryForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const name =
+        document
+          .getElementById("benName")
+          .value
+          .trim();
+
+
+      const account =
+        document
+          .getElementById("benAccount")
+          .value
+          .trim();
+
+
+      if(!name || !account){
+
+        alert(
+          "Enter the beneficiary details."
+        );
+
+        return;
+
+      }
+
+
+      state.beneficiaries.push({
+
+        name:name,
+
+        account:account
+
+      });
+
+
+      save();
+
+      render();
+
+      event.target.reset();
+
+
+      alert(
+        "Beneficiary added."
+      );
+
+    }
+  );
+
+
+/* =========================
+   REMOVE BENEFICIARY
+========================= */
 
 function removeBen(index){
-  state.beneficiaries.splice(index, 1);
-  save(); render();
+
+  if(
+    !confirm(
+      "Remove this beneficiary?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  state.beneficiaries.splice(
+    index,
+    1
+  );
+
+
+  save();
+
+  render();
+
 }
+
+
+/* =========================
+   RESET
+========================= */
 
 function resetData(){
-  if(!confirm("Reset all local CashFlow data?")){ return; }
-  state = JSON.parse(JSON.stringify(DEFAULT));
-  save(); render(); page("dashboard");
+
+  if(
+    !confirm(
+      "Reset all local CashFlow data?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  state =
+    JSON.parse(
+      JSON.stringify(DEFAULT)
+    );
+
+
+  save();
+
+  render();
+
+  page("dashboard");
+
 }
 
-if(sessionStorage.getItem("cashflow_session") === "1"){
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
-}
 
+/* =========================
+   STARTUP
+========================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    setTimeout(
+      function(){
+
+        const loader =
+          document.getElementById(
+            "loadingScreen"
+          );
+
+
+        loader.style.opacity = "0";
+
+
+        setTimeout(
+          function(){
+
+            loader.remove();
+
+
+            if(
+              sessionStorage.getItem(
+                "cashflow_session"
+              ) === "1"
+            ){
+
+              document
+                .getElementById("login")
+                .classList.add("hidden");
+
+
+              document
+                .getElementById("app")
+                .classList.remove("hidden");
+
+
+              page("dashboard");
+
+            }else{
+
+              document
+                .getElementById("login")
+                .classList.remove("hidden");
+
+            }
+
+          },
+          400
+        );
+
+      },
+      1500
+    );
+
+  }
+);
+
+
+/* Initial render */
 render();
+
 </script>
+
 </body>
 </html>
