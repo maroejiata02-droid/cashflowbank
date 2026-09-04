@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CashFlow Bank</title>
+<meta name="theme-color" content="#0b1f3a">
+<title>CashFlow — Banking Prototype</title>
 
 <style>
+:root{
+  --navy:#0b1f3a;
+  --navy2:#12345b;
+  --blue:#1769aa;
+  --red:#c8202f;
+  --green:#14804a;
+  --bg:#f4f6f8;
+  --card:#fff;
+  --text:#17202a;
+  --muted:#6b7280;
+  --border:#e3e7eb;
+  --shadow:0 8px 30px rgba(11,31,58,.08);
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -14,8 +29,8 @@
 }
 
 body{
-  background:#f7f7f7;
-  color:#151515;
+  background:var(--bg);
+  color:var(--text);
 }
 
 button,input,select{
@@ -30,12 +45,16 @@ button{
   display:none!important;
 }
 
-:root{
-  --red:#e51b23;
-  --darkred:#b90009;
-  --lightred:#fff1f1;
-  --border:#e9e9e9;
-  --muted:#777;
+/* DEMO BANNER */
+
+.demo-banner{
+  background:#fff4d6;
+  color:#6b4d00;
+  border-bottom:1px solid #ead38b;
+  padding:8px 15px;
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
 }
 
 /* LOADING */
@@ -43,12 +62,13 @@ button{
 #loadingScreen{
   position:fixed;
   inset:0;
-  background:linear-gradient(135deg,#fff,#fff4f4);
+  background:linear-gradient(135deg,#07182c,#0b1f3a);
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   z-index:9999;
-  transition:opacity:.4s ease;
+  transition:opacity .4s ease;
 }
 
 .loading-box{
@@ -56,100 +76,97 @@ button{
 }
 
 .loading-logo{
-  width:78px;
-  height:78px;
-  border-radius:20px;
-  background:var(--red);
-  color:#fff;
+  width:76px;
+  height:76px;
+  border-radius:18px;
+  background:white;
+  color:var(--navy);
   display:grid;
   place-items:center;
-  font-size:44px;
+  font-size:40px;
   font-weight:900;
-  margin:0 auto 20px;
-  box-shadow:0 12px 30px #e51b2330;
-  animation:logoPulse 1.4s infinite;
+  margin:0 auto 18px;
+  animation:pulse 1.4s infinite;
 }
 
 .loading-name{
-  font-size:30px;
+  font-size:29px;
   font-weight:800;
-  margin-bottom:8px;
 }
 
 .loading-name span{
-  color:var(--red);
+  color:#e64a58;
 }
 
 .loading-text{
-  color:#777;
-  font-size:14px;
-  margin-bottom:22px;
+  opacity:.7;
+  font-size:13px;
+  margin:8px 0 20px;
 }
 
-.loading-spinner{
-  width:34px;
-  height:34px;
-  border:4px solid #eee;
-  border-top-color:var(--red);
+.spinner{
+  width:32px;
+  height:32px;
+  border:4px solid #ffffff35;
+  border-top-color:#fff;
   border-radius:50%;
   margin:auto;
   animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg);}
+  to{transform:rotate(360deg)}
 }
 
-@keyframes logoPulse{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
+@keyframes pulse{
+  50%{transform:scale(1.05)}
 }
 
 /* LOGIN */
 
 .login{
-  min-height:100vh;
+  min-height:calc(100vh - 33px);
   display:grid;
   place-items:center;
   padding:20px;
-  background:linear-gradient(135deg,#fff,#fff4f4);
+  background:#f5f7fa;
 }
 
 .login-box{
   width:min(430px,100%);
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:20px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
   padding:32px;
-  box-shadow:0 15px 45px #00012;
+  box-shadow:var(--shadow);
 }
 
 .logo{
   display:flex;
   align-items:center;
   gap:10px;
-  font-size:23px;
+  font-size:22px;
   font-weight:800;
-}
-
-.mark{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  background:var(--red);
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-weight:900;
 }
 
 .logo span{
   color:var(--red);
 }
 
+.mark{
+  width:38px;
+  height:38px;
+  border-radius:9px;
+  background:var(--navy);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+
 .login h1{
-  margin:25px 0 8px;
-  font-size:29px;
+  margin:28px 0 7px;
+  font-size:28px;
 }
 
 .muted{
@@ -172,49 +189,48 @@ button{
 .field select{
   width:100%;
   padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  outline:0;
+  border:1px solid #d8dde3;
+  border-radius:9px;
+  outline:none;
   background:#fff;
 }
 
 .field input:focus,
 .field select:focus{
-  border-color:var(--red);
+  border-color:var(--blue);
 }
 
 .primary{
   width:100%;
   border:0;
-  background:var(--red);
-  color:#fff;
+  background:var(--navy);
+  color:white;
   padding:14px;
-  border-radius:10px;
+  border-radius:9px;
   font-weight:bold;
 }
 
 .primary:hover{
-  background:#c9151c;
+  background:#06172b;
 }
 
 .secondary{
   width:100%;
-  border:1px solid #ddd;
-  background:#fff;
-  color:#333;
+  border:1px solid #d5d9de;
+  background:white;
   padding:13px;
-  border-radius:10px;
+  border-radius:9px;
   font-weight:bold;
   margin-top:10px;
 }
 
 .notice{
-  margin-top:16px;
+  margin-top:15px;
   padding:12px;
-  border-radius:10px;
-  background:#fff4f4;
-  border:1px solid #ffd5d5;
-  color:#777;
+  border-radius:9px;
+  background:#f6f8fa;
+  border:1px solid var(--border);
+  color:#68717b;
   font-size:12px;
   line-height:1.5;
 }
@@ -223,12 +239,12 @@ button{
 
 .header{
   height:72px;
-  background:#fff;
-  border-bottom:1px solid #eee;
+  background:white;
+  border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 32px;
+  padding:0 30px;
   position:sticky;
   top:0;
   z-index:100;
@@ -238,20 +254,30 @@ button{
 .header-right{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:17px;
 }
 
 .notification{
   cursor:pointer;
-  font-size:20px;
+  position:relative;
+}
+
+.notification-dot{
+  position:absolute;
+  width:7px;
+  height:7px;
+  background:var(--red);
+  border-radius:50%;
+  top:-1px;
+  right:-1px;
 }
 
 .avatar{
   width:40px;
   height:40px;
   border-radius:50%;
-  background:var(--red);
-  color:#fff;
+  background:var(--navy);
+  color:white;
   display:grid;
   place-items:center;
   font-weight:bold;
@@ -260,8 +286,6 @@ button{
 
 .mobile-menu{
   display:none;
-  font-size:24px;
-  cursor:pointer;
 }
 
 /* LAYOUT */
@@ -271,49 +295,47 @@ button{
   min-height:calc(100vh - 72px);
 }
 
-/* SIDEBAR */
-
 .sidebar{
   width:245px;
-  background:#fff;
-  border-right:1px solid #eee;
-  padding:28px 16px;
+  background:white;
+  border-right:1px solid var(--border);
+  padding:25px 15px;
 }
 
 .menu-title{
-  color:#999;
-  font-size:12px;
+  color:#9299a2;
+  font-size:11px;
   font-weight:bold;
   text-transform:uppercase;
-  margin:8px 14px 12px;
+  margin:8px 14px 11px;
 }
 
 .menu-item{
-  padding:14px;
-  border-radius:9px;
-  margin-bottom:5px;
-  color:#555;
+  padding:13px 14px;
+  border-radius:8px;
+  margin-bottom:4px;
+  color:#56606b;
   cursor:pointer;
-  transition:.2s;
   display:flex;
   align-items:center;
   gap:10px;
+  transition:.2s;
 }
 
 .menu-item:hover{
-  background:#fff1f1;
-  color:var(--red);
+  background:#f1f5f9;
+  color:var(--navy);
 }
 
 .menu-item.active{
-  background:var(--red);
-  color:#fff;
+  background:var(--navy);
+  color:white;
   font-weight:bold;
 }
 
 .menu-icon{
-  width:20px;
-  height:20px;
+  width:19px;
+  height:19px;
   flex-shrink:0;
 }
 
@@ -321,43 +343,37 @@ button{
 
 .main{
   flex:1;
-  padding:32px;
+  padding:30px;
   max-width:1500px;
 }
 
 .screen{
-  animation:fadeIn .2s ease;
+  animation:fade .2s ease;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+@keyframes fade{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 .welcome{
-  margin-bottom:25px;
+  margin-bottom:23px;
 }
 
 .welcome h1{
-  font-size:30px;
-  margin-bottom:7px;
+  font-size:29px;
+  margin-bottom:6px;
 }
 
-/* BALANCE */
+/* ACCOUNT CARD */
 
 .balance-card{
-  background:linear-gradient(135deg,var(--red),var(--darkred));
-  color:#fff;
-  border-radius:18px;
+  background:linear-gradient(135deg,var(--navy),#174575);
+  color:white;
+  border-radius:17px;
   padding:28px;
   min-height:205px;
-  box-shadow:0 10px 25px #e51b2330;
+  box-shadow:0 12px 28px rgba(11,31,58,.2);
   position:relative;
   overflow:hidden;
 }
@@ -365,12 +381,18 @@ button{
 .balance-card:after{
   content:"";
   position:absolute;
-  width:220px;
-  height:220px;
-  border:35px solid #ffffff15;
+  width:240px;
+  height:240px;
+  border:35px solid #ffffff12;
   border-radius:50%;
-  right:-90px;
-  top:-100px;
+  right:-100px;
+  top:-110px;
+}
+
+.balance-label{
+  font-size:12px;
+  opacity:.75;
+  letter-spacing:.5px;
 }
 
 .balance{
@@ -379,7 +401,12 @@ button{
   margin:15px 0 22px;
 }
 
-/* ACTIONS */
+.account-number{
+  opacity:.8;
+  font-size:13px;
+}
+
+/* QUICK ACTIONS */
 
 .actions{
   display:grid;
@@ -389,38 +416,39 @@ button{
 }
 
 .action{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:14px;
-  padding:20px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:19px;
   text-align:center;
   transition:.2s;
 }
 
 .action:hover{
-  border-color:var(--red);
+  border-color:#9eb4c9;
   transform:translateY(-2px);
 }
 
 .action-icon{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   border-radius:50%;
-  background:#fff0f0;
-  color:var(--red);
+  background:#edf3f8;
+  color:var(--navy);
   display:grid;
   place-items:center;
   margin:auto;
 }
 
 .action-icon svg{
-  width:24px;
-  height:24px;
+  width:22px;
+  height:22px;
 }
 
 .action p{
-  margin-top:10px;
+  margin-top:9px;
   font-weight:bold;
+  font-size:13px;
 }
 
 /* GRID */
@@ -428,34 +456,35 @@ button{
 .grid{
   display:grid;
   grid-template-columns:1.5fr 1fr;
-  gap:24px;
+  gap:22px;
 }
 
-/* CARDS */
+/* CARD */
 
 .card{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:17px;
-  padding:24px;
-  margin-bottom:24px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:23px;
+  margin-bottom:22px;
 }
 
 .card h2{
+  font-size:19px;
   margin-bottom:10px;
 }
 
 .card-head{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  justify-content:space-between;
+  margin-bottom:16px;
 }
 
 .link{
   border:0;
   background:none;
-  color:var(--red);
+  color:var(--blue);
   font-weight:bold;
 }
 
@@ -466,7 +495,7 @@ button{
   justify-content:space-between;
   align-items:center;
   padding:14px 0;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #edf0f2;
 }
 
 .txn:last-child{
@@ -475,15 +504,15 @@ button{
 
 .txn-left{
   display:flex;
-  gap:11px;
   align-items:center;
+  gap:11px;
 }
 
 .txn-icon{
   width:40px;
   height:40px;
-  border-radius:10px;
-  background:#f7f7f7;
+  border-radius:9px;
+  background:#f1f4f7;
   display:grid;
   place-items:center;
 }
@@ -494,18 +523,18 @@ button{
 }
 
 .txn-name{
-  font-weight:bold;
   font-size:14px;
+  font-weight:bold;
 }
 
 .txn-date{
   font-size:11px;
-  color:#999;
+  color:#969da5;
   margin-top:3px;
 }
 
 .plus{
-  color:#168a42;
+  color:var(--green);
   font-weight:bold;
 }
 
@@ -518,21 +547,21 @@ button{
 
 .row{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:15px 0;
-  border-bottom:1px solid #eee;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #edf0f2;
 }
 
 .row:last-child{
   border-bottom:0;
 }
 
-/* BANK CARD */
+/* CARD */
 
 .bank-card{
-  background:linear-gradient(135deg,#181818,#3d3d3d);
-  color:#fff;
+  background:linear-gradient(135deg,#101820,#293848);
+  color:white;
   border-radius:17px;
   padding:22px;
   min-height:170px;
@@ -543,26 +572,26 @@ button{
 .bank-card:after{
   content:"";
   position:absolute;
-  width:160px;
-  height:160px;
-  border:30px solid #e51b2330;
+  width:170px;
+  height:170px;
+  border:30px solid #c8202f35;
   border-radius:50%;
-  right:-70px;
+  right:-75px;
   bottom:-90px;
 }
 
 .card-brand{
-  color:#ed1c24;
+  color:white;
+  font-size:18px;
   font-weight:900;
-  font-size:19px;
 }
 
 .chip{
   width:42px;
   height:30px;
-  background:#ddd;
-  border-radius:6px;
-  margin-top:28px;
+  background:#d7d7d7;
+  border-radius:5px;
+  margin-top:27px;
 }
 
 .card-number{
@@ -573,12 +602,20 @@ button{
 .card-bottom{
   display:flex;
   justify-content:space-between;
-  font-size:11px;
-  margin-top:11px;
+  font-size:10px;
+  margin-top:12px;
 }
+
+/* FORMS */
 
 .form-card{
   max-width:680px;
+}
+
+.empty{
+  text-align:center;
+  color:#8a929b;
+  padding:25px 5px;
 }
 
 /* MODAL */
@@ -586,154 +623,118 @@ button{
 .modal{
   position:fixed;
   inset:0;
-  background:#0008;
-  display:flex;
+  background:rgba(4,13,24,.55);
+  display:none;
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:5000;
+  z-index:500;
+}
+
+.modal.show{
+  display:flex;
 }
 
 .modal-box{
-  width:min(470px,100%);
-  background:#fff;
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 20px 60px #0005;
+  background:white;
+  width:min(430px,100%);
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 20px 60px #0004;
 }
 
-.modal-title{
-  font-size:23px;
-  font-weight:800;
-  margin-bottom:7px;
-}
-
-.modal-subtitle{
-  color:#777;
-  font-size:14px;
-  margin-bottom:20px;
-}
-
-.confirm-box{
-  background:#f8f8f8;
-  border-radius:13px;
-  padding:15px;
-  margin:15px 0;
-}
-
-.confirm-row{
+.modal-head{
   display:flex;
   justify-content:space-between;
-  padding:9px 0;
-  border-bottom:1px solid #e5e5e5;
-  font-size:14px;
+  align-items:center;
+  margin-bottom:18px;
 }
 
-.confirm-row:last-child{
-  border-bottom:0;
+.close{
+  border:0;
+  background:#f1f3f5;
+  width:32px;
+  height:32px;
+  border-radius:50%;
 }
+
+/* PIN */
 
 .pin-input{
   text-align:center;
   font-size:26px!important;
-  letter-spacing:10px;
-  font-weight:bold;
+  letter-spacing:8px;
 }
 
-.pin-dots{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin:15px 0;
-}
+/* SUCCESS */
 
-.pin-dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:#ddd;
-}
-
-.pin-dot.filled{
-  background:var(--red);
+.success{
+  text-align:center;
+  padding:15px 0;
 }
 
 .success-icon{
-  width:70px;
-  height:70px;
-  background:#eaf8ef;
-  color:#168a42;
+  width:62px;
+  height:62px;
   border-radius:50%;
+  background:#e7f6ee;
+  color:var(--green);
   display:grid;
   place-items:center;
-  margin:0 auto 18px;
-  font-size:35px;
-  font-weight:bold;
+  margin:0 auto 15px;
+  font-size:30px;
 }
 
-.receipt{
-  text-align:center;
+/* TOAST */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:var(--navy);
+  color:white;
+  padding:13px 17px;
+  border-radius:9px;
+  box-shadow:var(--shadow);
+  z-index:1000;
+  transform:translateY(20px);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
 }
 
-.receipt-amount{
-  font-size:34px;
-  font-weight:800;
-  margin:10px 0;
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
 }
 
-.reference{
-  color:#777;
-  font-size:12px;
-  margin-top:15px;
-  word-break:break-all;
-}
-
-/* BENEFICIARIES */
-
-.beneficiary-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-  border-bottom:1px solid #eee;
-}
-
-.beneficiary-item:last-child{
-  border-bottom:0;
-}
-
-.ben-name{
-  font-weight:bold;
-}
-
-.ben-account{
-  color:#999;
-  font-size:12px;
-  margin-top:4px;
-}
-
-/* EMPTY */
-
-.empty{
-  padding:25px 5px;
-  color:#888;
-  text-align:center;
-}
-
-/* MOBILE BOTTOM */
+/* BOTTOM NAV */
 
 .bottom{
   display:none;
 }
 
+/* MOBILE */
+
 @media(max-width:900px){
 
   .mobile-menu{
     display:block;
+    cursor:pointer;
   }
 
   .sidebar{
     display:none;
+    position:fixed;
+    top:72px;
+    bottom:0;
+    left:0;
+    z-index:300;
+    box-shadow:10px 0 30px #0002;
+  }
+
+  .sidebar.open{
+    display:block;
   }
 
   .main{
@@ -749,7 +750,7 @@ button{
   }
 
   .header{
-    padding:0 18px;
+    padding:0 17px;
   }
 }
 
@@ -762,21 +763,21 @@ button{
     left:0;
     right:0;
     height:68px;
-    background:#fff;
-    border-top:1px solid #ddd;
-    z-index:200;
+    background:white;
+    border-top:1px solid var(--border);
+    z-index:400;
     justify-content:space-around;
   }
 
   .bottom button{
     border:0;
     background:none;
-    color:#777;
-    font-size:11px;
+    color:#737b84;
+    font-size:10px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:3px;
+    gap:4px;
   }
 
   .bottom button svg{
@@ -785,7 +786,8 @@ button{
   }
 
   .bottom button.active{
-    color:var(--red);
+    color:var(--navy);
+    font-weight:bold;
   }
 
   .balance{
@@ -796,8 +798,8 @@ button{
     font-size:25px;
   }
 
-  .card{
-    padding:18px;
+  .login-box{
+    padding:24px;
   }
 }
 </style>
@@ -805,21 +807,24 @@ button{
 
 <body>
 
+<div class="demo-banner">
+  DEMO PROTOTYPE — No real bank accounts or real money are connected.
+</div>
+
 <!-- LOADING -->
 
 <div id="loadingScreen">
   <div class="loading-box">
     <div class="loading-logo">C</div>
     <div class="loading-name">Cash<span>Flow</span></div>
-    <div class="loading-text">Secure banking experience</div>
-    <div class="loading-spinner"></div>
+    <div class="loading-text">Secure banking prototype</div>
+    <div class="spinner"></div>
   </div>
 </div>
 
 <!-- LOGIN -->
 
 <section id="login" class="login hidden">
-
   <div class="login-box">
 
     <div class="logo">
@@ -828,10 +833,7 @@ button{
     </div>
 
     <h1>Welcome back</h1>
-
-    <p class="muted">
-      Sign in to your CashFlow account.
-    </p>
+    <p class="muted">Sign in to your CashFlow prototype.</p>
 
     <form id="loginForm">
 
@@ -841,8 +843,8 @@ button{
           id="email"
           type="email"
           autocomplete="username"
-          required
-        >
+          placeholder="you@example.com"
+          required>
       </div>
 
       <div class="field">
@@ -851,8 +853,8 @@ button{
           id="password"
           type="password"
           autocomplete="current-password"
-          required
-        >
+          placeholder="••••••••"
+          required>
       </div>
 
       <button class="primary" type="submit">
@@ -862,14 +864,14 @@ button{
     </form>
 
     <div class="notice">
-      CashFlow is a browser-based prototype. It does not connect to real bank accounts or move real money.
+      This is a browser-based prototype. Login information and activity
+      are stored locally in this browser and are not connected to a real bank.
     </div>
 
   </div>
-
 </section>
 
-<!-- APP -->
+<!-- APPLICATION -->
 
 <section id="app" class="hidden">
 
@@ -892,7 +894,9 @@ button{
 
   <div class="header-right">
 
-    <span class="notification" onclick="showAlert('You have no new notifications.')">
+    <span class="notification" onclick="showToast('No new notifications.')">
+
+      <span class="notification-dot"></span>
 
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
@@ -915,83 +919,42 @@ button{
 
 <aside id="sidebar" class="sidebar">
 
-  <div class="menu-title">
-    Menu
-  </div>
+  <div class="menu-title">Banking</div>
 
   <div class="menu-item active"
        data-page="dashboard"
        onclick="page('dashboard')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M3 12l9-9 9 9M4 10v10h3v-6h4v6h3V10"/>
-    </svg>
-
-    Dashboard
-
+    🏠 Dashboard
   </div>
 
   <div class="menu-item"
        data-page="transfer"
        onclick="page('transfer')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-    </svg>
-
-    Transfer Money
-
+    ↗ Transfer Money
   </div>
 
   <div class="menu-item"
        data-page="transactions"
        onclick="page('transactions')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-    </svg>
-
-    Transactions
-
+    ▣ Transactions
   </div>
 
   <div class="menu-item"
        data-page="bills"
        onclick="page('bills')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-
-    Bills & Payments
-
+    ▤ Bills & Payments
   </div>
 
   <div class="menu-item"
        data-page="cards"
        onclick="page('cards')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="2" y="5" width="20" height="14" rx="2"/>
-      <path d="M2 10h20"/>
-    </svg>
-
-    Cards
-
+    ▭ Cards
   </div>
 
   <div class="menu-item"
        data-page="beneficiaries"
        onclick="page('beneficiaries')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-    </svg>
-
-    Beneficiaries
-
+    ♙ Beneficiaries
   </div>
 
   <div class="menu-title" style="margin-top:25px">
@@ -999,26 +962,19 @@ button{
   </div>
 
   <div class="menu-item"
+       data-page="statements"
+       onclick="page('statements')">
+    ▤ Statements
+  </div>
+
+  <div class="menu-item"
        data-page="settings"
        onclick="page('settings')">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
-    </svg>
-
-    Settings
-
+    ⚙ Settings
   </div>
 
   <div class="menu-item" onclick="logout()">
-
-    <svg class="menu-icon" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
-    </svg>
-
-    Logout
-
+    ⇥ Logout
   </div>
 
 </aside>
@@ -1032,20 +988,15 @@ button{
 <div id="dashboard-page" class="screen">
 
   <div class="welcome">
-
-    <h1>
-      Good afternoon, John 👋
-    </h1>
-
+    <h1>Good afternoon, John 👋</h1>
     <p class="muted">
       Here's what's happening with your account.
     </p>
-
   </div>
 
   <section class="balance-card">
 
-    <div>
+    <div class="balance-label">
       AVAILABLE BALANCE
     </div>
 
@@ -1053,7 +1004,7 @@ button{
       $0.00
     </div>
 
-    <div>
+    <div class="account-number">
       Checking Account •••• 4821
     </div>
 
@@ -1062,51 +1013,23 @@ button{
   <section class="actions">
 
     <button class="action" onclick="page('transfer')">
-
-      <div class="action-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 19V5M5 12l7-7 7 7"/>
-        </svg>
-      </div>
-
+      <div class="action-icon">↗</div>
       <p>Send Money</p>
-
     </button>
 
     <button class="action" onclick="page('request')">
-
-      <div class="action-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
-      </div>
-
+      <div class="action-icon">↙</div>
       <p>Request Money</p>
-
     </button>
 
     <button class="action" onclick="page('bills')">
-
-      <div class="action-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-      </div>
-
+      <div class="action-icon">▤</div>
       <p>Pay Bills</p>
-
     </button>
 
     <button class="action" onclick="page('addmoney')">
-
-      <div class="action-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 4v16m8-8H4"/>
-        </svg>
-      </div>
-
+      <div class="action-icon">＋</div>
       <p>Add Money</p>
-
     </button>
 
   </section>
@@ -1116,16 +1039,10 @@ button{
     <section class="card">
 
       <div class="card-head">
-
-        <h2>
-          Recent Transactions
-        </h2>
-
-        <button class="link"
-                onclick="page('transactions')">
+        <h2>Recent Transactions</h2>
+        <button class="link" onclick="page('transactions')">
           View All
         </button>
-
       </div>
 
       <div id="recent"></div>
@@ -1136,12 +1053,10 @@ button{
 
       <div class="card">
 
-        <h2>
-          Account Summary
-        </h2>
+        <h2>Account Summary</h2>
 
         <div class="row">
-          <span>Account</span>
+          <span>Account Type</span>
           <b>Checking</b>
         </div>
 
@@ -1153,6 +1068,11 @@ button{
         <div class="row">
           <span>Account</span>
           <b>•••• 4821</b>
+        </div>
+
+        <div class="row">
+          <span>Routing</span>
+          <b>•••• 1102</b>
         </div>
 
       </div>
@@ -1171,7 +1091,7 @@ button{
 
         <div class="card-bottom">
           <span>JOHN DOE</span>
-          <span>PROTOTYPE</span>
+          <span>DEMO</span>
         </div>
 
       </div>
@@ -1187,85 +1107,49 @@ button{
 <div id="transfer-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Transfer Money
-    </h1>
-
+    <h1>Transfer Money</h1>
     <p class="muted">
       Send a prototype transfer.
     </p>
-
   </div>
 
   <section class="card form-card">
 
     <div class="notice">
-      Transfers are simulated locally and do not move real money.
+      No real money is transferred. This transaction only changes
+      the prototype data stored in this browser.
     </div>
 
     <form id="transferForm">
 
       <div class="field">
-
-        <label>
-          Recipient
-        </label>
-
-        <input
-          id="recipient"
-          required
-          placeholder="Recipient name"
-        >
-
+        <label>Recipient Name</label>
+        <input id="recipient" required>
       </div>
 
       <div class="field">
-
-        <label>
-          Account Number
-        </label>
-
-        <input
-          id="recipientAccount"
-          required
-          inputmode="numeric"
-          placeholder="Account number"
-        >
-
+        <label>Account Number</label>
+        <input id="recipientAccount" required>
       </div>
 
       <div class="field">
-
-        <label>
-          Amount</label>
-
+        <label>Amount</label>
         <input
           id="transferAmount"
           type="number"
           min=".01"
           step=".01"
-          required
           placeholder="0.00"
-        >
-
+          required>
       </div>
 
       <div class="field">
-
-        <label>
-          Memo
-        </label>
-
-        <input
-          id="memo"
-          placeholder="Optional"
-        >
-
+        <label>Memo</label>
+        <input id="memo" placeholder="Optional">
       </div>
 
       <button class="primary" type="submit">
-        Review Transfer
+        Continue
       </button>
 
     </form>
@@ -1279,15 +1163,10 @@ button{
 <div id="transactions-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Transactions
-    </h1>
-
+    <h1>Transactions</h1>
     <p class="muted">
-      Your prototype activity.
+      Your prototype account activity.
     </p>
-
   </div>
 
   <section class="card">
@@ -1303,15 +1182,10 @@ button{
 <div id="request-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Request Money
-    </h1>
-
+    <h1>Request Money</h1>
     <p class="muted">
-      Create a local money request.
+      Create a local payment request.
     </p>
-
   </div>
 
   <section class="card form-card">
@@ -1319,37 +1193,21 @@ button{
     <form id="requestForm">
 
       <div class="field">
-
-        <label>
-          From
-        </label>
-
-        <input
-          id="requestFrom"
-          required
-          placeholder="Name"
-        >
-
+        <label>Request From</label>
+        <input id="requestFrom" required>
       </div>
 
       <div class="field">
-
-        <label>
-          Amount
-        </label>
-
+        <label>Amount</label>
         <input
           id="requestAmount"
           type="number"
           min=".01"
           step=".01"
-          required
-          placeholder="0.00"
-        >
-
+          required>
       </div>
 
-      <button class="primary" type="submit">
+      <button class="primary">
         Create Request
       </button>
 
@@ -1364,42 +1222,31 @@ button{
 <div id="addmoney-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Add Money
-    </h1>
-
+    <h1>Add Money</h1>
     <p class="muted">
       Add prototype funds.
     </p>
-
   </div>
 
   <section class="card form-card">
 
     <div class="notice">
-      This changes the local prototype balance only.
+      This only changes the local prototype balance.
     </div>
 
     <form id="addForm">
 
       <div class="field">
-
-        <label>
-          Amount
-        </label>
-
+        <label>Amount</label>
         <input
           id="addAmount"
           type="number"
           min=".01"
           step=".01"
-          required
-        >
-
+          required>
       </div>
 
-      <button class="primary" type="submit">
+      <button class="primary">
         Add Prototype Funds
       </button>
 
@@ -1414,65 +1261,51 @@ button{
 <div id="bills-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Bills & Payments
-    </h1>
-
+    <h1>Bills & Payments</h1>
     <p class="muted">
-      Manage your local prototype bills.
+      Manage prototype bills.
     </p>
-
   </div>
 
   <section class="card">
 
     <div class="txn">
-
-      <span>
-        ⚡ Electric Company
+      <div>
+        <b>Electric Company</b>
         <br>
         <small>$124.75</small>
-      </span>
-
+      </div>
       <button
         class="link"
         onclick="bill('Electric Company',124.75)">
         Pay
       </button>
-
     </div>
 
     <div class="txn">
-
-      <span>
-        🌐 Internet
+      <div>
+        <b>Internet</b>
         <br>
         <small>$79.99</small>
-      </span>
-
+      </div>
       <button
         class="link"
         onclick="bill('Internet',79.99)">
         Pay
       </button>
-
     </div>
 
     <div class="txn">
-
-      <span>
-        📱 Mobile Phone
+      <div>
+        <b>Mobile Phone</b>
         <br>
         <small>$65.00</small>
-      </span>
-
+      </div>
       <button
         class="link"
         onclick="bill('Mobile Phone',65)">
         Pay
       </button>
-
     </div>
 
   </section>
@@ -1484,11 +1317,10 @@ button{
 <div id="cards-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      My Cards
-    </h1>
-
+    <h1>My Cards</h1>
+    <p class="muted">
+      Prototype card management.
+    </p>
   </div>
 
   <section class="card" style="max-width:600px">
@@ -1507,7 +1339,7 @@ button{
 
       <div class="card-bottom">
         <span>JOHN DOE</span>
-        <span>PROTOTYPE</span>
+        <span>DEMO</span>
       </div>
 
     </div>
@@ -1515,6 +1347,11 @@ button{
     <div class="row">
       <span>Status</span>
       <b class="plus">Active</b>
+    </div>
+
+    <div class="row">
+      <span>Card ending</span>
+      <b>4821</b>
     </div>
 
   </section>
@@ -1526,15 +1363,10 @@ button{
 <div id="beneficiaries-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Beneficiaries
-    </h1>
-
+    <h1>Beneficiaries</h1>
     <p class="muted">
       Save recipients locally.
     </p>
-
   </div>
 
   <section class="card form-card">
@@ -1542,26 +1374,16 @@ button{
     <form id="beneficiaryForm">
 
       <div class="field">
-
-        <label>
-          Name
-        </label>
-
+        <label>Name</label>
         <input id="benName" required>
-
       </div>
 
       <div class="field">
-
-        <label>
-          Account
-        </label>
-
+        <label>Account</label>
         <input id="benAccount" required>
-
       </div>
 
-      <button class="primary" type="submit">
+      <button class="primary">
         Add Beneficiary
       </button>
 
@@ -1573,84 +1395,86 @@ button{
 
 </div>
 
+<!-- STATEMENTS -->
+
+<div id="statements-page" class="screen hidden">
+
+  <div class="welcome">
+    <h1>Statements</h1>
+    <p class="muted">
+      Prototype account statements.
+    </p>
+  </div>
+
+  <section class="card">
+
+    <div class="row">
+      <span>August 2026</span>
+      <button class="link" onclick="showToast('Demo statement selected.')">
+        View
+      </button>
+    </div>
+
+    <div class="row">
+      <span>July 2026</span>
+      <button class="link" onclick="showToast('Demo statement selected.')">
+        View
+      </button>
+    </div>
+
+    <div class="row">
+      <span>June 2026</span>
+      <button class="link" onclick="showToast('Demo statement selected.')">
+        View
+      </button>
+    </div>
+
+  </section>
+
+</div>
+
 <!-- SETTINGS -->
 
 <div id="settings-page" class="screen hidden">
 
   <div class="welcome">
-
-    <h1>
-      Settings
-    </h1>
-
+    <h1>Settings</h1>
     <p class="muted">
-      Manage your local prototype settings.
+      Manage your prototype settings.
     </p>
-
   </div>
 
   <section class="card form-card">
 
     <div class="row">
-
-      <span>
-        Email alerts
-      </span>
-
+      <span>Email alerts</span>
       <input type="checkbox" checked>
-
     </div>
 
     <div class="row">
-
-      <span>
-        Transaction alerts
-      </span>
-
+      <span>Transaction alerts</span>
       <input type="checkbox" checked>
-
     </div>
 
     <div class="row">
-
-      <span>
-        Payment PIN
-      </span>
-
-      <button
-        class="link"
-        onclick="openChangePin()">
-        Change PIN
+      <span>Payment PIN</span>
+      <button class="link" onclick="changePin()">
+        Change
       </button>
-
     </div>
 
     <div class="row">
-
-      <span>
-        Reset local data
-      </span>
-
-      <button
-        class="link"
-        onclick="resetData()">
+      <span>Reset local data</span>
+      <button class="link" onclick="resetData()">
         Reset
       </button>
-
     </div>
 
     <div class="row">
-
-      <span>
-        Session
-      </span>
-
-      <button
-        class="link"
-        onclick="logout()">
+      <span>Session</span>
+      <button class="link" onclick="logout()">
         Logout
       </button>
-
     </div>
 
   </section>
@@ -1658,78 +1482,117 @@ button{
 </div>
 
 </main>
-
 </div>
 
 <!-- MOBILE NAV -->
 
 <div class="bottom">
 
-  <button
-    class="active"
-    data-page="dashboard"
-    onclick="page('dashboard')">
-
-    <svg fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M3 12l9-9 9 9M4 10v10h3v-6h4v6h3V10"/>
-    </svg>
-
-    Home
-
+  <button class="active"
+          data-page="dashboard"
+          onclick="page('dashboard')">
+    🏠
+    <span>Home</span>
   </button>
 
-  <button
-    data-page="transfer"
-    onclick="page('transfer')">
-
-    <svg fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-    </svg>
-
-    Transfer
-
+  <button data-page="transfer"
+          onclick="page('transfer')">
+    ↗
+    <span>Transfer</span>
   </button>
 
-  <button
-    data-page="transactions"
-    onclick="page('transactions')">
-
-    <svg fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
-    </svg>
-
-    Activity
-
+  <button data-page="transactions"
+          onclick="page('transactions')">
+    ▣
+    <span>Activity</span>
   </button>
 
-  <button
-    data-page="settings"
-    onclick="page('settings')">
-
-    <svg fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.65 1.65 0 00.33 1.82"/>
-    </svg>
-
-    Settings
-
+  <button data-page="settings"
+          onclick="page('settings')">
+    ⚙
+    <span>Settings</span>
   </button>
 
 </div>
 
 </section>
 
-<!-- MODAL -->
+<!-- PIN / CONFIRMATION MODAL -->
 
-<div id="modal" class="modal hidden">
+<div id="pinModal" class="modal">
 
   <div class="modal-box">
 
-    <div id="modalContent"></div>
+    <div class="modal-head">
+      <h2>Confirm Transfer</h2>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div id="transferSummary"></div>
+
+    <div class="notice">
+      Enter your 4-digit demo payment PIN to approve this prototype transfer.
+    </div>
+
+    <form id="pinForm">
+
+      <div class="field">
+
+        <label>Payment PIN</label>
+
+        <input
+          id="pinInput"
+          class="pin-input"
+          type="password"
+          inputmode="numeric"
+          maxlength="4"
+          pattern="[0-9]{4}"
+          autocomplete="off"
+          placeholder="••••"
+          required>
+
+      </div>
+
+      <button class="primary">
+        Confirm Transfer
+      </button>
+
+    </form>
 
   </div>
 
 </div>
+
+<!-- SUCCESS MODAL -->
+
+<div id="successModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="success">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>Transfer Complete</h2>
+
+      <p class="muted" id="successText" style="margin-top:8px"></p>
+
+      <button
+        class="primary"
+        style="margin-top:20px"
+        onclick="closeSuccess()">
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
 
 <script>
 
@@ -1738,57 +1601,47 @@ button{
 ========================= */
 
 const DEFAULT = {
-
   balance:24680.50,
 
-  paymentPin:"1234",
-
   transactions:[
-
     {
       name:"Grocery Store",
       date:"Today • 10:42 AM",
       amount:-86.42,
-      icon:"🛒"
+      icon:"cart"
     },
-
     {
       name:"Salary Deposit",
       date:"Yesterday • 8:15 AM",
       amount:3250,
-      icon:"💼"
+      icon:"deposit"
     },
-
     {
       name:"Electric Company",
       date:"Sep 2 • 2:30 PM",
       amount:-124.75,
-      icon:"⚡"
+      icon:"bill"
     },
-
     {
       name:"Coffee Shop",
       date:"Sep 2 • 9:21 AM",
       amount:-8.50,
-      icon:"☕"
+      icon:"coffee"
     }
-
   ],
 
-  beneficiaries:[]
+  beneficiaries:[],
 
+  paymentPin:"1234"
 };
 
-
-/* =========================
-   STATE
-========================= */
-
 let state =
-JSON.parse(
-  localStorage.getItem("cashflow_state")
-) ||
-JSON.parse(JSON.stringify(DEFAULT));
+  JSON.parse(
+    localStorage.getItem("cashflow_state") ||
+    JSON.stringify(DEFAULT)
+  );
+
+let pendingTransfer = null;
 
 
 /* =========================
@@ -1796,13 +1649,10 @@ JSON.parse(JSON.stringify(DEFAULT));
 ========================= */
 
 const money = number =>
-new Intl.NumberFormat(
-  "en-US",
-  {
+  new Intl.NumberFormat("en-US",{
     style:"currency",
     currency:"USD"
-  }
-).format(number);
+  }).format(number);
 
 
 function escapeHTML(value){
@@ -1810,13 +1660,13 @@ function escapeHTML(value){
   return String(value).replace(
     /[&<>"']/g,
     character =>
-    ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[character])
+      ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[character])
   );
 
 }
@@ -1832,36 +1682,34 @@ function save(){
 }
 
 
-function nowText(){
+/* =========================
+   ICONS
+========================= */
 
-  const d = new Date();
+const ICONS = {
 
-  return d.toLocaleDateString(
-    "en-US",
-    {
-      month:"short",
-      day:"numeric"
-    }
-  )
-  + " • "
-  +
-  d.toLocaleTimeString(
-    "en-US",
-    {
-      hour:"numeric",
-      minute:"2-digit"
-    }
-  );
+  cart:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>',
 
-}
+  deposit:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
 
+  bill:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
 
-function reference(){
+  coffee:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>',
 
-  return "CF-" +
-  Date.now().toString(36).toUpperCase();
+  send:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
 
-}
+  request:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
+
+  add:
+  '<svg fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>'
+
+};
 
 
 /* =========================
@@ -1871,45 +1719,85 @@ function reference(){
 function render(){
 
   const balance =
-  document.getElementById("balance");
+    document.getElementById("balance");
 
   if(balance){
-
     balance.textContent =
-    money(state.balance);
-
+      money(state.balance);
   }
 
 
+  const getIcon =
+    type =>
+      ICONS[type] || ICONS.bill;
+
+
+  const transactionHTML =
+    state.transactions.map(transaction => {
+
+      const positive =
+        transaction.amount >= 0;
+
+      return `
+
+        <div class="txn">
+
+          <div class="txn-left">
+
+            <div class="txn-icon">
+              ${getIcon(transaction.icon)}
+            </div>
+
+            <div>
+
+              <div class="txn-name">
+                ${escapeHTML(transaction.name)}
+              </div>
+
+              <div class="txn-date">
+                ${escapeHTML(transaction.date)}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="${positive ? "plus":"minus"}">
+            ${positive ? "+" : ""}
+            ${money(transaction.amount)}
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
   const recent =
-  document.getElementById("recent");
+    document.getElementById("recent");
 
   if(recent){
 
     recent.innerHTML =
-    state.transactions
-    .slice(0,5)
-    .map(transactionHTML)
-    .join("");
+      state.transactions
+      .slice(0,5)
+      .join
+      ? transactionHTML
+      : "";
 
   }
 
 
   const all =
-  document.getElementById(
-    "allTransactions"
-  );
+    document.getElementById("allTransactions");
 
   if(all){
 
     all.innerHTML =
-    state.transactions.length
-    ?
-    state.transactions
-    .map(transactionHTML)
-    .join("")
-    :
-    '<div class="empty">No transactions yet.</div>';
+      state.transactions.length
+      ? transactionHTML
+      : '<div class="empty">No transactions yet.</div>';
 
   }
 
@@ -1919,152 +1807,53 @@ function render(){
 }
 
 
-function transactionHTML(transaction){
-
-  const positive =
-  Number(transaction.amount) >= 0;
-
-  return `
-
-    <div class="txn">
-
-      <div class="txn-left">
-
-        <div class="txn-icon">
-          ${escapeHTML(transaction.icon || "💳")}
-        </div>
-
-        <div>
-
-          <div class="txn-name">
-            ${escapeHTML(transaction.name)}
-          </div>
-
-          <div class="txn-date">
-            ${escapeHTML(transaction.date)}
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="${positive ? "plus" : "minus"}">
-
-        ${positive ? "+" : ""}
-        ${money(transaction.amount)}
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-function renderBeneficiaries(){
-
-  const box =
-  document.getElementById(
-    "beneficiaries"
-  );
-
-  if(!box) return;
-
-  if(!state.beneficiaries.length){
-
-    box.innerHTML =
-    '<div class="empty">No beneficiaries saved.</div>';
-
-    return;
-
-  }
-
-  box.innerHTML =
-  state.beneficiaries
-  .map(
-    (b,index)=>`
-
-      <div class="beneficiary-item">
-
-        <div>
-
-          <div class="ben-name">
-            ${escapeHTML(b.name)}
-          </div>
-
-          <div class="ben-account">
-            •••• ${escapeHTML(
-              String(b.account).slice(-4)
-            )}
-          </div>
-
-        </div>
-
-        <button
-          class="link"
-          onclick="removeBeneficiary(${index})">
-          Remove
-        </button>
-
-      </div>
-
-    `
-  )
-  .join("");
-
-}
-
-
 /* =========================
-   PAGE NAVIGATION
+   NAVIGATION
 ========================= */
 
 function page(name){
 
   document
-  .querySelectorAll(".screen")
-  .forEach(
-    screen =>
-    screen.classList.add("hidden")
-  );
-
-  const target =
-  document.getElementById(
-    name + "-page"
-  );
-
-  if(target){
-
-    target.classList.remove("hidden");
-
-  }
-
-  document
-  .querySelectorAll(
-    ".menu-item,.bottom button"
-  )
-  .forEach(item => {
-
-    item.classList.toggle(
-      "active",
-      item.dataset.page === name
+    .querySelectorAll(".screen")
+    .forEach(screen =>
+      screen.classList.add("hidden")
     );
 
-  });
 
-  if(window.innerWidth <= 900){
+  const target =
+    document.getElementById(
+      name + "-page"
+    );
 
-    const sidebar =
-    document.getElementById("sidebar");
-
-    if(sidebar){
-
-      sidebar.style.display = "none";
-
-    }
-
+  if(target){
+    target.classList.remove("hidden");
   }
+
+
+  document
+    .querySelectorAll(".menu-item[data-page]")
+    .forEach(item =>
+      item.classList.toggle(
+        "active",
+        item.dataset.page === name
+      )
+    );
+
+
+  document
+    .querySelectorAll(".bottom button[data-page]")
+    .forEach(item =>
+      item.classList.toggle(
+        "active",
+        item.dataset.page === name
+      )
+    );
+
+
+  document
+    .getElementById("sidebar")
+    ?.classList.remove("open");
+
 
   render();
 
@@ -2073,85 +1862,54 @@ function page(name){
 
 function toggleMenu(){
 
-  const sidebar =
-  document.getElementById("sidebar");
-
-  if(!sidebar) return;
-
-  if(
-    sidebar.style.display === "block"
-  ){
-
-    sidebar.style.display = "none";
-
-  }else{
-
-    sidebar.style.display = "block";
-    sidebar.style.position = "fixed";
-    sidebar.style.top = "72px";
-    sidebar.style.bottom = "0";
-    sidebar.style.zIndex = "1000";
-    sidebar.style.boxShadow =
-    "10px 0 30px #0002";
-
-  }
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
 
 }
 
 
 /* =========================
-   ALERT
+   LOGIN
 ========================= */
 
-function showAlert(message){
+document
+  .getElementById("loginForm")
+  .addEventListener("submit",event => {
 
-  openModal(`
+    event.preventDefault();
 
-    <div class="modal-title">
-      Notice
-    </div>
+    localStorage.setItem(
+      "cashflow_logged_in",
+      "true"
+    );
 
-    <p class="modal-subtitle">
-      ${escapeHTML(message)}
-    </p>
+    document
+      .getElementById("login")
+      .classList.add("hidden");
 
-    <button
-      class="primary"
-      onclick="closeModal()">
-      OK
-    </button>
+    document
+      .getElementById("app")
+      .classList.remove("hidden");
 
-  `);
+    page("dashboard");
 
-}
+  });
 
 
-/* =========================
-   MODAL
-========================= */
+function logout(){
 
-function openModal(content){
-
-  document
-  .getElementById("modalContent")
-  .innerHTML = content;
+  localStorage.removeItem(
+    "cashflow_logged_in"
+  );
 
   document
-  .getElementById("modal")
-  .classList.remove("hidden");
-
-}
-
-
-function closeModal(){
+    .getElementById("app")
+    .classList.add("hidden");
 
   document
-  .getElementById("modal")
-  .classList.add("hidden");
-
-  document
-  .getElementById("modalContent")
-  .innerHTML = "";
+    .getElementById("login")
+    .classList.remove("hidden");
 
 }
 
@@ -2160,55 +1918,43 @@ function closeModal(){
    TRANSFER
 ========================= */
 
-let pendingTransfer = null;
-
-
 document
-.getElementById("transferForm")
-.addEventListener(
-  "submit",
-  function(event){
+  .getElementById("transferForm")
+  .addEventListener("submit",event => {
 
     event.preventDefault();
 
+
     const recipient =
-    document
-    .getElementById("recipient")
-    .value.trim();
+      document
+      .getElementById("recipient")
+      .value.trim();
+
 
     const account =
-    document
-    .getElementById("recipientAccount")
-    .value.trim();
+      document
+      .getElementById("recipientAccount")
+      .value.trim();
+
 
     const amount =
-    Number(
-      document
-      .getElementById("transferAmount")
-      .value
-    );
-
-    const memo =
-    document
-    .getElementById("memo")
-    .value.trim();
-
-
-    if(!recipient || !account){
-
-      showAlert(
-        "Please enter the recipient details."
+      Number(
+        document
+        .getElementById("transferAmount")
+        .value
       );
 
-      return;
 
-    }
+    const memo =
+      document
+      .getElementById("memo")
+      .value.trim();
 
 
-    if(!Number.isFinite(amount) || amount <= 0){
+    if(amount <= 0){
 
-      showAlert(
-        "Please enter a valid transfer amount."
+      showToast(
+        "Enter a valid amount."
       );
 
       return;
@@ -2218,7 +1964,7 @@ document
 
     if(amount > state.balance){
 
-      showAlert(
+      showToast(
         "Insufficient prototype balance."
       );
 
@@ -2228,365 +1974,201 @@ document
 
 
     pendingTransfer = {
-
       recipient,
       account,
       amount,
       memo
-
     };
 
 
-    showTransferReview();
-
-  }
-);
-
-
-function showTransferReview(){
-
-  if(!pendingTransfer) return;
-
-  openModal(`
-
-    <div class="modal-title">
-      Review Transfer
-    </div>
-
-    <div class="modal-subtitle">
-      Check the details before continuing.
-    </div>
-
-    <div class="confirm-box">
-
-      <div class="confirm-row">
-        <span>Recipient</span>
-        <b>${escapeHTML(
-          pendingTransfer.recipient
-        )}</b>
-      </div>
-
-      <div class="confirm-row">
-        <span>Account</span>
-        <b>•••• ${escapeHTML(
-          pendingTransfer.account.slice(-4)
-        )}</b>
-      </div>
-
-      <div class="confirm-row">
-        <span>Amount</span>
-        <b>${money(
-          pendingTransfer.amount
-        )}</b>
-      </div>
-
-      <div class="confirm-row">
-        <span>Memo</span>
-        <b>${escapeHTML(
-          pendingTransfer.memo || "—"
-        )}</b>
-      </div>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="requestTransferPin()">
-      Continue
-    </button>
-
-    <button
-      class="secondary"
-      onclick="cancelTransfer()">
-      Cancel
-    </button>
-
-  `);
-
-}
-
-
-function requestTransferPin(){
-
-  if(!pendingTransfer){
-
-    closeModal();
-
-    return;
-
-  }
-
-  openModal(`
-
-    <div class="modal-title">
-      Enter Payment PIN
-    </div>
-
-    <div class="modal-subtitle">
-      Enter your 4-digit payment PIN to authorize this transfer.
-    </div>
-
-    <div class="field">
-
-      <input
-        id="transferPin"
-        class="pin-input"
-        type="password"
-        inputmode="numeric"
-        maxlength="4"
-        autocomplete="off"
-        placeholder="••••"
-        oninput="updatePinDots(this.value)"
-      >
-
-    </div>
-
-    <div class="pin-dots">
-
-      <div class="pin-dot" id="dot1"></div>
-      <div class="pin-dot" id="dot2"></div>
-      <div class="pin-dot" id="dot3"></div>
-      <div class="pin-dot" id="dot4"></div>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="verifyTransferPin()">
-      Confirm Transfer
-    </button>
-
-    <button
-      class="secondary"
-      onclick="showTransferReview()">
-      Back
-    </button>
-
-  `);
-
-  setTimeout(
-    () =>
     document
-    .getElementById("transferPin")
-    ?.focus(),
-    100
-  );
+      .getElementById("transferSummary")
+      .innerHTML = `
 
-}
+        <div class="row">
+          <span>Recipient</span>
+          <b>${escapeHTML(recipient)}</b>
+        </div>
+
+        <div class="row">
+          <span>Account</span>
+          <b>•••• ${escapeHTML(account.slice(-4))}</b>
+        </div>
+
+        <div class="row">
+          <span>Amount</span>
+          <b>${money(amount)}</b>
+        </div>
+
+      `;
 
 
-function updatePinDots(value){
+    document
+      .getElementById("pinInput")
+      .value = "";
 
-  for(let i=1;i<=4;i++){
 
-    const dot =
-    document.getElementById(
-      "dot" + i
+    document
+      .getElementById("pinModal")
+      .classList.add("show");
+
+
+    setTimeout(() =>
+      document
+        .getElementById("pinInput")
+        .focus(),
+      100
     );
 
-    if(dot){
+});
 
-      dot.classList.toggle(
-        "filled",
-        value.length >= i
+
+/* =========================
+   PIN CONFIRMATION
+========================= */
+
+document
+  .getElementById("pinForm")
+  .addEventListener("submit",event => {
+
+    event.preventDefault();
+
+
+    const entered =
+      document
+      .getElementById("pinInput")
+      .value;
+
+
+    if(entered !== state.paymentPin){
+
+      showToast(
+        "Incorrect payment PIN."
       );
+
+      return;
 
     }
 
-  }
 
-}
-
-
-function verifyTransferPin(){
-
-  const input =
-  document.getElementById(
-    "transferPin"
-  );
-
-  const pin =
-  input ? input.value : "";
-
-  if(!/^\d{4}$/.test(pin)){
-
-    showAlert(
-      "Enter your 4-digit payment PIN."
-    );
-
-    return;
-
-  }
+    if(!pendingTransfer){
+      return;
+    }
 
 
-  if(pin !== state.paymentPin){
-
-    showAlert(
-      "Incorrect payment PIN. The transfer was not completed."
-    );
-
-    return;
-
-  }
+    const transfer =
+      pendingTransfer;
 
 
-  completeTransfer();
+    state.balance -=
+      transfer.amount;
 
-}
+
+    state.transactions.unshift({
+
+      name:
+        "Transfer to " +
+        transfer.recipient,
+
+      date:
+        "Today • " +
+        new Date().toLocaleTimeString(
+          [],
+          {
+            hour:"numeric",
+            minute:"2-digit"
+          }
+        ),
+
+      amount:
+        -transfer.amount,
+
+      icon:"send"
+
+    });
 
 
-function completeTransfer(){
+    save();
+    render();
 
-  if(!pendingTransfer){
 
     closeModal();
 
-    return;
 
-  }
-
-
-  const transfer =
-  pendingTransfer;
+    document
+      .getElementById("successText")
+      .textContent =
+        `${money(transfer.amount)} was recorded as a prototype transfer to ${transfer.recipient}.`;
 
 
-  if(transfer.amount > state.balance){
+    document
+      .getElementById("successModal")
+      .classList.add("show");
+
+
+    document
+      .getElementById("transferForm")
+      .reset();
+
 
     pendingTransfer = null;
 
-    showAlert(
-      "The prototype balance is no longer sufficient for this transfer."
+});
+
+
+function closeModal(){
+
+  document
+    .getElementById("pinModal")
+    .classList.remove("show");
+
+}
+
+
+function closeSuccess(){
+
+  document
+    .getElementById("successModal")
+    .classList.remove("show");
+
+  page("transactions");
+
+}
+
+
+/* =========================
+   REQUEST MONEY
+========================= */
+
+document
+  .getElementById("requestForm")
+  .addEventListener("submit",event => {
+
+    event.preventDefault();
+
+
+    const from =
+      document
+      .getElementById("requestFrom")
+      .value;
+
+
+    const amount =
+      Number(
+        document
+        .getElementById("requestAmount")
+        .value
+      );
+
+
+    showToast(
+      `Request for ${money(amount)} created for ${from}.`
     );
 
-    return;
 
-  }
+    event.target.reset();
 
-
-  state.balance -=
-  transfer.amount;
-
-
-  state.transactions.unshift({
-
-    name:
-    "Transfer to " +
-    transfer.recipient,
-
-    date:nowText(),
-
-    amount:
-    -transfer.amount,
-
-    icon:"↗️",
-
-    memo:
-    transfer.memo,
-
-    reference:
-    reference(),
-
-    account:
-    transfer.account
-
-  });
-
-
-  save();
-
-  pendingTransfer = null;
-
-  render();
-
-  showTransferSuccess(
-    transfer,
-    state.transactions[0].reference
-  );
-
-}
-
-
-function showTransferSuccess(
-  transfer,
-  ref
-){
-
-  openModal(`
-
-    <div class="receipt">
-
-      <div class="success-icon">
-        ✓
-      </div>
-
-      <div class="modal-title">
-        Transfer Complete
-      </div>
-
-      <p class="modal-subtitle">
-        Your prototype transfer was recorded successfully.
-      </p>
-
-      <div class="receipt-amount">
-        ${money(transfer.amount)}
-      </div>
-
-      <div class="confirm-box">
-
-        <div class="confirm-row">
-          <span>Recipient</span>
-          <b>${escapeHTML(
-            transfer.recipient
-          )}</b>
-        </div>
-
-        <div class="confirm-row">
-          <span>Account</span>
-          <b>•••• ${escapeHTML(
-            transfer.account.slice(-4)
-          )}</b>
-        </div>
-
-        <div class="confirm-row">
-          <span>Date</span>
-          <b>${escapeHTML(
-            nowText()
-          )}</b>
-        </div>
-
-        <div class="confirm-row">
-          <span>Status</span>
-          <b class="plus">Completed</b>
-        </div>
-
-      </div>
-
-      <div class="reference">
-        Reference: ${escapeHTML(ref)}
-      </div>
-
-      <br>
-
-      <button
-        class="primary"
-        onclick="closeModal();page('transactions')">
-        Done
-      </button>
-
-    </div>
-
-  `);
-
-}
-
-
-function cancelTransfer(){
-
-  pendingTransfer = null;
-
-  closeModal();
-
-}
+});
 
 
 /* =========================
@@ -2594,29 +2176,22 @@ function cancelTransfer(){
 ========================= */
 
 document
-.getElementById("addForm")
-.addEventListener(
-  "submit",
-  function(event){
+  .getElementById("addForm")
+  .addEventListener("submit",event => {
 
     event.preventDefault();
 
+
     const amount =
-    Number(
-      document
-      .getElementById("addAmount")
-      .value
-    );
-
-
-    if(!Number.isFinite(amount) || amount <= 0){
-
-      showAlert(
-        "Enter a valid amount."
+      Number(
+        document
+        .getElementById("addAmount")
+        .value
       );
 
-      return;
 
+    if(amount <= 0){
+      return;
     }
 
 
@@ -2627,207 +2202,46 @@ document
 
       name:"Prototype Deposit",
 
-      date:nowText(),
+      date:
+        "Today • " +
+        new Date().toLocaleTimeString(
+          [],
+          {
+            hour:"numeric",
+            minute:"2-digit"
+          }
+        ),
 
       amount:amount,
 
-      icon:"＋",
-
-      reference:reference()
+      icon:"deposit"
 
     });
 
 
     save();
-
     render();
 
-    this.reset();
 
-    showAlert(
-      money(amount) +
-      " was added to the prototype balance."
+    showToast(
+      `${money(amount)} added to prototype balance.`
     );
 
-  }
-);
+
+    event.target.reset();
+
+});
 
 
 /* =========================
-   REQUEST MONEY
-========================= */
-
-document
-.getElementById("requestForm")
-.addEventListener(
-  "submit",
-  function(event){
-
-    event.preventDefault();
-
-    const from =
-    document
-    .getElementById("requestFrom")
-    .value.trim();
-
-    const amount =
-    Number(
-      document
-      .getElementById("requestAmount")
-      .value
-    );
-
-
-    if(!from || amount <= 0){
-
-      showAlert(
-        "Please enter valid request details."
-      );
-
-      return;
-
-    }
-
-
-    this.reset();
-
-    showAlert(
-      "Money request created for " +
-      money(amount) +
-      " from " +
-      from +
-      "."
-    );
-
-  }
-);
-
-
-/* =========================
-   BILL PAYMENT
+   BILLS
 ========================= */
 
 function bill(name,amount){
 
   if(amount > state.balance){
 
-    showAlert(
-      "Insufficient prototype balance."
-    );
-
-    return;
-
-  }
-
-
-  openModal(`
-
-    <div class="modal-title">
-      Pay ${escapeHTML(name)}
-    </div>
-
-    <div class="modal-subtitle">
-      Confirm this prototype bill payment.
-    </div>
-
-    <div class="confirm-box">
-
-      <div class="confirm-row">
-        <span>Bill</span>
-        <b>${escapeHTML(name)}</b>
-      </div>
-
-      <div class="confirm-row">
-        <span>Amount</span>
-        <b>${money(amount)}</b>
-      </div>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="billWithPin('${escapeHTML(name)}',${amount})">
-      Continue
-    </button>
-
-    <button
-      class="secondary"
-      onclick="closeModal()">
-      Cancel
-    </button>
-
-  `);
-
-}
-
-
-function billWithPin(name,amount){
-
-  openModal(`
-
-    <div class="modal-title">
-      Enter Payment PIN
-    </div>
-
-    <div class="modal-subtitle">
-      Enter your 4-digit PIN to authorize this payment.
-    </div>
-
-    <div class="field">
-
-      <input
-        id="billPin"
-        class="pin-input"
-        type="password"
-        inputmode="numeric"
-        maxlength="4"
-        autocomplete="off"
-        placeholder="••••"
-      >
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="verifyBillPin('${escapeHTML(name)}',${amount})">
-      Confirm Payment
-    </button>
-
-    <button
-      class="secondary"
-      onclick="closeModal()">
-      Cancel
-    </button>
-
-  `);
-
-}
-
-
-function verifyBillPin(name,amount){
-
-  const pin =
-  document.getElementById(
-    "billPin"
-  )?.value || "";
-
-
-  if(pin !== state.paymentPin){
-
-    showAlert(
-      "Incorrect payment PIN."
-    );
-
-    return;
-
-  }
-
-
-  if(amount > state.balance){
-
-    closeModal();
-
-    showAlert(
+    showToast(
       "Insufficient prototype balance."
     );
 
@@ -2841,26 +2255,31 @@ function verifyBillPin(name,amount){
 
   state.transactions.unshift({
 
-    name:name,
+    name:"Bill Payment — " + name,
 
-    date:nowText(),
+    date:
+      "Today • " +
+      new Date().toLocaleTimeString(
+        [],
+        {
+          hour:"numeric",
+          minute:"2-digit"
+        }
+      ),
 
     amount:-amount,
 
-    icon:"🧾",
-
-    reference:reference()
+    icon:"bill"
 
   });
 
 
   save();
-
   render();
 
-  showAlert(
-    money(amount) +
-    " payment recorded successfully."
+
+  showToast(
+    `${name} payment recorded.`
   );
 
 }
@@ -2871,56 +2290,92 @@ function verifyBillPin(name,amount){
 ========================= */
 
 document
-.getElementById("beneficiaryForm")
-.addEventListener(
-  "submit",
-  function(event){
+  .getElementById("beneficiaryForm")
+  .addEventListener("submit",event => {
 
     event.preventDefault();
 
+
     const name =
-    document
-    .getElementById("benName")
-    .value.trim();
+      document
+      .getElementById("benName")
+      .value.trim();
+
 
     const account =
-    document
-    .getElementById("benAccount")
-    .value.trim();
-
-
-    if(!name || !account){
-
-      showAlert(
-        "Enter both beneficiary details."
-      );
-
-      return;
-
-    }
+      document
+      .getElementById("benAccount")
+      .value.trim();
 
 
     state.beneficiaries.push({
-
-      name:name,
-
-      account:account
-
+      name,
+      account
     });
 
 
     save();
-
     render();
 
-    this.reset();
 
-    showAlert(
+    showToast(
       "Beneficiary added."
     );
 
+
+    event.target.reset();
+
+});
+
+
+function renderBeneficiaries(){
+
+  const box =
+    document
+    .getElementById("beneficiaries");
+
+
+  if(!box){
+    return;
   }
-);
+
+
+  if(!state.beneficiaries.length){
+
+    box.innerHTML =
+      '<div class="empty">No beneficiaries saved.</div>';
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    state.beneficiaries
+    .map((item,index) => `
+
+      <div class="row">
+
+        <span>
+          <b>${escapeHTML(item.name)}</b>
+          <br>
+          <small>
+            •••• ${escapeHTML(item.account.slice(-4))}
+          </small>
+        </span>
+
+        <button
+          class="link"
+          onclick="removeBeneficiary(${index})">
+          Remove
+        </button>
+
+      </div>
+
+    `)
+    .join("");
+
+}
 
 
 function removeBeneficiary(index){
@@ -2931,118 +2386,27 @@ function removeBeneficiary(index){
   );
 
   save();
-
   render();
 
 }
 
 
 /* =========================
-   CHANGE PIN
+   PAYMENT PIN
 ========================= */
-
-function openChangePin(){
-
-  openModal(`
-
-    <div class="modal-title">
-      Change Payment PIN
-    </div>
-
-    <div class="modal-subtitle">
-      Choose a new 4-digit PIN for prototype transfers and payments.
-    </div>
-
-    <div class="field">
-
-      <label>
-        Current PIN
-      </label>
-
-      <input
-        id="currentPin"
-        class="pin-input"
-        type="password"
-        inputmode="numeric"
-        maxlength="4"
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        New PIN
-      </label>
-
-      <input
-        id="newPin"
-        class="pin-input"
-        type="password"
-        inputmode="numeric"
-        maxlength="4"
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Confirm New PIN
-      </label>
-
-      <input
-        id="confirmPin"
-        class="pin-input"
-        type="password"
-        inputmode="numeric"
-        maxlength="4"
-        autocomplete="off"
-      >
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="changePin()">
-      Save New PIN
-    </button>
-
-    <button
-      class="secondary"
-      onclick="closeModal()">
-      Cancel
-    </button>
-
-  `);
-
-}
-
 
 function changePin(){
 
-  const current =
-  document
-  .getElementById("currentPin")
-  .value;
-
   const newPin =
-  document
-  .getElementById("newPin")
-  .value;
-
-  const confirm =
-  document
-  .getElementById("confirmPin")
-  .value;
+    prompt(
+      "Enter a new 4-digit demo payment PIN:"
+    );
 
 
-  if(current !== state.paymentPin){
+  if(!/^\d{4}$/.test(newPin || "")){
 
-    showAlert(
-      "Current PIN is incorrect."
+    showToast(
+      "PIN must contain exactly 4 digits."
     );
 
     return;
@@ -3050,34 +2414,14 @@ function changePin(){
   }
 
 
-  if(!/^\d{4}$/.test(newPin)){
-
-    showAlert(
-      "New PIN must contain exactly 4 digits."
-    );
-
-    return;
-
-  }
-
-
-  if(newPin !== confirm){
-
-    showAlert(
-      "The new PINs do not match."
-    );
-
-    return;
-
-  }
-
-
-  state.paymentPin = newPin;
+  state.paymentPin =
+    newPin;
 
   save();
 
-  showAlert(
-    "Payment PIN changed successfully."
+
+  showToast(
+    "Demo payment PIN updated."
   );
 
 }
@@ -3089,182 +2433,112 @@ function changePin(){
 
 function resetData(){
 
-  openModal(`
+  if(
+    !confirm(
+      "Reset all CashFlow prototype data?"
+    )
+  ){
+    return;
+  }
 
-    <div class="modal-title">
-      Reset Prototype
-    </div>
-
-    <div class="modal-subtitle">
-      This will erase the local balance, transactions, beneficiaries and PIN changes.
-    </div>
-
-    <button
-      class="primary"
-      onclick="confirmReset()">
-      Reset Everything
-    </button>
-
-    <button
-      class="secondary"
-      onclick="closeModal()">
-      Cancel
-    </button>
-
-  `);
-
-}
-
-
-function confirmReset(){
 
   state =
-  JSON.parse(
-    JSON.stringify(DEFAULT)
-  );
+    JSON.parse(
+      JSON.stringify(DEFAULT)
+    );
+
 
   save();
-
   render();
 
-  closeModal();
 
-  showAlert(
-    "Prototype data has been reset."
+  showToast(
+    "Prototype data reset."
   );
 
 }
 
 
 /* =========================
-   LOGIN
+   TOAST
 ========================= */
 
-document
-.getElementById("loginForm")
-.addEventListener(
-  "submit",
-  function(event){
+let toastTimer;
 
-    event.preventDefault();
+function showToast(message){
 
-    sessionStorage.setItem(
-      "cashflow_logged_in",
-      "true"
-    );
-
-    document
-    .getElementById("login")
-    .classList.add("hidden");
-
-    document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-    page("dashboard");
-
-  }
-);
+  const toast =
+    document.getElementById("toast");
 
 
-function logout(){
-
-  sessionStorage.removeItem(
-    "cashflow_logged_in"
-  );
-
-  document
-  .getElementById("app")
-  .classList.add("hidden");
-
-  document
-  .getElementById("login")
-  .classList.remove("hidden");
-
-  document
-  .getElementById("password")
-  .value = "";
-
-}
+  toast.textContent =
+    message;
 
 
-/* =========================
-   INITIALIZATION
-========================= */
+  toast.classList.add("show");
 
-window.addEventListener(
-  "load",
-  function(){
 
+  clearTimeout(toastTimer);
+
+
+  toastTimer =
     setTimeout(
-      function(){
-
-        const loading =
-        document.getElementById(
-          "loadingScreen"
-        );
-
-        loading.style.opacity = "0";
-
-        setTimeout(
-          () => {
-
-            loading.style.display =
-            "none";
-
-            if(
-              sessionStorage.getItem(
-                "cashflow_logged_in"
-              ) === "true"
-            ){
-
-              document
-              .getElementById("app")
-              .classList.remove("hidden");
-
-              page("dashboard");
-
-            }else{
-
-              document
-              .getElementById("login")
-              .classList.remove("hidden");
-
-            }
-
-          },
-          400
-        );
-
-      },
-      900
+      () =>
+        toast.classList.remove("show"),
+      2800
     );
 
-  }
-);
+}
 
 
 /* =========================
-   ESCAPE KEY
+   START
 ========================= */
 
-document.addEventListener(
-  "keydown",
-  function(event){
+setTimeout(() => {
 
-    if(
-      event.key === "Escape" &&
-      !document
-      .getElementById("modal")
-      .classList.contains("hidden")
-    ){
+  const loader =
+    document.getElementById(
+      "loadingScreen"
+    );
 
-      closeModal();
+
+  loader.style.opacity = "0";
+
+
+  setTimeout(() => {
+
+    loader.classList.add("hidden");
+
+
+    const loggedIn =
+      localStorage.getItem(
+        "cashflow_logged_in"
+      );
+
+
+    if(loggedIn === "true"){
+
+      document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+      page("dashboard");
+
+    }else{
+
+      document
+        .getElementById("login")
+        .classList.remove("hidden");
 
     }
 
-  }
-);
+  },400);
+
+},1200);
+
+
+render();
 
 </script>
 
