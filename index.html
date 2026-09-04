@@ -10,27 +10,27 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
   background:#f7f7f7;
-  color:#151515
+  color:#151515;
 }
 
-button,input{
-  font:inherit
+button,input,select{
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
 .hidden{
-  display:none!important
+  display:none!important;
 }
 
-/* LOADING */
+/* ================= LOADING ================= */
 
 #loadingScreen{
   position:fixed;
@@ -40,50 +40,42 @@ button{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  transition:.4s
+  transition:opacity:.4s ease;
 }
 
 .loading-box{
-  text-align:center
-}
-
-.loading-logo,
-.mark{
-  background:#e51b23;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-weight:900
+  text-align:center;
 }
 
 .loading-logo{
   width:78px;
   height:78px;
   border-radius:20px;
+  background:#e51b23;
+  color:#fff;
+  display:grid;
+  place-items:center;
   font-size:44px;
+  font-weight:900;
   margin:0 auto 20px;
-  animation:pulse 1.4s infinite
+  box-shadow:0 12px 30px #e51b2330;
+  animation:logoPulse 1.4s infinite;
 }
 
 .loading-name{
   font-size:30px;
   font-weight:800;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
-.loading-name span,
-.logo span{
-  color:#e51b23
-}
-
-.loading-text,
-.muted{
-  color:#777;
-  font-size:14px
+.loading-name span{
+  color:#e51b23;
 }
 
 .loading-text{
-  margin-bottom:22px
+  color:#777;
+  font-size:14px;
+  margin-bottom:22px;
 }
 
 .loading-spinner{
@@ -93,25 +85,26 @@ button{
   border-top-color:#e51b23;
   border-radius:50%;
   margin:auto;
-  animation:spin .8s linear infinite
+  animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg)}
+  to{transform:rotate(360deg);}
 }
 
-@keyframes pulse{
-  50%{transform:scale(1.05)}
+@keyframes logoPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
 }
 
-/* AUTH */
+/* ================= LOGIN ================= */
 
 .login{
   min-height:100vh;
   display:grid;
   place-items:center;
   padding:20px;
-  background:linear-gradient(135deg,#fff,#fff4f4)
+  background:linear-gradient(135deg,#fff,#fff4f4);
 }
 
 .login-box{
@@ -120,7 +113,7 @@ button{
   border:1px solid #eee;
   border-radius:20px;
   padding:32px;
-  box-shadow:0 15px 45px #0001
+  box-shadow:0 15px 45px #00012;
 }
 
 .logo{
@@ -128,41 +121,56 @@ button{
   align-items:center;
   gap:10px;
   font-size:23px;
-  font-weight:800
+  font-weight:800;
 }
 
 .mark{
   width:38px;
   height:38px;
-  border-radius:10px
+  border-radius:10px;
+  background:#e51b23;
+  color:#fff;
+  display:grid;
+  place-items:center;
+}
+
+.logo span{
+  color:#e51b23;
 }
 
 .login h1{
   margin:25px 0 8px;
-  font-size:29px
+  font-size:29px;
+}
+
+.muted{
+  color:#777;
+  font-size:14px;
 }
 
 .field{
-  margin:17px 0
+  margin:17px 0;
 }
 
 .field label{
   display:block;
   font-size:13px;
   font-weight:bold;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
-.field input{
+.field input,
+.field select{
   width:100%;
   padding:13px;
   border:1px solid #ddd;
   border-radius:10px;
-  outline:0
+  outline:0;
 }
 
-.field input:focus{
-  border-color:#e51b23
+.field input:focus,
+.field select:focus{
+  border-color:#e51b23;
 }
 
 .primary{
@@ -172,11 +180,11 @@ button{
   color:#fff;
   padding:14px;
   border-radius:10px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .primary:hover{
-  background:#c9151c
+  background:#c9151c;
 }
 
 .secondary{
@@ -187,7 +195,7 @@ button{
   padding:13px;
   border-radius:10px;
   font-weight:bold;
-  margin-top:10px
+  margin-top:10px;
 }
 
 .notice{
@@ -198,39 +206,10 @@ button{
   border:1px solid #ffd5d5;
   color:#777;
   font-size:12px;
-  line-height:1.5
+  line-height:1.5;
 }
 
-.auth-switch{
-  text-align:center;
-  margin-top:18px;
-  font-size:13px;
-  color:#777
-}
-
-.auth-switch button,
-.link{
-  border:0;
-  background:none;
-  color:#e51b23;
-  font-weight:bold
-}
-
-.error{
-  color:#c9151c;
-  font-size:13px;
-  margin:8px 0;
-  display:none
-}
-
-.success{
-  color:#168a42;
-  font-size:13px;
-  margin:8px 0;
-  display:none
-}
-
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
   height:72px;
@@ -242,19 +221,19 @@ button{
   padding:0 32px;
   position:sticky;
   top:0;
-  z-index:100
+  z-index:100;
 }
 
 .header-left,
 .header-right{
   display:flex;
   align-items:center;
-  gap:15px
+  gap:15px;
 }
 
 .notification{
   cursor:pointer;
-  font-size:20px
+  font-size:20px;
 }
 
 .avatar{
@@ -266,26 +245,29 @@ button{
   display:grid;
   place-items:center;
   font-weight:bold;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .mobile-menu{
   display:none;
-  font-size:24px
+  font-size:24px;
+  cursor:pointer;
 }
 
-/* LAYOUT */
+/* ================= LAYOUT ================= */
 
 .layout{
   display:flex;
-  min-height:calc(100vh - 72px)
+  min-height:calc(100vh - 72px);
 }
+
+/* ================= SIDEBAR ================= */
 
 .sidebar{
   width:245px;
   background:#fff;
   border-right:1px solid #eee;
-  padding:28px 16px
+  padding:28px 16px;
 }
 
 .menu-title{
@@ -293,7 +275,7 @@ button{
   font-size:12px;
   font-weight:bold;
   text-transform:uppercase;
-  margin:8px 14px 12px
+  margin:8px 14px 12px;
 }
 
 .menu-item{
@@ -301,36 +283,63 @@ button{
   border-radius:9px;
   margin-bottom:5px;
   color:#555;
-  cursor:pointer
+  cursor:pointer;
+  transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .menu-item:hover{
   background:#fff1f1;
-  color:#e51b23
+  color:#e51b23;
 }
 
 .menu-item.active{
   background:#e51b23;
   color:#fff;
-  font-weight:bold
+  font-weight:bold;
 }
+
+.menu-icon{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+}
+
+/* ================= MAIN ================= */
 
 .main{
   flex:1;
   padding:32px;
-  max-width:1500px
+  max-width:1500px;
+}
+
+.screen{
+  animation:fadeIn .2s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .welcome{
-  margin-bottom:25px
+  margin-bottom:25px;
 }
 
 .welcome h1{
   font-size:30px;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
-/* BALANCE */
+/* ================= BALANCE ================= */
 
 .balance-card{
   background:linear-gradient(135deg,#e51b23,#b90009);
@@ -338,22 +347,35 @@ button{
   border-radius:18px;
   padding:28px;
   min-height:205px;
-  box-shadow:0 10px 25px #e51b2330
+  box-shadow:0 10px 25px #e51b2330;
+  position:relative;
+  overflow:hidden;
+}
+
+.balance-card:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:35px solid #ffffff15;
+  border-radius:50%;
+  right:-90px;
+  top:-100px;
 }
 
 .balance{
   font-size:40px;
   font-weight:800;
-  margin:15px 0 22px
+  margin:15px 0 22px;
 }
 
-/* ACTIONS */
+/* ================= ACTIONS ================= */
 
 .actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
-  margin:24px 0
+  margin:24px 0;
 }
 
 .action{
@@ -361,12 +383,13 @@ button{
   border:1px solid #eee;
   border-radius:14px;
   padding:20px;
-  text-align:center
+  text-align:center;
+  transition:.2s;
 }
 
 .action:hover{
   border-color:#e51b23;
-  transform:translateY(-2px)
+  transform:translateY(-2px);
 }
 
 .action-icon{
@@ -378,59 +401,72 @@ button{
   display:grid;
   place-items:center;
   margin:auto;
-  font-size:21px
+}
+
+.action-icon svg{
+  width:24px;
+  height:24px;
 }
 
 .action p{
   margin-top:10px;
-  font-weight:bold
+  font-weight:bold;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 
 .grid{
   display:grid;
   grid-template-columns:1.5fr 1fr;
-  gap:24px
+  gap:24px;
 }
+
+/* ================= CARDS ================= */
 
 .card{
   background:#fff;
   border:1px solid #eee;
   border-radius:17px;
   padding:24px;
-  margin-bottom:24px
+  margin-bottom:24px;
 }
 
 .card h2{
-  margin-bottom:10px
-}
-
-.card-head,
-.row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center
+  margin-bottom:10px;
 }
 
 .card-head{
-  margin-bottom:18px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
 }
 
-/* TRANSACTIONS */
+.link{
+  border:0;
+  background:none;
+  color:#e51b23;
+  font-weight:bold;
+}
+
+/* ================= TRANSACTIONS ================= */
 
 .txn{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:14px 0;
-  border-bottom:1px solid #eee
+  border-bottom:1px solid #eee;
+}
+
+.txn:last-child{
+  border-bottom:0;
 }
 
 .txn-left{
   display:flex;
   gap:11px;
-  align-items:center
+  align-items:center;
 }
 
 .txn-icon{
@@ -439,49 +475,76 @@ button{
   border-radius:10px;
   background:#f7f7f7;
   display:grid;
-  place-items:center
+  place-items:center;
+}
+
+.txn-icon svg{
+  width:20px;
+  height:20px;
 }
 
 .txn-name{
   font-weight:bold;
-  font-size:14px
+  font-size:14px;
 }
 
 .txn-date{
   font-size:11px;
   color:#999;
-  margin-top:3px
+  margin-top:3px;
 }
 
 .plus{
   color:#168a42;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .minus{
   color:#e51b23;
-  font-weight:bold
+  font-weight:bold;
 }
+
+/* ================= SUMMARY ================= */
 
 .row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:15px 0;
-  border-bottom:1px solid #eee
+  border-bottom:1px solid #eee;
 }
 
-/* CARD */
+.row:last-child{
+  border-bottom:0;
+}
+
+/* ================= BANK CARD ================= */
 
 .bank-card{
   background:linear-gradient(135deg,#181818,#3d3d3d);
   color:#fff;
   border-radius:17px;
   padding:22px;
-  min-height:170px
+  min-height:170px;
+  position:relative;
+  overflow:hidden;
+}
+
+.bank-card:after{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  border:30px solid #e51b2330;
+  border-radius:50%;
+  right:-70px;
+  bottom:-90px;
 }
 
 .card-brand{
   color:#ed1c24;
   font-weight:900;
-  font-size:19px
+  font-size:19px;
 }
 
 .chip{
@@ -489,61 +552,225 @@ button{
   height:30px;
   background:#ddd;
   border-radius:6px;
-  margin-top:28px
+  margin-top:28px;
 }
 
 .card-number{
   letter-spacing:3px;
-  margin-top:17px
+  margin-top:17px;
 }
 
 .card-bottom{
   display:flex;
   justify-content:space-between;
   font-size:11px;
-  margin-top:11px
+  margin-top:11px;
 }
 
 .form-card{
-  max-width:680px
+  max-width:680px;
 }
 
 .empty{
   padding:25px 5px;
   color:#888;
-  text-align:center
+  text-align:center;
 }
+
+/* ================= PIN MODAL ================= */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.58);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:5000;
+}
+
+.pin-modal{
+  width:min(390px,100%);
+  background:#fff;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 25px 80px #0005;
+  text-align:center;
+}
+
+.pin-icon{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#fff0f0;
+  color:#e51b23;
+  display:grid;
+  place-items:center;
+  margin:0 auto 15px;
+}
+
+.pin-modal h2{
+  margin-bottom:7px;
+}
+
+.pin-modal p{
+  color:#777;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+
+.pin-input{
+  text-align:center;
+  font-size:27px!important;
+  letter-spacing:12px;
+  font-weight:bold;
+}
+
+.pin-error{
+  color:#e51b23;
+  font-size:13px;
+  margin:10px 0;
+  min-height:18px;
+}
+
+/* ================= SUCCESS SCREEN ================= */
+
+.success-page{
+  min-height:calc(100vh - 72px);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:40px 20px;
+  background:#0e1318;
+  color:#fff;
+}
+
+.success-box{
+  width:min(650px,100%);
+  text-align:center;
+}
+
+.success-check{
+  width:100px;
+  height:100px;
+  background:#19c58a;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin:0 auto 32px;
+  box-shadow:0 10px 35px #19c58a30;
+}
+
+.success-check svg{
+  width:54px;
+  height:54px;
+}
+
+.success-box h1{
+  font-size:38px;
+  margin-bottom:25px;
+}
+
+.success-message{
+  color:#9da3ab;
+  font-size:18px;
+  line-height:1.45;
+  margin-bottom:25px;
+}
+
+.success-detail{
+  background:#1a2030;
+  border:1px solid #2b3347;
+  border-radius:10px;
+  padding:17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  text-align:left;
+  margin-bottom:13px;
+  gap:15px;
+}
+
+.success-detail span:first-child{
+  color:#9da3ab;
+}
+
+.success-detail span:last-child{
+  font-weight:500;
+  text-align:right;
+  word-break:break-word;
+}
+
+.success-detail .check-small{
+  margin-right:7px;
+}
+
+.success-button{
+  width:100%;
+  border:0;
+  background:#086cff;
+  color:#fff;
+  padding:14px;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:18px;
+}
+
+.success-button:hover{
+  background:#0057d9;
+}
+
+.prototype-label{
+  color:#777;
+  font-size:11px;
+  margin-top:15px;
+}
+
+/* ================= MOBILE ================= */
 
 .bottom{
-  display:none
+  display:none;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
   .mobile-menu{
-    display:block
+    display:block;
   }
 
   .sidebar{
-    display:none
+    display:none;
   }
 
   .main{
-    padding:20px 16px 90px
+    padding:20px 16px 90px;
   }
 
   .actions{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
   }
 
   .grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .header{
-    padding:0 18px
+    padding:0 18px;
+  }
+
+  .success-page{
+    min-height:100vh;
+    padding:30px 16px;
+  }
+
+  .success-box h1{
+    font-size:32px;
+  }
+
+  .success-message{
+    font-size:16px;
   }
 }
 
@@ -559,31 +786,55 @@ button{
     background:#fff;
     border-top:1px solid #ddd;
     z-index:200;
-    justify-content:space-around
+    justify-content:space-around;
   }
 
   .bottom button{
     border:0;
     background:none;
     color:#777;
-    font-size:11px
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
   }
 
-  .bottom button b{
-    display:block;
-    font-size:19px
+  .bottom button svg{
+    width:20px;
+    height:20px;
   }
 
   .bottom button.active{
-    color:#e51b23
+    color:#e51b23;
   }
 
   .balance{
-    font-size:34px
+    font-size:34px;
   }
 
   .welcome h1{
-    font-size:25px
+    font-size:25px;
+  }
+
+  .success-check{
+    width:82px;
+    height:82px;
+    margin-bottom:25px;
+  }
+
+  .success-check svg{
+    width:45px;
+    height:45px;
+  }
+
+  .success-box h1{
+    font-size:30px;
+  }
+
+  .success-detail{
+    padding:15px;
+    font-size:14px;
   }
 }
 </style>
@@ -591,2274 +842,1949 @@ button{
 
 <body>
 
-<!-- LOADING -->
+<!-- ================= LOADING ================= -->
 
 <div id="loadingScreen">
   <div class="loading-box">
     <div class="loading-logo">C</div>
-    <div class="loading-name">
-      Cash<span>Flow</span>
-    </div>
-    <div class="loading-text">
-      Secure banking experience
-    </div>
+    <div class="loading-name">Cash<span>Flow</span></div>
+    <div class="loading-text">Secure banking prototype</div>
     <div class="loading-spinner"></div>
   </div>
 </div>
 
-
-<!-- LOGIN / CREATE ACCOUNT -->
+<!-- ================= LOGIN ================= -->
 
 <section id="login" class="login hidden">
+  <div class="login-box">
 
-<div class="login-box">
+    <div class="logo">
+      <div class="mark">C</div>
+      Cash<span>Flow</span>
+    </div>
 
-<div class="logo">
-  <div class="mark">C</div>
-  Cash<span>Flow</span>
-</div>
+    <h1>Welcome back</h1>
+    <p class="muted">Sign in to your CashFlow prototype.</p>
 
+    <form id="loginForm">
 
-<!-- LOGIN PANEL -->
+      <div class="field">
+        <label>Email</label>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          placeholder="you@example.com"
+          required
+        >
+      </div>
 
-<div id="loginPanel">
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Password"
+          required
+        >
+      </div>
 
-<h1>Welcome back</h1>
+      <button class="primary" type="submit">
+        Sign In
+      </button>
 
-<p class="muted">
-  Sign in to your CashFlow prototype account.
-</p>
+    </form>
 
-<form id="loginForm">
+    <div class="notice">
+      CashFlow is a browser-based prototype.
+      It does not connect to real bank accounts or move real money.
+    </div>
 
-<div class="field">
-<label>Email</label>
-<input
-  id="email"
-  type="email"
-  autocomplete="username"
-  required
->
-</div>
-
-<div class="field">
-<label>Password</label>
-<input
-  id="password"
-  type="password"
-  autocomplete="current-password"
-  required
->
-</div>
-
-<div id="loginError" class="error"></div>
-
-<button class="primary">
-  Sign In
-</button>
-
-</form>
-
-<div class="auth-switch">
-Don't have an account?
-<button type="button" onclick="showSignup()">
-Create account
-</button>
-</div>
-
-</div>
-
-
-<!-- CREATE ACCOUNT PANEL -->
-
-<div id="signupPanel" class="hidden">
-
-<h1>Create account</h1>
-
-<p class="muted">
-Create a local CashFlow prototype account.
-</p>
-
-<form id="signupForm">
-
-<div class="field">
-<label>Full name</label>
-<input
-  id="signupName"
-  required
->
-</div>
-
-<div class="field">
-<label>Email</label>
-<input
-  id="signupEmail"
-  type="email"
-  required
->
-</div>
-
-<div class="field">
-<label>Password</label>
-<input
-  id="signupPassword"
-  type="password"
-  minlength="6"
-  required
->
-</div>
-
-<div class="field">
-<label>Confirm password</label>
-<input
-  id="signupConfirm"
-  type="password"
-  minlength="6"
-  required
->
-</div>
-
-<div id="signupError" class="error"></div>
-
-<div id="signupSuccess" class="success"></div>
-
-<button class="primary">
-Create Account
-</button>
-
-</form>
-
-<div class="auth-switch">
-Already have an account?
-<button type="button" onclick="showLogin()">
-Sign in
-</button>
-</div>
-
-</div>
-
-
-<div class="notice">
-CashFlow is a browser-based prototype. It does not connect to real bank accounts or move real money. Accounts and demo activity are stored locally in this browser.
-</div>
-
-</div>
-
+  </div>
 </section>
 
-
-<!-- APPLICATION -->
+<!-- ================= APP ================= -->
 
 <section id="app" class="hidden">
 
 <header class="header">
 
-<div class="header-left">
+  <div class="header-left">
 
-<div
-class="mobile-menu"
-onclick="toggleMenu()"
->
-☰
-</div>
+    <div class="mobile-menu" onclick="toggleMenu()">
+      ☰
+    </div>
 
-<div class="logo">
-<div class="mark">C</div>
-Cash<span>Flow</span>
-</div>
+    <div class="logo">
+      <div class="mark">C</div>
+      Cash<span>Flow</span>
+    </div>
 
-</div>
+  </div>
 
-<div class="header-right">
+  <div class="header-right">
 
-<span
-class="notification"
-onclick="showAlert('You have no new notifications.')"
->
-🔔
-</span>
+    <span
+      class="notification"
+      onclick="showAlert('You have no new notifications.')"
+    >
+      🔔
+    </span>
 
-<div
-id="avatar"
-class="avatar"
-onclick="page('settings')"
->
-JD
-</div>
+    <div
+      class="avatar"
+      onclick="page('settings')"
+    >
+      JD
+    </div>
 
-</div>
+  </div>
 
 </header>
 
-
 <div class="layout">
 
-
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside id="sidebar" class="sidebar">
 
-<div class="menu-title">
-Menu
-</div>
+  <div class="menu-title">Menu</div>
 
-<div
-class="menu-item active"
-data-page="dashboard"
-onclick="page('dashboard')"
->
-⌂ &nbsp; Dashboard
-</div>
+  <div
+    class="menu-item active"
+    data-page="dashboard"
+    onclick="page('dashboard')"
+  >
+    🏠 Dashboard
+  </div>
 
-<div
-class="menu-item"
-data-page="transfer"
-onclick="page('transfer')"
->
-↔ &nbsp; Transfer Money
-</div>
+  <div
+    class="menu-item"
+    data-page="transfer"
+    onclick="page('transfer')"
+  >
+    ➜ Transfer Money
+  </div>
 
-<div
-class="menu-item"
-data-page="transactions"
-onclick="page('transactions')"
->
-▣ &nbsp; Transactions
-</div>
+  <div
+    class="menu-item"
+    data-page="transactions"
+    onclick="page('transactions')"
+  >
+    ▣ Transactions
+  </div>
 
-<div
-class="menu-item"
-data-page="bills"
-onclick="page('bills')"
->
-▤ &nbsp; Bills & Payments
-</div>
+  <div
+    class="menu-item"
+    data-page="bills"
+    onclick="page('bills')"
+  >
+    ▤ Bills & Payments
+  </div>
 
-<div
-class="menu-item"
-data-page="cards"
-onclick="page('cards')"
->
-▥ &nbsp; Cards
-</div>
+  <div
+    class="menu-item"
+    data-page="cards"
+    onclick="page('cards')"
+  >
+    ▣ Cards
+  </div>
 
-<div
-class="menu-item"
-data-page="beneficiaries"
-onclick="page('beneficiaries')"
->
-♙ &nbsp; Beneficiaries
-</div>
+  <div
+    class="menu-item"
+    data-page="beneficiaries"
+    onclick="page('beneficiaries')"
+  >
+    👥 Beneficiaries
+  </div>
 
-<div
-class="menu-title"
-style="margin-top:25px"
->
-Account
-</div>
+  <div
+    class="menu-title"
+    style="margin-top:25px"
+  >
+    Account
+  </div>
 
-<div
-class="menu-item"
-data-page="settings"
-onclick="page('settings')"
->
-⚙ &nbsp; Settings
-</div>
+  <div
+    class="menu-item"
+    data-page="settings"
+    onclick="page('settings')"
+  >
+    ⚙ Settings
+  </div>
 
-<div
-class="menu-item"
-onclick="logout()"
->
-↪ &nbsp; Logout
-</div>
+  <div
+    class="menu-item"
+    onclick="logout()"
+  >
+    ⇥ Logout
+  </div>
 
 </aside>
 
-
-<!-- MAIN -->
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
-
 <!-- DASHBOARD -->
 
-<div
-id="dashboard-page"
-class="screen"
->
+<div id="dashboard-page" class="screen">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Good afternoon, John 👋</h1>
+    <p class="muted">
+      Here's what's happening with your account.
+    </p>
+  </div>
 
-<h1 id="welcomeTitle">
-Good afternoon 👋
-</h1>
+  <section class="balance-card">
 
-<p class="muted">
-Here's what's happening with your account.
-</p>
+    <div>AVAILABLE BALANCE</div>
 
-</div>
+    <div
+      id="balance"
+      class="balance"
+    ></div>
 
+    <div>
+      Checking Account •••• 4821
+    </div>
 
-<section class="balance-card">
+  </section>
 
-<div>
-AVAILABLE BALANCE
-</div>
+  <section class="actions">
 
-<div
-id="balance"
-class="balance"
->
-</div>
+    <button
+      class="action"
+      onclick="page('transfer')"
+    >
+      <div class="action-icon">↑</div>
+      <p>Send Money</p>
+    </button>
 
-<div>
-Checking Account •••• 4821
-</div>
+    <button
+      class="action"
+      onclick="page('request')"
+    >
+      <div class="action-icon">↓</div>
+      <p>Request Money</p>
+    </button>
 
-</section>
+    <button
+      class="action"
+      onclick="page('bills')"
+    >
+      <div class="action-icon">▤</div>
+      <p>Pay Bills</p>
+    </button>
 
+    <button
+      class="action"
+      onclick="page('addmoney')"
+    >
+      <div class="action-icon">+</div>
+      <p>Add Money</p>
+    </button>
 
-<section class="actions">
+  </section>
 
-<button
-class="action"
-onclick="page('transfer')"
->
-<div class="action-icon">↗</div>
-<p>Send Money</p>
-</button>
+  <div class="grid">
 
-<button
-class="action"
-onclick="page('request')"
->
-<div class="action-icon">↙</div>
-<p>Request Money</p>
-</button>
+    <section class="card">
 
-<button
-class="action"
-onclick="page('bills')"
->
-<div class="action-icon">▤</div>
-<p>Pay Bills</p>
-</button>
+      <div class="card-head">
 
-<button
-class="action"
-onclick="page('addmoney')"
->
-<div class="action-icon">＋</div>
-<p>Add Money</p>
-</button>
+        <h2>Recent Transactions</h2>
 
-</section>
+        <button
+          class="link"
+          onclick="page('transactions')"
+        >
+          View All
+        </button>
 
+      </div>
 
-<div class="grid">
+      <div id="recent"></div>
 
-<section class="card">
+    </section>
 
-<div class="card-head">
+    <section>
 
-<h2>
-Recent Transactions
-</h2>
+      <div class="card">
 
-<button
-class="link"
-onclick="page('transactions')"
->
-View All
-</button>
+        <h2>Account Summary</h2>
 
-</div>
+        <div class="row">
+          <span>Account</span>
+          <b>Checking</b>
+        </div>
 
-<div id="recent"></div>
+        <div class="row">
+          <span>Status</span>
+          <b class="plus">Active</b>
+        </div>
 
-</section>
+        <div class="row">
+          <span>Account</span>
+          <b>•••• 4821</b>
+        </div>
 
+      </div>
 
-<section>
+      <div class="bank-card">
 
-<div class="card">
+        <div class="card-brand">
+          CashFlow
+        </div>
 
-<h2>
-Account Summary
-</h2>
+        <div class="chip"></div>
 
-<div class="row">
-<span>Account</span>
-<b>Checking</b>
-</div>
+        <div class="card-number">
+          •••• •••• •••• 4821
+        </div>
 
-<div class="row">
-<span>Status</span>
-<b class="plus">Active</b>
-</div>
+        <div class="card-bottom">
+          <span>JOHN DOE</span>
+          <span>PROTOTYPE</span>
+        </div>
 
-<div class="row">
-<span>Account</span>
-<b>•••• 4821</b>
-</div>
+      </div>
 
-</div>
+    </section>
 
-
-<div class="bank-card">
-
-<div class="card-brand">
-CashFlow
-</div>
-
-<div class="chip"></div>
-
-<div class="card-number">
-•••• •••• •••• 4821
-</div>
-
-<div class="card-bottom">
-<span id="cardName">
-JOHN DOE
-</span>
-
-<span>
-PROTOTYPE
-</span>
-</div>
+  </div>
 
 </div>
-
-</section>
-
-</div>
-
-</div>
-
 
 <!-- TRANSFER -->
 
-<div
-id="transfer-page"
-class="screen hidden"
->
+<div id="transfer-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Transfer Money</h1>
+    <p class="muted">
+      Record a transfer in your CashFlow prototype.
+    </p>
+  </div>
 
-<h1>
-Transfer Money
-</h1>
+  <section class="card form-card">
 
-<p class="muted">
-Record a transfer in your CashFlow prototype.
-</p>
+    <div class="notice">
+      No real money is sent. This transaction is stored
+      only in this browser.
+    </div>
+
+    <form id="transferForm">
+
+      <div class="field">
+        <label>Recipient</label>
+        <input
+          id="recipient"
+          placeholder="Recipient name"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Account Number</label>
+        <input
+          id="recipientAccount"
+          placeholder="Account number"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Amount</label>
+        <input
+          id="transferAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          placeholder="0.00"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>Memo</label>
+        <input
+          id="memo"
+          placeholder="Optional"
+        >
+      </div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Continue to Payment PIN
+      </button>
+
+    </form>
+
+  </section>
 
 </div>
-
-<section class="card form-card">
-
-<div class="notice">
-No real money is sent. The transaction is stored only in this browser.
-</div>
-
-<form id="transferForm">
-
-<div class="field">
-<label>Recipient</label>
-<input id="recipient" required>
-</div>
-
-<div class="field">
-<label>Account Number</label>
-<input id="recipientAccount" required>
-</div>
-
-<div class="field">
-<label>Amount</label>
-<input
-id="transferAmount"
-type="number"
-min=".01"
-step=".01"
-required
->
-</div>
-
-<div class="field">
-<label>Memo</label>
-<input id="memo">
-</div>
-
-<button class="primary">
-Review Transfer
-</button>
-
-</form>
-
-</section>
-
-</div>
-
 
 <!-- TRANSACTIONS -->
 
-<div
-id="transactions-page"
-class="screen hidden"
->
+<div id="transactions-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Transactions</h1>
+    <p class="muted">
+      All CashFlow prototype activity.
+    </p>
+  </div>
 
-<h1>
-Transactions
-</h1>
+  <section class="card">
 
-<p class="muted">
-All CashFlow prototype activity.
-</p>
+    <div id="allTransactions"></div>
 
-</div>
-
-<section class="card">
-
-<div id="allTransactions"></div>
-
-</section>
+  </section>
 
 </div>
-
 
 <!-- REQUEST -->
 
-<div
-id="request-page"
-class="screen hidden"
->
+<div id="request-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Request Money</h1>
+    <p class="muted">
+      Create a local money request.
+    </p>
+  </div>
 
-<h1>
-Request Money
-</h1>
+  <section class="card form-card">
 
-<p class="muted">
-Create a local money request.
-</p>
+    <form id="requestForm">
 
-</div>
+      <div class="field">
+        <label>From</label>
+        <input id="requestFrom" required>
+      </div>
 
-<section class="card form-card">
+      <div class="field">
+        <label>Amount</label>
+        <input
+          id="requestAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          required
+        >
+      </div>
 
-<form id="requestForm">
+      <button
+        class="primary"
+        type="submit"
+      >
+        Create Request
+      </button>
 
-<div class="field">
+    </form>
 
-<label>
-From
-</label>
-
-<input
-id="requestFrom"
-required
->
-
-</div>
-
-<div class="field">
-
-<label>
-Amount
-</label>
-
-<input
-id="requestAmount"
-type="number"
-min=".01"
-step=".01"
-required
->
+  </section>
 
 </div>
-
-<button class="primary">
-Create Request
-</button>
-
-</form>
-
-</section>
-
-</div>
-
 
 <!-- ADD MONEY -->
 
-<div
-id="addmoney-page"
-class="screen hidden"
->
+<div id="addmoney-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Add Money</h1>
+    <p class="muted">
+      Add local prototype funds.
+    </p>
+  </div>
 
-<h1>
-Add Money
-</h1>
+  <section class="card form-card">
 
-<p class="muted">
-Add local prototype funds.
-</p>
+    <div class="notice">
+      This changes the local prototype balance only.
+    </div>
 
-</div>
+    <form id="addForm">
 
-<section class="card form-card">
+      <div class="field">
+        <label>Amount</label>
+        <input
+          id="addAmount"
+          type="number"
+          min=".01"
+          step=".01"
+          required
+        >
+      </div>
 
-<div class="notice">
-This changes the local prototype balance only.
-</div>
+      <button
+        class="primary"
+        type="submit"
+      >
+        Add Prototype Funds
+      </button>
 
-<form id="addForm">
+    </form>
 
-<div class="field">
-
-<label>
-Amount
-</label>
-
-<input
-id="addAmount"
-type="number"
-min=".01"
-step=".01"
-required
->
-
-</div>
-
-<button class="primary">
-Add Prototype Funds
-</button>
-
-</form>
-
-</section>
+  </section>
 
 </div>
-
 
 <!-- BILLS -->
 
-<div
-id="bills-page"
-class="screen hidden"
->
+<div id="bills-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Bills & Payments</h1>
+    <p class="muted">
+      Manage your local prototype bills.
+    </p>
+  </div>
 
-<h1>
-Bills & Payments
-</h1>
+  <section class="card">
 
-<p class="muted">
-Manage your local prototype bills.
-</p>
+    <div class="txn">
+      <span>
+        ⚡ Electric Company<br>
+        <small>$124.75</small>
+      </span>
 
-</div>
+      <button
+        class="link"
+        onclick="bill('Electric Company',124.75)"
+      >
+        Pay
+      </button>
+    </div>
 
-<section class="card">
+    <div class="txn">
+      <span>
+        🌐 Internet<br>
+        <small>$79.99</small>
+      </span>
 
-<div class="txn">
+      <button
+        class="link"
+        onclick="bill('Internet',79.99)"
+      >
+        Pay
+      </button>
+    </div>
 
-<span>
-⚡ Electric Company
-<br>
-<small>$124.75</small>
-</span>
+    <div class="txn">
+      <span>
+        📱 Mobile Phone<br>
+        <small>$65.00</small>
+      </span>
 
-<button
-class="link"
-onclick="bill('Electric Company',124.75)"
->
-Pay
-</button>
+      <button
+        class="link"
+        onclick="bill('Mobile Phone',65)"
+      >
+        Pay
+      </button>
+    </div>
 
-</div>
-
-
-<div class="txn">
-
-<span>
-🌐 Internet
-<br>
-<small>$79.99</small>
-</span>
-
-<button
-class="link"
-onclick="bill('Internet',79.99)"
->
-Pay
-</button>
-
-</div>
-
-
-<div class="txn">
-
-<span>
-📱 Mobile Phone
-<br>
-<small>$65.00</small>
-</span>
-
-<button
-class="link"
-onclick="bill('Mobile Phone',65)"
->
-Pay
-</button>
+  </section>
 
 </div>
-
-</section>
-
-</div>
-
 
 <!-- CARDS -->
 
-<div
-id="cards-page"
-class="screen hidden"
->
+<div id="cards-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>My Cards</h1>
+  </div>
 
-<h1>
-My Cards
-</h1>
+  <section
+    class="card"
+    style="max-width:600px"
+  >
 
-</div>
+    <div class="bank-card">
 
-<section
-class="card"
-style="max-width:600px"
->
+      <div class="card-brand">
+        CashFlow
+      </div>
 
-<div class="bank-card">
+      <div class="chip"></div>
 
-<div class="card-brand">
-CashFlow
-</div>
+      <div class="card-number">
+        •••• •••• •••• 4821
+      </div>
 
-<div class="chip"></div>
+      <div class="card-bottom">
+        <span>JOHN DOE</span>
+        <span>PROTOTYPE</span>
+      </div>
 
-<div class="card-number">
-•••• •••• •••• 4821
-</div>
+    </div>
 
-<div class="card-bottom">
+    <div class="row">
+      <span>Status</span>
+      <b class="plus">Active</b>
+    </div>
 
-<span id="cardName2">
-JOHN DOE
-</span>
-
-<span>
-PROTOTYPE
-</span>
+  </section>
 
 </div>
-
-</div>
-
-<div class="row">
-
-<span>
-Status
-</span>
-
-<b class="plus">
-Active
-</b>
-
-</div>
-
-</section>
-
-</div>
-
 
 <!-- BENEFICIARIES -->
 
-<div
-id="beneficiaries-page"
-class="screen hidden"
->
+<div id="beneficiaries-page" class="screen hidden">
 
-<div class="welcome">
+  <div class="welcome">
+    <h1>Beneficiaries</h1>
+    <p class="muted">
+      Save recipients locally for this browser.
+    </p>
+  </div>
 
-<h1>
-Beneficiaries
-</h1>
+  <section class="card form-card">
 
-<p class="muted">
-Save recipients locally for this browser.
-</p>
+    <form id="beneficiaryForm">
 
-</div>
+      <div class="field">
+        <label>Name</label>
+        <input id="benName" required>
+      </div>
 
-<section class="card form-card">
+      <div class="field">
+        <label>Account</label>
+        <input id="benAccount" required>
+      </div>
 
-<form id="beneficiaryForm">
+      <button
+        class="primary"
+        type="submit"
+      >
+        Add Beneficiary
+      </button>
 
-<div class="field">
+    </form>
 
-<label>
-Name
-</label>
+    <div id="beneficiaries"></div>
 
-<input
-id="benName"
-required
->
-
-</div>
-
-<div class="field">
-
-<label>
-Account
-</label>
-
-<input
-id="benAccount"
-required
->
+  </section>
 
 </div>
-
-<button class="primary">
-Add Beneficiary
-</button>
-
-</form>
-
-<div id="beneficiaries"></div>
-
-</section>
-
-</div>
-
 
 <!-- SETTINGS -->
 
+<div id="settings-page" class="screen hidden">
+
+  <div class="welcome">
+    <h1>Settings</h1>
+    <p class="muted">
+      Manage your local prototype settings.
+    </p>
+  </div>
+
+  <section class="card form-card">
+
+    <div class="row">
+      <span>Email alerts</span>
+      <input type="checkbox" checked>
+    </div>
+
+    <div class="row">
+      <span>Transaction alerts</span>
+      <input type="checkbox" checked>
+    </div>
+
+    <div class="row">
+      <span>Payment PIN</span>
+      <button
+        class="link"
+        onclick="changePin()"
+      >
+        Change PIN
+      </button>
+    </div>
+
+    <div class="row">
+      <span>Reset local data</span>
+      <button
+        class="link"
+        onclick="resetData()"
+      >
+        Reset
+      </button>
+    </div>
+
+    <div class="row">
+      <span>Session</span>
+      <button
+        class="link"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- SUCCESS -->
+
 <div
-id="settings-page"
-class="screen hidden"
+  id="success-page"
+  class="success-page hidden"
 >
 
-<div class="welcome">
+  <div class="success-box">
 
-<h1>
-Settings
-</h1>
+    <div class="success-check">
 
-<p class="muted">
-Manage your local prototype settings.
-</p>
+      <svg
+        fill="none"
+        stroke="white"
+        stroke-width="4"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M5 12l4 4L19 6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
 
-</div>
+    </div>
 
-<section class="card form-card">
+    <h1>Transaction Successful!</h1>
 
-<div class="row">
+    <p
+      id="successMessage"
+      class="success-message"
+    ></p>
 
-<span>
-Email alerts
-</span>
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Amount Debited
+      </span>
+      <span id="successAmount"></span>
+    </div>
 
-<input
-type="checkbox"
-checked
->
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Transaction reference
+      </span>
+      <span id="successReference"></span>
+    </div>
 
-</div>
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Account holder
+      </span>
+      <span id="successHolder"></span>
+    </div>
 
-<div class="row">
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Bank
+      </span>
+      <span>CashFlow</span>
+    </div>
 
-<span>
-Transaction alerts
-</span>
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Date
+      </span>
+      <span id="successDate"></span>
+    </div>
 
-<input
-type="checkbox"
-checked
->
+    <div class="success-detail">
+      <span>
+        <span class="check-small">✓</span>
+        Available Balance
+      </span>
+      <span id="successBalance"></span>
+    </div>
 
-</div>
+    <button
+      class="success-button"
+      onclick="backToDashboard()"
+    >
+      Back to Dashboard
+    </button>
 
-<div class="row">
+    <div class="prototype-label">
+      CashFlow browser prototype — no real money was transferred.
+    </div>
 
-<span>
-Reset local data
-</span>
-
-<button
-class="link"
-onclick="resetData()"
->
-Reset
-</button>
-
-</div>
-
-<div class="row">
-
-<span>
-Session
-</span>
-
-<button
-class="link"
-onclick="logout()"
->
-Logout
-</button>
-
-</div>
-
-</section>
+  </div>
 
 </div>
 
 </main>
-
 </div>
-
 
 <!-- MOBILE NAV -->
 
 <div class="bottom">
 
-<button
-class="active"
-data-page="dashboard"
-onclick="page('dashboard')"
->
-<b>⌂</b>
-Home
-</button>
+  <button
+    class="active"
+    data-page="dashboard"
+    onclick="page('dashboard')"
+  >
+    🏠
+    <span>Home</span>
+  </button>
 
-<button
-data-page="transfer"
-onclick="page('transfer')"
->
-<b>↔</b>
-Transfer
-</button>
+  <button
+    data-page="transfer"
+    onclick="page('transfer')"
+  >
+    ↑
+    <span>Transfer</span>
+  </button>
 
-<button
-data-page="transactions"
-onclick="page('transactions')"
->
-<b>▣</b>
-Activity
-</button>
+  <button
+    data-page="transactions"
+    onclick="page('transactions')"
+  >
+    ▣
+    <span>Activity</span>
+  </button>
 
-<button
-data-page="settings"
-onclick="page('settings')"
->
-<b>⚙</b>
-Settings
-</button>
+  <button
+    data-page="settings"
+    onclick="page('settings')"
+  >
+    ⚙
+    <span>Settings</span>
+  </button>
 
 </div>
 
 </section>
 
+<!-- ================= PIN MODAL ================= -->
+
+<div
+  id="pinOverlay"
+  class="modal-overlay hidden"
+>
+
+  <div class="pin-modal">
+
+    <div class="pin-icon">
+      🔒
+    </div>
+
+    <h2 id="pinTitle">
+      Enter Payment PIN
+    </h2>
+
+    <p id="pinDescription">
+      Enter your 4-digit payment PIN to authorize this prototype transfer.
+    </p>
+
+    <form id="pinForm">
+
+      <input
+        id="pinInput"
+        class="pin-input"
+        type="password"
+        inputmode="numeric"
+        maxlength="4"
+        minlength="4"
+        pattern="[0-9]{4}"
+        autocomplete="off"
+        placeholder="••••"
+        required
+      >
+
+      <div
+        id="pinError"
+        class="pin-error"
+      ></div>
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Confirm PIN
+      </button>
+
+      <button
+        type="button"
+        class="secondary"
+        onclick="closePinModal()"
+      >
+        Cancel
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
 
 <script>
 
-/* DEFAULT DATA */
+/* =========================================================
+   CASHFLOW PROTOTYPE DATA
+   ========================================================= */
 
 const DEFAULT = {
 
-balance:24680.50,
+  balance:24680.50,
 
-transactions:[
+  paymentPin:"1234",
 
-{
-name:"Grocery Store",
-date:"Today • 10:42 AM",
-amount:-86.42,
-icon:"🛒"
-},
+  transactions:[
 
-{
-name:"Salary Deposit",
-date:"Yesterday • 8:15 AM",
-amount:3250,
-icon:"💼"
-},
+    {
+      name:"Grocery Store",
+      date:"Today • 10:42 AM",
+      amount:-86.42,
+      icon:"cart"
+    },
 
-{
-name:"Electric Company",
-date:"Sep 2 • 2:30 PM",
-amount:-124.75,
-icon:"⚡"
-},
+    {
+      name:"Salary Deposit",
+      date:"Yesterday • 8:15 AM",
+      amount:3250,
+      icon:"briefcase"
+    },
 
-{
-name:"Coffee Shop",
-date:"Sep 2 • 9:21 AM",
-amount:-8.50,
-icon:"☕"
-}
+    {
+      name:"Electric Company",
+      date:"Sep 2 • 2:30 PM",
+      amount:-124.75,
+      icon:"zap"
+    },
 
-],
+    {
+      name:"Coffee Shop",
+      date:"Sep 2 • 9:21 AM",
+      amount:-8.50,
+      icon:"coffee"
+    }
 
-beneficiaries:[]
+  ],
+
+  beneficiaries:[]
 
 };
 
-
-/* STATE */
-
-let state =
-JSON.parse(
-localStorage.getItem("cashflow_state") ||
-JSON.stringify(DEFAULT)
+let state = JSON.parse(
+  localStorage.getItem("cashflow_state")
+  || JSON.stringify(DEFAULT)
 );
 
-let currentUser =
-JSON.parse(
-sessionStorage.getItem("cashflow_current_user") ||
-"null"
-);
+/*
+  Pending transfer is kept in memory until the PIN
+  is successfully entered.
+*/
 
+let pendingTransfer = null;
 
-/* USERS */
-
-const users = () =>
-JSON.parse(
-localStorage.getItem("cashflow_users") ||
-"[]"
-);
-
-const saveUsers = users =>
-localStorage.setItem(
-"cashflow_users",
-JSON.stringify(users)
-);
-
-
-/* PASSWORD HASH */
-
-async function hashPassword(password){
-
-const data =
-new TextEncoder().encode(password);
-
-const hash =
-await crypto.subtle.digest(
-"SHA-256",
-data
-);
-
-return Array.from(
-new Uint8Array(hash)
-)
-.map(
-b => b.toString(16).padStart(2,"0")
-)
-.join("");
-
-}
-
-
-/* MONEY */
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
 const money = number =>
-new Intl.NumberFormat(
-"en-US",
-{
-style:"currency",
-currency:"USD"
-}
-).format(number);
-
-
-/* SAVE */
+  new Intl.NumberFormat("en-US",{
+    style:"currency",
+    currency:"USD"
+  }).format(number);
 
 function save(){
 
-localStorage.setItem(
-"cashflow_state",
-JSON.stringify(state)
-);
+  localStorage.setItem(
+    "cashflow_state",
+    JSON.stringify(state)
+  );
 
 }
 
+function escapeHTML(value){
 
-/* ESCAPE HTML */
-
-function esc(value){
-
-return String(value).replace(
-/[&<>"']/g,
-character => ({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[character])
-);
+  return String(value).replace(
+    /[&<>"']/g,
+    character => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[character])
+  );
 
 }
 
+function generateReference(){
 
-/* INITIALS */
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-function initials(name){
+  let result = "CFX/";
 
-return String(
-name || "John Doe"
-)
-.trim()
-.split(/\s+/)
-.slice(0,2)
-.map(x => x[0])
-.join("")
-.toUpperCase() || "JD";
+  for(let i=0;i<10;i++){
 
-}
+    result +=
+      chars[Math.floor(Math.random()*chars.length)];
 
+  }
 
-/* SHOW SIGNUP */
-
-function showSignup(){
-
-document
-.getElementById("loginPanel")
-.classList.add("hidden");
-
-document
-.getElementById("signupPanel")
-.classList.remove("hidden");
-
-clearAuth();
+  return result;
 
 }
 
+function formattedDate(){
 
-/* SHOW LOGIN */
-
-function showLogin(){
-
-document
-.getElementById("signupPanel")
-.classList.add("hidden");
-
-document
-.getElementById("loginPanel")
-.classList.remove("hidden");
-
-clearAuth();
-
-}
-
-
-/* CLEAR AUTH MESSAGES */
-
-function clearAuth(){
-
-[
-"loginError",
-"signupError",
-"signupSuccess"
-]
-.forEach(id => {
-
-const element =
-document.getElementById(id);
-
-element.style.display="none";
-element.textContent="";
-
-});
+  return new Date().toLocaleString(
+    "en-US",
+    {
+      year:"numeric",
+      month:"short",
+      day:"2-digit",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit",
+      hour12:false
+    }
+  );
 
 }
 
-
-/* MESSAGE */
-
-function msg(id,text,type){
-
-const element =
-document.getElementById(id);
-
-element.textContent=text;
-element.className=type;
-element.style.display="block";
-
-}
-
-
-/* RENDER */
-
-function render(){
-
-const name =
-currentUser?.name ||
-"John Doe";
-
-document
-.getElementById("balance")
-.textContent =
-money(state.balance);
-
-document
-.getElementById("avatar")
-.textContent =
-initials(name);
-
-document
-.getElementById("cardName")
-.textContent =
-name.toUpperCase();
-
-document
-.getElementById("cardName2")
-.textContent =
-name.toUpperCase();
-
-
-const hour =
-new Date().getHours();
-
-const greeting =
-hour < 12
-? "Good morning"
-: hour < 18
-? "Good afternoon"
-: "Good evening";
-
-
-document
-.getElementById("welcomeTitle")
-.textContent =
-greeting +
-" " +
-name.split(/\s+/)[0] +
-" 👋";
-
-
-function transactionHTML(transaction){
-
-return `
-
-<div class="txn">
-
-<div class="txn-left">
-
-<div class="txn-icon">
-${esc(transaction.icon)}
-</div>
-
-<div>
-
-<div class="txn-name">
-${esc(transaction.name)}
-</div>
-
-<div class="txn-date">
-${esc(transaction.date)}
-${transaction.request
-? " • Requested " +
-money(transaction.request)
-: ""}
-</div>
-
-</div>
-
-</div>
-
-<div class="${
-transaction.amount >= 0
-? "plus"
-: "minus"
-}">
-
-${
-transaction.amount >= 0
-? "+"
-: "-"
-}
-
-${money(
-Math.abs(transaction.amount)
-)}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-document
-.getElementById("recent")
-.innerHTML =
-state.transactions
-.slice(0,5)
-.map(transactionHTML)
-.join("")
-||
-'<div class="empty">No transactions yet.</div>';
-
-
-document
-.getElementById("allTransactions")
-.innerHTML =
-state.transactions
-.map(transactionHTML)
-.join("")
-||
-'<div class="empty">No transactions yet.</div>';
-
-
-document
-.getElementById("beneficiaries")
-.innerHTML =
-state.beneficiaries
-.map(
-(beneficiary,index) => `
-
-<div class="row">
-
-<span>
-
-<b>
-${esc(beneficiary.name)}
-</b>
-
-<br>
-
-<small>
-${esc(beneficiary.account)}
-</small>
-
-</span>
-
-<button
-class="link"
-onclick="removeBen(${index})"
->
-Remove
-</button>
-
-</div>
-
-`
-)
-.join("")
-||
-'<div class="empty">No beneficiaries added.</div>';
-
-}
-
-
-/* PAGE */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 function page(name){
 
-document
-.querySelectorAll(".screen")
-.forEach(screen =>
-screen.classList.add("hidden")
-);
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen =>
+      screen.classList.add("hidden")
+    );
 
+  const target =
+    document.getElementById(name + "-page");
 
-const selected =
-document.getElementById(
-name + "-page"
-);
+  if(target){
 
-if(!selected){
-return;
+    target.classList.remove("hidden");
+
+  }
+
+  document
+    .querySelectorAll(".menu-item[data-page]")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.page === name
+      );
+
+    });
+
+  document
+    .querySelectorAll(".bottom button[data-page]")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.page === name
+      );
+
+    });
+
+  render();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
 
-
-selected.classList.remove("hidden");
-
-
-document
-.querySelectorAll("[data-page]")
-.forEach(item => {
-
-item.classList.toggle(
-"active",
-item.dataset.page === name
-);
-
-});
-
-
-if(window.innerWidth < 900){
-
-document
-.getElementById("sidebar")
-.style.display="none";
-
-}
-
-
-render();
-
-window.scrollTo(0,0);
-
-}
-
-
-/* MOBILE MENU */
+/* =========================================================
+   MENU
+   ========================================================= */
 
 function toggleMenu(){
 
-const sidebar =
-document.getElementById("sidebar");
+  const sidebar =
+    document.getElementById("sidebar");
 
+  if(
+    sidebar.style.display === "block"
+  ){
 
-if(sidebar.style.display === "block"){
+    sidebar.style.display = "none";
 
-sidebar.style.display="none";
+  }else{
 
-}else{
+    sidebar.style.display = "block";
+    sidebar.style.position = "fixed";
+    sidebar.style.left = "0";
+    sidebar.style.top = "72px";
+    sidebar.style.bottom = "0";
+    sidebar.style.zIndex = "1000";
+    sidebar.style.boxShadow =
+      "10px 0 30px #0002";
 
-Object.assign(
-sidebar.style,
-{
-display:"block",
-position:"fixed",
-top:"72px",
-bottom:"0",
-left:"0",
-zIndex:"150",
-overflowY:"auto"
-}
-);
-
-}
+  }
 
 }
 
-
-/* ALERT */
+/* =========================================================
+   ALERT
+   ========================================================= */
 
 function showAlert(message){
 
-alert(message);
+  alert(message);
 
 }
 
+/* =========================================================
+   RENDER
+   ========================================================= */
 
-/* CREATE ACCOUNT */
+const ICONS = {
 
-document
-.getElementById("signupForm")
-.addEventListener(
-"submit",
-async function(event){
+  cart:"🛒",
 
-event.preventDefault();
+  briefcase:"💼",
 
-clearAuth();
+  zap:"⚡",
 
+  coffee:"☕",
 
-const name =
-document
-.getElementById("signupName")
-.value
-.trim();
+  send:"↑",
 
+  request:"↓",
 
-const email =
-document
-.getElementById("signupEmail")
-.value
-.trim()
-.toLowerCase();
+  bill:"▤",
 
-
-const password =
-document
-.getElementById("signupPassword")
-.value;
-
-
-const confirmPassword =
-document
-.getElementById("signupConfirm")
-.value;
-
-
-if(name.length < 2){
-
-return msg(
-"signupError",
-"Please enter your full name.",
-"error"
-);
-
-}
-
-
-if(password.length < 6){
-
-return msg(
-"signupError",
-"Password must be at least 6 characters.",
-"error"
-);
-
-}
-
-
-if(password !== confirmPassword){
-
-return msg(
-"signupError",
-"Passwords do not match.",
-"error"
-);
-
-}
-
-
-let userList = users();
-
-
-if(
-userList.some(
-user => user.email === email
-)
-){
-
-return msg(
-"signupError",
-"An account with that email already exists.",
-"error"
-);
-
-}
-
-
-const user = {
-
-id:Date.now().toString(),
-
-name:name,
-
-email:email,
-
-passwordHash:
-await hashPassword(password),
-
-createdAt:
-new Date().toISOString()
+  add:"+"
 
 };
 
+function render(){
 
-userList.push(user);
+  const balance =
+    document.getElementById("balance");
 
-saveUsers(userList);
+  if(balance){
 
+    balance.textContent =
+      money(state.balance);
 
-currentUser = {
+  }
 
-id:user.id,
+  renderTransactions();
 
-name:user.name,
-
-email:user.email
-
-};
-
-
-sessionStorage.setItem(
-"cashflow_current_user",
-JSON.stringify(currentUser)
-);
-
-
-state =
-JSON.parse(
-JSON.stringify(DEFAULT)
-);
-
-save();
-
-
-msg(
-"signupSuccess",
-"Account created. Opening your prototype...",
-"success"
-);
-
-
-setTimeout(
-openApp,
-500
-);
-
-}
-);
-
-
-/* LOGIN */
-
-document
-.getElementById("loginForm")
-.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-clearAuth();
-
-
-const email =
-document
-.getElementById("email")
-.value
-.trim()
-.toLowerCase();
-
-
-const password =
-document
-.getElementById("password")
-.value;
-
-
-const userList = users();
-
-
-const user =
-userList.find(
-item => item.email === email
-);
-
-
-if(!user){
-
-return msg(
-"loginError",
-"No prototype account was found for that email.",
-"error"
-);
+  renderBeneficiaries();
 
 }
 
+/* =========================================================
+   TRANSACTIONS
+   ========================================================= */
 
-const passwordHash =
-await hashPassword(password);
+function renderTransactions(){
 
+  const recent =
+    document.getElementById("recent");
 
-if(
-passwordHash !==
-user.passwordHash
-){
+  const all =
+    document.getElementById("allTransactions");
 
-return msg(
-"loginError",
-"Incorrect password.",
-"error"
-);
+  const transactionHTML =
+    state.transactions.map(transaction => {
 
-}
+      const positive =
+        transaction.amount >= 0;
 
+      return `
 
-currentUser = {
+        <div class="txn">
 
-id:user.id,
+          <div class="txn-left">
 
-name:user.name,
+            <div class="txn-icon">
+              ${ICONS[transaction.icon] || "•"}
+            </div>
 
-email:user.email
+            <div>
 
-};
+              <div class="txn-name">
+                ${escapeHTML(transaction.name)}
+              </div>
 
+              <div class="txn-date">
+                ${escapeHTML(transaction.date)}
+              </div>
 
-sessionStorage.setItem(
-"cashflow_current_user",
-JSON.stringify(currentUser)
-);
+            </div>
 
+          </div>
 
-openApp();
+          <div class="${positive ? "plus":"minus"}">
 
-}
-);
+            ${positive ? "+" : "-"}
+            ${money(Math.abs(transaction.amount))}
 
+          </div>
 
-/* OPEN APP */
+        </div>
 
-function openApp(){
+      `;
 
-document
-.getElementById("login")
-.classList.add("hidden");
+    }).join("");
 
-document
-.getElementById("app")
-.classList.remove("hidden");
+  if(recent){
 
-page("dashboard");
+    recent.innerHTML =
+      state.transactions
+        .slice(0,5)
+        .map(transaction => {
 
-}
+          const positive =
+            transaction.amount >= 0;
 
+          return `
 
-/* LOGOUT */
+            <div class="txn">
 
-function logout(){
+              <div class="txn-left">
 
-if(
-!confirm(
-"Are you sure you want to logout?"
-)
-){
+                <div class="txn-icon">
+                  ${ICONS[transaction.icon] || "•"}
+                </div>
 
-return;
+                <div>
 
-}
+                  <div class="txn-name">
+                    ${escapeHTML(transaction.name)}
+                  </div>
 
+                  <div class="txn-date">
+                    ${escapeHTML(transaction.date)}
+                  </div>
 
-sessionStorage.removeItem(
-"cashflow_current_user"
-);
+                </div>
 
-currentUser = null;
+              </div>
 
+              <div class="${positive ? "plus":"minus"}">
 
-document
-.getElementById("app")
-.classList.add("hidden");
+                ${positive ? "+" : "-"}
+                ${money(Math.abs(transaction.amount))}
 
-document
-.getElementById("login")
-.classList.remove("hidden");
+              </div>
 
-showLogin();
+            </div>
 
-}
+          `;
 
+        }).join("")
+      || `<div class="empty">No transactions yet.</div>`;
 
-/* TRANSFER */
+  }
 
-document
-.getElementById("transferForm")
-.addEventListener(
-"submit",
-function(event){
+  if(all){
 
-event.preventDefault();
+    all.innerHTML =
+      transactionHTML
+      ||
+      `<div class="empty">No transactions yet.</div>`;
 
-
-const recipient =
-document
-.getElementById("recipient")
-.value
-.trim();
-
-
-const account =
-document
-.getElementById("recipientAccount")
-.value
-.trim();
-
-
-const amount =
-Number(
-document
-.getElementById("transferAmount")
-.value
-);
-
-
-const memo =
-document
-.getElementById("memo")
-.value
-.trim();
-
-
-if(
-!recipient ||
-!account ||
-!Number.isFinite(amount) ||
-amount <= 0
-){
-
-return alert(
-"Enter valid transfer details."
-);
+  }
 
 }
 
+/* =========================================================
+   BENEFICIARIES
+   ========================================================= */
 
-if(amount > state.balance){
+function renderBeneficiaries(){
 
-return alert(
-"Insufficient prototype balance."
-);
+  const container =
+    document.getElementById("beneficiaries");
 
-}
+  if(!container) return;
 
+  if(!state.beneficiaries.length){
 
-if(
-!confirm(
-"Confirm transfer of " +
-money(amount) +
-" to " +
-recipient +
-"?"
-)
-){
+    container.innerHTML =
+      `<div class="empty">
+        No beneficiaries saved.
+      </div>`;
 
-return;
+    return;
 
-}
+  }
 
+  container.innerHTML =
+    state.beneficiaries.map((item,index)=>`
 
-state.balance =
-Math.round(
-(state.balance - amount) *
-100
-) / 100;
+      <div class="row">
 
+        <span>
+          <b>${escapeHTML(item.name)}</b><br>
+          <small>${escapeHTML(item.account)}</small>
+        </span>
 
-state.transactions.unshift({
+        <button
+          class="link"
+          onclick="removeBeneficiary(${index})"
+        >
+          Remove
+        </button>
 
-name:
-"Transfer to " +
-recipient,
+      </div>
 
-date:
-"Just now",
-
-amount:
--amount,
-
-icon:
-"↗",
-
-memo:
-memo
-
-});
-
-
-save();
-
-render();
-
-event.target.reset();
-
-
-alert(
-"Transfer recorded in the prototype."
-);
-
-
-page("transactions");
+    `).join("");
 
 }
-);
 
-
-/* ADD MONEY */
+/* =========================================================
+   LOGIN
+   ========================================================= */
 
 document
-.getElementById("addForm")
-.addEventListener(
-"submit",
-function(event){
+  .getElementById("loginForm")
+  .addEventListener("submit",function(event){
 
-event.preventDefault();
+    event.preventDefault();
 
+    document
+      .getElementById("login")
+      .classList.add("hidden");
 
-const amount =
-Number(
+    document
+      .getElementById("app")
+      .classList.remove("hidden");
+
+    page("dashboard");
+
+  });
+
+/* =========================================================
+   TRANSFER
+   ========================================================= */
+
 document
-.getElementById("addAmount")
-.value
-);
+  .getElementById("transferForm")
+  .addEventListener("submit",function(event){
 
+    event.preventDefault();
 
-if(
-!Number.isFinite(amount) ||
-amount <= 0
-){
+    const recipient =
+      document
+        .getElementById("recipient")
+        .value
+        .trim();
 
-return alert(
-"Enter a valid amount."
-);
+    const account =
+      document
+        .getElementById("recipientAccount")
+        .value
+        .trim();
+
+    const amount =
+      Number(
+        document
+          .getElementById("transferAmount")
+          .value
+      );
+
+    const memo =
+      document
+        .getElementById("memo")
+        .value
+        .trim();
+
+    if(!recipient || !account || !amount){
+
+      showAlert("Please complete all required fields.");
+
+      return;
+
+    }
+
+    if(amount <= 0){
+
+      showAlert("Enter a valid transfer amount.");
+
+      return;
+
+    }
+
+    if(amount > state.balance){
+
+      showAlert(
+        "Insufficient prototype balance."
+      );
+
+      return;
+
+    }
+
+    pendingTransfer = {
+
+      recipient,
+      account,
+      amount,
+      memo
+
+    };
+
+    openPinModal();
+
+  });
+
+/* =========================================================
+   PAYMENT PIN
+   ========================================================= */
+
+function openPinModal(){
+
+  const overlay =
+    document.getElementById("pinOverlay");
+
+  const input =
+    document.getElementById("pinInput");
+
+  const error =
+    document.getElementById("pinError");
+
+  document
+    .getElementById("pinTitle")
+    .textContent =
+      "Enter Payment PIN";
+
+  document
+    .getElementById("pinDescription")
+    .textContent =
+      "Enter your 4-digit payment PIN to authorize this prototype transfer.";
+
+  error.textContent = "";
+
+  input.value = "";
+
+  overlay.classList.remove("hidden");
+
+  setTimeout(()=>{
+    input.focus();
+  },100);
 
 }
 
+function closePinModal(){
 
-state.balance =
-Math.round(
-(state.balance + amount) *
-100
-) / 100;
+  document
+    .getElementById("pinOverlay")
+    .classList.add("hidden");
 
+  document
+    .getElementById("pinInput")
+    .value = "";
 
-state.transactions.unshift({
+  document
+    .getElementById("pinError")
+    .textContent = "";
 
-name:
-"Prototype Deposit",
-
-date:
-"Just now",
-
-amount:
-amount,
-
-icon:
-"＋"
-
-});
-
-
-save();
-
-render();
-
-event.target.reset();
-
-
-alert(
-"Prototype funds added."
-);
-
-
-page("dashboard");
-
-}
-);
-
-
-/* REQUEST MONEY */
-
-document
-.getElementById("requestForm")
-.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-
-const from =
-document
-.getElementById("requestFrom")
-.value
-.trim();
-
-
-const amount =
-Number(
-document
-.getElementById("requestAmount")
-.value
-);
-
-
-if(
-!from ||
-!Number.isFinite(amount) ||
-amount <= 0
-){
-
-return alert(
-"Enter valid request details."
-);
+  pendingTransfer = null;
 
 }
 
+document
+  .getElementById("pinForm")
+  .addEventListener("submit",function(event){
 
-state.transactions.unshift({
+    event.preventDefault();
 
-name:
-"Money Request to " +
-from,
+    const input =
+      document
+        .getElementById("pinInput");
 
-date:
-"Just now",
+    const error =
+      document
+        .getElementById("pinError");
 
-amount:
-0,
+    const enteredPin =
+      input.value.trim();
 
-icon:
-"↙",
+    if(!/^\d{4}$/.test(enteredPin)){
 
-request:
-amount
+      error.textContent =
+        "PIN must contain exactly 4 digits.";
 
-});
+      return;
 
+    }
 
-save();
+    if(enteredPin !== state.paymentPin){
 
-render();
+      error.textContent =
+        "Incorrect payment PIN. Please try again.";
 
-event.target.reset();
+      input.value = "";
 
+      input.focus();
 
-alert(
-"Money request created for " +
-money(amount) +
-"."
-);
+      return;
 
+    }
 
-page("transactions");
+    completeTransfer();
+
+  });
+
+/* =========================================================
+   COMPLETE TRANSFER
+   ========================================================= */
+
+function completeTransfer(){
+
+  if(!pendingTransfer){
+
+    closePinModal();
+
+    return;
+
+  }
+
+  const transfer =
+    pendingTransfer;
+
+  state.balance -= transfer.amount;
+
+  const reference =
+    generateReference();
+
+  const date =
+    formattedDate();
+
+  state.transactions.unshift({
+
+    name:
+      "Transfer to " +
+      transfer.recipient,
+
+    date:
+      date,
+
+    amount:
+      -transfer.amount,
+
+    icon:
+      "send"
+
+  });
+
+  save();
+
+  closePinModal();
+
+  showSuccessScreen({
+
+    recipient:
+      transfer.recipient,
+
+    amount:
+      transfer.amount,
+
+    reference:
+      reference,
+
+    date:
+      date,
+
+    balance:
+      state.balance
+
+  });
 
 }
-);
 
+/* =========================================================
+   SUCCESS SCREEN
+   ========================================================= */
 
-/* BILLS */
+function showSuccessScreen(details){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen =>
+      screen.classList.add("hidden")
+    );
+
+  document
+    .getElementById("success-page")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("successMessage")
+    .textContent =
+      `You have successfully recorded a prototype transfer of ${money(details.amount)} to ${details.recipient}.`;
+
+  document
+    .getElementById("successAmount")
+    .textContent =
+      money(details.amount);
+
+  document
+    .getElementById("successReference")
+    .textContent =
+      details.reference;
+
+  document
+    .getElementById("successHolder")
+    .textContent =
+      details.recipient;
+
+  document
+    .getElementById("successDate")
+    .textContent =
+      details.date;
+
+  document
+    .getElementById("successBalance")
+    .textContent =
+      money(details.balance);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+function backToDashboard(){
+
+  document
+    .getElementById("success-page")
+    .classList.add("hidden");
+
+  page("dashboard");
+
+}
+
+/* =========================================================
+   CHANGE PIN
+   ========================================================= */
+
+function changePin(){
+
+  const newPin =
+    prompt(
+      "Create a new 4-digit payment PIN:"
+    );
+
+  if(newPin === null){
+
+    return;
+
+  }
+
+  if(!/^\d{4}$/.test(newPin)){
+
+    showAlert(
+      "PIN must contain exactly 4 numbers."
+    );
+
+    return;
+
+  }
+
+  state.paymentPin = newPin;
+
+  save();
+
+  showAlert(
+    "Payment PIN changed successfully."
+  );
+
+}
+
+/* =========================================================
+   REQUEST MONEY
+   ========================================================= */
+
+document
+  .getElementById("requestForm")
+  .addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const from =
+      document
+        .getElementById("requestFrom")
+        .value
+        .trim();
+
+    const amount =
+      Number(
+        document
+          .getElementById("requestAmount")
+          .value
+      );
+
+    if(amount <= 0){
+
+      showAlert("Enter a valid amount.");
+
+      return;
+
+    }
+
+    showAlert(
+      `Prototype request for ${money(amount)} created for ${from}.`
+    );
+
+    this.reset();
+
+  });
+
+/* =========================================================
+   ADD MONEY
+   ========================================================= */
+
+document
+  .getElementById("addForm")
+  .addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const amount =
+      Number(
+        document
+          .getElementById("addAmount")
+          .value
+      );
+
+    if(amount <= 0){
+
+      showAlert("Enter a valid amount.");
+
+      return;
+
+    }
+
+    state.balance += amount;
+
+    state.transactions.unshift({
+
+      name:"Prototype Deposit",
+
+      date:formattedDate(),
+
+      amount:amount,
+
+      icon:"add"
+
+    });
+
+    save();
+
+    render();
+
+    showAlert(
+      `${money(amount)} added to your prototype balance.`
+    );
+
+    this.reset();
+
+  });
+
+/* =========================================================
+   BILLS
+   ========================================================= */
 
 function bill(name,amount){
 
-if(amount > state.balance){
+  if(amount > state.balance){
 
-return alert(
-"Insufficient prototype balance."
-);
+    showAlert(
+      "Insufficient prototype balance."
+    );
 
-}
+    return;
 
+  }
 
-if(
-!confirm(
-"Pay " +
-money(amount) +
-" to " +
-name +
-"?"
-)
-){
+  if(
+    !confirm(
+      `Pay ${money(amount)} to ${name}?`
+    )
+  ){
 
-return;
+    return;
 
-}
+  }
 
+  state.balance -= amount;
 
-state.balance =
-Math.round(
-(state.balance - amount) *
-100
-) / 100;
+  state.transactions.unshift({
 
+    name:name,
 
-state.transactions.unshift({
+    date:formattedDate(),
 
-name:name,
+    amount:-amount,
 
-date:"Just now",
+    icon:"bill"
 
-amount:-amount,
+  });
 
-icon:"▤"
+  save();
 
-});
+  render();
 
-
-save();
-
-render();
-
-
-alert(
-"Bill payment recorded in the prototype."
-);
+  showAlert(
+    `${money(amount)} prototype payment recorded for ${name}.`
+  );
 
 }
 
-
-/* BENEFICIARIES */
+/* =========================================================
+   BENEFICIARIES
+   ========================================================= */
 
 document
-.getElementById("beneficiaryForm")
-.addEventListener(
-"submit",
-function(event){
+  .getElementById("beneficiaryForm")
+  .addEventListener("submit",function(event){
 
-event.preventDefault();
+    event.preventDefault();
 
+    const name =
+      document
+        .getElementById("benName")
+        .value
+        .trim();
 
-const name =
-document
-.getElementById("benName")
-.value
-.trim();
+    const account =
+      document
+        .getElementById("benAccount")
+        .value
+        .trim();
 
+    state.beneficiaries.push({
+      name,
+      account
+    });
 
-const account =
-document
-.getElementById("benAccount")
-.value
-.trim();
+    save();
 
+    renderBeneficiaries();
 
-if(!name || !account){
+    this.reset();
 
-return alert(
-"Enter the beneficiary details."
-);
+    showAlert(
+      "Beneficiary saved locally."
+    );
 
-}
+  });
 
+function removeBeneficiary(index){
 
-state.beneficiaries.push({
+  state.beneficiaries.splice(index,1);
 
-name:name,
+  save();
 
-account:account
-
-});
-
-
-save();
-
-render();
-
-event.target.reset();
-
-
-alert(
-"Beneficiary added."
-);
-
-}
-);
-
-
-/* REMOVE BENEFICIARY */
-
-function removeBen(index){
-
-if(
-!confirm(
-"Remove this beneficiary?"
-)
-){
-
-return;
+  renderBeneficiaries();
 
 }
 
-
-state.beneficiaries.splice(
-index,
-1
-);
-
-save();
-
-render();
-
-}
-
-
-/* RESET */
+/* =========================================================
+   RESET
+   ========================================================= */
 
 function resetData(){
 
-if(
-!confirm(
-"Reset all local CashFlow data?"
-)
-){
+  if(
+    !confirm(
+      "Reset all CashFlow prototype data?"
+    )
+  ){
 
-return;
+    return;
+
+  }
+
+  state =
+    JSON.parse(
+      JSON.stringify(DEFAULT)
+    );
+
+  save();
+
+  render();
+
+  showAlert(
+    "Prototype data has been reset."
+  );
 
 }
 
+/* =========================================================
+   LOGOUT
+   ========================================================= */
 
-state =
-JSON.parse(
-JSON.stringify(DEFAULT)
-);
+function logout(){
 
-save();
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("login")
+    .classList.remove("hidden");
+
+  page("dashboard");
+
+}
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
 render();
 
-page("dashboard");
+/*
+  Loading screen
+*/
 
-}
+setTimeout(()=>{
 
+  const loading =
+    document.getElementById("loadingScreen");
 
-/* STARTUP */
+  loading.style.opacity = "0";
 
-window.addEventListener(
-"load",
-function(){
+  setTimeout(()=>{
 
-setTimeout(
-function(){
+    loading.classList.add("hidden");
 
-const loading =
-document.getElementById(
-"loadingScreen"
-);
+    document
+      .getElementById("login")
+      .classList.remove("hidden");
 
-loading.style.opacity="0";
+  },400);
 
-
-setTimeout(
-function(){
-
-loading.remove();
-
-
-if(currentUser){
-
-openApp();
-
-}else{
-
-document
-.getElementById("login")
-.classList.remove("hidden");
-
-}
-
-},
-400
-);
-
-},
-1000
-);
-
-});
-
-
-/* INITIAL RENDER */
-
-render();
+},1200);
 
 </script>
 
