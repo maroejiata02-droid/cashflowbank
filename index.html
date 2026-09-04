@@ -14,12 +14,20 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .hid{display:none!important}
 
-/* WELCOME PAGE */
+/* WELCOME PAGE - UPDATED */
 .welcome-page{display:flex;flex-direction:column;justify-content:space-between;height:100vh;text-align:center;padding:40px 20px}
-.welcome-logo{font-size:52px;font-weight:900;margin-bottom:16px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:14px;border-radius:12px;margin-bottom:10px;text-align:left}
-.btn-primary{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
-.btn-outline{width:100%;padding:16px;background:transparent;border:2px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
+.welcome-top{margin-top:40px}
+.welcome-logo{font-size:52px;font-weight:900;margin-bottom:8px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.welcome-sub{font-size:16px;opacity:0.9;margin-bottom:25px;line-height:1.5}
+.welcome-desc{font-size:14px;opacity:0.8;margin-bottom:30px;padding:0 10px}
+.features{width:100%;margin:20px 0}
+.feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:14px;border-radius:12px;margin-bottom:10px;text-align:left;font-size:14px}
+.feature i{color:var(--green)}
+.welcome-stats{display:flex;justify-content:space-around;margin:20px 0}
+.stat{text-align:center}
+.stat h3{font-size:20px;font-weight:800}
+.stat small{opacity:0.7;font-size:12px}
+.welcome-bottom{display:flex;flex-direction:column;gap:12px}
 
 /* AUTH PAGE */
 .auth-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
@@ -45,17 +53,39 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 </head>
 <body>
 
-<!-- PAGE 0: WELCOME -->
+<!-- PAGE 0: WELCOME SCREEN - WITH MORE WRITE UP -->
 <div id="page0" class="page welcome-page">
-  <div>
+  <div class="welcome-top">
     <div class="welcome-logo">CASHFLOW</div>
-    <p>Your Trusted Digital Bank for the Future</p>
-    <div class="feature"><i data-lucide="shield-check"></i> <b>Safe & Secure</b></div>
-    <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b></div>
+    <p class="welcome-sub">Your Trusted Digital Bank for the Future</p>
+    <p class="welcome-desc">Bank smarter, save faster, and send money instantly. Join over 1 million users who trust Cashflow for their daily banking needs.</p>
+
+    <div class="features">
+      <div class="feature"><i data-lucide="shield-check"></i> <b>Bank-Level Security</b> - 256-bit encryption protects your money</div>
+      <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b> - Send money in seconds, 24/7</div>
+      <div class="feature"><i data-lucide="clock"></i> <b>No Hidden Fees</b> - What you see is what you pay</div>
+      <div class="feature"><i data-lucide="globe"></i> <b>Global Access</b> - Bank from anywhere in the world</div>
+    </div>
+
+    <div class="welcome-stats">
+      <div class="stat">
+        <h3>1M+</h3>
+        <small>Users</small>
+      </div>
+      <div class="stat">
+        <h3>$2B+</h3>
+        <small>Transacted</small>
+      </div>
+      <div class="stat">
+        <h3>4.9★</h3>
+        <small>Rating</small>
+      </div>
+    </div>
   </div>
-  <div>
+
+  <div class="welcome-bottom">
     <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
-    <button class="btn-outline" onclick="showPage('page2')" style="margin-top:12px">Login</button>
+    <button class="btn-outline" onclick="showPage('page2')">Login</button>
   </div>
 </div>
 
@@ -82,7 +112,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
   </div>
 </div>
 
-<!-- PAGE 3: DASHBOARD - NO RESET BUTTON AGAIN -->
+<!-- PAGE 3: DASHBOARD -->
 <div id="page3" class="page hid">
   <div class="topbar">
     <div>
@@ -99,7 +129,6 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
     <small>Available Balance</small>
     <h1 id="balance">$3,501,439.22</h1>
     <small>Account: **** 7756</small>
-    <!-- RESET BUTTON REMOVED -->
   </div>
 
   <div class="actions">
