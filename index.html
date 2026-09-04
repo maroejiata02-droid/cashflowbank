@@ -14,114 +14,134 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .hid{display:none!important}
 
-/* WELCOME + AUTH + DASHBOARD SAME AS BEFORE */
+/* WELCOME */
 .welcome-page{display:flex;flex-direction:column;justify-content:space-between;height:100vh;text-align:center;padding:40px 20px}
 .welcome-logo{font-size:52px;font-weight:900;margin-bottom:8px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:14px;border-radius:12px;margin-bottom:10px;text-align:left;font-size:14px}
 .btn-primary{width:100%;padding:16px;background:#fff;border:none;border-radius:12px;color:var(--purple2);font-weight:800;font-size:16px;cursor:pointer}
 .btn-outline{width:100%;padding:16px;background:transparent;border:2px solid #fff;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
 
-.auth-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(20px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
+/* AUTH */
+.auth-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
 .input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
-.btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-top:8px}
 
-.balance-card{background:linear-gradient(135deg, var(--purpleBtn) 0%, #a855f7 100%);border-radius:24px;padding:28px;margin-bottom:24px;box-shadow:0 10px 40px rgba(124,58,237,0.3)}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+/* DASHBOARD */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.balance-card{background:linear-gradient(135deg, var(--purpleBtn) 0%, #a855f7 100%);border-radius:24px;padding:24px;margin-bottom:24px}
+.balance-card h1{font-size:32px;font-weight:800}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;font-size:13px}
+.history-box{max-height:320px; overflow-y:auto}
+.tx-item{display:flex;justify-content:space-between;background:rgba(255,255,255,0.12);border-radius:16px;padding:14px;margin-bottom:10px}
+.income{color:var(--green)}.expense{color:var(--red)}
 
-/* SEND MONEY PAGE - NEW REALISTIC DESIGN */
-.send-container{padding-top:20px}
-.send-card{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(20px);
-  border-radius:24px;
-  padding:24px;
-  border:1px solid rgba(255,255,255,0.2);
-  margin-top:20px
-}
-.back-btn{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;cursor:pointer;margin-bottom:20px}
-.send-title{font-size:28px;font-weight:900;margin-bottom:8px}
-.send-balance{font-size:24px;font-weight:800;margin-bottom:24px}
-.input-group{margin-bottom:16px}
-.input-field{
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:14px;
-  padding:16px;
-  font-size:15px;
-  color:#fff;
-  width:100%
-}
-.input-field::placeholder{color:rgba(255,255,255,0.5)}
-.send-btn{
-  width:100%;
-  padding:18px;
-  background:linear-gradient(90deg,#7c3aed,#a855f7);
-  border:none;
-  border-radius:14px;
-  color:#fff;
-  font-weight:800;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:8px;
-  box-shadow:0 8px 20px rgba(124,58,237,0.4)
-}
+/* SEND - FIXED */
+.send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px}
+.send-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 
-<!-- PAGE 0,1,2,3 SAME AS BEFORE... -->
+<!-- PAGE 0: WELCOME -->
+<div id="page0" class="page welcome-page">
+  <div>
+    <div class="welcome-logo">CASHFLOW</div>
+    <p>Your Trusted Digital Bank</p>
+    <div class="feature"><i data-lucide="shield-check"></i> <b>Bank-Level Security</b></div>
+    <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b></div>
+  </div>
+  <div>
+    <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
+    <button class="btn-outline" onclick="showPage('page2')" style="margin-top:12px">Login</button>
+  </div>
+</div>
 
-<!-- PAGE 4: SEND MONEY - REALISTIC LIKE SCREENSHOT -->
+<!-- PAGE 1: REGISTER -->
+<div id="page1" class="page hid">
+  <div class="auth-box">
+    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
+    <h2>Create Account</h2>
+    <input class="input" type="text" id="regName" placeholder="Full Name">
+    <input class="input" type="email" id="regEmail" placeholder="Email">
+    <input class="input" type="password" id="regPassword" placeholder="Password">
+    <button class="btn-primary" onclick="register()">Create Account</button>
+  </div>
+</div>
+
+<!-- PAGE 2: LOGIN -->
+<div id="page2" class="page hid">
+  <div class="auth-box">
+    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
+    <h2>Login</h2>
+    <input class="input" type="email" id="email" value="john@email.com">
+    <input class="input" type="password" id="password" value="123456">
+    <button class="btn-primary" onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- PAGE 3: DASHBOARD -->
+<div id="page3" class="page hid">
+  <div class="topbar">
+    <h2 id="greeting">Hello 👋</h2>
+    <button onclick="logout()" style="padding:8px 12px;background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:#fff">Logout</button>
+  </div>
+  <div class="balance-card">
+    <small>Available Balance</small>
+    <h1 id="balance">$3,501,439.22</h1>
+  </div>
+  <div class="actions">
+    <div class="action" onclick="showPage('page4')"><i data-lucide="send"></i><br>Send</div>
+    <div class="action"><i data-lucide="download"></i><br>Request</div>
+    <div class="action"><i data-lucide="credit-card"></i><br>TopUp</div>
+    <div class="action"><i data-lucide="grid-3x3"></i><br>More</div>
+  </div>
+  <h3>Transaction History</h3>
+  <div class="history-box" id="history"></div>
+</div>
+
+<!-- PAGE 4: SEND MONEY -->
 <div id="page4" class="page hid">
-  <div class="send-container">
-    <div class="back-btn" onclick="showPage('page3')">
-      <i data-lucide="arrow-left"></i> Back
-    </div>
-
-    <div class="send-card">
-      <h1 class="send-title">Send Money</h1>
-      <h2 class="send-balance" id="balance2">$3,501,439.22</h2>
-
-      <div class="input-group">
-        <input class="input-field" type="text" id="recipient" placeholder="Recipient Name">
-      </div>
-
-      <div class="input-group">
-        <input class="input-field" type="number" id="amount" placeholder="Amount">
-      </div>
-
-      <button class="send-btn" onclick="sendMoney()">Send Now</button>
-    </div>
+  <div class="send-card">
+    <div onclick="showPage('page3')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i> Back</div>
+    <h2>Send Money</h2>
+    <h3 id="balance2">$3,501,439.22</h3>
+    <input class="input" type="text" id="recipient" placeholder="Recipient Name">
+    <input class="input" type="number" id="amount" placeholder="Amount">
+    <button class="send-btn" onclick="sendMoney()">Send Now</button>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
-document.querySelectorAll('.page').forEach(page => { page.classList.add('hid'); });
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(page => { page.classList.add('hid'); });
+  document.getElementById(id).classList.remove('hid');
+}
 
 let balance = localStorage.getItem('cashflow_balance')? parseFloat(localStorage.getItem('cashflow_balance')) : 3501439.22;
 let transactions = localStorage.getItem('cashflow_tx')? JSON.parse(localStorage.getItem('cashflow_tx')) : [
-  {name: "Welcome Bonus", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "gift"}
+  {name: "Welcome Bonus", date: "Today", amount: 2000000, type: "income"}
 ];
 
-if(localStorage.getItem('cashflow_user')){
-  const name = localStorage.getItem('cashflow_user');
-  showPage('page3'); renderHistory();
-} else { showPage('page0'); }
+function formatMoney(n){ return "$" + n.toLocaleString('en-US', {minimumFractionDigits: 2}); }
 
-function formatMoney(num){ return "$" + num.toLocaleString('en-US', {minimumFractionDigits: 2}); }
-function saveData(){ localStorage.setItem('cashflow_balance', balance); localStorage.setItem('cashflow_tx', JSON.stringify(transactions)); }
+function saveData(){
+  localStorage.setItem('cashflow_balance', balance);
+  localStorage.setItem('cashflow_tx', JSON.stringify(transactions));
+}
 
 function register(){
   const name = document.getElementById('regName').value;
-  localStorage.clear(); localStorage.setItem('cashflow_user', name);
-  balance = 3501439.22; saveData();
+  localStorage.setItem('cashflow_user', name);
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
   showPage('page3'); renderHistory();
 }
 
 function login(){
   const name = document.getElementById('email').value.split('@')[0];
   localStorage.setItem('cashflow_user', name);
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
   showPage('page3'); renderHistory();
 }
 
@@ -130,19 +150,28 @@ function logout(){ localStorage.removeItem('cashflow_user'); showPage('page0'); 
 function renderHistory(){
   document.getElementById('balance').innerText = formatMoney(balance);
   document.getElementById('balance2').innerText = formatMoney(balance);
+  const box = document.getElementById('history'); box.innerHTML = "";
+  transactions.forEach(tx => {
+    box.innerHTML += `<div class="tx-item"><b>${tx.name}</b><span class="${tx.type}">${tx.type==='income'?'+':'-'}${formatMoney(tx.amount)}</span></div>`;
+  });
 }
 
 function sendMoney(){
   const recipient = document.getElementById('recipient').value;
   const amount = parseFloat(document.getElementById('amount').value);
-  if(!amount || amount <= 0){ alert("Enter valid amount!"); return; }
-  if(amount > balance){ alert("Insufficient Balance!"); return; }
+  if(amount > balance){ alert("No money!"); return; }
   balance = balance - amount;
-  transactions.unshift({name: `Transfer to ${recipient}`, date: `Today, ${new Date().toLocaleTimeString()}`, amount: amount, type: "expense", icon: "send"});
-  saveData(); renderHistory(); alert(`$${amount.toLocaleString()} Sent to ${recipient} successfully!`); showPage('page3');
+  transactions.unshift({name: `To ${recipient}`, date: "Now", amount: amount, type: "expense"});
+  saveData(); renderHistory(); showPage('page3');
 }
 
-function showPage(id){ document.querySelectorAll('.page').forEach(page => { page.classList.add('hid'); }); document.getElementById(id).classList.remove('hid'); }
+// START APP
+if(localStorage.getItem('cashflow_user')){
+  document.getElementById('greeting').innerText = `Hello, ${localStorage.getItem('cashflow_user')} 👋`;
+  showPage('page3'); renderHistory();
+} else {
+  showPage('page0');
+}
 </script>
 </body>
 </html>
