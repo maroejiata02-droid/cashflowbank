@@ -16,26 +16,18 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
 body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
 .hid{display:none!important}
-.center{ display:flex; justify-content:center; align-items:center; padding:20px; min-height:100vh }
-
-/* DASHBOARD */
 .dashboard{padding:20px;max-width:500px;margin:0 auto;padding-bottom:100px}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .topbar h2{font-size:24px;font-weight:800}
 .logout{background:rgba(255,255,255,0.2);border:none;padding:8px 16px;border-radius:10px;color:#fff;font-weight:600;cursor:pointer}
-
 .balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
 .balance-card h1{font-size:32px;font-weight:800;margin-top:4px}
-
 .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center;cursor:pointer}
-
-/* TRANSACTION HISTORY */
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center}
 .tx-section{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:16px}
 .tx-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
 .tx-header a{color:#fff;font-size:13px;font-weight:600;cursor:pointer;text-decoration:underline}
-.tx-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);cursor:pointer}
-.tx-item:last-child{border:none}
+.tx-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
 .tx-left{display:flex;align-items:center;gap:12px}
 .tx-icon{width:38px;height:38px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center}
 .tx-info b{display:block;font-size:14px}
@@ -51,7 +43,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 <div id="dash" class="dashboard">
   <div class="topbar">
     <div>
-      <h2 id="dashName">Hello Sun</h2>
+      <h2>Hello Sun</h2>
       <p style="font-size:13px;opacity:0.8">Let's save your money</p>
     </div>
     <button class="logout" onclick="alert('Logged out')">Logout</button>
@@ -59,7 +51,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 
   <div class="balance-card">
     <small>Available Balance</small>
-    <h1 id="bal">₦2,002,665.00</h1>
+    <h1 id="bal">$3,501,439.22</h1>
   </div>
 
   <div class="actions">
@@ -96,14 +88,13 @@ lucide.createIcons();
 
 let txs = [
   {id:"CFX9823100", name:"Salary Credit", icon:"banknote", amt:2000000.00, date:"Today, 09:15 AM", status:"Completed", to:"Company Ltd"},
-  {id:"CFX9823099", name:"Internet Bill", icon:"wifi", amt:-85.00, date:"Yesterday, 8:30 PM", status:"Completed", to:"MTN Nigeria"},
-  {id:"CFX9823097", name:"Client Payment", icon:"arrow-down-left", amt:500.00, date:"14 Mar, 11:45 AM", status:"Completed", to:"John Doe"},
-  {id:"CFX9823096", name:"Transport", icon:"bus", amt:-120.00, date:"14 Mar, 08:00 AM", status:"Completed", to:"Uber"},
+  {id:"CFX9823097", name:"Client Payment", icon:"arrow-down-left", amt:1500000.00, date:"14 Mar, 11:45 AM", status:"Completed", to:"Big Client Inc"}, // CHANGED TO 1.5M
+  {id:"CFX9823099", name:"Internet Bill", icon:"wifi", amt:-500.78, date:"Yesterday, 8:30 PM", status:"Completed", to:"MTN Nigeria"}, // CHANGED TO 500.78
   {id:"CFX9823095", name:"Coffee", icon:"coffee", amt:-24.90, date:"13 Mar, 4:20 PM", status:"Completed", to:"Starbucks"},
   {id:"CFX9823094", name:"Refund", icon:"rotate-ccw", amt:50.00, date:"13 Mar, 1:00 PM", status:"Completed", to:"Amazon"}
 ];
 
-let balance = 2002665.00; // Updated balance
+let balance = 3501439.22; // 2M + 1.5M - 500.78 - 24.90 + 50
 
 function show(id){
   ['dash','history'].forEach(x=>document.getElementById(x).classList.add('hid'));
@@ -115,7 +106,7 @@ function loadTx(){
   let html = '';
   txs.slice(0,3).forEach(t=> { html += txRow(t); }); // show only 3 on dashboard
   document.getElementById('txList').innerHTML = html;
-  document.getElementById('bal').innerText = '₦' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('bal').innerText = '$' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
   lucide.createIcons();
 }
 
@@ -136,7 +127,7 @@ function txRow(t){
         <small>${t.date}</small>
       </div>
     </div>
-    <div class="tx-amount ${type}">${t.amt > 0 ? '+' : '-'}₦${Math.abs(t.amt).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
+    <div class="tx-amount ${type}">${t.amt > 0 ? '+' : '-'}$${Math.abs(t.amt).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
   </div>`;
 }
 
