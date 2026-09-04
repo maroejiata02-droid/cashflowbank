@@ -10,7 +10,6 @@
 :root{
   --green1:#6e8b3d; 
   --purple2:#2b1055; 
-  --purpleBtn:#7c3aed; 
   --greenBtn:#22c55e;
   --red:#ef4444;
 }
@@ -33,7 +32,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 
 /* TRANSACTION HISTORY */
 .tx-section{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:16px}
-.tx-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.tx-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
 .tx-header a{color:#fff;font-size:13px;font-weight:600;cursor:pointer;text-decoration:underline}
 .tx-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);cursor:pointer}
 .tx-item:last-child{border:none}
@@ -44,22 +43,11 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 .tx-amount{font-weight:700;font-size:14px;text-align:right}
 .tx-amount.in{color:var(--greenBtn)}
 .tx-amount.out{color:var(--red)}
-
-/* MODAL FOR DETAILS */
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:999}
-.modal-box{background:#fff;color:#111;border-radius:20px;padding:24px;width:90%;max-width:400px}
-.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.modal-header h3{font-weight:800}
-.modal-close{cursor:pointer}
-.detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:14px}
-.detail-row:last-child{border:none}
-.detail-label{color:#6b7280}
-.detail-value{font-weight:600}
 </style>
 </head>
 <body>
 
-<!-- 1. DASHBOARD -->
+<!-- DASHBOARD -->
 <div id="dash" class="dashboard">
   <div class="topbar">
     <div>
@@ -71,7 +59,7 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 
   <div class="balance-card">
     <small>Available Balance</small>
-    <h1 id="bal">$8,182.80</h1>
+    <h1 id="bal">₦2,002,665.00</h1>
   </div>
 
   <div class="actions">
@@ -81,17 +69,17 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
     <div class="action"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
   </div>
 
-  <!-- RECENT TRANSACTIONS -->
+  <!-- UPDATED TRANSACTION HISTORY -->
   <div class="tx-section">
     <div class="tx-header">
-      <div style="font-weight:700">Recent Transactions</div>
+      <div>Recent Transactions</div>
       <a onclick="show('history')">View All</a>
     </div>
     <div id="txList"></div>
   </div>
 </div>
 
-<!-- 2. VIEW ALL HISTORY PAGE -->
+<!-- VIEW ALL HISTORY PAGE -->
 <div id="history" class="dashboard hid">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="show('dash')">
@@ -103,30 +91,19 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
   </div>
 </div>
 
-<!-- 3. TRANSACTION DETAILS MODAL -->
-<div id="detailModal" class="modal hid">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h3>Transaction Details</h3>
-      <i data-lucide="x" class="modal-close" onclick="closeModal()"></i>
-    </div>
-    <div id="detailContent"></div>
-  </div>
-</div>
-
 <script>
 lucide.createIcons();
 
 let txs = [
-  {id:"CFX9823101", name:"House Rent", icon:"home", amt:-300.00, date:"Today, 10:00 AM", status:"Completed", to:"Landlord Adebayo"},
-  {id:"CFX9823100", name:"Salary Credit", icon:"banknote", amt:2500.00, date:"Today, 09:15 AM", status:"Completed", to:"Company Ltd"},
+  {id:"CFX9823100", name:"Salary Credit", icon:"banknote", amt:2000000.00, date:"Today, 09:15 AM", status:"Completed", to:"Company Ltd"},
   {id:"CFX9823099", name:"Internet Bill", icon:"wifi", amt:-85.00, date:"Yesterday, 8:30 PM", status:"Completed", to:"MTN Nigeria"},
-  {id:"CFX9823098", name:"Groceries", icon:"shopping-cart", amt:-240.00, date:"Yesterday, 2:10 PM", status:"Completed", to:"Shoprite Ikeja"},
   {id:"CFX9823097", name:"Client Payment", icon:"arrow-down-left", amt:500.00, date:"14 Mar, 11:45 AM", status:"Completed", to:"John Doe"},
   {id:"CFX9823096", name:"Transport", icon:"bus", amt:-120.00, date:"14 Mar, 08:00 AM", status:"Completed", to:"Uber"},
   {id:"CFX9823095", name:"Coffee", icon:"coffee", amt:-24.90, date:"13 Mar, 4:20 PM", status:"Completed", to:"Starbucks"},
   {id:"CFX9823094", name:"Refund", icon:"rotate-ccw", amt:50.00, date:"13 Mar, 1:00 PM", status:"Completed", to:"Amazon"}
 ];
+
+let balance = 2002665.00; // Updated balance
 
 function show(id){
   ['dash','history'].forEach(x=>document.getElementById(x).classList.add('hid'));
@@ -136,21 +113,22 @@ function show(id){
 
 function loadTx(){
   let html = '';
-  txs.slice(0,4).forEach(t=> { html += txRow(t); }); // show only 4 on dashboard
+  txs.slice(0,3).forEach(t=> { html += txRow(t); }); // show only 3 on dashboard
   document.getElementById('txList').innerHTML = html;
+  document.getElementById('bal').innerText = '₦' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
   lucide.createIcons();
 }
 
 function loadAllTx(){
   let html = '';
-  txs.forEach(t=> { html += txRow(t); }); // show all
+  txs.forEach(t=> { html += txRow(t); });
   document.getElementById('allTxList').innerHTML = html;
   lucide.createIcons();
 }
 
 function txRow(t){
   let type = t.amt > 0 ? 'in' : 'out';
-  return `<div class="tx-item" onclick="viewDetails('${t.id}')">
+  return `<div class="tx-item">
     <div class="tx-left">
       <div class="tx-icon"><i data-lucide="${t.icon}"></i></div>
       <div class="tx-info">
@@ -158,26 +136,8 @@ function txRow(t){
         <small>${t.date}</small>
       </div>
     </div>
-    <div class="tx-amount ${type}">${t.amt > 0 ? '+' : ''}$${Math.abs(t.amt).toFixed(2)}</div>
+    <div class="tx-amount ${type}">${t.amt > 0 ? '+' : '-'}₦${Math.abs(t.amt).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
   </div>`;
-}
-
-function viewDetails(id){
-  let t = txs.find(x=>x.id===id);
-  document.getElementById('detailContent').innerHTML = `
-    <div class="detail-row"><span class="detail-label">Transaction ID</span><span class="detail-value">${t.id}</span></div>
-    <div class="detail-row"><span class="detail-label">Description</span><span class="detail-value">${t.name}</span></div>
-    <div class="detail-row"><span class="detail-label">Date & Time</span><span class="detail-value">${t.date}</span></div>
-    <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value ${t.amt>0?'in':'out'}">$${Math.abs(t.amt).toFixed(2)}</span></div>
-    <div class="detail-row"><span class="detail-label">To/From</span><span class="detail-value">${t.to}</span></div>
-    <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value" style="color:var(--greenBtn)">${t.status}</span></div>
-  `;
-  document.getElementById('detailModal').classList.remove('hid');
-  lucide.createIcons();
-}
-
-function closeModal(){
-  document.getElementById('detailModal').classList.add('hid');
 }
 
 loadTx();
