@@ -7,194 +7,211 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-:root{--green1:#6e8b3d; --purple2:#2b1055; --purpleBtn:#7c3aed; --green:#22c55e; --red:#ef4444;}
+:root{--green1:#0a0a0a; --purple2:#1a1a1a; --purpleBtn:#7c3aed; --green:#22c55e; --red:#ef4444; --card:#141414;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
-body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
+body{background:#0a0a0a;min-height:100vh;color:#fff}
 .page{padding:20px;max-width:500px;margin:0 auto;animation:fadeIn 0.5s}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .hid{display:none!important}
 
-/* WELCOME PAGE - UPDATED */
-.welcome-page{display:flex;flex-direction:column;justify-content:space-between;height:100vh;text-align:center;padding:40px 20px}
-.welcome-top{margin-top:40px}
-.welcome-logo{font-size:52px;font-weight:900;margin-bottom:8px;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.welcome-sub{font-size:16px;opacity:0.9;margin-bottom:25px;line-height:1.5}
-.welcome-desc{font-size:14px;opacity:0.8;margin-bottom:30px;padding:0 10px}
-.features{width:100%;margin:20px 0}
-.feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:14px;border-radius:12px;margin-bottom:10px;text-align:left;font-size:14px}
-.feature i{color:var(--green)}
-.welcome-stats{display:flex;justify-content:space-around;margin:20px 0}
-.stat{text-align:center}
-.stat h3{font-size:20px;font-weight:800}
-.stat small{opacity:0.7;font-size:12px}
-.welcome-bottom{display:flex;flex-direction:column;gap:12px}
+/* WELCOME PAGE - UBA STYLE */
+.welcome-page{padding:0;max-width:100%}
+.header{padding:20px;display:flex;justify-content:space-between;align-items:center}
+.header-logo{font-size:28px;font-weight:900;color:#fff}
+.header-logo span{color:var(--purpleBtn)}
 
-/* AUTH PAGE */
-.auth-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:60px}
-.input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
-.btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-top:8px}
+.hero-section{padding:30px 20px;text-align:center}
+.hero-title{font-size:32px;font-weight:900;line-height:1.2;margin-bottom:12px}
+.hero-desc{font-size:15px;opacity:0.8;line-height:1.6;margin-bottom:20px}
 
-/* DASHBOARD */
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:20px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.2)}
-.balance-card h1{font-size:36px;font-weight:800;margin:8px 0}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;font-size:13px;font-weight:600}
-.history-box{max-height:320px; overflow-y:auto}
-.tx-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.12);border-radius:16px;padding:14px;margin-bottom:10px}
-.tx-amt{font-weight:800;font-size:15px}
-.income{color:var(--green)}
-.expense{color:var(--red)}
-.logout-btn{padding:8px 12px;background:rgba(239,68,68,0.2);border:1px solid var(--red);border-radius:8px;color:#fff;font-size:12px;cursor:pointer}
+.card{background:var(--card);border-radius:20px;padding:24px;margin:0 16px 20px 16px}
+.card-title{font-size:22px;font-weight:800;margin-bottom:10px}
+.card-desc{font-size:14px;opacity:0.8;line-height:1.6;margin-bottom:16px}
+.card-link{color:#a855f7;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px}
 
-/* SEND PAGE */
-.send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px}
+.card-image{margin-top:20px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#7c3aed,#a855f7);height:180px;display:flex;align-items:center;justify-content:center}
+.card-image img{width:100%;height:100%;object-fit:cover}
+
+/* 3x3 GRID LIKE UBA */
+.grid-section{padding:0 16px;margin-bottom:30px}
+.grid-title{font-size:24px;font-weight:800;margin-bottom:8px}
+.grid-subtitle{font-size:14px;opacity:0.7;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid-item{background:var(--card);border-radius:16px;padding:20px 10px;text-align:center;cursor:pointer}
+.grid-item i{color:var(--purpleBtn);margin-bottom:8px}
+.grid-item span{font-size:12px;font-weight:600}
+
+.btn-primary{width:calc(100% - 32px);margin:0 16px 16px 16px;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+.btn-outline{width:calc(100% - 32px);margin:0 16px 30px 16px;padding:16px;background:transparent;border:2px solid #333;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+
+/* AUTH + DASHBOARD SAME AS BEFORE */
+.auth-container{padding-top:60px}
+.auth-card{background:var(--card);border-radius:24px;padding:28px;margin:0 16px}
+.input-field{display:flex;align-items:center;gap:10px;background:#1f1f1f;border:1px solid #333;border-radius:12px;padding:14px;margin-bottom:16px}
+.input-field input{flex:1;background:transparent;border:none;outline:none;color:#fff}
+.balance-card{background:var(--card);border-radius:20px;padding:24px;margin:0 16px 24px 16px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 16px 20px 16px}
+.action{background:var(--card);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;font-size:13px;font-weight:600}
 </style>
 </head>
 <body>
 
-<!-- PAGE 0: WELCOME SCREEN - WITH MORE WRITE UP -->
+<!-- PAGE 0: WELCOME - UBA STYLE -->
 <div id="page0" class="page welcome-page">
-  <div class="welcome-top">
-    <div class="welcome-logo">CASHFLOW</div>
-    <p class="welcome-sub">Your Trusted Digital Bank for the Future</p>
-    <p class="welcome-desc">Bank smarter, save faster, and send money instantly. Join over 1 million users who trust Cashflow for their daily banking needs.</p>
+  <div class="header">
+    <div class="header-logo">CASH<span>FLOW</span></div>
+  </div>
 
-    <div class="features">
-      <div class="feature"><i data-lucide="shield-check"></i> <b>Bank-Level Security</b> - 256-bit encryption protects your money</div>
-      <div class="feature"><i data-lucide="zap"></i> <b>Instant Transfers</b> - Send money in seconds, 24/7</div>
-      <div class="feature"><i data-lucide="clock"></i> <b>No Hidden Fees</b> - What you see is what you pay</div>
-      <div class="feature"><i data-lucide="globe"></i> <b>Global Access</b> - Bank from anywhere in the world</div>
-    </div>
+  <div class="hero-section">
+    <h1 class="hero-title">Global Banking,<br>African Excellence.</h1>
+    <p class="hero-desc">With smart technology and 24/7 support, we connect you to seamless banking. Send money, pay bills, and grow your wealth with Cashflow.</p>
+  </div>
 
-    <div class="welcome-stats">
-      <div class="stat">
-        <h3>1M+</h3>
-        <small>Users</small>
-      </div>
-      <div class="stat">
-        <h3>$2B+</h3>
-        <small>Transacted</small>
-      </div>
-      <div class="stat">
-        <h3>4.9★</h3>
-        <small>Rating</small>
-      </div>
+  <!-- CARD 1: VIRTUAL BANKER -->
+  <div class="card">
+    <h2 class="card-title">Chat with CASH, your 24/7 Virtual Banker</h2>
+    <p class="card-desc">Send money, buy airtime, pay bills, check your balance, and do much more with your smart virtual assistant — CASH.</p>
+    <div class="card-link" onclick="alert('Coming Soon')">Learn more <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+    <div class="card-image">
+      <i data-lucide="bot" style="width:80px;height:80px;opacity:0.5"></i>
     </div>
   </div>
 
-  <div class="welcome-bottom">
-    <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
-    <button class="btn-outline" onclick="showPage('page2')">Login</button>
+  <!-- CARD 2: ONLINE ACCOUNT -->
+  <div class="card">
+    <h2 class="card-title">Online Account Opening</h2>
+    <p class="card-desc">Open an account online in minutes. Access your funds via the Cashflow App and get real-time notifications after every transaction.</p>
+    <div class="card-link">Personal Banking <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+    <div class="card-link" style="margin-top:8px">Business Banking <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+    <div class="card-image">
+      <i data-lucide="smartphone" style="width:80px;height:80px;opacity:0.5"></i>
+    </div>
   </div>
+
+  <!-- CARD 3: 3x3 GRID -->
+  <div class="grid-section">
+    <h2 class="grid-title">Find Your Perfect Fit</h2>
+    <p class="grid-subtitle">What will you be using our platform for?</p>
+    <div class="grid">
+      <div class="grid-item"><i data-lucide="home"></i><br><span>Individual</span></div>
+      <div class="grid-item"><i data-lucide="building-2"></i><br><span>Business</span></div>
+      <div class="grid-item"><i data-lucide="trending-up"></i><br><span>Investor</span></div>
+      <div class="grid-item"><i data-lucide="user-check"></i><br><span>Teenager</span></div>
+      <div class="grid-item"><i data-lucide="graduation-cap"></i><br><span>Student</span></div>
+      <div class="grid-item"><i data-lucide="code"></i><br><span>Developer</span></div>
+      <div class="grid-item"><i data-lucide="briefcase"></i><br><span>Job Seeker</span></div>
+      <div class="grid-item"><i data-lucide="newspaper"></i><br><span>Media</span></div>
+      <div class="grid-item"><i data-lucide="help-circle"></i><br><span>Help</span></div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
+  <button class="btn-outline" onclick="showPage('page2')">Login</button>
 </div>
 
 <!-- PAGE 1: CREATE ACCOUNT -->
 <div id="page1" class="page hid">
-  <div class="auth-box">
-    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
-    <h2>Create Account</h2>
-    <input class="input" type="text" id="regName" placeholder="Full Name">
-    <input class="input" type="email" id="regEmail" placeholder="Email">
-    <input class="input" type="password" id="regPassword" placeholder="Password">
-    <button class="btn" onclick="register()">Create Account</button>
+  <div class="auth-container">
+    <div onclick="showPage('page0')" style="margin:0 16px 20px 16px;cursor:pointer;display:flex;align-items:center;gap:8px"><i data-lucide="arrow-left"></i> Back</div>
+    <div class="auth-card">
+      <h2 style="font-size:24px;font-weight:800;text-align:center;margin-bottom:6px">Create Account</h2>
+      <p style="text-align:center;opacity:0.7;margin-bottom:24px;font-size:13px">Join us in less than 1 minute</p>
+      <div class="input-field"><i data-lucide="user"></i><input type="text" id="regName" placeholder="Full Name"></div>
+      <div class="input-field"><i data-lucide="mail"></i><input type="email" id="regEmail" placeholder="Email"></div>
+      <div class="input-field"><i data-lucide="lock"></i><input type="password" id="regPassword" placeholder="Password"></div>
+      <button class="btn-primary" onclick="register()">Create Account</button>
+    </div>
   </div>
 </div>
 
 <!-- PAGE 2: LOGIN -->
 <div id="page2" class="page hid">
-  <div class="auth-box">
-    <div onclick="showPage('page0')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
-    <h2>Login</h2>
-    <input class="input" type="email" id="email" value="john@email.com">
-    <input class="input" type="password" id="password" value="123456">
-    <button class="btn" onclick="login()">Login</button>
+  <div class="auth-container">
+    <div onclick="showPage('page0')" style="margin:0 16px 20px 16px;cursor:pointer;display:flex;align-items:center;gap:8px"><i data-lucide="arrow-left"></i> Back</div>
+    <div class="auth-card">
+      <h2 style="font-size:24px;font-weight:800;text-align:center;margin-bottom:6px">Welcome Back</h2>
+      <p style="text-align:center;opacity:0.7;margin-bottom:24px;font-size:13px">Login to access your account</p>
+      <div class="input-field"><i data-lucide="mail"></i><input type="email" id="email" value="john@email.com"></div>
+      <div class="input-field"><i data-lucide="lock"></i><input type="password" id="password" value="123456"></div>
+      <button class="btn-primary" onclick="login()">Login</button>
+    </div>
   </div>
 </div>
 
 <!-- PAGE 3: DASHBOARD -->
-<div id="page3" class="page hid">
-  <div class="topbar">
-    <div>
-      <h2 id="greeting">Hello, John 👋</h2>
-      <small style="opacity:0.8">Welcome back</small>
+<div id="page3" class="page">
+  <div style="padding:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div><h2 id="greeting">Hello 👋</h2></div>
+      <div onclick="logout()" style="padding:8px 12px;background:#2a2a2a;border-radius:8px;cursor:pointer">Logout</div>
     </div>
-    <div style="display:flex;gap:8px">
-      <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center"><i data-lucide="user"></i></div>
-      <div class="logout-btn" onclick="logout()">Logout</div>
+    <div class="balance-card">
+      <small>Available Balance</small>
+      <h1 id="balance">$3,501,439.22</h1>
+    </div>
+    <div class="actions">
+      <div class="action" onclick="showPage('page4')"><i data-lucide="send"></i><br>Send</div>
+      <div class="action"><i data-lucide="download"></i><br>Request</div>
+      <div class="action"><i data-lucide="credit-card"></i><br>TopUp</div>
+      <div class="action"><i data-lucide="grid-3x3"></i><br>More</div>
     </div>
   </div>
-
-  <div class="balance-card">
-    <small>Available Balance</small>
-    <h1 id="balance">$3,501,439.22</h1>
-    <small>Account: **** 7756</small>
-  </div>
-
-  <div class="actions">
-    <div class="action" onclick="showPage('page4')"><i data-lucide="send"></i><br><span>Send</span></div>
-    <div class="action" onclick="alert('Request Money')"><i data-lucide="download"></i><br><span>Request</span></div>
-    <div class="action" onclick="alert('Top Up')"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
-    <div class="action" onclick="alert('More')"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
-  </div>
-
-  <h3 style="font-weight:700;margin-bottom:12px">Transaction History</h3>
-  <div class="history-box" id="history"></div>
 </div>
 
-<!-- PAGE 4: SEND MONEY -->
+<!-- PAGE 4: SEND -->
 <div id="page4" class="page hid">
-  <div class="send-card">
+  <div style="padding:20px">
     <div onclick="showPage('page3')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
-    <h2>Send Money</h2>
-    <h3 id="balance2">$3,501,439.22</h3>
-    <input class="input" type="text" id="recipient" placeholder="Recipient Name">
-    <input class="input" type="number" id="amount" placeholder="Amount">
-    <button class="btn" onclick="sendMoney()">Send Now</button>
+    <div class="auth-card">
+      <h2>Send Money</h2>
+      <h3 id="balance2" style="margin:12px 0">$3,501,439.22</h3>
+      <div class="input-field"><input type="text" id="recipient" placeholder="Recipient"></div>
+      <div class="input-field"><input type="number" id="amount" placeholder="Amount"></div>
+      <button class="btn-primary" onclick="sendMoney()">Send Now</button>
+    </div>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
-document.querySelectorAll('.page').forEach(page => { page.classList.add('hid'); });
+document.querySelectorAll('.page').forEach(p=>p.classList.add('hid'));
 
 let balance = localStorage.getItem('cashflow_balance')? parseFloat(localStorage.getItem('cashflow_balance')) : 3501439.22;
-let transactions = localStorage.getItem('cashflow_tx')? JSON.parse(localStorage.getItem('cashflow_tx')) : [
-  {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"}
-];
+let transactions = [];
 
 if(localStorage.getItem('cashflow_user')){
-  const name = localStorage.getItem('cashflow_user');
-  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
-  showPage('page3'); renderHistory();
+  document.getElementById('greeting').innerText = `Hello, ${localStorage.getItem('cashflow_user')} 👋`;
+  showPage('page3');
 } else { showPage('page0'); }
 
-function formatMoney(num){ return "$" + num.toLocaleString('en-US', {minimumFractionDigits: 2}); }
-function saveData(){ localStorage.setItem('cashflow_balance', balance); localStorage.setItem('cashflow_tx', JSON.stringify(transactions)); }
-function register(){ localStorage.setItem('cashflow_user',document.getElementById('regName').value); showPage('page3'); renderHistory(); }
-function login(){ localStorage.setItem('cashflow_user',document.getElementById('email').value.split('@')[0]); showPage('page3'); renderHistory(); }
-function logout(){ localStorage.removeItem('cashflow_user'); showPage('page0'); }
+function formatMoney(n){ return "$" + n.toLocaleString('en-US',{minimumFractionDigits:2}); }
+function saveData(){ localStorage.setItem('cashflow_balance',balance); }
 
-function renderHistory(){
+function register(){
+  const name = document.getElementById('regName').value;
+  localStorage.clear(); localStorage.setItem('cashflow_user',name);
+  balance = 3501439.22; saveData();
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
+  showPage('page3');
+}
+
+function login(){
+  const name = document.getElementById('email').value.split('@')[0];
+  localStorage.setItem('cashflow_user',name);
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
+  showPage('page3');
+}
+
+function logout(){ localStorage.removeItem('cashflow_user'); showPage('page0'); }
+function sendMoney(){
+  const amount = parseFloat(document.getElementById('amount').value);
+  if(amount > balance){ alert("No money!"); return; }
+  balance -= amount; saveData();
   document.getElementById('balance').innerText = formatMoney(balance);
   document.getElementById('balance2').innerText = formatMoney(balance);
-  const historyBox = document.getElementById('history'); historyBox.innerHTML = "";
-  transactions.forEach(tx => {
-    historyBox.innerHTML += `<div class="tx-item"><div><b>${tx.name}</b><br><small>${tx.date}</small></div><div class="tx-amt ${tx.type}">${tx.type==='income'?'+':'-'}${formatMoney(tx.amount)}</div></div>`;
-  });
-  lucide.createIcons();
+  showPage('page3');
 }
-
-function sendMoney(){
-  const recipient = document.getElementById('recipient').value;
-  const amount = parseFloat(document.getElementById('amount').value);
-  if(amount > balance){ alert("Insufficient Balance!"); return; }
-  balance = balance - amount;
-  transactions.unshift({name: `Transfer to ${recipient}`, date: `Today, ${new Date().toLocaleTimeString()}`, amount: amount, type: "expense", icon: "send"});
-  saveData(); renderHistory(); showPage('page3');
-}
-
-function showPage(id){ document.querySelectorAll('.page').forEach(page => { page.classList.add('hid'); }); document.getElementById(id).classList.remove('hid'); }
+function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.add('hid')); document.getElementById(id).classList.remove('hid'); }
 </script>
 </body>
 </html>
