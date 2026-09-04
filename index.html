@@ -13,6 +13,17 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 .page{padding:20px;max-width:500px;margin:0 auto;animation:fadeIn 0.3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hid{display:none}
+
+/* LOGIN PAGE */
+.login-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px;border:1px solid rgba(255,255,255,0.2);margin-top:80px}
+.logo{text-align:center;margin-bottom:24px;font-size:32px;font-weight:800}
+.login-box h2{text-align:center;margin-bottom:8px;font-size:24px}
+.login-box p{text-align:center;opacity:0.8;margin-bottom:24px;font-size:14px}
+.input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
+.input::placeholder{color:rgba(255,255,255,0.5)}
+.login-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-top:8px}
+
+/* DASHBOARD */
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:20px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.2)}
 .balance-card h1{font-size:36px;font-weight:800;margin:8px 0}
@@ -26,34 +37,52 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
 .income{color:var(--green)}
 .expense{color:var(--red)}
 .reset-btn{width:100%;padding:12px;margin-top:12px;background:rgba(239,68,68,0.2);border:1px solid var(--red);border-radius:12px;color:#fff;font-weight:600;cursor:pointer}
+.logout-btn{padding:8px 12px;background:rgba(239,68,68,0.2);border:1px solid var(--red);border-radius:8px;color:#fff;font-size:12px;cursor:pointer}
 
 /* SEND PAGE */
 .send-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,0.2)}
 .header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .back{cursor:pointer;padding:8px;background:rgba(255,255,255,0.1);border-radius:10px}
 .balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:16px;margin-bottom:20px}
-.input{width:100%;padding:14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:12px;color:#fff;margin-bottom:12px}
-.input::placeholder{color:rgba(255,255,255,0.5)}
-.send-btn{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 
+<!-- PAGE 0: LOGIN -->
+<div id="page0" class="page">
+  <div class="login-box">
+    <div class="logo">CASHFLOW</div>
+    <h2>Welcome Back</h2>
+    <p>Login to your account</p>
+
+    <label>Email</label>
+    <input class="input" type="email" id="email" placeholder="john@email.com" value="john@email.com">
+
+    <label>Password</label>
+    <input class="input" type="password" id="password" placeholder="Enter password" value="123456">
+
+    <button class="login-btn" onclick="login()">Login</button>
+  </div>
+</div>
+
 <!-- PAGE 1: DASHBOARD -->
-<div id="page1" class="page">
+<div id="page1" class="page hid">
   <div class="topbar">
     <div>
-      <h2>Hello, John 👋</h2>
+      <h2 id="greeting">Hello, John 👋</h2> <!-- ID ADDED -->
       <small style="opacity:0.8">Welcome back</small>
     </div>
-    <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center"><i data-lucide="user"></i></div>
+    <div style="display:flex;gap:8px">
+      <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center"><i data-lucide="user"></i></div>
+      <div class="logout-btn" onclick="logout()">Logout</div> <!-- LOGOUT BUTTON -->
+    </div>
   </div>
 
   <div class="balance-card">
     <small>Available Balance</small>
     <h1 id="balance">$3,501,439.22</h1>
     <small>Account: **** 7756</small>
-    <button class="reset-btn" onclick="resetBalance()">🔄 Reset Balance</button> <!-- RESET BUTTON -->
+    <button class="reset-btn" onclick="resetBalance()">🔄 Reset Balance</button>
   </div>
 
   <div class="actions">
@@ -64,7 +93,6 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
   </div>
 
   <h3 style="font-weight:700;margin-bottom:12px">Transaction History</h3>
-  
   <div class="history-box" id="history"></div>
 </div>
 
@@ -75,40 +103,40 @@ body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);m
       <div class="back" onclick="showPage('page1')"><i data-lucide="arrow-left"></i></div>
       <h2>Send Money</h2>
     </div>
-
     <div class="balance-preview">
       <small>Available Balance</small>
       <h3 id="balance2">$3,501,439.22</h3>
     </div>
-
     <label>Recipient Name</label>
     <input class="input" type="text" id="recipient" value="Michael Brown">
-
     <label>Account Number</label>
     <input class="input" type="text" id="account" value="0123456789">
-
     <label>Amount ($)</label>
     <input class="input" type="number" id="amount" value="5250">
-
-    <button class="send-btn" onclick="sendMoney()">Send Now</button>
+    <button class="login-btn" onclick="sendMoney()">Send Now</button>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
 
-// LOAD FROM STORAGE OR DEFAULT
-let balance = localStorage.getItem('cashflow_balance') 
-  ? parseFloat(localStorage.getItem('cashflow_balance')) 
+// CHECK IF USER ALREADY LOGGED IN
+if(localStorage.getItem('cashflow_user')){
+  showPage('page1');
+} else {
+  showPage('page0');
+}
+
+// LOAD DATA
+let balance = localStorage.getItem('cashflow_balance')
+ ? parseFloat(localStorage.getItem('cashflow_balance'))
   : 3501439.22;
 
-let transactions = localStorage.getItem('cashflow_tx') 
-  ? JSON.parse(localStorage.getItem('cashflow_tx')) 
+let transactions = localStorage.getItem('cashflow_tx')
+ ? JSON.parse(localStorage.getItem('cashflow_tx'))
   : [
       {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"},
-      {name: "Client Payment", date: "14 Mar, 11:45 AM", amount: 1500000, type: "income", icon: "users"},
-      {name: "Building Materials", date: "11 Mar, 2:10 PM", amount: 45000, type: "expense", icon: "hammer"},
-      {name: "Hardware Supplies", date: "10 Mar, 11:30 AM", amount: 18500, type: "expense", icon: "wrench"}
+      {name: "Building Materials", date: "11 Mar, 2:10 PM", amount: 45000, type: "expense", icon: "hammer"}
     ];
 
 function formatMoney(num){
@@ -120,10 +148,35 @@ function saveData(){
   localStorage.setItem('cashflow_tx', JSON.stringify(transactions));
 }
 
+function login(){ // NEW LOGIN FUNCTION
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  if(!email ||!password){
+    alert("Please enter email and password");
+    return;
+  }
+
+  // For demo: accept any email/password
+  const name = email.split('@')[0]; // get name from email
+  localStorage.setItem('cashflow_user', name);
+
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
+  showPage('page1');
+  renderHistory();
+}
+
+function logout(){ // NEW LOGOUT FUNCTION
+  if(confirm("Are you sure you want to logout?")){
+    localStorage.removeItem('cashflow_user');
+    showPage('page0');
+  }
+}
+
 function renderHistory(){
   document.getElementById('balance').innerText = formatMoney(balance);
   document.getElementById('balance2').innerText = formatMoney(balance);
-  
+
   const historyBox = document.getElementById('history');
   historyBox.innerHTML = "";
   transactions.forEach(tx => {
@@ -143,41 +196,29 @@ function renderHistory(){
 function sendMoney(){
   const recipient = document.getElementById('recipient').value;
   const amount = parseFloat(document.getElementById('amount').value);
-  
-  if(!amount || amount <= 0){
-    alert("Enter valid amount!");
-    return;
-  }
-  if(amount > balance){
-    alert("Insufficient Balance!");
-    return;
-  }
-  
+
+  if(!amount || amount <= 0){ alert("Enter valid amount!"); return; }
+  if(amount > balance){ alert("Insufficient Balance!"); return; }
+
   balance = balance - amount;
-  
   const now = new Date();
   const dateStr = `Today, ${now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}`;
   transactions.unshift({
     name: `Transfer to ${recipient}`,
-    date: dateStr,
-    amount: amount,
-    type: "expense",
-    icon: "send"
+    date: dateStr, amount: amount, type: "expense", icon: "send"
   });
-  
+
   saveData();
   renderHistory();
-  
   alert(`$${amount.toLocaleString()} Sent to ${recipient} successfully!`);
   showPage('page1');
 }
 
-function resetBalance(){ // NEW RESET FUNCTION
-  if(confirm("Are you sure you want to reset balance to $3,501,439.22? This will clear all transactions too.")){
+function resetBalance(){
+  if(confirm("Reset balance to $3,501,439.22?")){
     balance = 3501439.22;
     transactions = [
-      {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"},
-      {name: "Client Payment", date: "14 Mar, 11:45 AM", amount: 1500000, type: "income", icon: "users"}
+      {name: "Salary Credit", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "briefcase"}
     ];
     saveData();
     renderHistory();
@@ -186,13 +227,11 @@ function resetBalance(){ // NEW RESET FUNCTION
 }
 
 function showPage(id){
+  document.getElementById('page0').classList.add('hid');
   document.getElementById('page1').classList.add('hid');
   document.getElementById('page2').classList.add('hid');
   document.getElementById(id).classList.remove('hid');
 }
-
-// LOAD ON START
-renderHistory();
 </script>
 </body>
 </html>
