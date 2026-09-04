@@ -7,168 +7,164 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-:root{--green1:#0a0a0a; --purple2:#1a1a1a; --purpleBtn:#7c3aed; --green:#22c55e; --red:#ef4444; --card:#141414;}
+:root{--bg:#0a0a0a; --card:#1a1a1a; --card2:#222; --purple:#7c3aed; --green:#22c55e; --red:#ef4444;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
-body{background:#0a0a0a;min-height:100vh;color:#fff}
-.page{padding:20px;max-width:500px;margin:0 auto;animation:fadeIn 0.5s}
+body{background:linear-gradient(180deg,#0a0a0a 0%,#1a1a1a 100%);min-height:100vh;color:#fff}
+.page{max-width:500px;margin:0 auto;animation:fadeIn 0.5s}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .hid{display:none!important}
 
-/* WELCOME PAGE - UBA STYLE */
-.welcome-page{padding:0;max-width:100%}
-.header{padding:20px;display:flex;justify-content:space-between;align-items:center}
-.header-logo{font-size:28px;font-weight:900;color:#fff}
-.header-logo span{color:var(--purpleBtn)}
+/* DASHBOARD - PREMIUM */
+.dashboard{padding:20px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.greet h2{font-size:24px;font-weight:800;text-transform:capitalize}
+.greet small{opacity:0.7;font-size:13px}
+.logout-btn{padding:10px 16px;background:var(--card);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #333}
 
-.hero-section{padding:30px 20px;text-align:center}
-.hero-title{font-size:32px;font-weight:900;line-height:1.2;margin-bottom:12px}
-.hero-desc{font-size:15px;opacity:0.8;line-height:1.6;margin-bottom:20px}
+.balance-card{
+  background:linear-gradient(135deg, var(--purple) 0%, #a855f7 100%);
+  border-radius:24px;
+  padding:28px;
+  margin-bottom:24px;
+  box-shadow:0 10px 40px rgba(124,58,237,0.3)
+}
+.balance-label{font-size:13px;opacity:0.9;margin-bottom:8px}
+.balance-amount{font-size:36px;font-weight:900;margin-bottom:12px}
+.balance-footer{display:flex;justify-content:space-between;align-items:center;font-size:12px;opacity:0.9}
 
-.card{background:var(--card);border-radius:20px;padding:24px;margin:0 16px 20px 16px}
-.card-title{font-size:22px;font-weight:800;margin-bottom:10px}
-.card-desc{font-size:14px;opacity:0.8;line-height:1.6;margin-bottom:16px}
-.card-link{color:#a855f7;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.action{
+  background:var(--card);
+  border-radius:18px;
+  padding:18px 0;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid #333;
+  transition:all 0.2s
+}
+.action:hover{transform:translateY(-2px);background:var(--card2)}
+.action i{margin-bottom:8px;color:var(--purple)}
+.action span{font-size:12px;font-weight:600}
 
-.card-image{margin-top:20px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#7c3aed,#a855f7);height:180px;display:flex;align-items:center;justify-content:center}
-.card-image img{width:100%;height:100%;object-fit:cover}
+.section-title{font-size:18px;font-weight:800;margin-bottom:16px;padding:0 4px}
+.history-box{max-height:380px;overflow-y:auto}
+.tx-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+  border:1px solid #333
+}
+.tx-left{display:flex;gap:12px;align-items:center}
+.tx-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:#2a2a2a;
+  display:flex;align-items:center;justify-content:center
+}
+.tx-name{font-weight:700;font-size:14px}
+.tx-date{font-size:12px;opacity:0.6}
+.tx-amt{font-weight:800;font-size:15px}
+.income{color:var(--green)}
+.expense{color:var(--red)}
 
-/* 3x3 GRID LIKE UBA */
-.grid-section{padding:0 16px;margin-bottom:30px}
-.grid-title{font-size:24px;font-weight:800;margin-bottom:8px}
-.grid-subtitle{font-size:14px;opacity:0.7;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.grid-item{background:var(--card);border-radius:16px;padding:20px 10px;text-align:center;cursor:pointer}
-.grid-item i{color:var(--purpleBtn);margin-bottom:8px}
-.grid-item span{font-size:12px;font-weight:600}
-
-.btn-primary{width:calc(100% - 32px);margin:0 16px 16px 16px;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
-.btn-outline{width:calc(100% - 32px);margin:0 16px 30px 16px;padding:16px;background:transparent;border:2px solid #333;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
-
-/* AUTH + DASHBOARD SAME AS BEFORE */
-.auth-container{padding-top:60px}
-.auth-card{background:var(--card);border-radius:24px;padding:28px;margin:0 16px}
-.input-field{display:flex;align-items:center;gap:10px;background:#1f1f1f;border:1px solid #333;border-radius:12px;padding:14px;margin-bottom:16px}
-.input-field input{flex:1;background:transparent;border:none;outline:none;color:#fff}
-.balance-card{background:var(--card);border-radius:20px;padding:24px;margin:0 16px 24px 16px}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 16px 20px 16px}
-.action{background:var(--card);border-radius:16px;padding:16px 0;text-align:center;cursor:pointer;font-size:13px;font-weight:600}
+/* OTHER PAGES */
+.welcome-page{padding:20px}
+.card{background:var(--card);border-radius:20px;padding:24px;margin-bottom:20px}
+.btn-primary{width:100%;padding:16px;background:linear-gradient(90deg,var(--purple),#a855f7);border:none;border-radius:12px;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 
-<!-- PAGE 0: WELCOME - UBA STYLE -->
+<!-- PAGE 0: WELCOME -->
 <div id="page0" class="page welcome-page">
-  <div class="header">
-    <div class="header-logo">CASH<span>FLOW</span></div>
-  </div>
-
-  <div class="hero-section">
-    <h1 class="hero-title">Global Banking,<br>African Excellence.</h1>
-    <p class="hero-desc">With smart technology and 24/7 support, we connect you to seamless banking. Send money, pay bills, and grow your wealth with Cashflow.</p>
-  </div>
-
-  <!-- CARD 1: VIRTUAL BANKER -->
+  <h1 style="text-align:center;font-size:40px;font-weight:900;margin:40px 0;background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">CASHFLOW</h1>
   <div class="card">
-    <h2 class="card-title">Chat with CASH, your 24/7 Virtual Banker</h2>
-    <p class="card-desc">Send money, buy airtime, pay bills, check your balance, and do much more with your smart virtual assistant — CASH.</p>
-    <div class="card-link" onclick="alert('Coming Soon')">Learn more <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
-    <div class="card-image">
-      <i data-lucide="bot" style="width:80px;height:80px;opacity:0.5"></i>
-    </div>
+    <h2>Global Banking, African Excellence</h2>
+    <p style="opacity:0.7;margin:12px 0">Bank smarter, send money instantly</p>
   </div>
-
-  <!-- CARD 2: ONLINE ACCOUNT -->
-  <div class="card">
-    <h2 class="card-title">Online Account Opening</h2>
-    <p class="card-desc">Open an account online in minutes. Access your funds via the Cashflow App and get real-time notifications after every transaction.</p>
-    <div class="card-link">Personal Banking <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
-    <div class="card-link" style="margin-top:8px">Business Banking <i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
-    <div class="card-image">
-      <i data-lucide="smartphone" style="width:80px;height:80px;opacity:0.5"></i>
-    </div>
-  </div>
-
-  <!-- CARD 3: 3x3 GRID -->
-  <div class="grid-section">
-    <h2 class="grid-title">Find Your Perfect Fit</h2>
-    <p class="grid-subtitle">What will you be using our platform for?</p>
-    <div class="grid">
-      <div class="grid-item"><i data-lucide="home"></i><br><span>Individual</span></div>
-      <div class="grid-item"><i data-lucide="building-2"></i><br><span>Business</span></div>
-      <div class="grid-item"><i data-lucide="trending-up"></i><br><span>Investor</span></div>
-      <div class="grid-item"><i data-lucide="user-check"></i><br><span>Teenager</span></div>
-      <div class="grid-item"><i data-lucide="graduation-cap"></i><br><span>Student</span></div>
-      <div class="grid-item"><i data-lucide="code"></i><br><span>Developer</span></div>
-      <div class="grid-item"><i data-lucide="briefcase"></i><br><span>Job Seeker</span></div>
-      <div class="grid-item"><i data-lucide="newspaper"></i><br><span>Media</span></div>
-      <div class="grid-item"><i data-lucide="help-circle"></i><br><span>Help</span></div>
-    </div>
-  </div>
-
   <button class="btn-primary" onclick="showPage('page1')">Create Account</button>
-  <button class="btn-outline" onclick="showPage('page2')">Login</button>
+  <button class="btn-primary" onclick="showPage('page2')" style="background:#333;margin-top:12px">Login</button>
 </div>
 
-<!-- PAGE 1: CREATE ACCOUNT -->
-<div id="page1" class="page hid">
-  <div class="auth-container">
-    <div onclick="showPage('page0')" style="margin:0 16px 20px 16px;cursor:pointer;display:flex;align-items:center;gap:8px"><i data-lucide="arrow-left"></i> Back</div>
-    <div class="auth-card">
-      <h2 style="font-size:24px;font-weight:800;text-align:center;margin-bottom:6px">Create Account</h2>
-      <p style="text-align:center;opacity:0.7;margin-bottom:24px;font-size:13px">Join us in less than 1 minute</p>
-      <div class="input-field"><i data-lucide="user"></i><input type="text" id="regName" placeholder="Full Name"></div>
-      <div class="input-field"><i data-lucide="mail"></i><input type="email" id="regEmail" placeholder="Email"></div>
-      <div class="input-field"><i data-lucide="lock"></i><input type="password" id="regPassword" placeholder="Password"></div>
-      <button class="btn-primary" onclick="register()">Create Account</button>
-    </div>
+<!-- PAGE 1: REGISTER -->
+<div id="page1" class="page hid" style="padding:20px">
+  <div onclick="showPage('page0')" style="margin-bottom:20px;cursor:pointer"><i data-lucide="arrow-left"></i> Back</div>
+  <div class="card">
+    <h2>Create Account</h2>
+    <input id="regName" placeholder="Full Name" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <input id="regEmail" placeholder="Email" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <input id="regPassword" type="password" placeholder="Password" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <button class="btn-primary" onclick="register()">Create Account</button>
   </div>
 </div>
 
 <!-- PAGE 2: LOGIN -->
-<div id="page2" class="page hid">
-  <div class="auth-container">
-    <div onclick="showPage('page0')" style="margin:0 16px 20px 16px;cursor:pointer;display:flex;align-items:center;gap:8px"><i data-lucide="arrow-left"></i> Back</div>
-    <div class="auth-card">
-      <h2 style="font-size:24px;font-weight:800;text-align:center;margin-bottom:6px">Welcome Back</h2>
-      <p style="text-align:center;opacity:0.7;margin-bottom:24px;font-size:13px">Login to access your account</p>
-      <div class="input-field"><i data-lucide="mail"></i><input type="email" id="email" value="john@email.com"></div>
-      <div class="input-field"><i data-lucide="lock"></i><input type="password" id="password" value="123456"></div>
-      <button class="btn-primary" onclick="login()">Login</button>
-    </div>
+<div id="page2" class="page hid" style="padding:20px">
+  <div onclick="showPage('page0')" style="margin-bottom:20px;cursor:pointer"><i data-lucide="arrow-left"></i> Back</div>
+  <div class="card">
+    <h2>Login</h2>
+    <input id="email" value="john@email.com" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <input id="password" type="password" value="123456" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <button class="btn-primary" onclick="login()">Login</button>
   </div>
 </div>
 
-<!-- PAGE 3: DASHBOARD -->
-<div id="page3" class="page">
-  <div style="padding:20px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <div><h2 id="greeting">Hello 👋</h2></div>
-      <div onclick="logout()" style="padding:8px 12px;background:#2a2a2a;border-radius:8px;cursor:pointer">Logout</div>
+<!-- PAGE 3: DASHBOARD - NEW PREMIUM DESIGN -->
+<div id="page3" class="page hid">
+  <div class="dashboard">
+    <div class="topbar">
+      <div class="greet">
+        <h2 id="greeting">Hello, John 👋</h2>
+        <small>Welcome back</small>
+      </div>
+      <div class="logout-btn" onclick="logout()">Logout</div>
     </div>
+
     <div class="balance-card">
-      <small>Available Balance</small>
-      <h1 id="balance">$3,501,439.22</h1>
+      <div class="balance-label">Available Balance</div>
+      <div class="balance-amount" id="balance">$3,501,439.22</div>
+      <div class="balance-footer">
+        <span>Account: **** 7756</span>
+        <span><i data-lucide="eye" style="width:16px;height:16px"></i></span>
+      </div>
     </div>
+
     <div class="actions">
-      <div class="action" onclick="showPage('page4')"><i data-lucide="send"></i><br>Send</div>
-      <div class="action"><i data-lucide="download"></i><br>Request</div>
-      <div class="action"><i data-lucide="credit-card"></i><br>TopUp</div>
-      <div class="action"><i data-lucide="grid-3x3"></i><br>More</div>
+      <div class="action" onclick="showPage('page4')">
+        <i data-lucide="send"></i><br>
+        <span>Send</span>
+      </div>
+      <div class="action" onclick="alert('Request Money')">
+        <i data-lucide="download"></i><br>
+        <span>Request</span>
+      </div>
+      <div class="action" onclick="alert('Top Up')">
+        <i data-lucide="credit-card"></i><br>
+        <span>TopUp</span>
+      </div>
+      <div class="action" onclick="alert('More')">
+        <i data-lucide="grid-3x3"></i><br>
+        <span>More</span>
+      </div>
     </div>
+
+    <h3 class="section-title">Recent Transactions</h3>
+    <div class="history-box" id="history"></div>
   </div>
 </div>
 
 <!-- PAGE 4: SEND -->
-<div id="page4" class="page hid">
-  <div style="padding:20px">
-    <div onclick="showPage('page3')" style="margin-bottom:16px;cursor:pointer"><i data-lucide="arrow-left"></i></div>
-    <div class="auth-card">
-      <h2>Send Money</h2>
-      <h3 id="balance2" style="margin:12px 0">$3,501,439.22</h3>
-      <div class="input-field"><input type="text" id="recipient" placeholder="Recipient"></div>
-      <div class="input-field"><input type="number" id="amount" placeholder="Amount"></div>
-      <button class="btn-primary" onclick="sendMoney()">Send Now</button>
-    </div>
+<div id="page4" class="page hid" style="padding:20px">
+  <div onclick="showPage('page3')" style="margin-bottom:20px;cursor:pointer"><i data-lucide="arrow-left"></i> Back</div>
+  <div class="card">
+    <h2>Send Money</h2>
+    <h3 id="balance2" style="margin:12px 0">$3,501,439.22</h3>
+    <input id="recipient" placeholder="Recipient Name" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <input id="amount" type="number" placeholder="Amount" style="width:100%;padding:14px;background:#2a2a2a;border:1px solid #333;border-radius:12px;color:#fff;margin:12px 0">
+    <button class="btn-primary" onclick="sendMoney()">Send Now</button>
   </div>
 </div>
 
@@ -177,40 +173,67 @@ lucide.createIcons();
 document.querySelectorAll('.page').forEach(p=>p.classList.add('hid'));
 
 let balance = localStorage.getItem('cashflow_balance')? parseFloat(localStorage.getItem('cashflow_balance')) : 3501439.22;
-let transactions = [];
+let transactions = localStorage.getItem('cashflow_tx')? JSON.parse(localStorage.getItem('cashflow_tx')) : [
+  {name: "Welcome Bonus", date: "Today, 09:15 AM", amount: 2000000, type: "income", icon: "gift"},
+  {name: "Netflix Subscription", date: "Yesterday", amount: 15.99, type: "expense", icon: "tv"},
+  {name: "Salary Credit", date: "2 days ago", amount: 5000, type: "income", icon: "briefcase"}
+];
 
 if(localStorage.getItem('cashflow_user')){
-  document.getElementById('greeting').innerText = `Hello, ${localStorage.getItem('cashflow_user')} 👋`;
-  showPage('page3');
+  const name = localStorage.getItem('cashflow_user');
+  document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
+  showPage('page3'); renderHistory();
 } else { showPage('page0'); }
 
 function formatMoney(n){ return "$" + n.toLocaleString('en-US',{minimumFractionDigits:2}); }
-function saveData(){ localStorage.setItem('cashflow_balance',balance); }
+function saveData(){ localStorage.setItem('cashflow_balance',balance); localStorage.setItem('cashflow_tx',JSON.stringify(transactions)); }
 
 function register(){
   const name = document.getElementById('regName').value;
   localStorage.clear(); localStorage.setItem('cashflow_user',name);
   balance = 3501439.22; saveData();
   document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
-  showPage('page3');
+  showPage('page3'); renderHistory();
 }
 
 function login(){
   const name = document.getElementById('email').value.split('@')[0];
   localStorage.setItem('cashflow_user',name);
   document.getElementById('greeting').innerText = `Hello, ${name} 👋`;
-  showPage('page3');
+  showPage('page3'); renderHistory();
 }
 
 function logout(){ localStorage.removeItem('cashflow_user'); showPage('page0'); }
-function sendMoney(){
-  const amount = parseFloat(document.getElementById('amount').value);
-  if(amount > balance){ alert("No money!"); return; }
-  balance -= amount; saveData();
+
+function renderHistory(){
   document.getElementById('balance').innerText = formatMoney(balance);
   document.getElementById('balance2').innerText = formatMoney(balance);
-  showPage('page3');
+  const box = document.getElementById('history'); box.innerHTML = "";
+  transactions.forEach(tx=>{
+    box.innerHTML += `
+    <div class="tx-item">
+      <div class="tx-left">
+        <div class="tx-icon"><i data-lucide="${tx.icon}" style="color:${tx.type==='income'?'var(--green)':'var(--red)'}"></i></div>
+        <div>
+          <div class="tx-name">${tx.name}</div>
+          <div class="tx-date">${tx.date}</div>
+        </div>
+      </div>
+      <div class="tx-amt ${tx.type}">${tx.type==='income'?'+':'-'}${formatMoney(tx.amount)}</div>
+    </div>`;
+  });
+  lucide.createIcons();
 }
+
+function sendMoney(){
+  const recipient = document.getElementById('recipient').value;
+  const amount = parseFloat(document.getElementById('amount').value);
+  if(amount > balance){ alert("Insufficient Balance!"); return; }
+  balance -= amount;
+  transactions.unshift({name:`Transfer to ${recipient}`,date:`Today, ${new Date().toLocaleTimeString()}`,amount,type:"expense",icon:"send"});
+  saveData(); renderHistory(); showPage('page3');
+}
+
 function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.add('hid')); document.getElementById(id).classList.remove('hid'); }
 </script>
 </body>
