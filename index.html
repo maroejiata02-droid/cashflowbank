@@ -11,143 +11,158 @@
   --green1:#6e8b3d; 
   --purple2:#2b1055; 
   --purpleBtn:#7c3aed; 
-  --greenBtn:#22c55e;
-  --red:#ef4444;
+  --purpleBtn2:#a855f7;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
 body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
 .hid{display:none!important}
-.dashboard{padding:20px;max-width:500px;margin:0 auto;padding-bottom:100px}
-.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center;cursor:pointer}
-.transfer-page{background:rgba(255,255,255,0.95);color:#111;border-radius:20px;padding:24px}
-.input-group{margin-bottom:16px}
-.input-group input{width:100%;padding:12px;border:1.5px solid #e5e7eb;border-radius:10px}
-.btn-purple{width:100%;padding:14px;background:linear-gradient(90deg,var(--purpleBtn),#a855f7);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+.dashboard{padding:20px;max-width:500px;margin:0 auto}
 
-/* NEW REALISTIC SUCCESS MODAL */
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:999;backdrop-filter:blur(5px)}
-.modal-receipt{background:#fff;color:#111;width:90%;max-width:400px;border-radius:20px;padding:24px;text-align:center;animation:pop 0.3s ease}
-@keyframes pop {0%{transform:scale(0.8);opacity:0} 100%{transform:scale(1);opacity:1}}
-.success-icon{width:70px;height:70px;background:var(--greenBtn);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
-.success-icon svg{width:40px;height:40px;color:#fff}
-.receipt-title{font-size:20px;font-weight:800;margin-bottom:8px}
-.receipt-amount{font-size:28px;font-weight:800;color:var(--greenBtn);margin-bottom:20px}
-.receipt-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:14px}
-.receipt-row:last-child{border:none}
-.btn-close{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:16px;cursor:pointer}
+/* REALISTIC SEND MONEY CARD */
+.send-card{background:#fff;color:#111;border-radius:24px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.header h2{font-size:20px;font-weight:800}
+
+/* BALANCE PREVIEW */
+.balance-preview{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px;padding:16px;margin-bottom:20px}
+.balance-preview small{opacity:0.8;font-size:12px}
+.balance-preview h3{font-size:22px;font-weight:800;margin-top:4px}
+
+/* INPUTS */
+.input-group{margin-bottom:16px}
+.input-group label{font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px}
+.input-box{position:relative}
+.input-box input{width:100%;padding:14px 14px 14px 44px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:15px;font-weight:500}
+.input-box input:focus{border-color:var(--purpleBtn);outline:none}
+.input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--purpleBtn);width:20px;height:20px}
+
+/* FEE BREAKDOWN */
+.fee-box{background:#f9fafb;border-radius:12px;padding:12px;margin:16px 0}
+.fee-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.fee-row.total{font-weight:700;font-size:14px;border-top:1px solid #e5e7eb;padding-top:8px;margin-top:8px}
+
+/* PIN DOTS */
+.pin-dots{display:flex;gap:10px;justify-content:center;margin:16px 0}
+.dot{width:14px;height:14px;border:2px solid #d1d5db;border-radius:50%}
+
+/* BUTTON */
+.btn-purple{width:100%;padding:16px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-purple:disabled{opacity:0.6;cursor:not-allowed}
 </style>
 </head>
 <body>
 
-<!-- DASHBOARD -->
-<div id="dash" class="dashboard">
-  <div class="balance-card">
-    <small>Available Balance</small>
-    <h1 id="bal">$3,501,439.22</h1>
-  </div>
+<div class="dashboard">
+  <div class="send-card">
+    <div class="header">
+      <i data-lucide="arrow-left" style="cursor:pointer" onclick="alert('Back')"></i>
+      <h2>Send Money</h2>
+    </div>
 
-  <div class="actions">
-    <div class="action" onclick="show('transfer')"><i data-lucide="send"></i><br><span>Send</span></div>
-    <div class="action"><i data-lucide="download"></i><br><span>Request</span></div>
-    <div class="action"><i data-lucide="credit-card"></i><br><span>TopUp</span></div>
-    <div class="action"><i data-lucide="grid-3x3"></i><br><span>More</span></div>
-  </div>
+    <!-- BALANCE PREVIEW -->
+    <div class="balance-preview">
+      <small>Available Balance</small>
+      <h3 id="bal">$3,501,439.22</h3>
+    </div>
 
-  <div id="txList"></div>
-</div>
+    <!-- RECIPIENT -->
+    <div class="input-group">
+      <label>Recipient Name</label>
+      <div class="input-box">
+        <i data-lucide="user" class="input-icon"></i>
+        <input id="accName" type="text" placeholder="Michael Brown" value="Michael Brown">
+      </div>
+    </div>
 
-<!-- TRANSFER PAGE -->
-<div id="transfer" class="dashboard hid">
-  <button onclick="show('dash')" style="background:none;border:none;color:#fff;margin-bottom:16px">← Back</button>
-  <div class="transfer-page">
-    <h2 style="margin-bottom:20px;text-align:center">Send Money</h2>
-    <div class="input-group"><label>Recipient Name</label><input id="accName" type="text" placeholder="Michael Brown"></div>
-    <div class="input-group"><label>Amount ($)</label><input id="amount" type="number" placeholder="5250"></div>
-    <div class="input-group"><label>Enter PIN</label><input id="pin" type="password" placeholder="1234" maxlength="4"></div>
-    <button class="btn-purple" onclick="sendMoney()">Send Now</button>
-  </div>
-</div>
+    <div class="input-group">
+      <label>Account Number</label>
+      <div class="input-box">
+        <i data-lucide="credit-card" class="input-icon"></i>
+        <input id="accNum" type="text" placeholder="0123456789" maxlength="10">
+      </div>
+    </div>
 
-<!-- NEW SUCCESS RECEIPT MODAL -->
-<div id="successModal" class="modal-overlay hid">
-  <div class="modal-receipt">
-    <div class="success-icon"><i data-lucide="check"></i></div>
-    <div class="receipt-title">Transfer Successful</div>
-    <div class="receipt-amount" id="successAmount">$5,250.00</div>
-    
-    <div class="receipt-row"><span>To</span><span id="successName">Michael Brown</span></div>
-    <div class="receipt-row"><span>Amount</span><span id="successAmt2">$5,250.00</span></div>
-    <div class="receipt-row"><span>Date</span><span id="successDate">Just now</span></div>
-    <div class="receipt-row"><span>Ref</span><span>CFX98231XX</span></div>
-    <div class="receipt-row"><span>Status</span><span style="color:var(--greenBtn);font-weight:700">Completed</span></div>
-    
-    <button class="btn-close" onclick="closeSuccess()">Done</button>
+    <!-- AMOUNT -->
+    <div class="input-group">
+      <label>Amount ($)</label>
+      <div class="input-box">
+        <i data-lucide="dollar-sign" class="input-icon"></i>
+        <input id="amount" type="number" placeholder="0.00" value="5250" oninput="calcFee()">
+      </div>
+    </div>
+
+    <!-- FEE BREAKDOWN -->
+    <div class="fee-box">
+      <div class="fee-row"><span>Amount</span><span id="feeAmt">$5,250.00</span></div>
+      <div class="fee-row"><span>Transfer Fee</span><span id="fee">$10.50</span></div>
+      <div class="fee-row total"><span>Total Debit</span><span id="total">$5,260.50</span></div>
+    </div>
+
+    <!-- PIN -->
+    <div class="input-group">
+      <label>Enter 4-Digit PIN</label>
+      <div class="pin-dots" id="pinDots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <input id="pin" type="password" maxlength="4" style="opacity:0;height:0" oninput="updateDots()">
+    </div>
+
+    <button class="btn-purple" id="sendBtn" onclick="sendMoney()">
+      <i data-lucide="send"></i> Send Now
+    </button>
   </div>
 </div>
 
 <script>
 lucide.createIcons();
 
-let txs = [
-  {name:"Salary Credit", icon:"banknote", amt:2000000.00, date:"Today, 09:15 AM"},
-  {name:"Client Payment", icon:"arrow-down-left", amt:1500000.00, date:"14 Mar, 11:45 AM"},
-  {name:"Internet Bill", icon:"wifi", amt:-500.78, date:"Yesterday, 8:30 PM"}
-];
 let balance = 3501439.22;
 
-function show(id){
-  ['dash','transfer'].forEach(x=>document.getElementById(x).classList.add('hid'));
-  document.getElementById(id).classList.remove('hid');
-  loadTx();
+function calcFee(){
+  let amt = parseFloat(document.getElementById('amount').value) || 0;
+  let fee = amt * 0.002; // 0.2% fee
+  if(fee < 1) fee = 1; // minimum $1
+  let total = amt + fee;
+  
+  document.getElementById('feeAmt').innerText = '$' + amt.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('fee').innerText = '$' + fee.toLocaleString(undefined,{minimumFractionDigits:2});
+  document.getElementById('total').innerText = '$' + total.toLocaleString(undefined,{minimumFractionDigits:2});
 }
 
-function loadTx(){
-  let html = '';
-  txs.slice(0,3).forEach(t=> {
-    let type = t.amt > 0 ? 'in' : 'out';
-    html += `<div style="background:rgba(255,255,255,0.15);border-radius:12px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between">
-      <div><b>${t.name}</b><br><small>${t.date}</small></div>
-      <div class="${type}">${t.amt > 0 ? '+' : '-'}$${Math.abs(t.amt).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
-    </div>`;
-  });
-  document.getElementById('txList').innerHTML = html;
-  document.getElementById('bal').innerText = '$' + balance.toLocaleString(undefined,{minimumFractionDigits:2});
-  lucide.createIcons();
+function updateDots(){
+  let pin = document.getElementById('pin').value;
+  let dots = document.querySelectorAll('.dot');
+  dots.forEach((d,i)=> {
+    d.style.background = i < pin.length ? '#7c3aed' : 'transparent';
+    d.style.borderColor = i < pin.length ? '#7c3aed' : '#d1d5db';
+  })
 }
 
 function sendMoney(){
+  let btn = document.getElementById('sendBtn');
   let name = document.getElementById('accName').value;
+  let acc = document.getElementById('accNum').value;
   let amt = parseFloat(document.getElementById('amount').value);
   let pin = document.getElementById('pin').value;
 
-  if(!name || !amt || pin !== "1234"){alert('Check details. PIN: 1234');return}
-  if(amt > balance){alert('Insufficient Balance');return}
+  if(acc.length !== 10){alert('Enter valid 10 digit account number');return}
+  if(!name){alert('Enter recipient name');return}
+  if(!amt || amt <= 0){alert('Enter valid amount');return}
+  if(pin !== "1234"){alert('Incorrect PIN. Use: 1234');return}
 
-  balance -= amt;
-  
-  // Add to transaction history
-  txs.unshift({name: `Transfer to ${name}`, icon: "send", amt: -amt, date: "Just now"});
+  btn.disabled = true;
+  btn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Processing...';
+  lucide.createIcons();
 
-  // SHOW REALISTIC MODAL INSTEAD OF ALERT
-  document.getElementById('successAmount').innerText = '$' + amt.toLocaleString(undefined,{minimumFractionDigits:2});
-  document.getElementById('successAmt2').innerText = '$' + amt.toLocaleString(undefined,{minimumFractionDigits:2});
-  document.getElementById('successName').innerText = name;
-  document.getElementById('successDate').innerText = new Date().toLocaleString();
-  document.getElementById('successModal').classList.remove('hid');
+  setTimeout(()=> {
+    alert(`$${amt.toLocaleString()} sent to ${name} successfully!`);
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="send"></i> Send Now';
+    lucide.createIcons();
+  }, 2000)
 }
 
-function closeSuccess(){
-  document.getElementById('successModal').classList.add('hid');
-  // Clear form
-  document.getElementById('accName').value = '';
-  document.getElementById('amount').value = '';
-  document.getElementById('pin').value = '';
-  show('dash');
-}
-
-loadTx();
+calcFee(); // run once on load
 </script>
 </body>
 </html>
