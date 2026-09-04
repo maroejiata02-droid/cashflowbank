@@ -5,248 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CASHFLOW BANK</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script> <!-- REAL ICONS -->
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 :root{
-  --purple1:#6e8b3d; 
+  --green1:#6e8b3d; 
   --purple2:#2b1055; 
   --purpleBtn:#7c3aed; 
   --purpleBtn2:#a855f7; 
-  --blue:#2563eb;
-  --muted:#9ca3af;
-  --bg:#f9fafb;
+  --greenBtn:#22c55e;
+  --red:#ef4444;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
-body{background:linear-gradient(135deg, var(--purple1), var(--purple2));min-height:100vh}
+body{background:linear-gradient(180deg, var(--green1) 0%, var(--purple2) 100%);min-height:100vh;color:#fff}
 .hid{display:none!important}
 .center{ display:flex; justify-content:center; align-items:center; padding:20px; min-height:100vh }
 
-/* AUTH CARD */
-.auth-card{background:#fff;border-radius:20px;padding:32px;max-width:420px;width:100%;box-shadow:0 15px 40px rgba(0,0,0,0.25)}
-.auth-title{font-size:28px;font-weight:800;text-align:center;margin-bottom:8px}
-.auth-subtitle{font-size:14px;color:var(--muted);text-align:center;margin-bottom:24px;font-style:italic}
-.form-group{margin-bottom:18px}
-.form-label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#374151}
-.input-wrap{position:relative}
-.auth-input{width:100%;padding:12px 40px 12px 40px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px}
-.auth-input:focus{border-color:var(--purpleBtn);box-shadow:0 0 0 3px rgba(124,58,237,0.15);outline:none}
-.input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--blue);width:18px;height:18px}
-.eye-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:#9ca3af;width:18px;height:18px}
-.btn-purple{width:100%;padding:14px;background:linear-gradient(90deg,var(--purpleBtn),var(--purpleBtn2));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.gender-box{border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;display:flex;justify-content:space-around}
-.checkbox{margin:16px 0;display:flex;align-items:flex-start;gap:8px;font-size:13px}
-
-/* LOADING */
-.feature{display:flex;gap:12px;margin-bottom:16px;align-items:center}
-.feature-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--purpleBtn),var(--purpleBtn2));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff}
+/* AUTH - SMALL */
+.auth-card{background:#fff;color:#111;border-radius:20px;padding:28px;max-width:400px;width:100%}
 
 /* DASHBOARD */
-.dashboard{background:var(--bg);min-height:100vh;color:#111}
-.dash-header{padding:20px 20px 0}
-.balance-card{background:linear-gradient(135deg, var(--purple1), var(--purple2));border-radius:20px;padding:24px;margin:20px;color:#fff}
-.balance-card h1{font-size:32px;font-weight:800;margin:8px 0}
-.actions{display:flex;justify-content:space-around;padding:0 20px 20px}
-.action{text-align:center;cursor:pointer}
-.action-icon{width:55px;height:55px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.action-icon svg{width:24px;height:24px;color:var(--purpleBtn)}
-.exp-section{padding:0 20px 100px}
-.exp-item{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:14px;border-radius:12px;margin-bottom:10px}
-.exp-left{display:flex;align-items:center;gap:12px}
-.exp-icon{width:40px;height:40px;background:#f3f4f6;border-radius:10px;display:flex;align-items:center;justify-content:center}
-.exp-icon svg{width:20px;height:20px;color:#374151}
-.bottom-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;border-radius:50px;padding:6px;display:flex;gap:4px}
-.nav-btn{padding:10px 18px;border-radius:50px;color:#fff;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
-.nav-btn.active{background:#fff;color:#111}
-.nav-btn svg{width:18px;height:18px}
+.dashboard{padding:20px;max-width:500px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.topbar h2{font-size:24px;font-weight:800}
+.topbar p{font-size:13px;opacity:0.8}
+.logout{background:rgba(255,255,255,0.2);border:none;padding:8px 16px;border-radius:10px;color:#fff;font-weight:600;cursor:pointer}
+
+.balance-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:20px;margin-bottom:20px}
+.balance-card small{font-size:13px;opacity:0.8}
+.balance-card h1{font-size:32px;font-weight:800;margin-top:4px}
+
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.action{background:rgba(255,255,255,0.15);border-radius:16px;padding:14px 0;text-align:center;cursor:pointer}
+.action-icon{width:32px;height:32px;margin:0 auto 6px}
+.action span{font-size:12px;font-weight:500}
+
+/* REALISTIC TRANSACTION HISTORY */
+.tx-section{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:16px}
+.tx-header{font-size:16px;font-weight:700;margin-bottom:14px}
+.tx-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.tx-item:last-child{border:none}
+.tx-left{display:flex;align-items:center;gap:12px}
+.tx-icon{width:38px;height:38px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.tx-icon svg{width:20px;height:20px}
+.tx-info b{display:block;font-size:14px}
+.tx-info small{font-size:11px;opacity:0.7}
+.tx-right{text-align:right}
+.tx-amount{font-weight:700;font-size:14px}
+.tx-amount.in{color:var(--greenBtn)}
+.tx-amount.out{color:var(--red)}
+.tx-status{font-size:10px;background:var(--greenBtn);padding:2px 6px;border-radius:6px;margin-top:2px;display:inline-block}
 </style>
 </head>
 <body>
 
-<!-- 1. LOADING PAGE -->
-<div id="loading" class="center">
-  <div class="auth-card" style="text-align:center">
-    <div style="font-size:32px;font-weight:900;margin-bottom:20px"><span style="color:var(--purpleBtn)">CASH</span><span style="color:var(--purple2)">FLOW</span></div>
-    <h2>Welcome to Cashflow</h2>
-    <p style="color:var(--muted);margin-bottom:24px">Your secure digital banking solution</p>
-    
-    <div style="text-align:left">
-      <div class="feature"><div class="feature-icon"><i data-lucide="shield-check"></i></div><div><b>Bank Level Security</b></div></div>
-      <div class="feature"><div class="feature-icon"><i data-lucide="zap"></i></div><div><b>Instant Transfers</b></div></div>
-      <div class="feature"><div class="feature-icon"><i data-lucide="bar-chart-3"></i></div><div><b>Track Expenses</b></div></div>
+<!-- DASHBOARD ONLY - COPY THE REST FROM PREVIOUS CODE -->
+<div id="dash" class="dashboard">
+  <div class="topbar">
+    <div>
+      <h2 id="dashName">Hello Sun</h2>
+      <p>Let's save your money</p>
     </div>
-
-    <button class="btn-purple" onclick="show('signup')">Get Started <i data-lucide="arrow-right"></i></button>
-    <div style="text-align:center;margin-top:16px">Already have an account? <a onclick="show('login')" style="color:var(--purpleBtn);font-weight:700">Login</a></div>
-  </div>
-</div>
-
-<!-- 2. CREATE ACCOUNT PAGE -->
-<div id="signup" class="center hid">
-  <form class="auth-card" onsubmit="event.preventDefault(); createAccount()">
-    <h2 class="auth-title">Create Account</h2>
-    <p class="auth-subtitle">Join us today! Fill in the details to get started.</p>
-
-    <div class="form-group">
-      <label class="form-label">Full Name</label>
-      <div class="input-wrap"><i data-lucide="user" class="input-icon"></i><input id="regName" type="text" class="auth-input" placeholder="Enter your full name" required></div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Email Address</label>
-      <div class="input-wrap"><i data-lucide="mail" class="input-icon"></i><input id="regEmail" type="email" class="auth-input" placeholder="Enter your email" required></div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Password</label>
-      <div class="input-wrap"><i data-lucide="lock" class="input-icon"></i><input id="regPass" type="password" class="auth-input" placeholder="Create a password" required><i data-lucide="eye" class="eye-icon" onclick="toggle(this)"></i></div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Confirm Password</label>
-      <div class="input-wrap"><i data-lucide="lock" class="input-icon"></i><input id="regConPass" type="password" class="auth-input" placeholder="Confirm your password" required><i data-lucide="eye" class="eye-icon" onclick="toggle(this)"></i></div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">Gender</label>
-      <div class="gender-box">
-        <label><input type="radio" name="gender" required> Male</label>
-        <label><input type="radio" name="gender"> Female</label>
-        <label><input type="radio" name="gender"> Others</label>
-      </div>
-    </div>
-
-    <div class="checkbox">
-      <input type="checkbox" required>
-      <span>I agree to the <a style="color:var(--blue)">terms & conditions</a> and <a style="color:var(--blue)">privacy policy</a></span>
-    </div>
-
-    <button type="submit" class="btn-purple"><i data-lucide="user-plus"></i> Sign Up</button>
-    <div style="text-align:center;margin-top:16px">Already have an account? <a onclick="show('login)" style="color:var(--purpleBtn);font-weight:700">Login</a></div>
-  </form>
-</div>
-
-<!-- 3. LOGIN PAGE -->
-<div id="login" class="center hid">
-  <form class="auth-card" onsubmit="event.preventDefault(); login()">
-    <h2 class="auth-title">Login</h2>
-    <p class="auth-subtitle">Welcome back! Login to your account.</p>
-
-    <div class="form-group">
-      <label class="form-label">Full Name</label>
-      <div class="input-wrap"><i data-lucide="user" class="input-icon"></i><input id="logName" type="text" class="auth-input" placeholder="Sun" value="Sun"></div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Email Address</label>
-      <div class="input-wrap"><i data-lucide="mail" class="input-icon"></i><input id="logEmail" type="email" class="auth-input" placeholder="test@test.com" value="test@test.com"></div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Password</label>
-      <div class="input-wrap"><i data-lucide="lock" class="input-icon"></i><input id="logPass" type="password" class="auth-input" placeholder="••••" value="1234"><i data-lucide="eye" class="eye-icon" onclick="toggle(this)"></i></div>
-    </div>
-
-    <button type="submit" class="btn-purple"><i data-lucide="log-in"></i> Login</button>
-    <div style="text-align:center;margin-top:16px">Don't have an account? <a onclick="show('signup')" style="color:var(--purpleBtn);font-weight:700">Sign up</a></div>
-  </form>
-</div>
-
-<!-- 4. DASHBOARD -->
-<div id="dash" class="dashboard hid">
-  <div class="dash-header">
-    <h2 id="dashName">Hello Sun</h2>
-    <p style="color:var(--muted)">Let's save your money.</p>
+    <button class="logout" onclick="alert('Logged out')">Logout</button>
   </div>
 
   <div class="balance-card">
     <small>Available Balance</small>
     <h1 id="bal">$8,182.80</h1>
-    <div style="display:flex;justify-content:space-between;margin-top:20px;font-size:13px">
-      <div><small>Name</small><br><b id="cardName">Sun</b></div>
-      <div><small>Exp Date</small><br><b>08/26</b></div>
-    </div>
   </div>
 
   <div class="actions">
-    <div class="action" onclick="alert('Send Money')"><div class="action-icon"><i data-lucide="send"></i></div><span>Send</span></div>
-    <div class="action" onclick="alert('Request Money')"><div class="action-icon"><i data-lucide="download"></i></div><span>Request</span></div>
-    <div class="action" onclick="alert('Top Up Card')"><div class="action-icon"><i data-lucide="credit-card"></i></div><span>TopUp</span></div>
-    <div class="action" onclick="alert('More Options')"><div class="action-icon"><i data-lucide="grid-3x3"></i></div><span>More</span></div>
+    <div class="action"><div class="action-icon"><i data-lucide="send"></i></div><span>Send</span></div>
+    <div class="action"><div class="action-icon"><i data-lucide="download"></i></div><span>Request</span></div>
+    <div class="action"><div class="action-icon"><i data-lucide="credit-card"></i></div><span>TopUp</span></div>
+    <div class="action"><div class="action-icon"><i data-lucide="grid-3x3"></i></div><span>More</span></div>
   </div>
 
-  <div class="exp-section">
-    <div style="display:flex;justify-content:space-between;margin-bottom:12px"><h3>Manage Expenses</h3><a onclick="alert('View All')" style="color:var(--purpleBtn)">View All</a></div>
-    <div id="expList"></div>
-  </div>
-
-  <div class="bottom-nav">
-    <div class="nav-btn active"><i data-lucide="home"></i> Home</div>
-    <div class="nav-btn" onclick="alert('History')"><i data-lucide="file-text"></i></div>
-    <div class="nav-btn" onclick="alert('Stats')"><i data-lucide="pie-chart"></i></div>
-    <div class="nav-btn" onclick="show('loading')"><i data-lucide="user"></i></div>
+  <!-- REALISTIC TRANSACTION HISTORY -->
+  <div class="tx-section">
+    <div class="tx-header">Recent Transactions</div>
+    <div id="txList"></div>
   </div>
 </div>
 
 <script>
-lucide.createIcons(); // ACTIVATE ICONS
+lucide.createIcons();
 
-let user = {name:"Sun", email:"test@test.com", pass:"1234", balance:8182.80};
 let txs = [
-  {name:"House Rent", icon:"home", amt:300.00},
-  {name:"Internet Bill", icon:"wifi", amt:85.00},
-  {name:"Groceries", icon:"shopping-cart", amt:240.00},
-  {name:"Transport", icon:"bus", amt:120.00},
-  {name:"Coffee", icon:"coffee", amt:24.90}
+  {name:"House Rent", icon:"home", amt:-300.00, date:"Today, 10:00 AM", status:"Completed"},
+  {name:"Salary Credit", icon:"banknote", amt:2500.00, date:"Today, 09:15 AM", status:"Completed"},
+  {name:"Internet Bill", icon:"wifi", amt:-85.00, date:"Yesterday, 8:30 PM", status:"Completed"},
+  {name:"Groceries", icon:"shopping-cart", amt:-240.00, date:"Yesterday, 2:10 PM", status:"Completed"},
+  {name:"Client Payment", icon:"arrow-down-left", amt:500.00, date:"14 Mar, 11:45 AM", status:"Completed"},
+  {name:"Transport", icon:"bus", amt:-120.00, date:"14 Mar, 08:00 AM", status:"Completed"},
+  {name:"Coffee", icon:"coffee", amt:-24.90, date:"13 Mar, 4:20 PM", status:"Completed"},
+  {name:"Refund", icon:"rotate-ccw", amt:50.00, date:"13 Mar, 1:00 PM", status:"Completed"}
 ];
 
-function show(id){
-  ['loading','signup','login','dash'].forEach(x=>document.getElementById(x).classList.add('hid'));
-  document.getElementById(id).classList.remove('hid');
-  if(id==='dash') loadDashboard();
-}
-
-function toggle(el){
-  let input = el.parentElement.querySelector('input');
-  input.type = input.type === 'password' ? 'text' : 'password';
-  el.setAttribute('data-lucide', input.type === 'password' ? 'eye' : 'eye-off');
-  lucide.createIcons();
-}
-
-function createAccount(){
-  let name = document.getElementById('regName').value;
-  let email = document.getElementById('regEmail').value;
-  let pass = document.getElementById('regPass').value;
-  let con = document.getElementById('regConPass').value;
-  if(pass !== con){alert('Passwords do not match');return}
-  user = {name, email, pass, balance:8182.80};
-  alert('Account Created Successfully!');
-  show('login');
-}
-
-function login(){
-  let name = document.getElementById('logName').value;
-  let email = document.getElementById('logEmail').value;
-  let pass = document.getElementById('logPass').value;
-  if(name === user.name && email === user.email && pass === user.pass){
-    show('dash');
-  } else {
-    alert('Invalid details. Use: Sun / test@test.com / 1234');
-  }
-}
-
-function loadDashboard(){
-  document.getElementById('dashName').innerText = `Hello ${user.name}`;
-  document.getElementById('cardName').innerText = user.name;
-  document.getElementById('bal').innerText = '$' + user.balance.toLocaleString(undefined,{minimumFractionDigits:2});
-  
+function loadTx(){
   let html = '';
   txs.forEach(t=> {
-    html += `<div class="exp-item">
-      <div class="exp-left">
-        <div class="exp-icon"><i data-lucide="${t.icon}"></i></div>
-        <div><b>${t.name}</b></div>
+    let type = t.amt > 0 ? 'in' : 'out';
+    html += `<div class="tx-item">
+      <div class="tx-left">
+        <div class="tx-icon"><i data-lucide="${t.icon}"></i></div>
+        <div class="tx-info">
+          <b>${t.name}</b>
+          <small>${t.date}</small>
+        </div>
       </div>
-      <div style="font-weight:700">-$${t.amt.toFixed(2)}</div>
+      <div class="tx-right">
+        <div class="tx-amount ${type}">${t.amt > 0 ? '+' : ''}$${Math.abs(t.amt).toFixed(2)}</div>
+        <span class="tx-status">${t.status}</span>
+      </div>
     </div>`;
   });
-  document.getElementById('expList').innerHTML = html;
-  lucide.createIcons(); // reload icons for dashboard
+  document.getElementById('txList').innerHTML = html;
+  lucide.createIcons();
 }
+loadTx();
 </script>
 </body>
 </html>
