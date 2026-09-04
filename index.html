@@ -4,823 +4,199 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CashFlow Bank — Dashboard</title>
-
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-  background:#f7f7f7;
-  color:#151515;
-}
-
-/* HEADER */
-.header{
-  height:72px;
-  background:#ffffff;
-  border-bottom:1px solid #eee;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 32px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:23px;
-  font-weight:800;
-}
-
-.logo-mark{
-  width:38px;
-  height:38px;
-  background:#e51b23;
-  color:white;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-}
-
-.logo span{
-  color:#e51b23;
-}
-
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.notification{
-  font-size:21px;
-  cursor:pointer;
-}
-
-.profile{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:#e51b23;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-}
-
-/* LAYOUT */
-.layout{
-  display:flex;
-  min-height:calc(100vh - 72px);
-}
-
-/* SIDEBAR */
-.sidebar{
-  width:245px;
-  background:#fff;
-  border-right:1px solid #eee;
-  padding:28px 16px;
-}
-
-.menu-title{
-  color:#999;
-  font-size:12px;
-  font-weight:bold;
-  text-transform:uppercase;
-  margin:8px 14px 12px;
-}
-
-.menu-item{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:14px;
-  margin-bottom:5px;
-  border-radius:9px;
-  color:#555;
-  cursor:pointer;
-  font-size:15px;
-}
-
-.menu-item:hover{
-  background:#fff1f1;
-  color:#e51b23;
-}
-
-.menu-item.active{
-  background:#e51b23;
-  color:#fff;
-  font-weight:bold;
-}
-
-.menu-icon{
-  width:22px;
-  text-align:center;
-  font-size:18px;
-}
-
-/* MAIN */
-.main{
-  flex:1;
-  padding:32px;
-  max-width:1500px;
-}
-
-.welcome{
-  margin-bottom:28px;
-}
-
-.welcome h1{
-  font-size:30px;
-  margin-bottom:7px;
-}
-
-.welcome p{
-  color:#777;
-  font-size:15px;
-}
-
-/* BALANCE CARD */
-.balance-card{
-  background:linear-gradient(135deg,#e51b23,#b90009);
-  color:white;
-  border-radius:18px;
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-  min-height:210px;
-  box-shadow:0 10px 25px rgba(229,27,35,.18);
-}
-
-.balance-card:after{
-  content:"";
-  position:absolute;
-  width:250px;
-  height:250px;
-  border:35px solid rgba(255,255,255,.08);
-  border-radius:50%;
-  right:-100px;
-  top:-100px;
-}
-
-.balance-label{
-  font-size:14px;
-  opacity:.85;
-}
-
-.balance{
-  font-size:40px;
-  font-weight:800;
-  margin:15px 0 22px;
-}
-
-.account-number{
-  font-size:13px;
-  opacity:.85;
-}
-
-/* QUICK ACTIONS */
-.actions{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin:24px 0;
-}
-
-.action{
-  background:white;
-  border:1px solid #eee;
-  border-radius:14px;
-  padding:20px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.action:hover{
-  transform:translateY(-2px);
-  border-color:#e51b23;
-  box-shadow:0 7px 20px rgba(0,0,0,.06);
-}
-
-.action-icon{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:#fff0f0;
-  color:#e51b23;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:21px;
-}
-
-.action p{
-  margin-top:10px;
-  font-weight:bold;
-  font-size:14px;
-}
-
-/* GRID */
-.content-grid{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:24px;
-}
-
-/* CARDS */
-.card{
-  background:white;
-  border-radius:17px;
-  border:1px solid #eee;
-  padding:24px;
-}
-
-.card-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.card-header h2{
-  font-size:20px;
-}
-
-.view-all{
-  color:#e51b23;
-  font-size:13px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* TRANSACTIONS */
-.transaction{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:15px 0;
-  border-bottom:1px solid #eee;
-}
-
-.transaction:last-child{
-  border-bottom:none;
-}
-
-.transaction-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.transaction-icon{
-  width:42px;
-  height:42px;
-  border-radius:10px;
-  background:#f7f7f7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-}
-
-.transaction-name{
-  font-weight:bold;
-  font-size:14px;
-}
-
-.transaction-date{
-  color:#999;
-  font-size:12px;
-  margin-top:4px;
-}
-
-.amount{
-  font-weight:bold;
-}
-
-.positive{
-  color:#159447;
-}
-
-.negative{
-  color:#e51b23;
-}
-
-/* SPENDING */
-.progress-item{
-  margin-bottom:20px;
-}
-
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  margin-bottom:8px;
-}
-
-.progress-bar{
-  height:8px;
-  background:#eee;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress-fill{
-  height:100%;
-  background:#e51b23;
-  border-radius:20px;
-}
-
-/* CARD */
-.bank-card{
-  margin-top:20px;
-  background:linear-gradient(135deg,#191919,#3a3a3a);
-  color:white;
-  border-radius:17px;
-  padding:24px;
-  min-height:175px;
-  position:relative;
-  overflow:hidden;
-}
-
-.bank-card:after{
-  content:"";
-  position:absolute;
-  width:170px;
-  height:170px;
-  border:30px solid rgba(229,27,35,.25);
-  border-radius:50%;
-  right:-70px;
-  bottom:-80px;
-}
-
-.card-brand{
-  color:#e51b23;
-  font-weight:900;
-  font-size:19px;
-}
-
-.chip{
-  width:42px;
-  height:31px;
-  background:#ddd;
-  border-radius:6px;
-  margin-top:30px;
-}
-
-.card-number{
-  letter-spacing:3px;
-  margin-top:17px;
-  font-size:16px;
-}
-
-.card-bottom{
-  display:flex;
-  justify-content:space-between;
-  margin-top:12px;
-  font-size:11px;
-  opacity:.8;
-}
-
-/* MOBILE */
-.mobile-menu{
-  display:none;
-  font-size:24px;
-  cursor:pointer;
-}
-
-@media(max-width:900px){
-
-  .header{
-    padding:0 18px;
-  }
-
-  .mobile-menu{
-    display:block;
-  }
-
-  .sidebar{
-    display:none;
-  }
-
-  .layout{
-    display:block;
-  }
-
-  .main{
-    padding:20px 16px 90px;
-  }
-
-  .welcome h1{
-    font-size:25px;
-  }
-
-  .actions{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .content-grid{
-    grid-template-columns:1fr;
-  }
-
-  .balance{
-    font-size:34px;
-  }
-
-  .logo{
-    font-size:20px;
-  }
-}
-
-/* BOTTOM MOBILE NAV */
-.bottom-nav{
-  display:none;
-}
-
-@media(max-width:600px){
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:68px;
-    background:#fff;
-    border-top:1px solid #ddd;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:200;
-  }
-
-  .bottom-item{
-    text-align:center;
-    font-size:11px;
-    color:#777;
-  }
-
-  .bottom-item div{
-    font-size:19px;
-    margin-bottom:3px;
-  }
-
-  .bottom-item.active{
-    color:#e51b23;
-    font-weight:bold;
-  }
-
-  .header-right .notification{
-    display:none;
-  }
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+body{background:#f7f7f7;color:#151515;}
+.header{height:72px;background:#ffffff;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:800;}
+.logo-mark{width:38px;height:38px;background:#e51b23;color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;}
+.logo span{color:#e51b23;}
+.header-right{display:flex;align-items:center;gap:20px;}
+.notification{font-size:21px;cursor:pointer;}
+.profile{width:40px;height:40px;border-radius:50%;background:#e51b23;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;}
+.layout{display:flex;min-height:calc(100vh - 72px);}
+.sidebar{width:245px;background:#fff;border-right:1px solid #eee;padding:28px 16px;}
+.menu-title{color:#999;font-size:12px;font-weight:bold;text-transform:uppercase;margin:8px 14px 12px;}
+.menu-item{display:flex;align-items:center;gap:13px;padding:14px;margin-bottom:5px;border-radius:9px;color:#555;cursor:pointer;font-size:15px;transition:.2s;}
+.menu-item:hover{background:#fff1f1;color:#e51b23;}
+.menu-item.active{background:#e51b23;color:#fff;font-weight:bold;}
+.menu-icon{width:22px;text-align:center;font-size:18px;}
+.main{flex:1;padding:32px;max-width:1500px;}
+.welcome{margin-bottom:28px;}
+.welcome h1{font-size:30px;margin-bottom:7px;}
+.welcome p{color:#777;font-size:15px;}
+.balance-card{background:linear-gradient(135deg,#e51b23,#b90009);color:white;border-radius:18px;padding:28px;position:relative;overflow:hidden;min-height:210px;box-shadow:0 10px 25px rgba(229,27,35,.18);}
+.balance{font-size:40px;font-weight:800;margin:15px 0 22px;}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:24px 0;}
+.action{background:white;border:1px solid #eee;border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:.2s;}
+.action:hover{transform:translateY(-2px);border-color:#e51b23;box-shadow:0 7px 20px rgba(0,0,0,.06);}
+.action-icon{width:48px;height:48px;border-radius:50%;background:#fff0f0;color:#e51b23;display:flex;align-items:center;justify-content:center;margin:auto;font-size:21px;}
+.action p{margin-top:10px;font-weight:bold;font-size:14px;}
+.content-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;}
+.card{background:white;border-radius:17px;border:1px solid #eee;padding:24px;margin-bottom:24px;}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.view-all{color:#e51b23;font-size:13px;font-weight:bold;cursor:pointer;}
+.transaction{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid #eee;}
+.transaction-left{display:flex;align-items:center;gap:12px;}
+.transaction-icon{width:42px;height:42px;border-radius:10px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.amount{font-weight:bold;}
+.positive{color:#159447;}
+.negative{color:#e51b23;}
+.progress-fill{height:100%;background:#e51b23;border-radius:20px;}
+.progress-bar{height:8px;background:#eee;border-radius:20px;overflow:hidden;}
+.bank-card{margin-top:20px;background:linear-gradient(135deg,#191919,#3a3a3a);color:white;border-radius:17px;padding:24px;min-height:175px;}
+.card-brand{color:#e51b23;font-weight:900;font-size:19px;}
+.uba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px;}
+.uba-item{background:#fff;border:1px solid #eee;border-radius:12px;padding:18px 10px;text-align:center;cursor:pointer;transition:.2s;}
+.uba-item:hover{border-color:#e51b23;transform:translateY(-2px);}
+.uba-icon{font-size:28px;color:#e51b23;margin-bottom:8px;}
+.uba-link{color:#e51b23;font-weight:600;cursor:pointer;margin-top:10px;display:inline-block;}
+.about-list div{padding:12px 0;border-bottom:1px solid #f0f0f0;cursor:pointer;}
+.mobile-menu{display:none;font-size:24px;cursor:pointer;}
+.bottom-nav{display:none;}
+@media(max-width:900px){.mobile-menu{display:block;}.sidebar{display:none;}.layout{display:block;}.main{padding:20px 16px 90px;}.actions{grid-template-columns:repeat(2,1fr);}.content-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:68px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;align-items:center;z-index:200;}.bottom-item{text-align:center;font-size:11px;color:#777;cursor:pointer;}.bottom-item.active{color:#e51b23;font-weight:bold;}}
 </style>
 </head>
-
 <body>
 
 <header class="header">
-
   <div style="display:flex;align-items:center;gap:15px;">
     <div class="mobile-menu" onclick="toggleMenu()">☰</div>
-
-    <div class="logo">
-      <div class="logo-mark">C</div>
-      Cash<span>Flow</span>
-    </div>
+    <div class="logo"><div class="logo-mark">C</div>Cash<span>Flow</span></div>
   </div>
-
   <div class="header-right">
-    <div class="notification">♧</div>
-    <div class="profile">JD</div>
+    <div class="notification" onclick="showAlert('Notifications')">♧</div>
+    <div class="profile" onclick="showPage('settings')">JD</div>
   </div>
-
 </header>
 
 <div class="layout">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
-
     <div class="menu-title">Menu</div>
-
-    <div class="menu-item active">
-      <span class="menu-icon">⌂</span>
-      Dashboard
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">↔</span>
-      Transfer Money
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">▣</span>
-      Transactions
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">▤</span>
-      Bills & Payments
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">▥</span>
-      Cards
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">♙</span>
-      Beneficiaries
-    </div>
-
+    <div class="menu-item active" onclick="showPage('dashboard')"><span class="menu-icon">⌂</span>Dashboard</div>
+    <div class="menu-item" onclick="showPage('transfer')"><span class="menu-icon">↔</span>Transfer Money</div>
+    <div class="menu-item" onclick="showPage('transactions')"><span class="menu-icon">▣</span>Transactions</div>
+    <div class="menu-item" onclick="showPage('bills')"><span class="menu-icon">▤</span>Bills & Payments</div>
+    <div class="menu-item" onclick="showPage('cards')"><span class="menu-icon">▥</span>Cards</div>
+    <div class="menu-item" onclick="showPage('beneficiaries')"><span class="menu-icon">♙</span>Beneficiaries</div>
     <div class="menu-title" style="margin-top:30px;">Account</div>
-
-    <div class="menu-item">
-      <span class="menu-icon">⚙</span>
-      Settings
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">?</span>
-      Help & Support
-    </div>
-
-    <div class="menu-item">
-      <span class="menu-icon">↪</span>
-      Logout
-    </div>
-
+    <div class="menu-item" onclick="showPage('settings')"><span class="menu-icon">⚙</span>Settings</div>
+    <div class="menu-item" onclick="showPage('help')"><span class="menu-icon">?</span>Help & Support</div>
+    <div class="menu-item" onclick="logout()"><span class="menu-icon">↪</span>Logout</div>
   </aside>
 
-
-  <!-- MAIN DASHBOARD -->
-  <main class="main">
-
-    <div class="welcome">
-      <h1>Good afternoon, John 👋</h1>
-      <p>Here's what's happening with your account today.</p>
-    </div>
-
-
-    <!-- BALANCE -->
-    <section class="balance-card">
-
-      <div class="balance-label">
-        AVAILABLE BALANCE
+  <main class="main" id="main-content">
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboard-page">
+      <div class="welcome">
+        <h1>Good afternoon, John 👋</h1>
+        <p>Here's what's happening with your account today.</p>
       </div>
-
-      <div class="balance">
-        $24,680.50
-      </div>
-
-      <div class="account-number">
-        Checking Account •••• 4821
-      </div>
-
-    </section>
-
-
-    <!-- QUICK ACTIONS -->
-    <section class="actions">
-
-      <div class="action">
-        <div class="action-icon">↗</div>
-        <p>Send Money</p>
-      </div>
-
-      <div class="action">
-        <div class="action-icon">↙</div>
-        <p>Request Money</p>
-      </div>
-
-      <div class="action">
-        <div class="action-icon">▤</div>
-        <p>Pay Bills</p>
-      </div>
-
-      <div class="action">
-        <div class="action-icon">＋</div>
-        <p>Add Money</p>
-      </div>
-
-    </section>
-
-
-    <div class="content-grid">
-
-      <!-- TRANSACTIONS -->
+      <section class="balance-card">
+        <div>AVAILABLE BALANCE</div>
+        <div class="balance" id="mainBalance">$24,680.50</div>
+        <div>Checking Account •••• 4821</div>
+      </section>
+      <section class="actions">
+        <div class="action" onclick="showPage('transfer')"><div class="action-icon">↗</div><p>Send Money</p></div>
+        <div class="action" onclick="showPage('request')"><div class="action-icon">↙</div><p>Request Money</p></div>
+        <div class="action" onclick="showPage('bills')"><div class="action-icon">▤</div><p>Pay Bills</p></div>
+        <div class="action" onclick="showPage('addmoney')"><div class="action-icon">＋</div><p>Add Money</p></div>
+      </section>
       <section class="card">
-
-        <div class="card-header">
-          <h2>Recent Transactions</h2>
-          <span class="view-all">View All</span>
-        </div>
-
-        <div class="transaction">
-
-          <div class="transaction-left">
-            <div class="transaction-icon">🛒</div>
-
-            <div>
-              <div class="transaction-name">Grocery Store</div>
-              <div class="transaction-date">Today • 10:42 AM</div>
-            </div>
-          </div>
-
-          <div class="amount negative">-$86.42</div>
-
-        </div>
-
-
-        <div class="transaction">
-
-          <div class="transaction-left">
-            <div class="transaction-icon">💼</div>
-
-            <div>
-              <div class="transaction-name">Salary Deposit</div>
-              <div class="transaction-date">Yesterday • 8:15 AM</div>
-            </div>
-          </div>
-
-          <div class="amount positive">+$3,250.00</div>
-
-        </div>
-
-
-        <div class="transaction">
-
-          <div class="transaction-left">
-            <div class="transaction-icon">⚡</div>
-
-            <div>
-              <div class="transaction-name">Electric Company</div>
-              <div class="transaction-date">Sep 2 • 2:30 PM</div>
-            </div>
-          </div>
-
-          <div class="amount negative">-$124.75</div>
-
-        </div>
-
-
-        <div class="transaction">
-
-          <div class="transaction-left">
-            <div class="transaction-icon">☕</div>
-
-            <div>
-              <div class="transaction-name">Coffee Shop</div>
-              <div class="transaction-date">Sep 2 • 9:21 AM</div>
-            </div>
-          </div>
-
-          <div class="amount negative">-$8.50</div>
-
-        </div>
-
+        <h2 style="font-size:24px;font-weight:900;margin-bottom:12px">Global Banking,<br>Worldwide Excellence.</h2>
+        <p style="color:#666">With presence in 50+ countries worldwide, we connect the world to you.</p>
       </section>
-
-
-      <!-- RIGHT COLUMN -->
-      <section>
-
-        <div class="card">
-
-          <div class="card-header">
-            <h2>Spending</h2>
-            <span class="view-all">This Month</span>
-          </div>
-
-          <div class="progress-item">
-
-            <div class="progress-top">
-              <span>Shopping</span>
-              <b>$680</b>
-            </div>
-
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:68%"></div>
-            </div>
-
-          </div>
-
-
-          <div class="progress-item">
-
-            <div class="progress-top">
-              <span>Bills</span>
-              <b>$420</b>
-            </div>
-
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:45%"></div>
-            </div>
-
-          </div>
-
-
-          <div class="progress-item">
-
-            <div class="progress-top">
-              <span>Food</span>
-              <b>$290</b>
-            </div>
-
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:32%"></div>
-            </div>
-
-          </div>
-
+      <section class="card">
+        <h2>Find Your Perfect Fit</h2>
+        <div class="uba-grid">
+          <div class="uba-item" onclick="showAlert('Individual Account')"><div class="uba-icon">⌂</div>Individual</div>
+          <div class="uba-item" onclick="showAlert('Business Account')"><div class="uba-icon">▣</div>Entrepreneur</div>
+          <div class="uba-item" onclick="showAlert('Investment')"><div class="uba-icon">$</div>Investor</div>
+          <div class="uba-item" onclick="showAlert('Teen Account')"><div class="uba-icon">♙</div>Teenager</div>
+          <div class="uba-item" onclick="showAlert('Student Account')"><div class="uba-icon">🎓</div>Student</div>
+          <div class="uba-item" onclick="showAlert('Developer API')"><div class="uba-icon">{ }</div>Developer</div>
+          <div class="uba-item" onclick="showAlert('Careers')"><div class="uba-icon">👓</div>Job Applicant</div>
+          <div class="uba-item" onclick="showAlert('Media Center')"><div class="uba-icon">📰</div>Media</div>
+          <div class="uba-item" onclick="showPage('help')"><div class="uba-icon">?</div>Help</div>
         </div>
-
-
-        <!-- CARD -->
-        <div class="bank-card">
-
-          <div class="card-brand">CashFlow</div>
-
-          <div class="chip"></div>
-
-          <div class="card-number">
-            •••• •••• •••• 4821
-          </div>
-
-          <div class="card-bottom">
-            <span>JOHN DOE</span>
-            <span>VISA</span>
-          </div>
-
-        </div>
-
       </section>
-
+      <section class="card">
+        <h2>Chat with Cashy, your 24/7 Virtual Banker</h2>
+        <p style="color:#666">Send money, buy airtime, pay bills, check your balance.</p>
+        <span class="uba-link" onclick="showAlert('Opening Cashy Chat...')">Learn more ></span>
+      </section>
+      <section class="card">
+        <h2>About Us</h2>
+        <div class="about-list">
+          <div onclick="showAlert('Who We Are')">Who We Are</div>
+          <div onclick="showAlert('Our Strategy')">Our Strategy</div>
+          <div onclick="showAlert('Our History')">Our History</div>
+          <div onclick="showAlert('Awards')">Awards and Achievements</div>
+          <div onclick="showAlert('Leadership')">Leadership</div>
+          <div onclick="showAlert('CEO Message')">CEO's Overview</div>
+          <div onclick="showAlert('Global Offices')">Global Presence</div>
+          <div onclick="showAlert('Careers Page')">Careers</div>
+        </div>
+      </section>
     </div>
 
+    <!-- OTHER PAGES -->
+    <div id="transfer-page" class="hid"><h1>Transfer Money</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="transactions-page" class="hid"><h1>All Transactions</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="bills-page" class="hid"><h1>Bills & Payments</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="cards-page" class="hid"><h1>My Cards</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="settings-page" class="hid"><h1>Settings</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="help-page" class="hid"><h1>Help & Support</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="request-page" class="hid"><h1>Request Money</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="addmoney-page" class="hid"><h1>Add Money</h1><button onclick="showPage('dashboard')">← Back</button></div>
+    <div id="beneficiaries-page" class="hid"><h1>Beneficiaries</h1><button onclick="showPage('dashboard')">← Back</button></div>
   </main>
-
 </div>
 
-
-<!-- MOBILE NAV -->
 <div class="bottom-nav">
-
-  <div class="bottom-item active">
-    <div>⌂</div>
-    Home
-  </div>
-
-  <div class="bottom-item">
-    <div>↔</div>
-    Transfer
-  </div>
-
-  <div class="bottom-item">
-    <div>▣</div>
-    Activity
-  </div>
-
-  <div class="bottom-item">
-    <div>⚙</div>
-    Settings
-  </div>
-
+  <div class="bottom-item active" onclick="showPage('dashboard')"><div>⌂</div>Home</div>
+  <div class="bottom-item" onclick="showPage('transfer')"><div>↔</div>Transfer</div>
+  <div class="bottom-item" onclick="showPage('transactions')"><div>▣</div>Activity</div>
+  <div class="bottom-item" onclick="showPage('settings')"><div>⚙</div>Settings</div>
 </div>
-
 
 <script>
-
 function toggleMenu(){
-
   const sidebar = document.getElementById("sidebar");
-
-  if(sidebar.style.display === "block"){
-    sidebar.style.display = "none";
-  }else{
-    sidebar.style.display = "block";
-    sidebar.style.position = "fixed";
-    sidebar.style.left = "0";
-    sidebar.style.top = "72px";
-    sidebar.style.bottom = "0";
-    sidebar.style.zIndex = "150";
-  }
-
+  sidebar.style.display = sidebar.style.display === "block" ? "none" : "block";
+  sidebar.style.position = "fixed"; sidebar.style.left = "0"; 
+  sidebar.style.top = "72px"; sidebar.style.bottom = "0"; sidebar.style.zIndex = "150";
 }
 
+function showAlert(msg){ alert(msg); }
+
+function showPage(page){
+  // Hide all pages
+  document.querySelectorAll('#main-content > div').forEach(p => p.classList.add('hid'));
+  // Show selected page
+  document.getElementById(page+'-page').classList.remove('hid');
+  
+  // Update active menu
+  document.querySelectorAll('.menu-item').forEach(i=>i.classList.remove('active'));
+  document.querySelectorAll('.bottom-item').forEach(i=>i.classList.remove('active'));
+  
+  if(page === 'dashboard'){
+    document.querySelector('.menu-item').classList.add('active');
+    document.querySelector('.bottom-item').classList.add('active');
+  }
+  
+  // Close mobile menu
+  if(window.innerWidth < 900) document.getElementById("sidebar").style.display = "none";
+}
+
+function logout(){
+  if(confirm('Are you sure you want to logout?')){
+    alert('Logged out successfully');
+    showPage('dashboard');
+  }
+}
 </script>
 
 </body>
