@@ -4,952 +4,583 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#020916">
-<title>Cashflowbank — Demo</title>
+<title>Cashflowbank</title>
 
 <style>
-*{
-  box-sizing:border-box;
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Inter,Arial,sans-serif;
+background:#020916;
+color:#fff
 }
-
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#020916;
-  color:#fff;
-}
-
-button,input,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
+button,input,select{font:inherit}
+button{cursor:pointer;color:inherit}
 .app{
-  max-width:540px;
-  min-height:100vh;
-  margin:auto;
-  background:
-    radial-gradient(circle at 75% 0,#092b62 0,transparent 30%),
-    #020916;
-  padding-bottom:92px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
+width:100%;
+max-width:540px;
+min-height:100vh;
+margin:auto;
+background:
+radial-gradient(circle at 75% 0,#092b62 0,transparent 28%),
+#020916;
+padding-bottom:90px
 }
 
 /* LOGO */
 .logo{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px
 }
-
 .logoMark{
-  width:54px;
-  height:54px;
-  border:5px solid #0782ff;
-  border-radius:17px;
-  display:grid;
-  place-items:center;
-  color:#168cff;
-  font-size:30px;
-  font-weight:900;
-  box-shadow:0 0 30px #087fff55;
+width:55px;
+height:55px;
+border:5px solid #0782ff;
+border-radius:17px;
+display:grid;
+place-items:center;
+color:#168cff;
+font-size:32px;
+font-weight:900;
+box-shadow:0 0 30px #087fff55
 }
-
 .logoText{
-  font-weight:800;
-  letter-spacing:1px;
+font-weight:800;
+letter-spacing:1px;
+font-size:19px
 }
-
-.logoText span{
-  color:#1789ff;
-}
+.logoText span{color:#1789ff}
 
 /* LOADING */
 #loading{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:grid;
-  place-content:center;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 60%,#073c92 0,transparent 32%),
-    #020916;
+position:fixed;
+inset:0;
+z-index:999;
+display:grid;
+place-content:center;
+text-align:center;
+background:
+radial-gradient(circle at 50% 60%,#073c92 0,transparent 32%),
+#020916
 }
-
-.loadSub{
-  color:#8291a8;
-  margin:20px 0 60px;
+#loading p{
+color:#8291a8;
+margin:20px 0 60px
 }
-
 .loader{
-  width:min(360px,82vw);
+width:min(360px,82vw)
 }
-
 .progress{
-  height:8px;
-  background:#10233c;
-  border-radius:99px;
-  overflow:hidden;
+height:8px;
+background:#10233c;
+border-radius:99px;
+overflow:hidden
 }
-
 .progressBar{
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,#0878ff,#20a3ff);
+height:100%;
+width:0;
+background:linear-gradient(90deg,#0878ff,#20a3ff);
+box-shadow:0 0 18px #148cff
 }
-
 .loadingInfo{
-  display:flex;
-  justify-content:space-between;
-  color:#8191a8;
-  font-size:11px;
-  margin-top:10px;
+display:flex;
+justify-content:space-between;
+color:#8191a8;
+font-size:11px;
+margin-top:10px
 }
-
-.loadingInfo b{
-  color:#1b8cff;
-}
+.loadingInfo b{color:#1b8cff}
 
 /* AUTH */
 .auth{
-  padding:25px;
-  min-height:100vh;
+padding:25px;
+min-height:100vh
 }
-
-.authTop,
-.pageHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
 .authTop{
-  margin-bottom:50px;
+display:flex;
+justify-content:space-between;
+margin-bottom:50px
 }
-
-.iconBtn,
-.pageHeader button,
-.topIcons button{
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:22px;
+.authTop button{
+background:none;
+border:0;
+font-size:25px
 }
-
 .authBox{
-  max-width:430px;
-  margin:auto;
+max-width:430px;
+margin:auto
 }
-
 .authBox .logo{
-  flex-direction:column;
-  margin-bottom:40px;
+flex-direction:column;
+margin-bottom:40px
 }
-
 .authBox h1{
-  font-size:28px;
-  margin:0 0 8px;
+font-size:28px;
+margin-bottom:8px
 }
-
-.muted{
-  color:#8291a8;
-}
-
-.form{
-  margin-top:30px;
-}
-
+.muted{color:#8291a8}
+.form{margin-top:30px}
 label{
-  display:block;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:18px;
+display:block;
+font-size:12px;
+font-weight:bold;
+margin-bottom:18px
 }
-
-input,
-select{
-  width:100%;
-  height:52px;
-  border:1px solid #263a55;
-  background:#071426;
-  color:#fff;
-  border-radius:12px;
-  padding:0 14px;
-  margin-top:8px;
-  outline:0;
+input,select{
+width:100%;
+height:52px;
+border:1px solid #263a55;
+background:#071426;
+color:#fff;
+border-radius:12px;
+padding:0 14px;
+margin-top:8px;
+outline:none
 }
-
-input:focus,
-select:focus{
-  border-color:#178aff;
+input:focus,select:focus{
+border-color:#178aff
 }
-
 .primary{
-  width:100%;
-  min-height:52px;
-  border:0;
-  border-radius:12px;
-  background:linear-gradient(100deg,#0876ff,#118fff);
-  color:#fff;
-  font-weight:800;
+width:100%;
+height:52px;
+border:0;
+border-radius:12px;
+background:linear-gradient(100deg,#0876ff,#118fff);
+font-weight:bold;
+box-shadow:0 10px 30px #006eff35
 }
-
 .link{
-  border:0;
-  background:none;
-  color:#208fff;
+border:0;
+background:none;
+color:#208fff
 }
-
 .forgot{
-  display:block;
-  margin:-5px 0 25px;
-  font-size:12px;
-  text-align:right;
+display:block;
+margin:-5px 0 25px;
+font-size:12px;
+text-align:right
 }
-
 .authSwitch{
-  text-align:center;
-  color:#8291a8;
-  font-size:13px;
-  margin:35px 0;
+text-align:center;
+color:#8291a8;
+font-size:13px;
+margin:35px 0
 }
-
 .security{
-  text-align:center;
-  font-size:11px;
-  color:#8190a5;
+display:flex;
+justify-content:center;
+gap:10px;
+text-align:center;
+font-size:11px;
+color:#8190a5
 }
 
-/* DASHBOARD */
+/* MAIN */
 main{
-  padding:22px 18px;
+padding:22px 18px
 }
-
 .top{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px
 }
-
-.avatar,
-.bigAvatar{
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#466aff,#0b5fff);
-  font-weight:800;
-}
-
 .avatar{
-  width:48px;
-  height:48px;
-  font-size:19px;
+width:48px;
+height:48px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#466aff,#0b5fff);
+font-weight:bold;
+font-size:20px
 }
-
 .greeting{
-  flex:1;
+flex:1
 }
-
 .greeting small{
-  color:#8291a8;
+color:#8291a8
 }
-
 .greeting h3{
-  margin:3px 0;
-  font-size:18px;
+margin:3px 0;
+font-size:18px
 }
-
 .topIcons{
-  display:flex;
-  gap:3px;
+display:flex;
+gap:3px
 }
-
 .topIcons button{
-  font-size:18px;
-  position:relative;
+background:none;
+border:0;
+font-size:18px;
+position:relative
 }
-
 .badge{
-  position:absolute;
-  right:-3px;
-  top:-4px;
-  background:#187eff;
-  font-style:normal;
-  font-size:8px;
-  width:15px;
-  height:15px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
+position:absolute;
+right:-3px;
+top:-4px;
+background:#187eff;
+font-size:8px;
+width:15px;
+height:15px;
+border-radius:50%;
+display:grid;
+place-items:center
 }
 
+/* NOTICE */
 .notice{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  border:1px solid #173b6c;
-  background:#061b3a;
-  border-radius:12px;
-  padding:13px;
-  font-size:10px;
-  color:#b7c5d8;
-  margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:9px;
+border:1px solid #173b6c;
+background:#061b3a;
+border-radius:12px;
+padding:13px;
+font-size:10px;
+color:#b7c5d8;
+margin-bottom:20px
 }
-
-.notice strong{
-  color:#3a96ff;
-}
+.notice strong{color:#3a96ff}
 
 /* BALANCE */
 .balance{
-  border:1px solid #176be5;
-  border-radius:17px;
-  overflow:hidden;
-  background:linear-gradient(135deg,#1746be,#09256c);
-  margin-bottom:13px;
+border:1px solid #176be5;
+border-radius:17px;
+overflow:hidden;
+background:linear-gradient(135deg,#1746be,#09256c);
+position:relative;
+margin-bottom:13px
 }
-
 .balanceTop{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:20px;
+display:flex;
+justify-content:space-between;
+padding:20px
 }
-
 .balanceLabel{
-  font-size:12px;
-  color:#d3e1fb;
+font-size:12px;
+color:#d3e1fb
 }
-
 .balanceAmount{
-  display:block;
-  font-size:37px;
-  font-weight:800;
-  margin-top:7px;
+display:block;
+font-size:37px;
+font-weight:bold;
+margin-top:7px
 }
-
 .addMoney{
-  border:0;
-  background:#1679ff;
-  color:#fff;
-  border-radius:25px;
-  height:42px;
-  padding:0 15px;
-  font-weight:800;
+border:0;
+background:#1679ff;
+border-radius:25px;
+height:42px;
+padding:0 15px;
+font-weight:bold
 }
-
 .earnings{
-  padding:0 20px 18px;
-  font-size:11px;
-  color:#b5c6df;
+padding:0 20px 18px;
+font-size:11px;
+color:#b5c6df
 }
-
 .earnings strong{
-  color:#15d39c;
-  margin-left:12px;
+color:#15d39c;
+margin-left:12px
 }
-
+.chart{
+height:70px;
+position:absolute;
+right:0;
+bottom:55px;
+width:55%;
+opacity:.8
+}
+.chart svg{
+width:100%;
+height:100%
+}
+.chart polyline{
+fill:none;
+stroke:#198cff;
+stroke-width:3
+}
 .history{
-  width:100%;
-  border:0;
-  border-top:1px solid #ffffff19;
-  background:#03142dcc;
-  color:#fff;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
+width:100%;
+position:relative;
+border:0;
+border-top:1px solid #ffffff19;
+background:#03142dcc;
+padding:16px;
+display:flex;
+justify-content:space-between
 }
-
 .history span:last-child{
-  color:#3c94ff;
+color:#3c94ff
 }
 
-/* QUICK ACTIONS */
+/* QUICK */
 .quick{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:6px;
-  padding:12px 5px;
-  border:1px solid #1d304a;
-  background:#071426;
-  border-radius:14px;
-  margin-bottom:13px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+padding:12px 5px;
+border:1px solid #1d304a;
+background:#071426;
+border-radius:14px;
+margin-bottom:13px
 }
-
 .quick button{
-  border:0;
-  background:none;
-  color:#fff;
-  text-align:center;
+border:0;
+background:none;
+text-align:center
 }
-
 .quickIcon{
-  width:43px;
-  height:43px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#0d2546;
-  color:#238aff;
-  margin:auto;
-  font-size:20px;
+width:43px;
+height:43px;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:#0d2546;
+color:#238aff;
+margin:auto;
+font-size:20px
 }
-
 .quick b{
-  display:block;
-  font-size:9px;
-  margin-top:6px;
+display:block;
+font-size:9px;
+margin-top:6px
 }
 
 /* CARDS */
 .card{
-  border:1px solid #1d3049;
-  background:#071426;
-  border-radius:14px;
-  overflow:hidden;
-  margin-bottom:13px;
+border:1px solid #1d3049;
+background:#071426;
+border-radius:14px;
+overflow:hidden;
+margin-bottom:13px
 }
-
 .cardTitle{
-  display:flex;
-  justify-content:space-between;
-  padding:15px;
-  font-size:12px;
+display:flex;
+justify-content:space-between;
+padding:15px;
+font-size:12px
 }
-
 .cardTitle button{
-  background:none;
-  border:0;
-  color:#3c94ff;
-  font-size:10px;
-}
-
-/* SPENDING */
-.spendingBody{
-  display:flex;
-  align-items:center;
-  gap:17px;
-  padding:4px 14px 18px;
-}
-
-.donut{
-  width:122px;
-  height:122px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:
-    conic-gradient(
-      #1680ff 0 34%,
-      #28bd70 34% 55%,
-      #ffd23e 55% 71%,
-      #ff6250 71% 86%,
-      #925be7 86%
-    );
-}
-
-.donutInner{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:#071426;
-  display:grid;
-  place-content:center;
-  text-align:center;
-}
-
-.donutInner b{
-  font-size:14px;
-}
-
-.donutInner small{
-  font-size:8px;
-  color:#7f90a7;
-}
-
-.legend{
-  flex:1;
-  font-size:9px;
-}
-
-.legend div{
-  display:flex;
-  gap:7px;
-  margin:9px 0;
-}
-
-.legend b{
-  margin-left:auto;
-}
-
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-}
-
-.blue{background:#1680ff}
-.green{background:#28bd70}
-.yellow{background:#ffd23e}
-.red{background:#ff6250}
-.purple{background:#925be7}
-
-/* TRANSACTIONS */
-.transaction{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 15px;
-  border-top:1px solid #172a42;
-}
-
-.transactionIcon,
-.recipientAvatar{
-  width:37px;
-  height:37px;
-  border-radius:50%;
-  background:#102845;
-  display:grid;
-  place-items:center;
-}
-
-.transactionInfo,
-.recipientInfo{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.transactionInfo b,
-.recipientInfo b{
-  font-size:11px;
-}
-
-.transactionInfo small,
-.recipientInfo small{
-  font-size:8px;
-  color:#7789a0;
-}
-
-.transactionAmount{
-  margin-left:auto;
-  font-size:11px;
-}
-
-.positive{
-  color:#16d49c;
-}
-
-.negative{
-  color:#ff6871;
-}
-
-/* SECURITY */
-.securityBanner{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border:1px solid #1d3049;
-  background:#071426;
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:13px;
-}
-
-.secCircle{
-  width:39px;
-  height:39px;
-  border-radius:50%;
-  background:#064c3b;
-  display:grid;
-  place-items:center;
-  color:#19d49c;
-}
-
-.secText{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.secText b{
-  font-size:12px;
-}
-
-.secText small{
-  font-size:9px;
-  color:#8090a6;
-}
-
-.verify{
-  margin-left:auto;
-  border:1px solid #193e70;
-  background:#092347;
-  color:#4598ff;
-  border-radius:20px;
-  padding:8px 10px;
-  font-size:9px;
-}
-
-/* SERVICES */
-.servicesGrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:0 9px 14px;
-}
-
-.service{
-  min-height:70px;
-  border:1px solid #1c3049;
-  background:#09172b;
-  color:#fff;
-  border-radius:10px;
-}
-
-.serviceIcon{
-  display:block;
-  font-size:19px;
-  color:#268bff;
-  margin:9px 0 6px;
-}
-
-.service b{
-  font-size:7px;
-}
-
-/* SAVINGS BANNER */
-.savingsBanner{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  border:1px solid #164d9c;
-  background:linear-gradient(90deg,#062457,#07316d);
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:10px;
-}
-
-.pig{
-  font-size:32px;
-}
-
-.savingText{
-  flex:1;
-}
-
-.savingText b{
-  display:block;
-  font-size:10px;
-}
-
-.savingText small{
-  color:#8da1ba;
-  font-size:8px;
-}
-
-.start{
-  border:0;
-  background:#087bff;
-  color:#fff;
-  border-radius:20px;
-  padding:9px 11px;
-  font-size:8px;
+background:none;
+border:0;
+color:#3c94ff;
+font-size:10px
 }
 
 /* NAVIGATION */
 .nav{
-  position:fixed;
-  z-index:50;
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(500px,calc(100% - 24px));
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  padding:8px 3px;
-  background:#091526ee;
-  border:1px solid #203651;
-  border-radius:19px;
-  backdrop-filter:blur(18px);
+position:fixed;
+z-index:50;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:min(500px,calc(100% - 24px));
+display:grid;
+grid-template-columns:repeat(5,1fr);
+padding:8px 3px;
+background:#091526ee;
+border:1px solid #203651;
+border-radius:19px;
+backdrop-filter:blur(18px)
 }
-
 .nav button{
-  border:0;
-  background:none;
-  color:#8291a8;
-  font-size:9px;
+border:0;
+background:none;
+color:#8291a8;
+font-size:9px
 }
-
-.nav button.active{
-  color:#258bff;
-}
-
+.nav button.active{color:#258bff}
 .navIcon{
-  font-size:19px;
-  display:block;
-  margin-bottom:3px;
+font-size:19px;
+display:block;
+margin-bottom:3px
 }
 
-/* OTHER PAGES */
+/* PAGES */
+.page{
+display:none
+}
+.page.active{
+display:block
+}
 .pageHeader{
-  margin-bottom:25px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:25px
 }
-
+.pageHeader button{
+border:0;
+background:none;
+font-size:20px
+}
 .pageHeader h2{
-  font-size:19px;
+font-size:19px
 }
 
+/* TRANSFER */
 .tabs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid #25364c;
-  margin-bottom:25px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+border-bottom:1px solid #25364c;
+margin-bottom:25px
 }
-
 .tabs button{
-  border:0;
-  background:none;
-  color:#8391a6;
-  padding:12px;
-  font-size:11px;
+border:0;
+background:none;
+color:#8391a6;
+padding:12px;
+font-size:11px
 }
-
 .tabs .selected{
-  color:#168cff;
-  border-bottom:2px solid #168cff;
+color:#168cff;
+border-bottom:2px solid #168cff
 }
-
 .transferBox{
-  margin-bottom:18px;
+margin-bottom:18px
 }
-
 .inputRow{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  height:52px;
-  background:#071426;
-  border:1px solid #263a55;
-  border-radius:12px;
-  padding:0 12px;
+display:flex;
+align-items:center;
+gap:8px;
+height:52px;
+background:#071426;
+border:1px solid #263a55;
+border-radius:12px;
+padding:0 12px
 }
-
-.inputRow input,
-.inputRow select{
-  border:0;
-  margin:0;
-  padding:0;
-  height:100%;
-  background:transparent;
+.inputRow input,.inputRow select{
+border:0;
+margin:0;
+padding:0;
+height:100%
 }
-
 .recipients{
-  margin-top:25px;
+margin-top:25px
 }
-
 .recipient{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 15px;
-  border-top:1px solid #172a42;
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 15px;
+border-top:1px solid #172a42
 }
-
 .recipientAvatar{
-  color:#20a0ff;
-  font-size:10px;
-  font-weight:800;
+width:37px;
+height:37px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:#123052;
+color:#20a0ff;
+font-size:10px;
+font-weight:bold
 }
-
+.recipientInfo{
+display:flex;
+flex-direction:column;
+gap:4px
+}
+.recipientInfo b{font-size:10px}
+.recipientInfo small{
+font-size:8px;
+color:#74869d
+}
 .recipientArrow{
-  margin-left:auto;
-  color:#238bff;
+margin-left:auto;
+color:#238bff
 }
 
+/* ACCOUNTS */
 .account{
-  border:1px solid #176be5;
-  border-radius:16px;
-  background:linear-gradient(135deg,#123eaa,#081e59);
-  padding:22px;
-  margin-bottom:13px;
+border:1px solid #176be5;
+border-radius:16px;
+background:linear-gradient(135deg,#123eaa,#081e59);
+padding:22px;
+margin-bottom:13px
 }
-
 .account.secondary{
-  background:#07182f;
-  border-color:#213a59;
+background:#07182f;
+border-color:#213a59
 }
-
-.account span,
-.account small{
-  display:block;
-  color:#bdcbe1;
-  font-size:11px;
+.account span,.account small{
+display:block;
+color:#bdcbe1;
+font-size:11px
 }
-
 .account strong{
-  display:block;
-  font-size:31px;
-  margin:15px 0;
+display:block;
+font-size:31px;
+margin:15px 0
 }
-
 .outline{
-  width:100%;
-  height:50px;
-  border:1px solid #253954;
-  background:#09172a;
-  border-radius:11px;
-  color:#298eff;
+width:100%;
+height:50px;
+border:1px solid #253954;
+background:#09172a;
+border-radius:11px;
+color:#298eff
 }
 
+/* PROFILE */
 .profile{
-  text-align:center;
-  padding:20px;
+text-align:center;
+padding:20px
 }
-
 .bigAvatar{
-  width:84px;
-  height:84px;
-  margin:auto;
-  font-size:30px;
+width:84px;
+height:84px;
+border-radius:50%;
+display:grid;
+place-items:center;
+margin:auto;
+background:linear-gradient(135deg,#466aff,#0b5fff);
+font-size:30px;
+font-weight:bold
 }
-
-.profile h2{
-  margin:14px 0 5px;
-}
-
-.profile p{
-  color:#8291a8;
-  font-size:12px;
-}
-
+.profile h2{margin:14px 0 5px}
+.profile p{color:#8291a8;font-size:12px}
 .menu{
-  width:100%;
-  height:54px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#071426;
-  color:#fff;
-  border:1px solid #1c3049;
-  border-radius:12px;
-  margin-bottom:8px;
-  padding:0 15px;
+width:100%;
+height:54px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#071426;
+border:1px solid #1c3049;
+border-radius:12px;
+margin-bottom:8px;
+padding:0 15px
 }
+.menu span{font-size:12px}
 
-.menu span{
-  font-size:12px;
-}
-
-.center{
-  text-align:center;
-}
-
+/* SIMPLE */
 .simpleIcon{
-  font-size:55px;
-  text-align:center;
-  margin:70px 0 20px;
+font-size:55px;
+text-align:center;
+margin:70px 0 20px
 }
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:500;
-  background:#000b;
-  align-items:flex-end;
-  justify-content:center;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modalBox{
-  width:min(540px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#071426;
-  border:1px solid #28425f;
-  border-radius:22px 22px 0 0;
-  padding:22px;
-  box-shadow:0 -20px 60px #0008;
-}
-
-.modalBox h3{
-  margin-top:0;
-}
-
-.modalClose{
-  float:right;
-  background:none;
-  border:0;
-  color:#fff;
-  font-size:22px;
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  z-index:600;
-  left:50%;
-  bottom:100px;
-  transform:translateX(-50%) translateY(20px);
-  background:#0d2138;
-  border:1px solid #2b4b6c;
-  border-radius:12px;
-  padding:12px 16px;
-  font-size:11px;
-  opacity:0;
-  transition:.25s;
-  pointer-events:none;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-@media(min-width:700px){
-  .app{
-    border-left:1px solid #14263d;
-    border-right:1px solid #14263d;
-  }
-}
+.center{text-align:center}
 </style>
 </head>
 
 <body>
 
+<!-- LOADING -->
 <div id="loading">
   <div class="logo">
     <div class="logoMark">C</div>
     <div class="logoText">CASH<span>FLOW</span>BANK</div>
   </div>
-
-  <div class="loadSub">
-    Banking that moves with you.
-  </div>
-
+  <p>Banking that moves with you.</p>
   <div class="loader">
     <div class="progress">
       <div class="progressBar" id="progressBar"></div>
     </div>
-
     <div class="loadingInfo">
       <span>Loading your experience...</span>
       <b id="percent">0%</b>
@@ -961,479 +592,241 @@ main{
 
 <!-- LOGIN -->
 <section id="login" class="page auth">
-
   <div class="authTop">
-    <button class="iconBtn">←</button>
-    <button class="iconBtn" data-action="security">🛡️</button>
+    <button onclick="show('login')">←</button>
+    <button onclick="toast('Security Center')">🛡️</button>
   </div>
-
   <div class="authBox">
-
     <div class="logo">
       <div class="logoMark">C</div>
       <div class="logoText">CASH<span>FLOW</span>BANK</div>
     </div>
-
     <h1>Sign in to your account</h1>
-    <p class="muted">
-      Welcome back! Please enter your details.
-    </p>
-
-    <form class="form" id="loginForm">
-
-      <label>
-        Email address
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
-      </label>
-
-      <label>
-        Password
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-          required
-        >
-      </label>
-
-      <button
-        type="button"
-        class="link forgot"
-        data-action="forgot"
-      >
-        Forgot password?
-      </button>
-
-      <button class="primary">
-        Log in
-      </button>
-
+    <p class="muted">Welcome back! Please enter your details.</p>
+    <form class="form" onsubmit="login(event)">
+      <label>Email address<input type="email" placeholder="Enter your email" required></label>
+      <label>Password<input type="password" placeholder="Enter your password" required></label>
+      <button type="button" class="link forgot" onclick="toast('Password reset link sent')">Forgot password?</button>
+      <button class="primary">Log in</button>
     </form>
-
-    <p class="authSwitch">
-      New to Cashflowbank?
-      <button class="link" data-page="signup">
-        Sign up
-      </button>
-    </p>
-
+    <p class="authSwitch">New to Cashflowbank? <button class="link" onclick="show('signup')">Sign up</button></p>
   </div>
 </section>
-
 
 <!-- SIGN UP -->
 <section id="signup" class="page auth">
-
   <div class="authTop">
-    <button class="iconBtn" data-page="login">←</button>
-    <button class="iconBtn" data-action="security">🛡️</button>
+    <button onclick="show('login')">←</button>
+    <button onclick="toast('Security Center')">🛡️</button>
   </div>
-
   <div class="authBox">
-
     <div class="logo">
       <div class="logoMark">C</div>
       <div class="logoText">CASH<span>FLOW</span>BANK</div>
     </div>
-
     <h1>Create your account</h1>
-
-    <p class="muted">
-      Let's get you started.
-    </p>
-
-    <form class="form" id="signupForm">
-
-      <label>
-        Full name
-        <input
-          id="signupName"
-          placeholder="Enter your full name"
-          required
-        >
-      </label>
-
-      <label>
-        Email address
-        <input
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
-      </label>
-
-      <label>
-        Create password
-        <input
-          type="password"
-          minlength="6"
-          placeholder="Create a strong password"
-          required
-        >
-      </label>
-
-      <label>
-        Phone number
-        <input
-          type="tel"
-          placeholder="Enter your phone number"
-          required
-        >
-      </label>
-
-      <button class="primary">
-        Open account
-      </button>
-
+    <p class="muted">Let's get you started.</p>
+    <form class="form" onsubmit="signup(event)">
+      <label>Full name<input type="text" placeholder="Enter your full name" required></label>
+      <label>Email address<input type="email" placeholder="Enter your email" required></label>
+      <label>Create password<input type="password" placeholder="Create a strong password" required></label>
+      <label>Phone number<input type="tel" placeholder="Enter your phone number" required></label>
+      <button class="primary">Open account</button>
     </form>
-
-    <p class="authSwitch">
-      Already have an account?
-      <button class="link" data-page="login">
-        Log in
-      </button>
-    </p>
-
-    <div class="security">
-      🛡️ Your data is protected with
-      <b>bank-grade security</b>.
-    </div>
-
+    <p class="authSwitch">Already have an account? <button class="link" onclick="show('login')">Log in</button></p>
+    <div class="security">🛡️ <span>Your data is protected with<br><b>bank-grade security</b>.</span></div>
   </div>
 </section>
-
 
 <!-- DASHBOARD -->
 <section id="dashboard" class="page">
-
 <main>
-
 <div class="top">
-
-  <div class="avatar" id="avatar">
-    A
-  </div>
-
-  <div class="greeting">
-    <small>Good morning,</small>
-    <h3>
-      Hi <span id="greetingName">Alex</span> 👋
-    </h3>
-  </div>
-
+  <div class="avatar">A</div>
+  <div class="greeting"><small>Good morning,</small><h3>Hi Alex 👋</h3></div>
   <div class="topIcons">
-
-    <button data-action="support">
-      ♧
-    </button>
-
-    <button data-action="scan">
-      ⌾
-    </button>
-
-    <button data-action="notifications">
-      ♧
-      <i class="badge" id="notifBadge">2</i>
-    </button>
-
+    <button onclick="toast('Favorites')">♧</button>
+    <button onclick="toast('QR Scanner')">⌾</button>
+    <button onclick="toast('2 Notifications')"><i class="badge">2</i>♧</button>
   </div>
-
 </div>
 
+<div class="notice" onclick="toast('System is fully operational')"><span><strong>System Update:</strong> CashFlow is fully operational with all services.</span> ›</div>
 
-<div class="notice">
-  🔊
-  <span>
-    <strong>System Update:</strong>
-    CashFlow is fully operational with all services.
-  </span>
-</div>
-
-
+<!-- BALANCE -->
 <section class="balance">
-
   <div class="balanceTop">
-
-    <div>
-
-      <span class="balanceLabel">
-        Available Balance
-        <button
-          id="balanceEye"
-          class="link"
-          data-action="toggleBalance"
-        >
-          👁
-        </button>
-      </span>
-
-      <strong
-        class="balanceAmount"
-        id="balance"
-      >
-        $8,542.68
-      </strong>
-
-    </div>
-
-    <button
-      class="addMoney"
-      data-page="deposit"
-    >
-      ＋ Add Money
-    </button>
-
+    <div><span class="balanceLabel">Available Balance 👁</span><strong class="balanceAmount">$8,542.68</strong></div>
+    <button class="addMoney" onclick="show('deposit')">＋ Add Money</button>
   </div>
-
-  <div class="earnings">
-    Today's Earnings
-    <strong>+$12.45</strong>
-  </div>
-
-  <button
-    class="history"
-    data-page="transactions"
-  >
-    <span>▣ Transaction History</span>
-    <span>View All ›</span>
-  </button>
-
+  <div class="earnings">Today's Earnings <strong>+$12.45</strong></div>
+  <button class="history" onclick="show('transactions')"><span>▣ Transaction History</span><span>View All ›</span></button>
 </section>
 
-
+<!-- QUICK ACTIONS -->
 <div class="quick">
-
-  <button data-page="transfer">
-    <span class="quickIcon">↗</span>
-    <b>Transfer</b>
-  </button>
-
-  <button data-page="bills">
-    <span class="quickIcon">▤</span>
-    <b>Pay Bills</b>
-  </button>
-
-  <button data-page="deposit">
-    <span class="quickIcon">↓</span>
-    <b>Deposit</b>
-  </button>
-
-  <button data-page="more">
-    <span class="quickIcon">•••</span>
-    <b>More</b>
-  </button>
-
-</div>
-
-
-<section class="card">
-
-  <div class="cardTitle">
-    <b>Spending Overview</b>
-
-    <button data-action="period">
-      This Month⌄
-    </button>
-  </div>
-
-  <div class="spendingBody">
-
-    <div class="donut">
-
-      <div class="donutInner">
-        <b>$2,832</b>
-        <small>Total Spent</small>
-      </div>
-
-    </div>
-
-    <div class="legend">
-
-      <div>
-        <i class="dot blue"></i>
-        Shopping
-        <b>$962</b>
-      </div>
-
-      <div>
-        <i class="dot green"></i>
-        Food & Dining
-        <b>$584</b>
-      </div>
-
-      <div>
-        <i class="dot yellow"></i>
-        Transport
-        <b>$448</b>
-      </div>
-
-      <div>
-        <i class="dot red"></i>
-        Bills
-        <b>$420</b>
-      </div>
-
-      <div>
-        <i class="dot purple"></i>
-        Entertainment
-        <b>$418</b>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="card">
-
-  <div class="cardTitle">
-    <b>Recent Transactions</b>
-
-    <button data-page="transactions">
-      View All
-    </button>
-  </div>
-
-  <div id="recentList"></div>
-
-</section>
-
-
-<div class="securityBanner">
-
-  <div class="secCircle">
-    🔒
-  </div>
-
-  <div class="secText">
-    <b>Secure Your Account</b>
-    <small>
-      Complete your profile verification
-    </small>
-  </div>
-
-  <button
-    class="verify"
-    data-action="verify"
-  >
-    Verify Now
-  </button>
-
-</div>
-
-
-<section class="card">
-
-  <div class="cardTitle">
-    <b>Services</b>
-
-    <button data-page="more">
-      View All ›
-    </button>
-  </div>
-
-  <div class="servicesGrid">
-
-    <button class="service" data-action="airtime">
-      <span class="serviceIcon">▣</span>
-      <b>Airtime</b>
-    </button>
-
-    <button class="service" data-action="data">
-      <span class="serviceIcon">⌁</span>
-      <b>Data</b>
-    </button>
-
-    <button class="service" data-action="electricity">
-      <span class="serviceIcon">ϟ</span>
-      <b>Electricity</b>
-    </button>
-
-    <button class="service" data-action="tv">
-      <span class="serviceIcon">▤</span>
-      <b>TV</b>
-    </button>
-
-    <button class="service" data-action="internet">
-      <span class="serviceIcon">⌁</span>
-      <b>Internet</b>
-    </button>
-
-    <button class="service" data-page="savings">
-      <span class="serviceIcon">🐷</span>
-      <b>Savings</b>
-    </button>
-
-    <button class="service" data-action="loan">
-      <span class="serviceIcon">🏦</span>
-      <b>Loan Center</b>
-    </button>
-
-    <button class="service" data-action="insurance">
-      <span class="serviceIcon">♢</span>
-      <b>Insurance</b>
-    </button>
-
-    <button class="service" data-action="gift">
-      <span class="serviceIcon">▣</span>
-      <b>Gift Card</b>
-    </button>
-
-    <button class="service" data-page="more">
-      <span class="serviceIcon">•••</span>
-      <b>More</b>
-    </button>
-
-  </div>
-
-</section>
-
-
-<div class="savingsBanner">
-
-  <div class="pig">🐷</div>
-
-  <div class="savingText">
-
-    <b>
-      Start Fixed Savings with CashFlow
-    </b>
-
-    <small>
-      Earn up to
-      <strong style="color:#16d49c">
-        10%
-      </strong>
-      interest on your savings.
-    </small>
-
-  </div>
-
-  <button
-    class="start"
-    data-page="savings"
-  >
-    Start Saving ›
-  </button>
-
+<button onclick="show('transfer')"><span class="quickIcon">↗</span><b>Transfer</b></button>
+<button onclick="show('bills')"><span class="quickIcon">▤</span><b>Pay Bills</b></button>
+<button onclick="show('deposit')"><span class="quickIcon">↓</span><b>Deposit</b></button>
+<button onclick="show('more')"><span class="quickIcon">•••</span><b>More</b></button>
 </div>
 
 </main>
 </section>
-'''
 
-print(html)
-print("\n\n--- PART 1 OF 2 COMPLETE ---\n\n")
-print("I can send the remaining JavaScript and the rest of the screens next.")
-print(f"Characters: {len(html):,}")
-print(f"Lines: {html.count(chr(10))+1:,}")
-print("A single response containing the entire file may be truncated by the chat interface, so splitting it prevents missing code.")
-print("The file itself is already complete at /mnt/data/cashflowbank_all_in_one.html")
-print("\n--- END PART 1 ---")
+<!-- TRANSFER -->
+<section id="transfer" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Pay & Transfer</h2><button onclick="toast('Transfer Settings')">⚙</button></div>
+<form onsubmit="transfer(event)">
+<div class="transferBox"><label>Recipient</label><div class="inputRow">👥<select required><option value="">Select recipient</option><option>Junior McHenry</option><option>Sophie Okoro</option><option>Alex Cooper</option></select></div></div>
+<div class="transferBox"><label>Amount</label><div class="inputRow">$<input type="number" placeholder="Enter amount" min="1" required><small>USD</small></div></div>
+<button class="primary">Send Money</button>
+</form>
+</main>
+</section>
+
+<!-- ACCOUNTS -->
+<section id="accounts" class="page">
+<main>
+<div class="pageHeader"><h2>Accounts</h2><button onclick="toast('Add New Account')">＋</button></div>
+<div class="account"><span>Cashflow Checking</span><strong>$8,542.68</strong><small>•••• 4821</small></div>
+<div class="account secondary"><span>Cashflow Savings</span><strong>$3,210.00</strong><small>•••• 9044</small></div>
+</main>
+</section>
+
+<!-- TRANSACTIONS -->
+<section id="transactions" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Transactions</h2></div>
+<section class="card">
+<div class="transaction"><div class="transactionIcon">🛒</div><div class="transactionInfo"><b>Whole Foods Market</b><small>Groceries · Today</small></div><strong style="color:#ff6871">-$68.24</strong></div>
+<div class="transaction"><div class="transactionIcon">💵</div><div class="transactionInfo"><b>Direct Deposit</b><small>Salary · Yesterday</small></div><strong style="color:#16d49c">+$2,500.00</strong></div>
+</section>
+</main>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+<main>
+<div class="pageHeader"><h2>Profile</h2><button onclick="toast('Profile Settings')">⚙</button></div>
+<div class="profile"><div class="bigAvatar">A</div><h2>Alex Johnson</h2><p>alex@example.com</p></div>
+<button class="menu" onclick="toast('Personal Information')"><span>Personal information</span><b>›</b></button>
+<button class="menu" onclick="toast('Security & Privacy')"><span>Security & privacy</span><b>›</b></button>
+</main>
+</section>
+
+<!-- DEPOSIT -->
+<section id="deposit" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Deposit</h2></div>
+<div class="simpleIcon">💰</div>
+<h2 class="center">Add Money</h2>
+<p class="muted center">Choose how you'd like to add money to your Cashflowbank account.</p><br>
+<button class="menu" onclick="toast('Bank Transfer selected')"><span>🏦 Bank Transfer</span><b>›</b></button>
+<button class="menu" onclick="toast('Debit Card selected')"><span>💳 Debit Card</span><b>›</b></button>
+</main>
+</section>
+
+<!-- BILLS -->
+<section id="bills" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Pay Bills</h2></div>
+<div class="quick">
+<button onclick="toast('Pay Electricity')"><span class="quickIcon">ϟ</span><b>Electricity</b></button>
+<button onclick="toast('Pay TV')"><span class="quickIcon">▣</span><b>TV</b></button>
+</div>
+</main>
+</section>
+
+<!-- MORE -->
+<section id="more" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>More</h2></div>
+<button class="menu" onclick="toast('Cards')"><span>Cards</span><b>›</b></button>
+<button class="menu" onclick="toast('Loans')"><span>Loans</span><b>›</b></button>
+<button class="menu" onclick="toast('Help Center')"><span>Help Center</span><b>›</b></button>
+</main>
+</section>
+
+<!-- SAVINGS -->
+<section id="savings" class="page">
+<main>
+<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Savings</h2></div>
+<div class="account"><span>Cashflow Savings</span><strong>$3,210.00</strong><small>•••• 9044</small></div>
+</main>
+</section>
+
+<!-- BOTTOM NAV -->
+<nav class="nav">
+<button id="navHome" onclick="show('dashboard')" class="active"><span class="navIcon">⌂</span>Home</button>
+<button onclick="show('accounts')"><span class="navIcon">▣</span>Accounts</button>
+<button onclick="show('transfer')"><span class="navIcon">↗</span>Pay</button>
+<button onclick="show('savings')"><span class="navIcon">▱</span>Budget</button>
+<button onclick="show('more')"><span class="navIcon">☰</span>More</button>
+</nav>
+
+</div>
+
+<script>
+/* LOADING SCREEN */
+let progress=0;
+const loadingTimer=setInterval(()=>{
+progress+=2;
+document.getElementById("progressBar").style.width=progress+"%";
+document.getElementById("percent").innerText=progress+"%";
+if(progress>=100){
+clearInterval(loadingTimer);
+setTimeout(()=>{
+document.getElementById("loading").style.display="none";
+show("login");
+},400);
+}
+},30);
+
+/* PAGE NAVIGATION */
+function show(page){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+document.getElementById(page).classList.add("active");
+window.scrollTo({top:0,behavior:"smooth"});
+document.querySelectorAll(".nav button").forEach(b=>{
+b.classList.remove("active");
+});
+if(page==="dashboard"){
+document.getElementById("navHome").classList.add("active");
+}
+}
+
+/* TOAST FUNCTION */
+function toast(msg){
+alert(msg);
+}
+
+/* LOGIN */
+function login(event){
+event.preventDefault();
+show("dashboard");
+}
+
+/* SIGNUP */
+function signup(event){
+event.preventDefault();
+show("dashboard");
+}
+
+/* TRANSFER */
+function transfer(event){
+event.preventDefault();
+toast("Transfer Successful");
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+});
+</script>
+</body>
+</html>
