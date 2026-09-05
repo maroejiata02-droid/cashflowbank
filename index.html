@@ -3,1081 +3,865 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#06101f">
-<title>Cashflowbank — Demo</title>
+<title>CASHFLOWBANK — Demo</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Inter,Arial,sans-serif;
-  background:#020916;
-  color:#fff;
+:root {
+  --green: #19a86b;
+  --dark-green: #08794b;
+  --light-green: #e9f8f0;
+  --bg: #f5f9f7;
+  --text: #17221d;
+  --muted: #748079;
+  --border: #e2ebe6;
+  --white: #ffffff;
 }
 
-body{
-  overflow-x:hidden;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-button,input,select{
-  font:inherit;
+button,
+input {
+  font: inherit;
 }
 
-button{
-  cursor:pointer;
+button {
+  cursor: pointer;
 }
 
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
+.hidden {
+  display: none !important;
 }
 
-.page{
-  display:none;
-  min-height:100vh;
+/* DEMO LABEL */
+
+.demo-label {
+  position: fixed;
+  right: 12px;
+  top: 12px;
+  z-index: 9999;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #fff3cd;
+  color: #765800;
+  border: 1px solid #ead58a;
+  font-size: 11px;
+  font-weight: 800;
 }
 
-.page.active{
-  display:block;
+/* LOGO */
+
+.logo {
+  width: 68px;
+  height: 68px;
+  border-radius: 21px;
+  background: linear-gradient(145deg, #2cba80, #08794b);
+  position: relative;
+  box-shadow: 0 15px 35px rgba(20, 150, 95, .18);
 }
 
-.app{
-  max-width:540px;
-  min-height:100vh;
-  margin:auto;
+.logo::before,
+.logo::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+}
+
+.logo::before {
+  width: 34px;
+  height: 10px;
+  left: 17px;
+  top: 29px;
+  transform: rotate(-45deg);
+}
+
+.logo::after {
+  width: 10px;
+  height: 34px;
+  left: 29px;
+  top: 17px;
+  transform: rotate(-45deg);
+}
+
+/* LOADING */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: linear-gradient(145deg, #ffffff, #e6f8ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading-name {
+  margin-top: 18px;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.loading-track {
+  width: 190px;
+  height: 5px;
+  background: #d7eee2;
+  border-radius: 20px;
+  margin-top: 25px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  width: 0;
+  height: 100%;
+  background: var(--green);
+  animation: loading 1.8s forwards;
+}
+
+@keyframes loading {
+  to {
+    width: 100%;
+  }
+}
+
+/* AUTH */
+
+.auth-area {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 15px;
   background:
-    radial-gradient(circle at 80% 0,#0a326e 0,transparent 28%),
-    #020916;
-  padding-bottom:100px;
+    radial-gradient(circle at 100% 0, #e4f8ed, transparent 35%),
+    var(--bg);
 }
 
-/* =========================
-   LOGO
-========================= */
-
-.logo{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-}
-
-.logoMark{
-  width:54px;
-  height:54px;
-  border:5px solid #1187ff;
-  border-radius:17px;
-  display:grid;
-  place-items:center;
-  color:#1187ff;
-  font-size:29px;
-  font-weight:900;
-  box-shadow:0 0 28px #087fff44;
-}
-
-.logoText{
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.logoText span{
-  color:#168cff;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-#loading{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:grid;
-  place-content:center;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 55%,#073d91 0,transparent 30%),
-    #020916;
-}
-
-.loadSub{
-  color:#8191a8;
-  margin:20px 0 55px;
-}
-
-.loader{
-  width:min(360px,82vw);
-}
-
-.progress{
-  height:8px;
-  background:#10243d;
-  border-radius:50px;
-  overflow:hidden;
-}
-
-.progressBar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#0879ff,#25a7ff);
-  transition:width:.1s linear;
-}
-
-.loadingInfo{
-  display:flex;
-  justify-content:space-between;
-  margin-top:9px;
-  color:#8090a6;
-  font-size:10px;
-}
-
-.loadingInfo b{
-  color:#1c8fff;
-}
-
-/* =========================
-   AUTH
-========================= */
-
-.auth{
-  padding:24px;
-}
-
-.authTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:50px;
-}
-
-.iconBtn{
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:23px;
-}
-
-.authBox{
-  max-width:430px;
-  margin:auto;
-}
-
-.authBox .logo{
-  flex-direction:column;
-  margin-bottom:38px;
-}
-
-.authBox h1{
-  margin:0 0 8px;
-  font-size:28px;
-}
-
-.muted{
-  color:#8190a6;
-  font-size:13px;
-}
-
-.form{
-  margin-top:28px;
-}
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:18px;
-}
-
-input,select{
-  width:100%;
-  height:52px;
-  margin-top:8px;
-  padding:0 14px;
-  border:1px solid #263a55;
-  border-radius:12px;
-  outline:none;
-  background:#071426;
-  color:#fff;
-}
-
-input:focus,select:focus{
-  border-color:#168cff;
-}
-
-.primary{
-  width:100%;
-  min-height:52px;
-  border:0;
-  border-radius:12px;
-  background:linear-gradient(100deg,#0877ff,#138fff);
-  color:#fff;
-  font-weight:800;
-}
-
-.link{
-  border:0;
-  background:none;
-  color:#268fff;
-}
-
-.forgot{
-  display:block;
-  width:100%;
-  text-align:right;
-  margin:-5px 0 25px;
-  font-size:12px;
-}
-
-.authSwitch{
-  text-align:center;
-  color:#8190a6;
-  font-size:13px;
-  margin:32px 0;
-}
-
-.security{
-  text-align:center;
-  color:#7e8fa6;
-  font-size:11px;
-  line-height:1.6;
-}
-
-/* =========================
-   VERIFICATION
-========================= */
-
-.verifyPage{
-  padding:25px;
-}
-
-.verifyBox{
-  max-width:430px;
-  margin:70px auto 0;
-  text-align:center;
-}
-
-.verifyIcon{
-  width:72px;
-  height:72px;
-  margin:0 auto 25px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#092e5c;
-  border:1px solid #176be5;
-  color:#2a96ff;
-  font-size:31px;
-}
-
-.verifyBox h1{
-  font-size:27px;
-  margin-bottom:10px;
-}
-
-.verifyBox p{
-  color:#8291a8;
-  font-size:13px;
-  line-height:1.6;
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 27px;
+  padding: 38px;
+  box-shadow: 0 25px 70px rgba(30, 70, 50, .08);
 }
 
-.codeInputs{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin:30px 0;
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
-.codeInput{
-  width:46px;
-  height:56px;
-  margin:0;
-  padding:0;
-  text-align:center;
-  font-size:22px;
-  font-weight:800;
-  border-radius:11px;
+.auth-brand .logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  box-shadow: none;
 }
 
-.demoCode{
-  margin:18px 0;
-  padding:12px;
-  border:1px dashed #176be5;
-  border-radius:11px;
-  background:#061a35;
-  color:#92b7e7;
-  font-size:11px;
+.auth-brand .logo::before {
+  width: 23px;
+  height: 7px;
+  left: 11px;
+  top: 19px;
 }
 
-.demoCode strong{
-  color:#27a0ff;
-  font-size:18px;
-  letter-spacing:4px;
+.auth-brand .logo::after {
+  width: 7px;
+  height: 23px;
+  left: 19px;
+  top: 11px;
 }
 
-.codeMessage{
-  min-height:20px;
-  font-size:11px;
-  margin:12px 0;
+.auth-brand span {
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
-.error{
-  color:#ff6b72;
+h1 {
+  font-size: 29px;
+  margin-bottom: 9px;
 }
 
-.success{
-  color:#19d49c;
+.subtitle {
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 27px;
 }
 
-.resend{
-  margin-top:18px;
-  font-size:12px;
+.field {
+  margin-bottom: 17px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
-main{
-  padding:22px 18px;
+.field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-.top{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
+.field input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 15px;
+  outline: none;
+  background: white;
 }
 
-.avatar,
-.bigAvatar{
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:linear-gradient(135deg,#486bff,#075fff);
-  font-weight:800;
+.field input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(25, 168, 107, .08);
 }
 
-.avatar{
-  width:48px;
-  height:48px;
-  font-size:18px;
+.primary-button {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  background: var(--green);
+  color: white;
+  font-weight: 800;
+  transition: .2s;
 }
 
-.greeting{
-  flex:1;
+.primary-button:hover {
+  background: var(--dark-green);
+  transform: translateY(-1px);
 }
 
-.greeting small{
-  color:#8291a8;
+.secondary-button {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: white;
+  color: var(--dark-green);
+  font-weight: 800;
 }
 
-.greeting h3{
-  margin:3px 0;
-  font-size:18px;
+.text-button {
+  border: none;
+  background: none;
+  color: var(--dark-green);
+  font-weight: 700;
 }
 
-.topIcons{
-  display:flex;
-  gap:2px;
+.forgot {
+  display: block;
+  margin: 0 0 20px auto;
 }
 
-.topIcons button{
-  position:relative;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:18px;
+.auth-footer {
+  text-align: center;
+  margin-top: 23px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
-.badge{
-  position:absolute;
-  right:-3px;
-  top:-5px;
-  width:15px;
-  height:15px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#1885ff;
-  font-size:8px;
-  font-style:normal;
+.demo-notice {
+  background: #f2faf6;
+  border: 1px solid #d8eee2;
+  color: #39735a;
+  border-radius: 13px;
+  padding: 12px;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.notice{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin-bottom:20px;
-  padding:13px;
-  border:1px solid #173b6c;
-  border-radius:12px;
-  background:#061b3a;
-  color:#b7c6da;
-  font-size:10px;
+.message {
+  display: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-bottom: 17px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.notice strong{
-  color:#3b98ff;
+.message.error {
+  display: block;
+  color: #a32929;
+  background: #fff0f0;
 }
 
-/* Balance */
-
-.balance{
-  overflow:hidden;
-  margin-bottom:13px;
-  border:1px solid #176be5;
-  border-radius:17px;
-  background:linear-gradient(135deg,#1746be,#09256c);
+.message.success {
+  display: block;
+  color: #08794b;
+  background: #eaf8f1;
 }
 
-.balanceTop{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:20px;
-}
+/* VERIFICATION */
 
-.balanceLabel{
-  color:#d1def5;
-  font-size:12px;
+.code-inputs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin: 25px 0;
 }
 
-.balanceAmount{
-  display:block;
-  margin-top:7px;
-  font-size:37px;
-  font-weight:800;
+.code-inputs input {
+  width: 100%;
+  height: 54px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 800;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
 }
 
-.addMoney{
-  height:42px;
-  padding:0 15px;
-  border:0;
-  border-radius:25px;
-  background:#1679ff;
-  color:#fff;
-  font-weight:800;
+.code-inputs input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(25, 168, 107, .08);
 }
 
-.earnings{
-  padding:0 20px 18px;
-  color:#b6c6de;
-  font-size:11px;
+.verification-info {
+  background: #f8fbf9;
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 13px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.earnings strong{
-  margin-left:12px;
-  color:#15d39c;
-}
+/* DASHBOARD */
 
-.history{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:16px;
-  border:0;
-  border-top:1px solid #ffffff19;
-  background:#03142dcc;
-  color:#fff;
+#dashboard {
+  min-height: 100vh;
+  background: var(--bg);
 }
 
-.history span:last-child{
-  color:#3d94ff;
+.topbar {
+  height: 75px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
-
-/* Quick actions */
 
-.quick{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:6px;
-  margin-bottom:13px;
-  padding:12px 5px;
-  border:1px solid #1d304a;
-  border-radius:14px;
-  background:#071426;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: .8px;
 }
 
-.quick button{
-  border:0;
-  background:none;
-  color:#fff;
-  text-align:center;
+.brand .logo {
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  box-shadow: none;
 }
 
-.quickIcon{
-  width:43px;
-  height:43px;
-  display:grid;
-  place-items:center;
-  margin:auto;
-  border-radius:50%;
-  background:#0d2546;
-  color:#238aff;
-  font-size:20px;
+.brand .logo::before {
+  width: 21px;
+  height: 7px;
+  left: 9px;
+  top: 16px;
 }
 
-.quick b{
-  display:block;
-  margin-top:6px;
-  font-size:9px;
+.brand .logo::after {
+  width: 7px;
+  height: 21px;
+  left: 16px;
+  top: 9px;
 }
 
-/* Cards */
-
-.card{
-  overflow:hidden;
-  margin-bottom:13px;
-  border:1px solid #1d3049;
-  border-radius:14px;
-  background:#071426;
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.cardTitle{
-  display:flex;
-  justify-content:space-between;
-  padding:15px;
-  font-size:12px;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #dff5e9;
+  color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
 }
 
-.cardTitle button{
-  border:0;
-  background:none;
-  color:#3c94ff;
-  font-size:10px;
+.logout-button {
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
 }
 
-/* Spending */
-
-.spendingBody{
-  display:flex;
-  align-items:center;
-  gap:17px;
-  padding:4px 14px 18px;
+.container {
+  width: min(1180px, 92%);
+  margin: auto;
+  padding: 35px 0 105px;
 }
 
-.donut{
-  width:122px;
-  height:122px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:
-    conic-gradient(
-      #1680ff 0 34%,
-      #28bd70 34% 55%,
-      #ffd23e 55% 71%,
-      #ff6250 71% 86%,
-      #925be7 86%
-    );
+.greeting {
+  margin-bottom: 25px;
 }
 
-.donutInner{
-  width:80px;
-  height:80px;
-  display:grid;
-  place-content:center;
-  text-align:center;
-  border-radius:50%;
-  background:#071426;
+.greeting h2 {
+  font-size: 29px;
+  margin-bottom: 6px;
 }
 
-.donutInner b{
-  font-size:14px;
+.greeting p {
+  color: var(--muted);
 }
 
-.donutInner small{
-  color:#7f90a7;
-  font-size:8px;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 20px;
 }
 
-.legend{
-  flex:1;
-  font-size:9px;
+.balance-card {
+  min-height: 220px;
+  padding: 29px;
+  border-radius: 25px;
+  color: white;
+  background: linear-gradient(135deg, #19a86b, #08734a);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(8, 127, 79, .16);
 }
 
-.legend div{
-  display:flex;
-  gap:7px;
-  margin:9px 0;
+.balance-card::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 45px solid rgba(255, 255, 255, .06);
+  border-radius: 50%;
+  right: -85px;
+  top: -90px;
 }
 
-.legend b{
-  margin-left:auto;
+.balance-label {
+  opacity: .82;
+  font-size: 14px;
 }
 
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
+.balance {
+  font-size: 40px;
+  font-weight: 900;
+  margin: 18px 0 27px;
 }
-
-.blue{background:#1680ff}
-.green{background:#28bd70}
-.yellow{background:#ffd23e}
-.red{background:#ff6250}
-.purple{background:#925be7}
 
-/* Transactions */
-
-.transaction{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 15px;
-  border-top:1px solid #172a42;
+.account-number {
+  font-size: 13px;
+  opacity: .78;
 }
 
-.transactionIcon,
-.recipientAvatar{
-  width:37px;
-  height:37px;
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-  border-radius:50%;
-  background:#102845;
+.spending {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 25px;
 }
 
-.transactionInfo{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+.card-title {
+  font-weight: 800;
+  margin-bottom: 20px;
 }
 
-.transactionInfo b{
-  font-size:11px;
+.chart {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--green) 0 61%,
+    #9fdec0 61% 78%,
+    #e1f2e9 78% 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.transactionInfo small{
-  color:#7789a0;
-  font-size:8px;
+.chart-center {
+  width: 106px;
+  height: 106px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.transactionAmount{
-  margin-left:auto;
-  font-size:11px;
+.chart-center strong {
+  font-size: 20px;
 }
 
-.positive{
-  color:#16d49c;
+.chart-center small {
+  color: var(--muted);
 }
 
-.negative{
-  color:#ff6871;
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
 }
 
-/* Security */
-
-.securityBanner{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:13px;
-  padding:14px;
-  border:1px solid #1d3049;
-  border-radius:14px;
-  background:#071426;
+.action {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 18px;
+  padding: 20px 10px;
+  transition: .2s;
 }
 
-.secCircle{
-  width:39px;
-  height:39px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#064c3b;
-  color:#19d49c;
+.action:hover {
+  transform: translateY(-2px);
 }
 
-.secText{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+.action-icon {
+  width: 44px;
+  height: 44px;
+  margin: auto auto 9px;
+  border-radius: 13px;
+  background: var(--light-green);
+  color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
 }
 
-.secText b{
-  font-size:12px;
+.action span {
+  font-size: 13px;
+  font-weight: 750;
 }
 
-.secText small{
-  color:#8090a6;
-  font-size:9px;
+.transactions {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 25px;
+  margin-top: 20px;
 }
 
-.verify{
-  margin-left:auto;
-  padding:8px 10px;
-  border:1px solid #193e70;
-  border-radius:20px;
-  background:#092347;
-  color:#4598ff;
-  font-size:9px;
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-/* Services */
 
-.servicesGrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:0 9px 14px;
+.transaction-header h3 {
+  font-size: 18px;
 }
 
-.service{
-  min-height:70px;
-  border:1px solid #1c3049;
-  border-radius:10px;
-  background:#09172b;
-  color:#fff;
+.view-all {
+  border: none;
+  background: none;
+  color: var(--dark-green);
+  font-weight: 750;
 }
 
-.serviceIcon{
-  display:block;
-  margin:9px 0 6px;
-  color:#268bff;
-  font-size:19px;
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 0;
+  border-bottom: 1px solid #edf2ef;
 }
 
-.service b{
-  font-size:7px;
+.transaction:last-child {
+  border-bottom: none;
 }
 
-/* Savings */
-
-.savingsBanner{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin-bottom:10px;
-  padding:12px;
-  border:1px solid #164d9c;
-  border-radius:14px;
-  background:linear-gradient(90deg,#062457,#07316d);
+.transaction-info {
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
-.pig{
-  font-size:32px;
+.transaction-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  background: #f1f5f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.savingText{
-  flex:1;
+.transaction-name {
+  font-size: 14px;
+  font-weight: 750;
 }
 
-.savingText b{
-  display:block;
-  font-size:10px;
+.transaction-date {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
 }
 
-.savingText small{
-  color:#8da1ba;
-  font-size:8px;
+.amount {
+  font-size: 14px;
+  font-weight: 800;
 }
 
-.start{
-  padding:9px 11px;
-  border:0;
-  border-radius:20px;
-  background:#087bff;
-  color:#fff;
-  font-size:8px;
+.positive {
+  color: var(--dark-green);
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* BOTTOM NAV */
 
-.nav{
-  position:fixed;
-  z-index:100;
-  bottom:10px;
-  left:50%;
-  width:min(500px,calc(100% - 24px));
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  padding:8px 3px;
-  transform:translateX(-50%);
-  border:1px solid #203651;
-  border-radius:19px;
-  background:#091526ee;
-  backdrop-filter:blur(18px);
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: white;
+  border-top: 1px solid var(--border);
+  z-index: 50;
 }
 
-.nav button{
-  border:0;
-  background:none;
-  color:#8291a8;
-  font-size:9px;
+.nav {
+  width: min(700px, 100%);
+  height: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
-.nav button.active{
-  color:#258bff;
+.nav button {
+  border: none;
+  background: white;
+  color: #7b8580;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.navIcon{
-  display:block;
-  margin-bottom:3px;
-  font-size:19px;
+.nav button.active {
+  color: var(--dark-green);
 }
 
-/* =========================
-   OTHER SCREENS
-========================= */
-
-.pageContent{
-  padding:22px 18px;
+.nav-icon {
+  display: block;
+  font-size: 19px;
+  margin-bottom: 4px;
 }
 
-.pageHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:25px;
-}
+/* ADMIN */
 
-.pageHeader h2{
-  margin:0;
-  font-size:20px;
+.admin-page {
+  min-height: 100vh;
+  padding: 35px 15px 70px;
+  background: var(--bg);
 }
 
-.back{
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:22px;
+.admin-container {
+  width: min(900px, 100%);
+  margin: auto;
 }
 
-.tabs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  margin-bottom:25px;
-  border-bottom:1px solid #25364c;
+.admin-header {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 25px;
+  margin-bottom: 18px;
 }
 
-.tabs button{
-  padding:12px;
-  border:0;
-  background:none;
-  color:#8391a6;
-  font-size:11px;
+.admin-header h1 {
+  margin-bottom: 8px;
 }
 
-.tabs .selected{
-  color:#168cff;
-  border-bottom:2px solid #168cff;
+.admin-header p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
-.transferBox{
-  margin-bottom:18px;
+.admin-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 25px;
 }
 
-.inputRow{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  height:52px;
-  padding:0 12px;
-  border:1px solid #263a55;
-  border-radius:12px;
-  background:#071426;
+.admin-account {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  margin-bottom: 12px;
 }
 
-.inputRow input,
-.inputRow select{
-  height:100%;
-  margin:0;
-  padding:0;
-  border:0;
-  background:transparent;
+.admin-account-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
 }
 
-.recipients{
-  margin-top:25px;
+.account-name {
+  font-weight: 800;
 }
 
-.recipient{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 15px;
-  border-top:1px solid #172a42;
+.account-email {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
-.recipientInfo{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+.code-box {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 13px;
+  background: #f1faf5;
+  text-align: center;
 }
 
-.recipientInfo b{
-  font-size:11px;
+.code-box strong {
+  display: block;
+  font-size: 26px;
+  letter-spacing: 5px;
+  color: var(--dark-green);
+  margin-top: 5px;
 }
 
-.recipientInfo small{
-  color:#7789a0;
-  font-size:8px;
+.admin-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.recipientArrow{
-  margin-left:auto;
-  color:#238bff;
+.small-button {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 700;
 }
 
-.account{
-  margin-bottom:13px;
-  padding:22px;
-  border:1px solid #176be5;
-  border-radius:16px;
-  background:linear-gradient(135deg,#123eaa,#081e59);
+.small-button.green {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
 }
 
-.account.secondary{
-  border-color:#213a59;
-  background:#07182f;
-}
+/* MODAL */
 
-.account span,
-.account small{
-  display:block;
-  color:#bdcbe1;
-  font-size:11px;
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 25, 18, .45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.account strong{
-  display:block;
-  margin:15px 0;
-  font-size:31px;
+.modal.show {
+  display: flex;
 }
 
-.outline{
-  width:100%;
-  height:50px;
-  border:1px solid #253954;
-  border-radius:11px;
-  background:#09172a;
-  color:#298eff;
+.modal-box {
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
 }
 
-.profile{
-  padding:20px;
-  text-align:center;
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
-.bigAvatar{
-  width:84px;
-  height:84px;
-  margin:auto;
-  font-size:30px;
+.close-button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f4f2;
+  font-size: 20px;
 }
 
-.profile h2{
-  margin:14px 0 5px;
+.modal-box p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-.profile p{
-  color:#8291a8;
-  font-size:12px;
-}
+/* RESPONSIVE */
 
-.menu{
-  width:100%;
-  height:54px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:8px;
-  padding:0 15px;
-  border:1px solid #1c3049;
-  border-radius:12px;
-  background:#071426;
-  color:#fff;
-}
+@media (max-width: 800px) {
 
-.menu span{
-  font-size:12px;
-}
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
 
-.center{
-  text-align:center;
-}
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.simpleIcon{
-  margin:70px 0 20px;
-  text-align:center;
-  font-size:55px;
+  .logout-button {
+    display: none;
+  }
 }
-
-/* =========================
-   MODAL
-========================= */
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:500;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  background:#000b;
-}
+@media (max-width: 500px) {
 
-.modal.show{
-  display:flex;
-}
+  .auth-card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
 
-.modalBox{
-  width:min(540px,100%);
-  max-height:90vh;
-  overflow:auto;
-  padding:22px;
-  border:1px solid #28425f;
-  border-radius:22px 22px 0 0;
-  background:#071426;
-}
+  h1 {
+    font-size: 25px;
+  }
 
-.modalClose{
-  float:right;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:22px;
-}
+  .container {
+    width: 94%;
+    padding-top: 25px;
+  }
 
-/* =========================
-   TOAST
-========================= */
+  .balance {
+    font-size: 34px;
+  }
 
-.toast{
-  position:fixed;
-  z-index:1000;
-  left:50%;
-  bottom:100px;
-  max-width:90%;
-  padding:12px 16px;
-  transform:translateX(-50%) translateY(20px);
-  border:1px solid #2b4b6c;
-  border-radius:12px;
-  background:#0d2138;
-  color:#fff;
-  font-size:11px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-}
+  .brand span {
+    font-size: 14px;
+  }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
+  .code-inputs {
+    gap: 5px;
+  }
 
-@media(min-width:700px){
-  .app{
-    border-right:1px solid #14263d;
-    border-left:1px solid #14263d;
+  .admin-buttons {
+    flex-direction: column;
   }
 }
 </style>
@@ -1085,1231 +869,300 @@ main{
 
 <body>
 
-<!-- =========================
-     LOADING SCREEN
-========================= -->
+<div class="demo-label">DEMO ONLY</div>
+
+
+<!-- LOADING SCREEN -->
 
 <div id="loading">
 
-  <div class="logo">
-    <div class="logoMark">C</div>
-    <div class="logoText">
-      CASH<span>FLOW</span>BANK
-    </div>
+  <div class="logo"></div>
+
+  <div class="loading-name">
+    CASHFLOWBANK
   </div>
 
-  <div class="loadSub">
-    Banking that moves with you.
+  <div class="loading-track">
+    <div class="loading-bar"></div>
   </div>
 
-  <div class="loader">
-
-    <div class="progress">
-      <div
-        class="progressBar"
-        id="progressBar"
-      ></div>
-    </div>
-
-    <div class="loadingInfo">
-      <span>Loading your experience...</span>
-      <b id="percent">0%</b>
-    </div>
-
-  </div>
 </div>
 
 
-<div class="app">
+<!-- CUSTOMER AUTH AREA -->
 
-<!-- =========================
-     LOGIN
-========================= -->
+<div id="authArea" class="auth-area hidden">
 
-<section
-  id="login"
-  class="page auth"
->
 
-  <div class="authTop">
+  <!-- LOGIN -->
 
-    <button
-      class="iconBtn"
-      data-action="back"
-    >
-      ←
-    </button>
+  <div id="loginPage" class="auth-card">
 
-    <button
-      class="iconBtn"
-      data-action="security"
-    >
-      🛡️
-    </button>
-
-  </div>
-
-  <div class="authBox">
-
-    <div class="logo">
-
-      <div class="logoMark">
-        C
-      </div>
-
-      <div class="logoText">
-        CASH<span>FLOW</span>BANK
-      </div>
-
+    <div class="auth-brand">
+      <div class="logo"></div>
+      <span>CASHFLOWBANK</span>
     </div>
 
-    <h1>
-      Sign in to your account
-    </h1>
+    <h1>Sign in to your account</h1>
 
-    <p class="muted">
-      Welcome back! Please enter your details.
+    <p class="subtitle">
+      Welcome back. Enter your demo account details.
     </p>
 
-    <form
-      class="form"
-      id="loginForm"
+    <div id="loginMessage" class="message"></div>
+
+    <div class="field">
+      <label>Email address</label>
+      <input
+        id="loginEmail"
+        type="email"
+        placeholder="you@example.com"
+      >
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input
+        id="loginPassword"
+        type="password"
+        placeholder="Enter your password"
+      >
+    </div>
+
+    <button
+      class="text-button forgot"
+      onclick="showPage('forgotPage')"
     >
+      Forgot password?
+    </button>
 
-      <label>
-        Email address
+    <button
+      class="primary-button"
+      onclick="login()"
+    >
+      Log in
+    </button>
 
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
-      </label>
-
-      <label>
-        Password
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-          required
-        >
-      </label>
-
-      <button
-        type="button"
-        class="link forgot"
-        data-action="forgot"
-      >
-        Forgot password?
-      </button>
-
-      <button
-        type="submit"
-        class="primary"
-      >
-        Log in
-      </button>
-
-    </form>
-
-    <p class="authSwitch">
-
+    <div class="auth-footer">
       New to Cashflowbank?
 
       <button
-        type="button"
-        class="link"
-        data-page="signup"
+        class="text-button"
+        onclick="showPage('signupPage')"
       >
         Sign up
       </button>
+    </div>
 
-    </p>
+    <div class="demo-notice">
+      Demo website only. Do not enter real banking credentials.
+    </div>
 
-  </div>
+    <div style="text-align:center;margin-top:18px">
 
-</section>
-
-
-<!-- =========================
-     SIGN UP
-========================= -->
-
-<section
-  id="signup"
-  class="page auth"
->
-
-  <div class="authTop">
-
-    <button
-      class="iconBtn"
-      data-page="login"
-    >
-      ←
-    </button>
-
-    <button
-      class="iconBtn"
-      data-action="security"
-    >
-      🛡️
-    </button>
-
-  </div>
-
-  <div class="authBox">
-
-    <div class="logo">
-
-      <div class="logoMark">
-        C
-      </div>
-
-      <div class="logoText">
-        CASH<span>FLOW</span>BANK
-      </div>
+      <button
+        class="text-button"
+        onclick="openAdminLogin()"
+      >
+        Demo administrator
+      </button>
 
     </div>
 
-    <h1>
-      Create your account
-    </h1>
+  </div>
 
-    <p class="muted">
-      Let's get you started.
+
+  <!-- SIGN UP -->
+
+  <div id="signupPage" class="auth-card hidden">
+
+    <div class="auth-brand">
+      <div class="logo"></div>
+      <span>CASHFLOWBANK</span>
+    </div>
+
+    <h1>Create your account</h1>
+
+    <p class="subtitle">
+      Create a demo account to explore the interface.
     </p>
 
-    <form
-      class="form"
-      id="signupForm"
-    >
+    <div id="signupMessage" class="message"></div>
 
-      <label>
-        Full name
-
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Enter your full name"
-          required
-        >
-      </label>
-
-      <label>
-        Email address
-
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
-      </label>
-
-      <label>
-        Create password
-
-        <input
-          id="signupPassword"
-          type="password"
-          minlength="6"
-          placeholder="Create a strong password"
-          required
-        >
-      </label>
-
-      <label>
-        Phone number
-
-        <input
-          id="signupPhone"
-          type="tel"
-          placeholder="Enter your phone number"
-          required
-        >
-      </label>
-
-      <button
-        type="submit"
-        class="primary"
+    <div class="field">
+      <label>Full name</label>
+      <input
+        id="signupName"
+        type="text"
+        placeholder="Alex Johnson"
       >
-        Open account
-      </button>
+    </div>
 
-    </form>
+    <div class="field">
+      <label>Email address</label>
+      <input
+        id="signupEmail"
+        type="email"
+        placeholder="you@example.com"
+      >
+    </div>
 
-    <p class="authSwitch">
+    <div class="field">
+      <label>Create password</label>
+      <input
+        id="signupPassword"
+        type="password"
+        placeholder="Create a password"
+      >
+    </div>
+
+    <div class="field">
+      <label>Phone number</label>
+      <input
+        id="signupPhone"
+        type="tel"
+        placeholder="+1 555 000 0000"
+      >
+    </div>
+
+    <button
+      class="primary-button"
+      onclick="createAccount()"
+    >
+      Open demo account
+    </button>
+
+    <div class="demo-notice">
+      Demo mode. No real bank account is opened and no
+      financial transaction is performed.
+    </div>
+
+    <div class="auth-footer">
 
       Already have an account?
 
       <button
-        type="button"
-        class="link"
-        data-page="login"
+        class="text-button"
+        onclick="showPage('loginPage')"
       >
         Log in
       </button>
 
+    </div>
+
+  </div>
+
+
+  <!-- VERIFICATION -->
+
+  <div id="verifyPage" class="auth-card hidden">
+
+    <div class="auth-brand">
+      <div class="logo"></div>
+      <span>CASHFLOWBANK</span>
+    </div>
+
+    <h1>Verification required</h1>
+
+    <p class="subtitle">
+      Your demo account is waiting for verification.
     </p>
 
-    <div class="security">
-      🛡️ Your data is protected with
-      <b>bank-grade security</b>.
+    <div class="verification-info">
+
+      Account email:
+
+      <strong id="verifyEmail"></strong>
+
+      <br><br>
+
+      Ask the demo administrator for your temporary
+      six-digit verification code.
+
+    </div>
+
+    <div id="verifyMessage" class="message"></div>
+
+    <div class="code-inputs">
+
+      <input id="code1" maxlength="1" inputmode="numeric">
+      <input id="code2" maxlength="1" inputmode="numeric">
+      <input id="code3" maxlength="1" inputmode="numeric">
+      <input id="code4" maxlength="1" inputmode="numeric">
+      <input id="code5" maxlength="1" inputmode="numeric">
+      <input id="code6" maxlength="1" inputmode="numeric">
+
+    </div>
+
+    <button
+      class="primary-button"
+      onclick="verifyCode()"
+    >
+      Verify account
+    </button>
+
+    <div class="auth-footer">
+
+      <button
+        class="text-button"
+        onclick="showPage('signupPage')"
+      >
+        Back to sign up
+      </button>
+
+    </div>
+
+    <div class="demo-notice">
+      This is a local demo verification system.
+      The verification code is not sent by email or SMS.
     </div>
 
   </div>
 
-</section>
 
+  <!-- FORGOT PASSWORD -->
 
-<!-- =========================
-     VERIFICATION
-========================= -->
+  <div id="forgotPage" class="auth-card hidden">
 
-<section
-  id="verification"
-  class="page verifyPage"
->
-
-  <div class="authTop">
-
-    <button
-      class="iconBtn"
-      data-page="signup"
-    >
-      ←
-    </button>
-
-    <button
-      class="iconBtn"
-      data-action="security"
-    >
-      🛡️
-    </button>
-
-  </div>
-
-  <div class="verifyBox">
-
-    <div class="verifyIcon">
-      ✉
+    <div class="auth-brand">
+      <div class="logo"></div>
+      <span>CASHFLOWBANK</span>
     </div>
 
-    <h1>
-      Verify your account
-    </h1>
+    <h1>Reset your password</h1>
 
-    <p>
-      Enter the 6-digit verification code
-      to finish creating your account.
+    <p class="subtitle">
+      Enter your demo email address to continue.
     </p>
 
-    <p id="verificationDestination">
-      Code sent to your email.
-    </p>
+    <div id="forgotMessage" class="message"></div>
 
-    <!--
-      DEMO ONLY:
-      The code is displayed here so you can
-      test the website without an SMS/email backend.
-    -->
+    <div class="field">
 
-    <div class="demoCode">
-
-      Demo verification code:
-
-      <br>
-
-      <strong id="demoCode">
-        ------
-      </strong>
-
-    </div>
-
-    <div
-      class="codeInputs"
-      id="codeInputs"
-    >
+      <label>Email address</label>
 
       <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-        autocomplete="one-time-code"
+        id="forgotEmail"
+        type="email"
+        placeholder="you@example.com"
       >
-
-      <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-      >
-
-      <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-      >
-
-      <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-      >
-
-      <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-      >
-
-      <input
-        class="codeInput"
-        maxlength="1"
-        inputmode="numeric"
-      >
-
-    </div>
-
-    <div
-      id="codeMessage"
-      class="codeMessage"
-    ></div>
-
-    <button
-      id="verifyCodeButton"
-      class="primary"
-    >
-      Verify code
-    </button>
-
-    <button
-      id="resendCode"
-      class="link resend"
-    >
-      Resend code
-    </button>
-
-    <p class="security">
-      For this demo, the verification code is generated
-      locally in your browser.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section
-  id="dashboard"
-  class="page"
->
-
-<main>
-
-  <div class="top">
-
-    <div
-      class="avatar"
-      id="avatar"
-    >
-      A
-    </div>
-
-    <div class="greeting">
-
-      <small>
-        Good morning,
-      </small>
-
-      <h3>
-        Hi
-        <span id="greetingName">
-          Alex
-        </span>
-        👋
-      </h3>
-
-    </div>
-
-    <div class="topIcons">
-
-      <button data-action="support">
-        ♧
-      </button>
-
-      <button data-action="scan">
-        ⌾
-      </button>
-
-      <button data-action="notifications">
-        ♧
-        <i
-          class="badge"
-          id="notifBadge"
-        >
-          2
-        </i>
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="notice">
-
-    🔊
-
-    <span>
-      <strong>System Update:</strong>
-      CashFlow is fully operational with all services.
-    </span>
-
-  </div>
-
-
-  <!-- BALANCE -->
-
-  <section class="balance">
-
-    <div class="balanceTop">
-
-      <div>
-
-        <span class="balanceLabel">
-
-          Available Balance
-
-          <button
-            id="balanceEye"
-            class="link"
-            data-action="toggleBalance"
-          >
-            👁
-          </button>
-
-        </span>
-
-        <strong
-          class="balanceAmount"
-          id="balance"
-        >
-          $8,542.68
-        </strong>
-
-      </div>
-
-      <button
-        class="addMoney"
-        data-page="deposit"
-      >
-        ＋ Add Money
-      </button>
-
-    </div>
-
-    <div class="earnings">
-
-      Today's Earnings
-
-      <strong>
-        +$12.45
-      </strong>
 
     </div>
 
     <button
-      class="history"
-      data-page="transactions"
-    >
-
-      <span>
-        ▣ Transaction History
-      </span>
-
-      <span>
-        View All ›
-      </span>
-
-    </button>
-
-  </section>
-
-
-  <!-- QUICK ACTIONS -->
-
-  <div class="quick">
-
-    <button data-page="transfer">
-
-      <span class="quickIcon">
-        ↗
-      </span>
-
-      <b>
-        Transfer
-      </b>
-
-    </button>
-
-    <button data-page="bills">
-
-      <span class="quickIcon">
-        ▤
-      </span>
-
-      <b>
-        Pay Bills
-      </b>
-
-    </button>
-
-    <button data-page="deposit">
-
-      <span class="quickIcon">
-        ↓
-      </span>
-
-      <b>
-        Deposit
-      </b>
-
-    </button>
-
-    <button data-page="more">
-
-      <span class="quickIcon">
-        •••
-      </span>
-
-      <b>
-        More
-      </b>
-
-    </button>
-
-  </div>
-
-
-  <!-- SPENDING -->
-
-  <section class="card">
-
-    <div class="cardTitle">
-
-      <b>
-        Spending Overview
-      </b>
-
-      <button data-action="period">
-        This Month⌄
-      </button>
-
-    </div>
-
-    <div class="spendingBody">
-
-      <div class="donut">
-
-        <div class="donutInner">
-
-          <b>
-            $2,832
-          </b>
-
-          <small>
-            Total Spent
-          </small>
-
-        </div>
-
-      </div>
-
-      <div class="legend">
-
-        <div>
-          <i class="dot blue"></i>
-          Shopping
-          <b>$962</b>
-        </div>
-
-        <div>
-          <i class="dot green"></i>
-          Food & Dining
-          <b>$584</b>
-        </div>
-
-        <div>
-          <i class="dot yellow"></i>
-          Transport
-          <b>$448</b>
-        </div>
-
-        <div>
-          <i class="dot red"></i>
-          Bills
-          <b>$420</b>
-        </div>
-
-        <div>
-          <i class="dot purple"></i>
-          Entertainment
-          <b>$418</b>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- RECENT TRANSACTIONS -->
-
-  <section class="card">
-
-    <div class="cardTitle">
-
-      <b>
-        Recent Transactions
-      </b>
-
-      <button data-page="transactions">
-        View All
-      </button>
-
-    </div>
-
-    <div id="recentList"></div>
-
-  </section>
-
-
-  <!-- SECURITY -->
-
-  <div class="securityBanner">
-
-    <div class="secCircle">
-      🔒
-    </div>
-
-    <div class="secText">
-
-      <b>
-        Secure Your Account
-      </b>
-
-      <small>
-        Complete your profile verification
-      </small>
-
-    </div>
-
-    <button
-      class="verify"
-      data-action="verify"
-    >
-      Verify Now
-    </button>
-
-  </div>
-
-
-  <!-- SERVICES -->
-
-  <section class="card">
-
-    <div class="cardTitle">
-
-      <b>
-        Services
-      </b>
-
-      <button data-page="more">
-        View All ›
-      </button>
-
-    </div>
-
-    <div class="servicesGrid">
-
-      <button
-        class="service"
-        data-action="airtime"
-      >
-        <span class="serviceIcon">
-          ▣
-        </span>
-        <b>Airtime</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="data"
-      >
-        <span class="serviceIcon">
-          ⌁
-        </span>
-        <b>Data</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="electricity"
-      >
-        <span class="serviceIcon">
-          ϟ
-        </span>
-        <b>Electricity</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="tv"
-      >
-        <span class="serviceIcon">
-          ▤
-        </span>
-        <b>TV</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="internet"
-      >
-        <span class="serviceIcon">
-          ⌁
-        </span>
-        <b>Internet</b>
-      </button>
-
-      <button
-        class="service"
-        data-page="savings"
-      >
-        <span class="serviceIcon">
-          🐷
-        </span>
-        <b>Savings</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="loan"
-      >
-        <span class="serviceIcon">
-          🏦
-        </span>
-        <b>Loan Center</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="insurance"
-      >
-        <span class="serviceIcon">
-          ♢
-        </span>
-        <b>Insurance</b>
-      </button>
-
-      <button
-        class="service"
-        data-action="gift"
-      >
-        <span class="serviceIcon">
-          ▣
-        </span>
-        <b>Gift Card</b>
-      </button>
-
-      <button
-        class="service"
-        data-page="more"
-      >
-        <span class="serviceIcon">
-          •••
-        </span>
-        <b>More</b>
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <div class="savingsBanner">
-
-    <div class="pig">
-      🐷
-    </div>
-
-    <div class="savingText">
-
-      <b>
-        Start Fixed Savings with CashFlow
-      </b>
-
-      <small>
-        Earn up to
-        <strong style="color:#16d49c">
-          10%
-        </strong>
-        interest on your savings.
-      </small>
-
-    </div>
-
-    <button
-      class="start"
-      data-page="savings"
-    >
-      Start Saving ›
-    </button>
-
-  </div>
-
-</main>
-
-</section>
-
-
-<!-- =========================
-     TRANSFER
-========================= -->
-
-<section
-  id="transfer"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      Transfer Money
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="tabs">
-
-    <button class="selected">
-      Send Money
-    </button>
-
-    <button>
-      Request
-    </button>
-
-    <button>
-      Scheduled
-    </button>
-
-  </div>
-
-  <div class="transferBox">
-
-    <label>
-      From account
-
-      <select id="transferAccount">
-        <option>Cashflow Checking — $8,542.68</option>
-        <option>Cashflow Savings — $2,450.00</option>
-      </select>
-
-    </label>
-
-    <label>
-      Recipient
-
-      <input
-        id="transferRecipient"
-        placeholder="Name or email"
-      >
-
-    </label>
-
-    <label>
-      Amount
-
-      <input
-        id="transferAmount"
-        type="number"
-        min="1"
-        step="0.01"
-        placeholder="$0.00"
-      >
-
-    </label>
-
-    <label>
-      Note
-
-      <input
-        id="transferNote"
-        placeholder="Optional note"
-      >
-
-    </label>
-
-    <button
-      class="primary"
-      data-action="sendTransfer"
+      class="primary-button"
+      onclick="resetPassword()"
     >
       Continue
     </button>
 
-  </div>
-
-
-  <div class="card recipients">
-
-    <div class="cardTitle">
-      <b>
-        Recent recipients
-      </b>
-    </div>
-
-    <button
-      class="recipient"
-      data-action="recipient"
-      data-name="Jordan Smith"
-    >
-
-      <span class="recipientAvatar">
-        JS
-      </span>
-
-      <span class="recipientInfo">
-
-        <b>
-          Jordan Smith
-        </b>
-
-        <small>
-          jordan@example.com
-        </small>
-
-      </span>
-
-      <span class="recipientArrow">
-        ›
-      </span>
-
-    </button>
-
-    <button
-      class="recipient"
-      data-action="recipient"
-      data-name="Maria Johnson"
-    >
-
-      <span class="recipientAvatar">
-        MJ
-      </span>
-
-      <span class="recipientInfo">
-
-        <b>
-          Maria Johnson
-        </b>
-
-        <small>
-          maria@example.com
-        </small>
-
-      </span>
-
-      <span class="recipientArrow">
-        ›
-      </span>
-
-    </button>
-
-  </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     DEPOSIT
-========================= -->
-
-<section
-  id="deposit"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      Add Money
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="account">
-
-    <span>
-      Available Balance
-    </span>
-
-    <strong id="depositBalance">
-      $8,542.68
-    </strong>
-
-    <small>
-      Cashflow Checking
-    </small>
-
-  </div>
-
-  <label>
-    Deposit amount
-
-    <input
-      id="depositAmount"
-      type="number"
-      min="1"
-      step="0.01"
-      placeholder="$0.00"
-    >
-  </label>
-
-  <label>
-    Deposit method
-
-    <select id="depositMethod">
-      <option>Bank transfer</option>
-      <option>Debit card</option>
-      <option>Mobile deposit</option>
-    </select>
-
-  </label>
-
-  <button
-    class="primary"
-    data-action="makeDeposit"
-  >
-    Add Money
-  </button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     BILLS
-========================= -->
-
-<section
-  id="bills"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      Pay Bills
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="card">
-
-    <div class="cardTitle">
-      <b>
-        Select biller
-      </b>
-    </div>
-
-    <div style="padding:15px">
-
-      <label>
-        Biller
-
-        <select id="biller">
-          <option>Electricity</option>
-          <option>Internet</option>
-          <option>Mobile Phone</option>
-          <option>TV Subscription</option>
-          <option>Water</option>
-        </select>
-
-      </label>
-
-      <label>
-        Account number
-
-        <input
-          id="billAccount"
-          placeholder="Enter account number"
-        >
-
-      </label>
-
-      <label>
-        Amount
-
-        <input
-          id="billAmount"
-          type="number"
-          min="1"
-          step="0.01"
-          placeholder="$0.00"
-        >
-
-      </label>
+    <div class="auth-footer">
 
       <button
-        class="primary"
-        data-action="payBill"
+        class="text-button"
+        onclick="showPage('loginPage')"
       >
-        Pay Bill
+        Back to login
       </button>
 
     </div>
@@ -2318,742 +1171,1488 @@ main{
 
 </div>
 
-</section>
 
+<!-- DASHBOARD -->
 
-<!-- =========================
-     TRANSACTIONS
-========================= -->
+<div id="dashboard" class="hidden">
 
-<section
-  id="transactions"
-  class="page"
->
+  <header class="topbar">
 
-<div class="pageContent">
+    <div class="brand">
 
-  <div class="pageHeader">
+      <div class="logo"></div>
 
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
+      <span>CASHFLOWBANK</span>
 
-    <h2>
-      Transactions
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div
-    class="card"
-    id="transactionList"
-  ></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     ACCOUNTS
-========================= -->
-
-<section
-  id="accounts"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      Accounts
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="account">
-
-    <span>
-      Checking Account
-    </span>
-
-    <strong id="checkingAccountBalance">
-      $8,542.68
-    </strong>
-
-    <small>
-      •••• 4286
-    </small>
-
-  </div>
-
-  <div class="account secondary">
-
-    <span>
-      Savings Account
-    </span>
-
-    <strong>
-      $2,450.00
-    </strong>
-
-    <small>
-      •••• 9031
-    </small>
-
-  </div>
-
-  <button
-    class="outline"
-    data-action="addAccount"
-  >
-    ＋ Add another account
-  </button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     BUDGET
-========================= -->
-
-<section
-  id="budget"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      Budget
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="card">
-
-    <div class="cardTitle">
-      <b>
-        Monthly budget
-      </b>
-
-      <b>
-        $4,000
-      </b>
     </div>
 
-    <div style="padding:15px">
+    <div class="profile">
 
-      <div
-        style="
-          height:12px;
-          border-radius:20px;
-          background:#132941;
-          overflow:hidden;
-        "
-      >
-
-        <div
-          style="
-            width:71%;
-            height:100%;
-            background:#1687ff;
-          "
-        ></div>
-
+      <div id="avatar" class="avatar">
+        A
       </div>
 
-      <p class="muted">
-        $2,832 spent of $4,000
+      <button
+        class="logout-button"
+        onclick="logout()"
+      >
+        Log out
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <section class="greeting">
+
+      <h2 id="hello">
+        Hi Alex
+      </h2>
+
+      <p>
+        Here's your demo account overview.
       </p>
 
-    </div>
+    </section>
 
-  </div>
 
-  <div class="card">
+    <section class="dashboard-grid">
 
-    <div class="cardTitle">
-      <b>
-        Categories
-      </b>
-    </div>
 
-    <div class="transaction">
-      <span>🛍️</span>
-      <div class="transactionInfo">
-        <b>Shopping</b>
-        <small>$962 / $1,200</small>
+      <!-- BALANCE -->
+
+      <div class="balance-card">
+
+        <div class="balance-label">
+          Available Balance
+        </div>
+
+        <div class="balance">
+          $8,542.68
+        </div>
+
+        <div class="account-number">
+          DEMO ACCOUNT •••• 4821
+        </div>
+
       </div>
-      <span class="transactionAmount">$238 left</span>
-    </div>
 
-    <div class="transaction">
-      <span>🍔</span>
-      <div class="transactionInfo">
-        <b>Food & Dining</b>
-        <small>$584 / $800</small>
+
+      <!-- SPENDING -->
+
+      <div class="spending">
+
+        <div class="card-title">
+          Spending overview
+        </div>
+
+        <div class="chart">
+
+          <div class="chart-center">
+
+            <strong>$2,480</strong>
+
+            <small>This month</small>
+
+          </div>
+
+        </div>
+
       </div>
-      <span class="transactionAmount">$216 left</span>
-    </div>
 
-    <div class="transaction">
-      <span>🚗</span>
-      <div class="transactionInfo">
-        <b>Transport</b>
-        <small>$448 / $600</small>
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="quick-actions">
+
+      <button
+        class="action"
+        onclick="openModal('Transfer')"
+      >
+
+        <div class="action-icon">
+          ↗
+        </div>
+
+        <span>
+          Transfer
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="openModal('Pay Bills')"
+      >
+
+        <div class="action-icon">
+          ▣
+        </div>
+
+        <span>
+          Pay Bills
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="openModal('Deposit')"
+      >
+
+        <div class="action-icon">
+          ＋
+        </div>
+
+        <span>
+          Deposit
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="openModal('More')"
+      >
+
+        <div class="action-icon">
+          •••
+        </div>
+
+        <span>
+          More
+        </span>
+
+      </button>
+
+    </section>
+
+
+    <!-- TRANSACTIONS -->
+
+    <section class="transactions">
+
+      <div class="transaction-header">
+
+        <h3>
+          Recent transactions
+        </h3>
+
+        <button
+          class="view-all"
+          onclick="openModal('All transactions')"
+        >
+          View all
+        </button>
+
       </div>
-      <span class="transactionAmount">$152 left</span>
+
+
+      <div class="transaction">
+
+        <div class="transaction-info">
+
+          <div class="transaction-icon">
+            🛒
+          </div>
+
+          <div>
+
+            <div class="transaction-name">
+              Whole Foods
+            </div>
+
+            <div class="transaction-date">
+              Sep 4, 2026
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="amount">
+          -$84.32
+        </div>
+
+      </div>
+
+
+      <div class="transaction">
+
+        <div class="transaction-info">
+
+          <div class="transaction-icon">
+            ↓
+          </div>
+
+          <div>
+
+            <div class="transaction-name">
+              Direct Deposit
+            </div>
+
+            <div class="transaction-date">
+              Sep 3, 2026
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="amount positive">
+          +$2,850.00
+        </div>
+
+      </div>
+
+
+      <div class="transaction">
+
+        <div class="transaction-info">
+
+          <div class="transaction-icon">
+            ☕
+          </div>
+
+          <div>
+
+            <div class="transaction-name">
+              Starbucks
+            </div>
+
+            <div class="transaction-date">
+              Sep 2, 2026
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="amount">
+          -$7.85
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <div class="nav">
+
+      <button
+        class="active"
+        onclick="nav(this, 'Home')"
+      >
+
+        <span class="nav-icon">
+          ⌂
+        </span>
+
+        Home
+
+      </button>
+
+
+      <button
+        onclick="nav(this, 'Accounts')"
+      >
+
+        <span class="nav-icon">
+          ▣
+        </span>
+
+        Accounts
+
+      </button>
+
+
+      <button
+        onclick="nav(this, 'Pay & Transfer')"
+      >
+
+        <span class="nav-icon">
+          ↗
+        </span>
+
+        Pay & Transfer
+
+      </button>
+
+
+      <button
+        onclick="nav(this, 'Budget')"
+      >
+
+        <span class="nav-icon">
+          ◔
+        </span>
+
+        Budget
+
+      </button>
+
+
+      <button
+        onclick="nav(this, 'More')"
+      >
+
+        <span class="nav-icon">
+          •••
+        </span>
+
+        More
+
+      </button>
+
     </div>
 
-  </div>
+  </nav>
 
 </div>
 
-</section>
 
+<!-- ADMIN LOGIN -->
 
-<!-- =========================
-     SAVINGS
-========================= -->
-
-<section
-  id="savings"
-  class="page"
+<div
+  id="adminLoginPage"
+  class="auth-area hidden"
 >
 
-<div class="pageContent">
+  <div class="auth-card">
 
-  <div class="pageHeader">
+    <div class="auth-brand">
 
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
+      <div class="logo"></div>
 
-    <h2>
-      Savings
-    </h2>
+      <span>DEMO ADMIN</span>
 
-    <span></span>
-
-  </div>
-
-  <div class="account">
-
-    <span>
-      Savings balance
-    </span>
-
-    <strong>
-      $2,450.00
-    </strong>
-
-    <small>
-      Demo APY: 10%
-    </small>
-
-  </div>
-
-  <label>
-    Savings goal
-
-    <input
-      id="savingGoal"
-      placeholder="e.g. Emergency Fund"
-    >
-
-  </label>
-
-  <label>
-    Goal amount
-
-    <input
-      id="savingAmount"
-      type="number"
-      placeholder="$0.00"
-    >
-
-  </label>
-
-  <button
-    class="primary"
-    data-action="createSaving"
-  >
-    Create savings goal
-  </button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MORE
-========================= -->
-
-<section
-  id="more"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="dashboard"
-    >
-      ←
-    </button>
-
-    <h2>
-      More
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <button
-    class="menu"
-    data-page="profile"
-  >
-    <span>
-      👤 Profile
-    </span>
-    <span>›</span>
-  </button>
-
-  <button
-    class="menu"
-    data-action="notifications"
-  >
-    <span>
-      🔔 Notifications
-    </span>
-    <span>›</span>
-  </button>
-
-  <button
-    class="menu"
-    data-action="security"
-  >
-    <span>
-      🔐 Security
-    </span>
-    <span>›</span>
-  </button>
-
-  <button
-    class="menu"
-    data-action="support"
-  >
-    <span>
-      💬 Support
-    </span>
-    <span>›</span>
-  </button>
-
-  <button
-    class="menu"
-    data-action="terms"
-  >
-    <span>
-      📄 Terms & Privacy
-    </span>
-    <span>›</span>
-  </button>
-
-  <button
-    class="menu"
-    data-action="logout"
-  >
-    <span>
-      🚪 Log out
-    </span>
-    <span>›</span>
-  </button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section
-  id="profile"
-  class="page"
->
-
-<div class="pageContent">
-
-  <div class="pageHeader">
-
-    <button
-      class="back"
-      data-page="more"
-    >
-      ←
-    </button>
-
-    <h2>
-      Profile
-    </h2>
-
-    <span></span>
-
-  </div>
-
-  <div class="profile">
-
-    <div
-      class="bigAvatar"
-      id="profileAvatar"
-    >
-      A
     </div>
 
-    <h2 id="profileName">
-      Alex
-    </h2>
+    <h1>
+      Demo administrator
+    </h1>
 
-    <p id="profileEmail">
-      alex@example.com
+    <p class="subtitle">
+      Enter the demo administrator passcode.
     </p>
 
-  </div>
+    <div
+      id="adminLoginMessage"
+      class="message"
+    ></div>
 
-  <label>
-    Full name
+    <div class="field">
 
-    <input
-      id="profileNameInput"
-      placeholder="Full name"
-    >
+      <label>
+        Administrator passcode
+      </label>
 
-  </label>
+      <input
+        id="adminPassword"
+        type="password"
+        placeholder="Enter demo passcode"
+      >
 
-  <label>
-    Email
-
-    <input
-      id="profileEmailInput"
-      type="email"
-      placeholder="Email"
-    >
-
-  </label>
-
-  <label>
-    Phone
-
-    <input
-      id="profilePhoneInput"
-      type="tel"
-      placeholder="Phone"
-    >
-
-  </label>
-
-  <button
-    class="primary"
-    data-action="saveProfile"
-  >
-    Save Changes
-  </button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
-<nav class="nav">
-
-  <button
-    data-page="dashboard"
-    class="active"
-  >
-    <span class="navIcon">
-      ⌂
-    </span>
-    Home
-  </button>
-
-  <button
-    data-page="accounts"
-  >
-    <span class="navIcon">
-      ▣
-    </span>
-    Accounts
-  </button>
-
-  <button
-    data-page="transfer"
-  >
-    <span class="navIcon">
-      ⇄
-    </span>
-    Pay & Transfer
-  </button>
-
-  <button
-    data-page="budget"
-  >
-    <span class="navIcon">
-      ◉
-    </span>
-    Budget
-  </button>
-
-  <button
-    data-page="more"
-  >
-    <span class="navIcon">
-      •••
-    </span>
-    More
-  </button>
-
-</nav>
-
-</div>
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div
-  class="modal"
-  id="modal"
->
-
-  <div class="modalBox">
+    </div>
 
     <button
-      class="modalClose"
-      data-action="closeModal"
+      class="primary-button"
+      onclick="adminLogin()"
     >
-      ×
+      Continue
     </button>
 
-    <div id="modalContent"></div>
+    <div class="auth-footer">
+
+      <button
+        class="text-button"
+        onclick="backToLogin()"
+      >
+        Back to customer login
+      </button>
+
+    </div>
+
+    <div class="demo-notice">
+      Demo administration only. This is not a real
+      authentication system.
+    </div>
 
   </div>
 
 </div>
 
 
+<!-- ADMIN PANEL -->
+
 <div
-  class="toast"
-  id="toast"
-></div>
+  id="adminPanel"
+  class="admin-page hidden"
+>
+
+  <div class="admin-container">
+
+    <div class="admin-header">
+
+      <h1>
+        Demo Account Administration
+      </h1>
+
+      <p>
+        Manage verification codes for local demo accounts.
+        Codes are stored only in this browser.
+      </p>
+
+      <button
+        class="small-button"
+        style="margin-top:15px"
+        onclick="adminLogout()"
+      >
+        Exit admin
+      </button>
+
+    </div>
+
+
+    <div class="admin-panel">
+
+      <h2 style="margin-bottom:18px">
+        Pending demo accounts
+      </h2>
+
+      <div id="adminAccounts"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2 id="modalTitle">
+        Action
+      </h2>
+
+      <button
+        class="close-button"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <p id="modalText">
+      This is a demo action.
+    </p>
+
+    <button
+      class="primary-button"
+      onclick="closeModal()"
+    >
+      Done
+    </button>
+
+  </div>
+
+</div>
 
 
 <script>
 
-/* =====================================================
-   CASHFLOWBANK DEMO JAVASCRIPT
-===================================================== */
+/*
+===========================================================
+ CASHFLOWBANK DEMO
+===========================================================
 
-const state = {
+This is a frontend-only demonstration.
 
-  balance: 8542.68,
+It does NOT:
+- connect to a real bank
+- send real money
+- process real transactions
+- send email or SMS
+- provide secure authentication
+- store real banking passwords
 
-  balanceHidden:false,
+The verification system is only for demonstrating the
+signup/approval flow.
 
-  user:{
-    name:"Alex",
-    email:"alex@example.com",
-    phone:""
-  },
+===========================================================
+*/
 
-  transactions:[
 
-    {
-      merchant:"Whole Foods",
-      icon:"🛒",
-      date:"Today",
-      amount:-84.26
-    },
+/* STORAGE */
 
-    {
-      merchant:"Direct Deposit",
-      icon:"💵",
-      date:"Today",
-      amount:2500
-    },
+let demoAccounts = JSON.parse(
+  localStorage.getItem("cashflowDemoAccounts") || "[]"
+);
 
-    {
-      merchant:"Starbucks",
-      icon:"☕",
-      date:"Yesterday",
-      amount:-8.45
-    },
+let currentUser = JSON.parse(
+  localStorage.getItem("cashflowCurrentUser") || "null"
+);
 
-    {
-      merchant:"Uber",
-      icon:"🚗",
-      date:"Yesterday",
-      amount:-24.60
-    },
+let pendingAccount = null;
 
-    {
-      merchant:"Netflix",
-      icon:"▶",
-      date:"Sep 2",
-      amount:-15.49
+
+/*
+Demo administrator passcode.
+
+This is NOT a secure secret because this entire application
+runs in the browser.
+*/
+
+const DEMO_ADMIN_PASSCODE = "246810";
+
+
+/* STARTUP */
+
+window.addEventListener("load", function () {
+
+  setTimeout(function () {
+
+    document
+      .getElementById("loading")
+      .classList.add("hidden");
+
+    if (currentUser) {
+
+      showDashboard(currentUser);
+
+    } else {
+
+      document
+        .getElementById("authArea")
+        .classList.remove("hidden");
+
+      showPage("loginPage");
+
     }
 
-  ],
+  }, 1800);
 
-  verificationCode:"",
-
-  verificationExpires:0,
-
-  signupPending:false
-
-};
+});
 
 
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
+/* PAGE SWITCHING */
 
-function showPage(pageId){
+function showPage(pageId) {
 
   document
-    .querySelectorAll(".page")
-    .forEach(page=>{
-      page.classList.remove("active");
+    .querySelectorAll(".auth-card")
+    .forEach(function (card) {
+
+      card.classList.add("hidden");
+
     });
 
-  const page =
-    document.getElementById(pageId);
+  const page = document.getElementById(pageId);
 
-  if(page){
-    page.classList.add("active");
+  if (page) {
+    page.classList.remove("hidden");
   }
 
-  updateNav(pageId);
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+  clearMessages();
 }
 
 
-function updateNav(pageId){
+/* CLEAR MESSAGES */
+
+function clearMessages() {
 
   document
-    .querySelectorAll(".nav button")
-    .forEach(button=>{
-      button.classList.remove("active");
+    .querySelectorAll(".message")
+    .forEach(function (message) {
 
-      if(button.dataset.page===pageId){
-        button.classList.add("active");
-      }
+      message.className = "message";
+      message.textContent = "";
 
-      if(
-        pageId==="transactions" &&
-        button.dataset.page==="dashboard"
-      ){
-        button.classList.add("active");
-      }
     });
 
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+/* SHOW MESSAGE */
 
-let toastTimer;
+function showMessage(id, text, type) {
 
-function toast(message){
+  const element = document.getElementById(id);
 
-  const el =
-    document.getElementById("toast");
+  if (!element) {
+    return;
+  }
 
-  el.textContent=message;
+  element.textContent = text;
+  element.className = "message " + type;
+}
 
-  el.classList.add("show");
 
-  clearTimeout(toastTimer);
+/* CREATE ACCOUNT */
 
-  toastTimer=setTimeout(()=>{
-    el.classList.remove("show");
-  },2800);
+function createAccount() {
+
+  const name = document
+    .getElementById("signupName")
+    .value
+    .trim();
+
+  const email = document
+    .getElementById("signupEmail")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const password = document
+    .getElementById("signupPassword")
+    .value;
+
+  const phone = document
+    .getElementById("signupPhone")
+    .value
+    .trim();
+
+
+  if (!name || !email || !password || !phone) {
+
+    showMessage(
+      "signupMessage",
+      "Please complete every field.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if (!email.includes("@")) {
+
+    showMessage(
+      "signupMessage",
+      "Enter a valid email address.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if (password.length < 8) {
+
+    showMessage(
+      "signupMessage",
+      "Demo password must contain at least 8 characters.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const existing = demoAccounts.find(
+    function (account) {
+      return account.email === email;
+    }
+  );
+
+
+  if (existing) {
+
+    showMessage(
+      "signupMessage",
+      "A demo account with that email already exists.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  /*
+  Generate six-digit demo verification code.
+
+  The customer does not see this code.
+  The demo administrator sees it.
+  */
+
+  const code = String(
+    Math.floor(
+      100000 + Math.random() * 900000
+    )
+  );
+
+
+  pendingAccount = {
+
+    id: Date.now(),
+
+    name: name,
+
+    email: email,
+
+    phone: phone,
+
+    verificationCode: code,
+
+    verified: false,
+
+    createdAt: new Date().toISOString()
+
+  };
+
+
+  demoAccounts.push(pendingAccount);
+
+  saveAccounts();
+
+
+  localStorage.setItem(
+    "cashflowPendingAccount",
+    JSON.stringify(pendingAccount)
+  );
+
+
+  document
+    .getElementById("verifyEmail")
+    .textContent = email;
+
+
+  showPage("verifyPage");
+
+
+  showMessage(
+    "verifyMessage",
+    "Account created. Ask the demo administrator for your verification code.",
+    "success"
+  );
 
 }
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* VERIFY CODE */
 
-function openModal(title,content){
+function verifyCode() {
 
-  const modal =
-    document.getElementById("modal");
+  if (!pendingAccount) {
 
-  const body =
-    document.getElementById("modalContent");
+    pendingAccount = JSON.parse(
+      localStorage.getItem(
+        "cashflowPendingAccount"
+      ) || "null"
+    );
 
-  body.innerHTML=
-    "<h3>"+title+"</h3>"+
-    content;
+  }
 
-  modal.classList.add("show");
+
+  if (!pendingAccount) {
+
+    showMessage(
+      "verifyMessage",
+      "No pending demo account was found.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const enteredCode = [
+
+    document.getElementById("code1").value,
+    document.getElementById("code2").value,
+    document.getElementById("code3").value,
+    document.getElementById("code4").value,
+    document.getElementById("code5").value,
+    document.getElementById("code6").value
+
+  ].join("");
+
+
+  if (enteredCode.length !== 6) {
+
+    showMessage(
+      "verifyMessage",
+      "Enter all six digits.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const account = demoAccounts.find(
+    function (item) {
+      return item.id === pendingAccount.id;
+    }
+  );
+
+
+  if (!account) {
+
+    showMessage(
+      "verifyMessage",
+      "Demo account could not be found.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if (account.verified) {
+
+    showMessage(
+      "verifyMessage",
+      "This demo account has already been verified.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if (enteredCode !== account.verificationCode) {
+
+    showMessage(
+      "verifyMessage",
+      "Incorrect verification code.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  account.verified = true;
+
+  delete account.verificationCode;
+
+  saveAccounts();
+
+
+  currentUser = {
+
+    id: account.id,
+
+    name: account.name,
+
+    email: account.email,
+
+    phone: account.phone
+
+  };
+
+
+  localStorage.setItem(
+    "cashflowCurrentUser",
+    JSON.stringify(currentUser)
+  );
+
+
+  localStorage.removeItem(
+    "cashflowPendingAccount"
+  );
+
+
+  showMessage(
+    "verifyMessage",
+    "Demo account verified successfully.",
+    "success"
+  );
+
+
+  setTimeout(function () {
+
+    showDashboard(currentUser);
+
+  }, 600);
 
 }
 
 
-function closeModal(){
+/* SAVE ACCOUNTS */
+
+function saveAccounts() {
+
+  localStorage.setItem(
+    "cashflowDemoAccounts",
+    JSON.stringify(demoAccounts)
+  );
+
+}
+
+
+/* LOGIN */
+
+function login() {
+
+  const email = document
+    .getElementById("loginEmail")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const password = document
+    .getElementById("loginPassword")
+    .value;
+
+
+  if (!email || !password) {
+
+    showMessage(
+      "loginMessage",
+      "Enter your email and password.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const account = demoAccounts.find(
+    function (item) {
+      return item.email === email;
+    }
+  );
+
+
+  /*
+  If an account exists but has not been verified,
+  send the user to verification.
+  */
+
+  if (account && !account.verified) {
+
+    pendingAccount = account;
+
+    localStorage.setItem(
+      "cashflowPendingAccount",
+      JSON.stringify(account)
+    );
+
+
+    document
+      .getElementById("verifyEmail")
+      .textContent = account.email;
+
+
+    showPage("verifyPage");
+
+
+    showMessage(
+      "verifyMessage",
+      "This demo account still needs verification. Ask the demo administrator for the code.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  /*
+  Demo login.
+
+  This intentionally does not perform real password
+  authentication.
+  */
+
+  const name =
+    account?.name ||
+    email
+      .split("@")[0]
+      .replace(
+        /^./,
+        function (letter) {
+          return letter.toUpperCase();
+        }
+      );
+
+
+  currentUser = {
+
+    id: account?.id || Date.now(),
+
+    name: name,
+
+    email: email
+
+  };
+
+
+  localStorage.setItem(
+    "cashflowCurrentUser",
+    JSON.stringify(currentUser)
+  );
+
+
+  showDashboard(currentUser);
+
+}
+
+
+/* FORGOT PASSWORD */
+
+function resetPassword() {
+
+  const email = document
+    .getElementById("forgotEmail")
+    .value
+    .trim();
+
+
+  if (!email) {
+
+    showMessage(
+      "forgotMessage",
+      "Enter your email address.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  showMessage(
+    "forgotMessage",
+    "Demo reset request recorded. No real email was sent.",
+    "success"
+  );
+
+}
+
+
+/* DASHBOARD */
+
+function showDashboard(user) {
+
+  document
+    .getElementById("authArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminPanel")
+    .classList.add("hidden");
+
+  document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
+
+
+  const firstName =
+    (user?.name || "Alex")
+      .split(" ")[0];
+
+
+  document
+    .getElementById("hello")
+    .textContent =
+      "Hi " + firstName;
+
+
+  document
+    .getElementById("avatar")
+    .textContent =
+      firstName
+        .charAt(0)
+        .toUpperCase();
+
+}
+
+
+/* LOGOUT */
+
+function logout() {
+
+  currentUser = null;
+
+  localStorage.removeItem(
+    "cashflowCurrentUser"
+  );
+
+
+  document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("authArea")
+    .classList.remove("hidden");
+
+
+  showPage("loginPage");
+
+}
+
+
+/* OPEN ADMIN LOGIN */
+
+function openAdminLogin() {
+
+  document
+    .getElementById("authArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminPanel")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminLoginPage")
+    .classList.remove("hidden");
+
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin() {
+
+  const password =
+    document
+      .getElementById("adminPassword")
+      .value;
+
+
+  if (password !== DEMO_ADMIN_PASSCODE) {
+
+    showMessage(
+      "adminLoginMessage",
+      "Incorrect demo administrator passcode.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  document
+    .getElementById("adminLoginPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminPanel")
+    .classList.remove("hidden");
+
+
+  renderAdminAccounts();
+
+}
+
+
+/* ADMIN ACCOUNT LIST */
+
+function renderAdminAccounts() {
+
+  const container =
+    document.getElementById(
+      "adminAccounts"
+    );
+
+
+  container.innerHTML = "";
+
+
+  if (demoAccounts.length === 0) {
+
+    container.innerHTML =
+      `
+      <div class="demo-notice">
+        No demo accounts have been created yet.
+      </div>
+      `;
+
+    return;
+  }
+
+
+  demoAccounts
+    .slice()
+    .reverse()
+    .forEach(function (account) {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "admin-account";
+
+
+      const status =
+        account.verified
+          ? "Verified"
+          : "Waiting for verification";
+
+
+      item.innerHTML = `
+
+        <div class="admin-account-top">
+
+          <div>
+
+            <div class="account-name">
+              ${escapeHtml(account.name)}
+            </div>
+
+            <div class="account-email">
+              ${escapeHtml(account.email)}
+            </div>
+
+          </div>
+
+          <strong>
+            ${status}
+          </strong>
+
+        </div>
+
+        ${
+          account.verified
+
+          ?
+
+          `
+          <div class="demo-notice">
+            This demo account has already been verified.
+          </div>
+          `
+
+          :
+
+          `
+
+          <div class="code-box">
+
+            Verification code
+
+            <strong>
+              ${escapeHtml(account.verificationCode)}
+            </strong>
+
+          </div>
+
+          <div class="admin-buttons">
+
+            <button
+              class="small-button green"
+              onclick="copyCode('${account.verificationCode}')"
+            >
+              Copy code
+            </button>
+
+            <button
+              class="small-button"
+              onclick="generateNewCode(${account.id})"
+            >
+              Generate new code
+            </button>
+
+            <button
+              class="small-button"
+              onclick="deleteAccount(${account.id})"
+            >
+              Delete
+            </button>
+
+          </div>
+
+          `
+        }
+
+      `;
+
+
+      container.appendChild(item);
+
+    });
+
+}
+
+
+/* GENERATE NEW CODE */
+
+function generateNewCode(id) {
+
+  const account =
+    demoAccounts.find(
+      function (item) {
+        return item.id === id;
+      }
+    );
+
+
+  if (!account || account.verified) {
+    return;
+  }
+
+
+  account.verificationCode =
+    String(
+      Math.floor(
+        100000 +
+        Math.random() * 900000
+      )
+    );
+
+
+  saveAccounts();
+
+  renderAdminAccounts();
+
+}
+
+
+/* COPY CODE */
+
+function copyCode(code) {
+
+  if (navigator.clipboard) {
+
+    navigator.clipboard
+      .writeText(code)
+      .then(function () {
+
+        alert(
+          "Demo verification code copied."
+        );
+
+      })
+      .catch(function () {
+
+        alert(
+          "Demo code: " + code
+        );
+
+      });
+
+  } else {
+
+    alert(
+      "Demo code: " + code
+    );
+
+  }
+
+}
+
+
+/* DELETE ACCOUNT */
+
+function deleteAccount(id) {
+
+  const confirmed =
+    confirm(
+      "Delete this demo account?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  demoAccounts =
+    demoAccounts.filter(
+      function (item) {
+        return item.id !== id;
+      }
+    );
+
+
+  saveAccounts();
+
+  renderAdminAccounts();
+
+}
+
+
+/* ADMIN LOGOUT */
+
+function adminLogout() {
+
+  document
+    .getElementById("adminPanel")
+    .classList.add("hidden");
+
+  document
+    .getElementById("authArea")
+    .classList.remove("hidden");
+
+  showPage("loginPage");
+
+}
+
+
+/* BACK TO LOGIN */
+
+function backToLogin() {
+
+  document
+    .getElementById("adminLoginPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("authArea")
+    .classList.remove("hidden");
+
+  showPage("loginPage");
+
+}
+
+
+/* MODAL */
+
+function openModal(action) {
+
+  document
+    .getElementById("modalTitle")
+    .textContent = action;
+
+
+  document
+    .getElementById("modalText")
+    .textContent =
+      action +
+      " is available in this demo interface. No real transaction is performed.";
+
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+function closeModal() {
 
   document
     .getElementById("modal")
@@ -3062,1398 +2661,93 @@ function closeModal(){
 }
 
 
-/* =====================================================
-   BALANCE
-===================================================== */
+/* NAVIGATION */
 
-function formatMoney(amount){
-
-  return new Intl.NumberFormat(
-    "en-US",
-    {
-      style:"currency",
-      currency:"USD"
-    }
-  ).format(amount);
-
-}
-
-
-function updateBalance(){
-
-  const balance =
-    document.getElementById("balance");
-
-  const depositBalance =
-    document.getElementById("depositBalance");
-
-  const checking =
-    document.getElementById("checkingAccountBalance");
-
-  if(state.balanceHidden){
-
-    balance.textContent="••••••";
-
-  }else{
-
-    balance.textContent=
-      formatMoney(state.balance);
-
-  }
-
-  if(depositBalance){
-    depositBalance.textContent=
-      formatMoney(state.balance);
-  }
-
-  if(checking){
-    checking.textContent=
-      formatMoney(state.balance);
-  }
-
-}
-
-
-function toggleBalance(){
-
-  state.balanceHidden =
-    !state.balanceHidden;
-
-  updateBalance();
-
-}
-
-
-/* =====================================================
-   TRANSACTIONS
-===================================================== */
-
-function renderTransactions(){
-
-  const recent =
-    document.getElementById("recentList");
-
-  const all =
-    document.getElementById("transactionList");
-
-  const createRow = tx => {
-
-    const sign =
-      tx.amount>=0 ? "+" : "";
-
-    const cls =
-      tx.amount>=0
-      ? "positive"
-      : "negative";
-
-    return `
-      <div class="transaction">
-
-        <div class="transactionIcon">
-          ${tx.icon}
-        </div>
-
-        <div class="transactionInfo">
-
-          <b>
-            ${escapeHtml(tx.merchant)}
-          </b>
-
-          <small>
-            ${escapeHtml(tx.date)}
-          </small>
-
-        </div>
-
-        <div class="transactionAmount ${cls}">
-          ${sign}${formatMoney(tx.amount)}
-        </div>
-
-      </div>
-    `;
-
-  };
-
-  if(recent){
-
-    recent.innerHTML =
-      state.transactions
-      .slice(0,3)
-      .map(createRow)
-      .join("");
-
-  }
-
-  if(all){
-
-    all.innerHTML =
-      state.transactions
-      .map(createRow)
-      .join("");
-
-  }
-
-}
-
-
-/* =====================================================
-   ESCAPE TEXT
-===================================================== */
-
-function escapeHtml(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
-   VERIFICATION CODE
-===================================================== */
-
-function generateVerificationCode(){
-
-  state.verificationCode =
-    Math.floor(
-      100000 +
-      Math.random()*900000
-    ).toString();
-
-  state.verificationExpires =
-    Date.now() +
-    5*60*1000;
+function nav(button, name) {
 
   document
-    .getElementById("demoCode")
-    .textContent=
-      state.verificationCode;
+    .querySelectorAll(".nav button")
+    .forEach(function (item) {
 
-  clearCodeInputs();
+      item.classList.remove("active");
 
-  setCodeMessage(
-    "A verification code has been generated.",
-    "success"
-  );
-
-}
-
-
-function clearCodeInputs(){
-
-  document
-    .querySelectorAll(".codeInput")
-    .forEach(input=>{
-      input.value="";
     });
 
-}
+
+  button.classList.add("active");
 
 
-function getEnteredCode(){
+  if (name !== "Home") {
 
-  return [...document.querySelectorAll(".codeInput")]
-    .map(input=>input.value)
-    .join("");
+    openModal(name);
 
-}
-
-
-function setCodeMessage(message,type){
-
-  const el =
-    document.getElementById("codeMessage");
-
-  el.textContent=message;
-
-  el.className=
-    "codeMessage "+
-    (type || "");
+  }
 
 }
 
 
-/* =====================================================
-   SIGN UP
-===================================================== */
+/* VERIFICATION CODE INPUTS */
 
-function handleSignup(event){
-
-  event.preventDefault();
-
-  const name =
-    document.getElementById("signupName")
-      .value.trim();
-
-  const email =
-    document.getElementById("signupEmail")
-      .value.trim();
-
-  const phone =
-    document.getElementById("signupPhone")
-      .value.trim();
-
-  if(!name || !email || !phone){
-    toast("Please complete all required fields.");
-    return;
-  }
-
-  state.user.name=name;
-  state.user.email=email;
-  state.user.phone=phone;
-
-  state.signupPending=true;
-
-  document
-    .getElementById("verificationDestination")
-    .textContent=
-      "Verification required for "+email;
-
-  generateVerificationCode();
-
-  showPage("verification");
-
-}
-
-
-/* =====================================================
-   VERIFY ACCOUNT
-===================================================== */
-
-function verifyAccount(){
-
-  if(!state.signupPending){
-
-    toast("No account is waiting for verification.");
-
-    return;
-
-  }
-
-  const code =
-    getEnteredCode();
-
-  if(code.length!==6){
-
-    setCodeMessage(
-      "Please enter all 6 digits.",
-      "error"
-    );
-
-    return;
-
-  }
-
-  if(Date.now()>state.verificationExpires){
-
-    setCodeMessage(
-      "This code has expired. Please request a new code.",
-      "error"
-    );
-
-    return;
-
-  }
-
-  if(code!==state.verificationCode){
-
-    setCodeMessage(
-      "Incorrect verification code. Please try again.",
-      "error"
-    );
-
-    return;
-
-  }
-
-  state.signupPending=false;
-
-  localStorage.setItem(
-    "cashflowDemoUser",
-    JSON.stringify(state.user)
+const otpInputs =
+  document.querySelectorAll(
+    ".code-inputs input"
   );
 
-  updateUserUI();
 
-  setCodeMessage(
-    "Account verified successfully!",
-    "success"
-  );
+otpInputs.forEach(function (input, index) {
 
-  toast("Account verified successfully.");
+  input.addEventListener(
+    "input",
+    function (event) {
 
-  setTimeout(()=>{
-    showPage("dashboard");
-  },700);
-
-}
+      event.target.value =
+        event.target.value
+          .replace(/\D/g, "")
+          .slice(0, 1);
 
 
-/* =====================================================
-   RESEND CODE
-===================================================== */
+      if (
+        event.target.value &&
+        index < otpInputs.length - 1
+      ) {
 
-function resendCode(){
-
-  generateVerificationCode();
-
-  toast("A new demo verification code was generated.");
-
-}
-
-
-/* =====================================================
-   CODE INPUT BEHAVIOR
-===================================================== */
-
-document
-  .querySelectorAll(".codeInput")
-  .forEach((input,index,inputs)=>{
-
-    input.addEventListener(
-      "input",
-      ()=>{
-
-        input.value =
-          input.value.replace(/\D/g,"");
-
-        if(
-          input.value &&
-          inputs[index+1]
-        ){
-
-          inputs[index+1].focus();
-
-        }
+        otpInputs[index + 1].focus();
 
       }
-    );
-
-    input.addEventListener(
-      "keydown",
-      event=>{
-
-        if(
-          event.key==="Backspace" &&
-          !input.value &&
-          inputs[index-1]
-        ){
-
-          inputs[index-1].focus();
-
-        }
-
-      }
-    );
-
-  });
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-function handleLogin(event){
-
-  event.preventDefault();
-
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value.trim();
-
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
-  if(!email || !password){
-
-    toast("Enter your email and password.");
-
-    return;
-
-  }
-
-  state.user.email=email;
-
-  localStorage.setItem(
-    "cashflowDemoUser",
-    JSON.stringify(state.user)
-  );
-
-  updateUserUI();
-
-  toast("Demo login successful.");
-
-  setTimeout(()=>{
-    showPage("dashboard");
-  },400);
-
-}
-
-
-/* =====================================================
-   USER UI
-===================================================== */
-
-function updateUserUI(){
-
-  const name =
-    state.user.name || "Alex";
-
-  const firstName =
-    name.split(" ")[0] || "Alex";
-
-  const initial =
-    firstName.charAt(0).toUpperCase();
-
-  const greeting =
-    document.getElementById("greetingName");
-
-  const avatar =
-    document.getElementById("avatar");
-
-  const profileAvatar =
-    document.getElementById("profileAvatar");
-
-  const profileName =
-    document.getElementById("profileName");
-
-  const profileEmail =
-    document.getElementById("profileEmail");
-
-  if(greeting){
-    greeting.textContent=firstName;
-  }
-
-  if(avatar){
-    avatar.textContent=initial;
-  }
-
-  if(profileAvatar){
-    profileAvatar.textContent=initial;
-  }
-
-  if(profileName){
-    profileName.textContent=name;
-  }
-
-  if(profileEmail){
-    profileEmail.textContent=
-      state.user.email || "";
-  }
-
-  const nameInput =
-    document.getElementById("profileNameInput");
-
-  const emailInput =
-    document.getElementById("profileEmailInput");
-
-  const phoneInput =
-    document.getElementById("profilePhoneInput");
-
-  if(nameInput){
-    nameInput.value=name;
-  }
-
-  if(emailInput){
-    emailInput.value=
-      state.user.email || "";
-  }
-
-  if(phoneInput){
-    phoneInput.value=
-      state.user.phone || "";
-  }
-
-}
-
-
-/* =====================================================
-   TRANSFER
-===================================================== */
-
-function sendTransfer(){
-
-  const recipient =
-    document
-      .getElementById("transferRecipient")
-      .value.trim();
-
-  const amount =
-    Number(
-      document
-        .getElementById("transferAmount")
-        .value
-    );
-
-  const note =
-    document
-      .getElementById("transferNote")
-      .value.trim();
-
-  if(!recipient){
-
-    toast("Enter a recipient.");
-
-    return;
-
-  }
-
-  if(!amount || amount<=0){
-
-    toast("Enter a valid amount.");
-
-    return;
-
-  }
-
-  if(amount>state.balance){
-
-    toast("Demo balance is insufficient.");
-
-    return;
-
-  }
-
-  openModal(
-    "Confirm transfer",
-    `
-      <p class="muted">
-        You are about to send
-        <strong style="color:#fff">
-          ${formatMoney(amount)}
-        </strong>
-        to
-        <strong style="color:#fff">
-          ${escapeHtml(recipient)}
-        </strong>.
-      </p>
-
-      <p class="muted">
-        ${note ? escapeHtml(note) : "No note added."}
-      </p>
-
-      <button
-        class="primary"
-        id="confirmTransfer"
-      >
-        Confirm Transfer
-      </button>
-    `
-  );
-
-  document
-    .getElementById("confirmTransfer")
-    .onclick=()=>{
-
-      state.balance-=amount;
-
-      state.transactions.unshift({
-        merchant:"Transfer to "+recipient,
-        icon:"↗",
-        date:"Just now",
-        amount:-amount
-      });
-
-      updateBalance();
-      renderTransactions();
-      closeModal();
-
-      toast(
-        "Demo transfer completed."
-      );
-
-      document
-        .getElementById("transferRecipient")
-        .value="";
-
-      document
-        .getElementById("transferAmount")
-        .value="";
-
-      document
-        .getElementById("transferNote")
-        .value="";
-
-      showPage("dashboard");
-
-    };
-
-}
-
-
-/* =====================================================
-   DEPOSIT
-===================================================== */
-
-function makeDeposit(){
-
-  const amount =
-    Number(
-      document
-        .getElementById("depositAmount")
-        .value
-    );
-
-  if(!amount || amount<=0){
-
-    toast("Enter a valid deposit amount.");
-
-    return;
-
-  }
-
-  state.balance+=amount;
-
-  state.transactions.unshift({
-    merchant:"Demo Deposit",
-    icon:"↓",
-    date:"Just now",
-    amount:amount
-  });
-
-  updateBalance();
-  renderTransactions();
-
-  document
-    .getElementById("depositAmount")
-    .value="";
-
-  toast(
-    formatMoney(amount)+
-    " added to your demo balance."
-  );
-
-  showPage("dashboard");
-
-}
-
-
-/* =====================================================
-   BILL PAYMENT
-===================================================== */
-
-function payBill(){
-
-  const biller =
-    document
-      .getElementById("biller")
-      .value;
-
-  const account =
-    document
-      .getElementById("billAccount")
-      .value.trim();
-
-  const amount =
-    Number(
-      document
-        .getElementById("billAmount")
-        .value
-    );
-
-  if(!account){
-
-    toast("Enter the bill account number.");
-
-    return;
-
-  }
-
-  if(!amount || amount<=0){
-
-    toast("Enter a valid amount.");
-
-    return;
-
-  }
-
-  if(amount>state.balance){
-
-    toast("Demo balance is insufficient.");
-
-    return;
-
-  }
-
-  state.balance-=amount;
-
-  state.transactions.unshift({
-    merchant:biller+" Bill",
-    icon:"▤",
-    date:"Just now",
-    amount:-amount
-  });
-
-  updateBalance();
-  renderTransactions();
-
-  document
-    .getElementById("billAccount")
-    .value="";
-
-  document
-    .getElementById("billAmount")
-    .value="";
-
-  toast(
-    "Demo bill payment completed."
-  );
-
-  showPage("dashboard");
-
-}
-
-
-/* =====================================================
-   RECIPIENT
-===================================================== */
-
-function selectRecipient(name){
-
-  document
-    .getElementById("transferRecipient")
-    .value=name;
-
-  showPage("transfer");
-
-  toast(
-    name+" selected."
-  );
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function saveProfile(){
-
-  const name =
-    document
-      .getElementById("profileNameInput")
-      .value.trim();
-
-  const email =
-    document
-      .getElementById("profileEmailInput")
-      .value.trim();
-
-  const phone =
-    document
-      .getElementById("profilePhoneInput")
-      .value.trim();
-
-  if(!name || !email){
-
-    toast("Name and email are required.");
-
-    return;
-
-  }
-
-  state.user.name=name;
-  state.user.email=email;
-  state.user.phone=phone;
-
-  localStorage.setItem(
-    "cashflowDemoUser",
-    JSON.stringify(state.user)
-  );
-
-  updateUserUI();
-
-  toast("Profile updated.");
-
-}
-
-
-/* =====================================================
-   OTHER ACTIONS
-===================================================== */
-
-function forgotPassword(){
-
-  openModal(
-    "Forgot password",
-    `
-      <p class="muted">
-        Enter your email address and this demo
-        will show a simulated password-reset message.
-      </p>
-
-      <input
-        id="resetEmail"
-        type="email"
-        placeholder="Email address"
-      >
-
-      <br><br>
-
-      <button
-        class="primary"
-        id="resetButton"
-      >
-        Send reset link
-      </button>
-    `
-  );
-
-  document
-    .getElementById("resetButton")
-    .onclick=()=>{
-
-      const email =
-        document
-          .getElementById("resetEmail")
-          .value.trim();
-
-      if(!email){
-
-        toast("Enter your email.");
-
-        return;
-
-      }
-
-      closeModal();
-
-      toast(
-        "Demo password-reset message created."
-      );
-
-    };
-
-}
-
-
-function security(){
-
-  openModal(
-    "Security",
-    `
-      <p class="muted">
-        This Cashflowbank interface is a front-end demo.
-      </p>
-
-      <div class="securityBanner">
-
-        <div class="secCircle">
-          🔒
-        </div>
-
-        <div class="secText">
-          <b>Demo security status</b>
-          <small>
-            Verification and interface protections enabled.
-          </small>
-        </div>
-
-      </div>
-
-      <p class="muted">
-        A production banking application would need
-        a secure backend, authentication provider,
-        encrypted data storage, fraud controls,
-        and regulated banking infrastructure.
-      </p>
-    `
-  );
-
-}
-
-
-function support(){
-
-  openModal(
-    "Cashflow Support",
-    `
-      <p class="muted">
-        How can we help?
-      </p>
-
-      <button
-        class="menu"
-        onclick="toast('Demo support chat opened.');closeModal();"
-      >
-        <span>💬 Live support</span>
-        <span>›</span>
-      </button>
-
-      <button
-        class="menu"
-        onclick="toast('Demo help center opened.');closeModal();"
-      >
-        <span>❓ Help Center</span>
-        <span>›</span>
-      </button>
-    `
-  );
-
-}
-
-
-function notifications(){
-
-  document
-    .getElementById("notifBadge")
-    .style.display="none";
-
-  openModal(
-    "Notifications",
-    `
-      <div class="transaction">
-        <span class="transactionIcon">🔐</span>
-        <div class="transactionInfo">
-          <b>Security check</b>
-          <small>Your demo account is protected.</small>
-        </div>
-      </div>
-
-      <div class="transaction">
-        <span class="transactionIcon">💰</span>
-        <div class="transactionInfo">
-          <b>Balance update</b>
-          <small>Your demo balance is available.</small>
-        </div>
-      </div>
-    `
-  );
-
-}
-
-
-function scan(){
-
-  openModal(
-    "Scan",
-    `
-      <div class="center">
-        <div class="simpleIcon">
-          ▣
-        </div>
-
-        <p class="muted">
-          QR scanning is available as a
-          front-end demo feature.
-        </p>
-
-        <button
-          class="primary"
-          onclick="toast('Demo scanner activated.');closeModal();"
-        >
-          Start Scanner
-        </button>
-      </div>
-    `
-  );
-
-}
-
-
-function period(){
-
-  openModal(
-    "Spending period",
-    `
-      <button
-        class="menu"
-        onclick="toast('This month selected.');closeModal();"
-      >
-        <span>This Month</span>
-        <span>✓</span>
-      </button>
-
-      <button
-        class="menu"
-        onclick="toast('Last month selected.');closeModal();"
-      >
-        <span>Last Month</span>
-        <span>›</span>
-      </button>
-
-      <button
-        class="menu"
-        onclick="toast('This year selected.');closeModal();"
-      >
-        <span>This Year</span>
-        <span>›</span>
-      </button>
-    `
-  );
-
-}
-
-
-function verify(){
-
-  openModal(
-    "Account verification",
-    `
-      <p class="muted">
-        Your account verification status is currently
-        simulated for this demo.
-      </p>
-
-      <button
-        class="primary"
-        onclick="toast('Demo verification complete.');closeModal();"
-      >
-        Complete Demo Verification
-      </button>
-    `
-  );
-
-}
-
-
-function serviceAction(service){
-
-  openModal(
-    service,
-    `
-      <p class="muted">
-        ${service} is available as a
-        front-end demo feature.
-      </p>
-
-      <button
-        class="primary"
-        onclick="toast('${service} demo opened.');closeModal();"
-      >
-        Continue
-      </button>
-    `
-  );
-
-}
-
-
-function addAccount(){
-
-  openModal(
-    "Add account",
-    `
-      <p class="muted">
-        Choose an account type for this demo.
-      </p>
-
-      <button
-        class="menu"
-        onclick="toast('Demo checking account selected.');closeModal();"
-      >
-        <span>Checking</span>
-        <span>›</span>
-      </button>
-
-      <button
-        class="menu"
-        onclick="toast('Demo savings account selected.');closeModal();"
-      >
-        <span>Savings</span>
-        <span>›</span>
-      </button>
-    `
-  );
-
-}
-
-
-function createSaving(){
-
-  const goal =
-    document
-      .getElementById("savingGoal")
-      .value.trim();
-
-  const amount =
-    Number(
-      document
-        .getElementById("savingAmount")
-        .value
-    );
-
-  if(!goal || !amount || amount<=0){
-
-    toast(
-      "Enter a savings goal and amount."
-    );
-
-    return;
-
-  }
-
-  toast(
-    "Demo savings goal created: "+goal
-  );
-
-  document
-    .getElementById("savingGoal")
-    .value="";
-
-  document
-    .getElementById("savingAmount")
-    .value="";
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-function logout(){
-
-  openModal(
-    "Log out",
-    `
-      <p class="muted">
-        Are you sure you want to log out of this demo?
-      </p>
-
-      <button
-        class="primary"
-        id="logoutConfirm"
-      >
-        Log out
-      </button>
-    `
-  );
-
-  document
-    .getElementById("logoutConfirm")
-    .onclick=()=>{
-
-      closeModal();
-
-      showPage("login");
-
-      toast("You have been logged out.");
-
-    };
-
-}
-
-
-/* =====================================================
-   EVENT DELEGATION
-===================================================== */
-
-document.addEventListener(
-  "click",
-  event=>{
-
-    const pageButton =
-      event.target.closest("[data-page]");
-
-    if(pageButton){
-
-      const page =
-        pageButton.dataset.page;
-
-      if(page){
-        showPage(page);
-      }
-
-      return;
 
     }
+  );
 
 
-    const actionButton =
-      event.target.closest("[data-action]");
+  input.addEventListener(
+    "keydown",
+    function (event) {
 
-    if(!actionButton){
-      return;
-    }
+      if (
+        event.key === "Backspace" &&
+        !input.value &&
+        index > 0
+      ) {
 
-    const action =
-      actionButton.dataset.action;
+        otpInputs[index - 1].focus();
 
-    switch(action){
-
-      case "toggleBalance":
-        toggleBalance();
-        break;
-
-      case "forgot":
-        forgotPassword();
-        break;
-
-      case "security":
-        security();
-        break;
-
-      case "support":
-        support();
-        break;
-
-      case "scan":
-        scan();
-        break;
-
-      case "notifications":
-        notifications();
-        break;
-
-      case "period":
-        period();
-        break;
-
-      case "verify":
-        verify();
-        break;
-
-      case "sendTransfer":
-        sendTransfer();
-        break;
-
-      case "makeDeposit":
-        makeDeposit();
-        break;
-
-      case "payBill":
-        payBill();
-        break;
-
-      case "recipient":
-        selectRecipient(
-          actionButton.dataset.name
-        );
-        break;
-
-      case "saveProfile":
-        saveProfile();
-        break;
-
-      case "addAccount":
-        addAccount();
-        break;
-
-      case "createSaving":
-        createSaving();
-        break;
-
-      case "logout":
-        logout();
-        break;
-
-      case "closeModal":
-        closeModal();
-        break;
-
-      case "airtime":
-        serviceAction("Airtime");
-        break;
-
-      case "data":
-        serviceAction("Data");
-        break;
-
-      case "electricity":
-        serviceAction("Electricity");
-        break;
-
-      case "tv":
-        serviceAction("TV Subscription");
-        break;
-
-      case "internet":
-        serviceAction("Internet");
-        break;
-
-      case "loan":
-        serviceAction("Loan Center");
-        break;
-
-      case "insurance":
-        serviceAction("Insurance");
-        break;
-
-      case "gift":
-        serviceAction("Gift Cards");
-        break;
-
-      case "terms":
-
-        openModal(
-          "Terms & Privacy",
-          `
-            <p class="muted">
-              This is a demonstration interface.
-              No real financial services are provided.
-            </p>
-          `
-        );
-
-        break;
-
-      case "back":
-        showPage("login");
-        break;
+      }
 
     }
-
-  }
-);
-
-
-/* =====================================================
-   FORMS
-===================================================== */
-
-document
-  .getElementById("signupForm")
-  .addEventListener(
-    "submit",
-    handleSignup
   );
 
-
-document
-  .getElementById("loginForm")
-  .addEventListener(
-    "submit",
-    handleLogin
-  );
+});
 
 
-document
-  .getElementById("verifyCodeButton")
-  .addEventListener(
-    "click",
-    verifyAccount
-  );
-
-
-document
-  .getElementById("resendCode")
-  .addEventListener(
-    "click",
-    resendCode
-  );
-
-
-/* =====================================================
-   CLOSE MODAL BY BACKDROP
-===================================================== */
+/* MODAL OUTSIDE CLICK */
 
 document
   .getElementById("modal")
   .addEventListener(
     "click",
-    event=>{
+    function (event) {
 
-      if(
-        event.target.id==="modal"
-      ){
+      if (event.target.id === "modal") {
 
         closeModal();
 
@@ -4463,91 +2757,18 @@ document
   );
 
 
-/* =====================================================
-   LOAD SAVED DEMO USER
-===================================================== */
+/* HTML ESCAPING */
 
-try{
+function escapeHtml(value) {
 
-  const saved =
-    localStorage.getItem(
-      "cashflowDemoUser"
-    );
-
-  if(saved){
-
-    const parsed =
-      JSON.parse(saved);
-
-    if(parsed){
-
-      state.user={
-        ...state.user,
-        ...parsed
-      };
-
-    }
-
-  }
-
-}catch(error){
-
-  console.warn(
-    "Could not load demo user."
-  );
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-updateUserUI();
-
-updateBalance();
-
-renderTransactions();
-
-
-/* =====================================================
-   LOADING ANIMATION
-===================================================== */
-
-let progress=0;
-
-const loadingInterval =
-  setInterval(()=>{
-
-    progress+=2;
-
-    document
-      .getElementById("progressBar")
-      .style.width=
-        progress+"%";
-
-    document
-      .getElementById("percent")
-      .textContent=
-        progress+"%";
-
-    if(progress>=100){
-
-      clearInterval(loadingInterval);
-
-      setTimeout(()=>{
-
-        document
-          .getElementById("loading")
-          .style.display="none";
-
-        showPage("login");
-
-      },350);
-
-    }
-
-  },35);
 
 </script>
 
