@@ -2,831 +2,4554 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#020916">
-<title>Cashflowbank</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06101f">
+<title>Cashflowbank — Demo</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,Arial,sans-serif;
+  background:#020916;
+  color:#fff;
+}
+
 body{
-margin:0;
-font-family:Inter,Arial,sans-serif;
-background:#020916;
-color:#fff
-}
-button,input,select{font:inherit}
-button{cursor:pointer;color:inherit}
-.app{
-width:100%;
-max-width:540px;
-min-height:100vh;
-margin:auto;
-background:
-radial-gradient(circle at 75% 0,#092b62 0,transparent 28%),
-#020916;
-padding-bottom:90px
+  overflow-x:hidden;
 }
 
-/* LOGO */
-.logo{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px
-}
-.logoMark{
-width:55px;
-height:55px;
-border:5px solid #0782ff;
-border-radius:17px;
-display:grid;
-place-items:center;
-color:#168cff;
-font-size:32px;
-font-weight:900;
-box-shadow:0 0 30px #087fff55
-}
-.logoText{
-font-weight:800;
-letter-spacing:1px;
-font-size:19px
-}
-.logoText span{color:#1789ff}
-
-/* LOADING */
-#loading{
-position:fixed;
-inset:0;
-z-index:999;
-display:grid;
-place-content:center;
-text-align:center;
-background:
-radial-gradient(circle at 50% 60%,#073c92 0,transparent 32%),
-#020916
-}
-#loading p{
-color:#8291a8;
-margin:20px 0 60px
-}
-.loader{
-width:min(360px,82vw)
-}
-.progress{
-height:8px;
-background:#10233c;
-border-radius:99px;
-overflow:hidden
-}
-.progressBar{
-height:100%;
-width:0;
-background:linear-gradient(90deg,#0878ff,#20a3ff);
-box-shadow:0 0 18px #148cff
-}
-.loadingInfo{
-display:flex;
-justify-content:space-between;
-color:#8191a8;
-font-size:11px;
-margin-top:10px
-}
-.loadingInfo b{color:#1b8cff}
-
-/* AUTH */
-.auth{
-padding:25px;
-min-height:100vh
-}
-.authTop{
-display:flex;
-justify-content:space-between;
-margin-bottom:50px
-}
-.authTop button{
-background:none;
-border:0;
-font-size:25px
-}
-.authBox{
-max-width:430px;
-margin:auto
-}
-.authBox .logo{
-flex-direction:column;
-margin-bottom:40px
-}
-.authBox h1{
-font-size:28px;
-margin-bottom:8px
-}
-.muted{color:#8291a8}
-.form{margin-top:30px}
-label{
-display:block;
-font-size:12px;
-font-weight:bold;
-margin-bottom:18px
-}
-input,select{
-width:100%;
-height:52px;
-border:1px solid #263a55;
-background:#071426;
-color:#fff;
-border-radius:12px;
-padding:0 14px;
-margin-top:8px;
-outline:none
-}
-input:focus,select:focus{
-border-color:#178aff
-}
-.primary{
-width:100%;
-height:52px;
-border:0;
-border-radius:12px;
-background:linear-gradient(100deg,#0876ff,#118fff);
-font-weight:bold;
-box-shadow:0 10px 30px #006eff35
-}
-.link{
-border:0;
-background:none;
-color:#208fff
-}
-.forgot{
-display:block;
-margin:-5px 0 25px;
-font-size:12px;
-text-align:right
-}
-.authSwitch{
-text-align:center;
-color:#8291a8;
-font-size:13px;
-margin:35px 0
-}
-.security{
-display:flex;
-justify-content:center;
-gap:10px;
-text-align:center;
-font-size:11px;
-color:#8190a5
+button,input,select{
+  font:inherit;
 }
 
-/* MAIN */
-main{
-padding:22px 18px
-}
-.top{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:20px
-}
-.avatar{
-width:48px;
-height:48px;
-border-radius:50%;
-display:grid;
-place-items:center;
-background:linear-gradient(135deg,#466aff,#0b5fff);
-font-weight:bold;
-font-size:20px
-}
-.greeting{
-flex:1
-}
-.greeting small{
-color:#8291a8
-}
-.greeting h3{
-margin:3px 0;
-font-size:18px
-}
-.topIcons{
-display:flex;
-gap:3px
-}
-.topIcons button{
-background:none;
-border:0;
-font-size:18px;
-position:relative
-}
-.badge{
-position:absolute;
-right:-3px;
-top:-4px;
-background:#187eff;
-font-size:8px;
-width:15px;
-height:15px;
-border-radius:50%;
-display:grid;
-place-items:center
+button{
+  cursor:pointer;
 }
 
-/* NOTICE */
-.notice{
-display:flex;
-align-items:center;
-gap:9px;
-border:1px solid #173b6c;
-background:#061b3a;
-border-radius:12px;
-padding:13px;
-font-size:10px;
-color:#b7c5d8;
-margin-bottom:20px
-}
-.notice strong{color:#3a96ff}
-
-/* BALANCE */
-.balance{
-border:1px solid #176be5;
-border-radius:17px;
-overflow:hidden;
-background:linear-gradient(135deg,#1746be,#09256c);
-position:relative;
-margin-bottom:13px
-}
-.balanceTop{
-display:flex;
-justify-content:space-between;
-padding:20px
-}
-.balanceLabel{
-font-size:12px;
-color:#d3e1fb
-}
-.balanceAmount{
-display:block;
-font-size:37px;
-font-weight:bold;
-margin-top:7px
-}
-.addMoney{
-border:0;
-background:#1679ff;
-border-radius:25px;
-height:42px;
-padding:0 15px;
-font-weight:bold
-}
-.earnings{
-padding:0 20px 18px;
-font-size:11px;
-color:#b5c6df
-}
-.earnings strong{
-color:#15d39c;
-margin-left:12px
-}
-.chart{
-height:70px;
-position:absolute;
-right:0;
-bottom:55px;
-width:55%;
-opacity:.8
-}
-.chart svg{
-width:100%;
-height:100%
-}
-.chart polyline{
-fill:none;
-stroke:#198cff;
-stroke-width:3
-}
-.history{
-width:100%;
-position:relative;
-border:0;
-border-top:1px solid #ffffff19;
-background:#03142dcc;
-padding:16px;
-display:flex;
-justify-content:space-between
-}
-.history span:last-child{
-color:#3c94ff
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
-/* QUICK */
-.quick{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:6px;
-padding:12px 5px;
-border:1px solid #1d304a;
-background:#071426;
-border-radius:14px;
-margin-bottom:13px
-}
-.quick button{
-border:0;
-background:none;
-text-align:center
-}
-.quickIcon{
-width:43px;
-height:43px;
-display:grid;
-place-items:center;
-border-radius:50%;
-background:#0d2546;
-color:#238aff;
-margin:auto;
-font-size:20px
-}
-.quick b{
-display:block;
-font-size:9px;
-margin-top:6px
-}
-
-/* CARDS */
-.card{
-border:1px solid #1d3049;
-background:#071426;
-border-radius:14px;
-overflow:hidden;
-margin-bottom:13px
-}
-.cardTitle{
-display:flex;
-justify-content:space-between;
-padding:15px;
-font-size:12px
-}
-.cardTitle button{
-background:none;
-border:0;
-color:#3c94ff;
-font-size:10px
-}
-
-/* NAVIGATION */
-.nav{
-position:fixed;
-z-index:50;
-bottom:10px;
-left:50%;
-transform:translateX(-50%);
-width:min(500px,calc(100% - 24px));
-display:grid;
-grid-template-columns:repeat(5,1fr);
-padding:8px 3px;
-background:#091526ee;
-border:1px solid #203651;
-border-radius:19px;
-backdrop-filter:blur(18px)
-}
-.nav button{
-border:0;
-background:none;
-color:#8291a8;
-font-size:9px
-}
-.nav button.active{color:#258bff}
-.navIcon{
-font-size:19px;
-display:block;
-margin-bottom:3px
-}
-
-/* PAGES */
 .page{
-display:none
+  display:none;
+  min-height:100vh;
 }
+
 .page.active{
-display:block
-}
-.pageHeader{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:25px
-}
-.pageHeader button{
-border:0;
-background:none;
-font-size:20px
-}
-.pageHeader h2{
-font-size:19px
+  display:block;
 }
 
-/* TRANSFER */
-.tabs{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-border-bottom:1px solid #25364c;
-margin-bottom:25px
-}
-.tabs button{
-border:0;
-background:none;
-color:#8391a6;
-padding:12px;
-font-size:11px
-}
-.tabs .selected{
-color:#168cff;
-border-bottom:2px solid #168cff
-}
-.transferBox{
-margin-bottom:18px
-}
-.inputRow{
-display:flex;
-align-items:center;
-gap:8px;
-height:52px;
-background:#071426;
-border:1px solid #263a55;
-border-radius:12px;
-padding:0 12px
-}
-.inputRow input,.inputRow select{
-border:0;
-margin:0;
-padding:0;
-height:100%
-}
-.recipients{
-margin-top:25px
-}
-.recipient{
-display:flex;
-align-items:center;
-gap:10px;
-padding:12px 15px;
-border-top:1px solid #172a42
-}
-.recipientAvatar{
-width:37px;
-height:37px;
-border-radius:50%;
-display:grid;
-place-items:center;
-background:#123052;
-color:#20a0ff;
-font-size:10px;
-font-weight:bold
-}
-.recipientInfo{
-display:flex;
-flex-direction:column;
-gap:4px
-}
-.recipientInfo b{font-size:10px}
-.recipientInfo small{
-font-size:8px;
-color:#74869d
-}
-.recipientArrow{
-margin-left:auto;
-color:#238bff
+.app{
+  max-width:540px;
+  min-height:100vh;
+  margin:auto;
+  background:
+    radial-gradient(circle at 80% 0,#0a326e 0,transparent 28%),
+    #020916;
+  padding-bottom:100px;
 }
 
-/* ACCOUNTS */
-.account{
-border:1px solid #176be5;
-border-radius:16px;
-background:linear-gradient(135deg,#123eaa,#081e59);
-padding:22px;
-margin-bottom:13px
-}
-.account.secondary{
-background:#07182f;
-border-color:#213a59
-}
-.account span,.account small{
-display:block;
-color:#bdcbe1;
-font-size:11px
-}
-.account strong{
-display:block;
-font-size:31px;
-margin:15px 0
-}
-.outline{
-width:100%;
-height:50px;
-border:1px solid #253954;
-background:#09172a;
-border-radius:11px;
-color:#298eff
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
 }
 
-/* PROFILE */
-.profile{
-text-align:center;
-padding:20px
+.logoMark{
+  width:54px;
+  height:54px;
+  border:5px solid #1187ff;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  color:#1187ff;
+  font-size:29px;
+  font-weight:900;
+  box-shadow:0 0 28px #087fff44;
 }
+
+.logoText{
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.logoText span{
+  color:#168cff;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 55%,#073d91 0,transparent 30%),
+    #020916;
+}
+
+.loadSub{
+  color:#8191a8;
+  margin:20px 0 55px;
+}
+
+.loader{
+  width:min(360px,82vw);
+}
+
+.progress{
+  height:8px;
+  background:#10243d;
+  border-radius:50px;
+  overflow:hidden;
+}
+
+.progressBar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#0879ff,#25a7ff);
+  transition:width:.1s linear;
+}
+
+.loadingInfo{
+  display:flex;
+  justify-content:space-between;
+  margin-top:9px;
+  color:#8090a6;
+  font-size:10px;
+}
+
+.loadingInfo b{
+  color:#1c8fff;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth{
+  padding:24px;
+}
+
+.authTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:50px;
+}
+
+.iconBtn{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:23px;
+}
+
+.authBox{
+  max-width:430px;
+  margin:auto;
+}
+
+.authBox .logo{
+  flex-direction:column;
+  margin-bottom:38px;
+}
+
+.authBox h1{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.muted{
+  color:#8190a6;
+  font-size:13px;
+}
+
+.form{
+  margin-top:28px;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+input,select{
+  width:100%;
+  height:52px;
+  margin-top:8px;
+  padding:0 14px;
+  border:1px solid #263a55;
+  border-radius:12px;
+  outline:none;
+  background:#071426;
+  color:#fff;
+}
+
+input:focus,select:focus{
+  border-color:#168cff;
+}
+
+.primary{
+  width:100%;
+  min-height:52px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(100deg,#0877ff,#138fff);
+  color:#fff;
+  font-weight:800;
+}
+
+.link{
+  border:0;
+  background:none;
+  color:#268fff;
+}
+
+.forgot{
+  display:block;
+  width:100%;
+  text-align:right;
+  margin:-5px 0 25px;
+  font-size:12px;
+}
+
+.authSwitch{
+  text-align:center;
+  color:#8190a6;
+  font-size:13px;
+  margin:32px 0;
+}
+
+.security{
+  text-align:center;
+  color:#7e8fa6;
+  font-size:11px;
+  line-height:1.6;
+}
+
+/* =========================
+   VERIFICATION
+========================= */
+
+.verifyPage{
+  padding:25px;
+}
+
+.verifyBox{
+  max-width:430px;
+  margin:70px auto 0;
+  text-align:center;
+}
+
+.verifyIcon{
+  width:72px;
+  height:72px;
+  margin:0 auto 25px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#092e5c;
+  border:1px solid #176be5;
+  color:#2a96ff;
+  font-size:31px;
+}
+
+.verifyBox h1{
+  font-size:27px;
+  margin-bottom:10px;
+}
+
+.verifyBox p{
+  color:#8291a8;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.codeInputs{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:30px 0;
+}
+
+.codeInput{
+  width:46px;
+  height:56px;
+  margin:0;
+  padding:0;
+  text-align:center;
+  font-size:22px;
+  font-weight:800;
+  border-radius:11px;
+}
+
+.demoCode{
+  margin:18px 0;
+  padding:12px;
+  border:1px dashed #176be5;
+  border-radius:11px;
+  background:#061a35;
+  color:#92b7e7;
+  font-size:11px;
+}
+
+.demoCode strong{
+  color:#27a0ff;
+  font-size:18px;
+  letter-spacing:4px;
+}
+
+.codeMessage{
+  min-height:20px;
+  font-size:11px;
+  margin:12px 0;
+}
+
+.error{
+  color:#ff6b72;
+}
+
+.success{
+  color:#19d49c;
+}
+
+.resend{
+  margin-top:18px;
+  font-size:12px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+main{
+  padding:22px 18px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.avatar,
 .bigAvatar{
-width:84px;
-height:84px;
-border-radius:50%;
-display:grid;
-place-items:center;
-margin:auto;
-background:linear-gradient(135deg,#466aff,#0b5fff);
-font-size:30px;
-font-weight:bold
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,#486bff,#075fff);
+  font-weight:800;
 }
-.profile h2{margin:14px 0 5px}
-.profile p{color:#8291a8;font-size:12px}
-.menu{
-width:100%;
-height:54px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-background:#071426;
-border:1px solid #1c3049;
-border-radius:12px;
-margin-bottom:8px;
-padding:0 15px
-}
-.menu span{font-size:12px}
 
-/* SIMPLE */
-.simpleIcon{
-font-size:55px;
-text-align:center;
-margin:70px 0 20px
+.avatar{
+  width:48px;
+  height:48px;
+  font-size:18px;
 }
-.center{text-align:center}
+
+.greeting{
+  flex:1;
+}
+
+.greeting small{
+  color:#8291a8;
+}
+
+.greeting h3{
+  margin:3px 0;
+  font-size:18px;
+}
+
+.topIcons{
+  display:flex;
+  gap:2px;
+}
+
+.topIcons button{
+  position:relative;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:18px;
+}
+
+.badge{
+  position:absolute;
+  right:-3px;
+  top:-5px;
+  width:15px;
+  height:15px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#1885ff;
+  font-size:8px;
+  font-style:normal;
+}
+
+.notice{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:20px;
+  padding:13px;
+  border:1px solid #173b6c;
+  border-radius:12px;
+  background:#061b3a;
+  color:#b7c6da;
+  font-size:10px;
+}
+
+.notice strong{
+  color:#3b98ff;
+}
+
+/* Balance */
+
+.balance{
+  overflow:hidden;
+  margin-bottom:13px;
+  border:1px solid #176be5;
+  border-radius:17px;
+  background:linear-gradient(135deg,#1746be,#09256c);
+}
+
+.balanceTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:20px;
+}
+
+.balanceLabel{
+  color:#d1def5;
+  font-size:12px;
+}
+
+.balanceAmount{
+  display:block;
+  margin-top:7px;
+  font-size:37px;
+  font-weight:800;
+}
+
+.addMoney{
+  height:42px;
+  padding:0 15px;
+  border:0;
+  border-radius:25px;
+  background:#1679ff;
+  color:#fff;
+  font-weight:800;
+}
+
+.earnings{
+  padding:0 20px 18px;
+  color:#b6c6de;
+  font-size:11px;
+}
+
+.earnings strong{
+  margin-left:12px;
+  color:#15d39c;
+}
+
+.history{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:16px;
+  border:0;
+  border-top:1px solid #ffffff19;
+  background:#03142dcc;
+  color:#fff;
+}
+
+.history span:last-child{
+  color:#3d94ff;
+}
+
+/* Quick actions */
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-bottom:13px;
+  padding:12px 5px;
+  border:1px solid #1d304a;
+  border-radius:14px;
+  background:#071426;
+}
+
+.quick button{
+  border:0;
+  background:none;
+  color:#fff;
+  text-align:center;
+}
+
+.quickIcon{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  margin:auto;
+  border-radius:50%;
+  background:#0d2546;
+  color:#238aff;
+  font-size:20px;
+}
+
+.quick b{
+  display:block;
+  margin-top:6px;
+  font-size:9px;
+}
+
+/* Cards */
+
+.card{
+  overflow:hidden;
+  margin-bottom:13px;
+  border:1px solid #1d3049;
+  border-radius:14px;
+  background:#071426;
+}
+
+.cardTitle{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  font-size:12px;
+}
+
+.cardTitle button{
+  border:0;
+  background:none;
+  color:#3c94ff;
+  font-size:10px;
+}
+
+/* Spending */
+
+.spendingBody{
+  display:flex;
+  align-items:center;
+  gap:17px;
+  padding:4px 14px 18px;
+}
+
+.donut{
+  width:122px;
+  height:122px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      #1680ff 0 34%,
+      #28bd70 34% 55%,
+      #ffd23e 55% 71%,
+      #ff6250 71% 86%,
+      #925be7 86%
+    );
+}
+
+.donutInner{
+  width:80px;
+  height:80px;
+  display:grid;
+  place-content:center;
+  text-align:center;
+  border-radius:50%;
+  background:#071426;
+}
+
+.donutInner b{
+  font-size:14px;
+}
+
+.donutInner small{
+  color:#7f90a7;
+  font-size:8px;
+}
+
+.legend{
+  flex:1;
+  font-size:9px;
+}
+
+.legend div{
+  display:flex;
+  gap:7px;
+  margin:9px 0;
+}
+
+.legend b{
+  margin-left:auto;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+}
+
+.blue{background:#1680ff}
+.green{background:#28bd70}
+.yellow{background:#ffd23e}
+.red{background:#ff6250}
+.purple{background:#925be7}
+
+/* Transactions */
+
+.transaction{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 15px;
+  border-top:1px solid #172a42;
+}
+
+.transactionIcon,
+.recipientAvatar{
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border-radius:50%;
+  background:#102845;
+}
+
+.transactionInfo{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.transactionInfo b{
+  font-size:11px;
+}
+
+.transactionInfo small{
+  color:#7789a0;
+  font-size:8px;
+}
+
+.transactionAmount{
+  margin-left:auto;
+  font-size:11px;
+}
+
+.positive{
+  color:#16d49c;
+}
+
+.negative{
+  color:#ff6871;
+}
+
+/* Security */
+
+.securityBanner{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:13px;
+  padding:14px;
+  border:1px solid #1d3049;
+  border-radius:14px;
+  background:#071426;
+}
+
+.secCircle{
+  width:39px;
+  height:39px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#064c3b;
+  color:#19d49c;
+}
+
+.secText{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.secText b{
+  font-size:12px;
+}
+
+.secText small{
+  color:#8090a6;
+  font-size:9px;
+}
+
+.verify{
+  margin-left:auto;
+  padding:8px 10px;
+  border:1px solid #193e70;
+  border-radius:20px;
+  background:#092347;
+  color:#4598ff;
+  font-size:9px;
+}
+
+/* Services */
+
+.servicesGrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  padding:0 9px 14px;
+}
+
+.service{
+  min-height:70px;
+  border:1px solid #1c3049;
+  border-radius:10px;
+  background:#09172b;
+  color:#fff;
+}
+
+.serviceIcon{
+  display:block;
+  margin:9px 0 6px;
+  color:#268bff;
+  font-size:19px;
+}
+
+.service b{
+  font-size:7px;
+}
+
+/* Savings */
+
+.savingsBanner{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:10px;
+  padding:12px;
+  border:1px solid #164d9c;
+  border-radius:14px;
+  background:linear-gradient(90deg,#062457,#07316d);
+}
+
+.pig{
+  font-size:32px;
+}
+
+.savingText{
+  flex:1;
+}
+
+.savingText b{
+  display:block;
+  font-size:10px;
+}
+
+.savingText small{
+  color:#8da1ba;
+  font-size:8px;
+}
+
+.start{
+  padding:9px 11px;
+  border:0;
+  border-radius:20px;
+  background:#087bff;
+  color:#fff;
+  font-size:8px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+  position:fixed;
+  z-index:100;
+  bottom:10px;
+  left:50%;
+  width:min(500px,calc(100% - 24px));
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px 3px;
+  transform:translateX(-50%);
+  border:1px solid #203651;
+  border-radius:19px;
+  background:#091526ee;
+  backdrop-filter:blur(18px);
+}
+
+.nav button{
+  border:0;
+  background:none;
+  color:#8291a8;
+  font-size:9px;
+}
+
+.nav button.active{
+  color:#258bff;
+}
+
+.navIcon{
+  display:block;
+  margin-bottom:3px;
+  font-size:19px;
+}
+
+/* =========================
+   OTHER SCREENS
+========================= */
+
+.pageContent{
+  padding:22px 18px;
+}
+
+.pageHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+
+.pageHeader h2{
+  margin:0;
+  font-size:20px;
+}
+
+.back{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:22px;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin-bottom:25px;
+  border-bottom:1px solid #25364c;
+}
+
+.tabs button{
+  padding:12px;
+  border:0;
+  background:none;
+  color:#8391a6;
+  font-size:11px;
+}
+
+.tabs .selected{
+  color:#168cff;
+  border-bottom:2px solid #168cff;
+}
+
+.transferBox{
+  margin-bottom:18px;
+}
+
+.inputRow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:52px;
+  padding:0 12px;
+  border:1px solid #263a55;
+  border-radius:12px;
+  background:#071426;
+}
+
+.inputRow input,
+.inputRow select{
+  height:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+.recipients{
+  margin-top:25px;
+}
+
+.recipient{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 15px;
+  border-top:1px solid #172a42;
+}
+
+.recipientInfo{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.recipientInfo b{
+  font-size:11px;
+}
+
+.recipientInfo small{
+  color:#7789a0;
+  font-size:8px;
+}
+
+.recipientArrow{
+  margin-left:auto;
+  color:#238bff;
+}
+
+.account{
+  margin-bottom:13px;
+  padding:22px;
+  border:1px solid #176be5;
+  border-radius:16px;
+  background:linear-gradient(135deg,#123eaa,#081e59);
+}
+
+.account.secondary{
+  border-color:#213a59;
+  background:#07182f;
+}
+
+.account span,
+.account small{
+  display:block;
+  color:#bdcbe1;
+  font-size:11px;
+}
+
+.account strong{
+  display:block;
+  margin:15px 0;
+  font-size:31px;
+}
+
+.outline{
+  width:100%;
+  height:50px;
+  border:1px solid #253954;
+  border-radius:11px;
+  background:#09172a;
+  color:#298eff;
+}
+
+.profile{
+  padding:20px;
+  text-align:center;
+}
+
+.bigAvatar{
+  width:84px;
+  height:84px;
+  margin:auto;
+  font-size:30px;
+}
+
+.profile h2{
+  margin:14px 0 5px;
+}
+
+.profile p{
+  color:#8291a8;
+  font-size:12px;
+}
+
+.menu{
+  width:100%;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:8px;
+  padding:0 15px;
+  border:1px solid #1c3049;
+  border-radius:12px;
+  background:#071426;
+  color:#fff;
+}
+
+.menu span{
+  font-size:12px;
+}
+
+.center{
+  text-align:center;
+}
+
+.simpleIcon{
+  margin:70px 0 20px;
+  text-align:center;
+  font-size:55px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:#000b;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:min(540px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  border:1px solid #28425f;
+  border-radius:22px 22px 0 0;
+  background:#071426;
+}
+
+.modalClose{
+  float:right;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:22px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  z-index:1000;
+  left:50%;
+  bottom:100px;
+  max-width:90%;
+  padding:12px 16px;
+  transform:translateX(-50%) translateY(20px);
+  border:1px solid #2b4b6c;
+  border-radius:12px;
+  background:#0d2138;
+  color:#fff;
+  font-size:11px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+@media(min-width:700px){
+  .app{
+    border-right:1px solid #14263d;
+    border-left:1px solid #14263d;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- LOADING -->
+<!-- =========================
+     LOADING SCREEN
+========================= -->
+
 <div id="loading">
+
   <div class="logo">
     <div class="logoMark">C</div>
-    <div class="logoText">CASH<span>FLOW</span>BANK</div>
-  </div>
-  <p>Banking that moves with you.</p>
-  <div class="loader">
-    <div class="progress">
-      <div class="progressBar" id="progressBar"></div>
+    <div class="logoText">
+      CASH<span>FLOW</span>BANK
     </div>
+  </div>
+
+  <div class="loadSub">
+    Banking that moves with you.
+  </div>
+
+  <div class="loader">
+
+    <div class="progress">
+      <div
+        class="progressBar"
+        id="progressBar"
+      ></div>
+    </div>
+
     <div class="loadingInfo">
       <span>Loading your experience...</span>
       <b id="percent">0%</b>
     </div>
+
   </div>
 </div>
+
 
 <div class="app">
 
-<!-- LOGIN -->
-<section id="login" class="page auth">
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section
+  id="login"
+  class="page auth"
+>
+
   <div class="authTop">
-    <button onclick="show('login')">←</button>
-    <button onclick="toast('Security Center')">🛡️</button>
+
+    <button
+      class="iconBtn"
+      data-action="back"
+    >
+      ←
+    </button>
+
+    <button
+      class="iconBtn"
+      data-action="security"
+    >
+      🛡️
+    </button>
+
   </div>
+
   <div class="authBox">
+
     <div class="logo">
-      <div class="logoMark">C</div>
-      <div class="logoText">CASH<span>FLOW</span>BANK</div>
+
+      <div class="logoMark">
+        C
+      </div>
+
+      <div class="logoText">
+        CASH<span>FLOW</span>BANK
+      </div>
+
     </div>
-    <h1>Sign in to your account</h1>
-    <p class="muted">Welcome back! Please enter your details.</p>
-    <form class="form" onsubmit="login(event)">
-      <label>Email address<input type="email" placeholder="Enter your email" required></label>
-      <label>Password<input type="password" placeholder="Enter your password" required></label>
-      <button type="button" class="link forgot" onclick="toast('Password reset link sent')">Forgot password?</button>
-      <button class="primary">Log in</button>
+
+    <h1>
+      Sign in to your account
+    </h1>
+
+    <p class="muted">
+      Welcome back! Please enter your details.
+    </p>
+
+    <form
+      class="form"
+      id="loginForm"
+    >
+
+      <label>
+        Email address
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+      </label>
+
+      <label>
+        Password
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password"
+          required
+        >
+      </label>
+
+      <button
+        type="button"
+        class="link forgot"
+        data-action="forgot"
+      >
+        Forgot password?
+      </button>
+
+      <button
+        type="submit"
+        class="primary"
+      >
+        Log in
+      </button>
+
     </form>
-    <p class="authSwitch">New to Cashflowbank? <button class="link" onclick="show('signup')">Sign up</button></p>
+
+    <p class="authSwitch">
+
+      New to Cashflowbank?
+
+      <button
+        type="button"
+        class="link"
+        data-page="signup"
+      >
+        Sign up
+      </button>
+
+    </p>
+
   </div>
+
 </section>
 
-<!-- SIGN UP -->
-<section id="signup" class="page auth">
+
+<!-- =========================
+     SIGN UP
+========================= -->
+
+<section
+  id="signup"
+  class="page auth"
+>
+
   <div class="authTop">
-    <button onclick="show('login')">←</button>
-    <button onclick="toast('Security Center')">🛡️</button>
+
+    <button
+      class="iconBtn"
+      data-page="login"
+    >
+      ←
+    </button>
+
+    <button
+      class="iconBtn"
+      data-action="security"
+    >
+      🛡️
+    </button>
+
   </div>
+
   <div class="authBox">
+
     <div class="logo">
-      <div class="logoMark">C</div>
-      <div class="logoText">CASH<span>FLOW</span>BANK</div>
+
+      <div class="logoMark">
+        C
+      </div>
+
+      <div class="logoText">
+        CASH<span>FLOW</span>BANK
+      </div>
+
     </div>
-    <h1>Create your account</h1>
-    <p class="muted">Let's get you started.</p>
-    <form class="form" onsubmit="signup(event)">
-      <label>Full name<input type="text" placeholder="Enter your full name" required></label>
-      <label>Email address<input type="email" placeholder="Enter your email" required></label>
-      <label>Create password<input type="password" placeholder="Create a strong password" required></label>
-      <label>Phone number<input type="tel" placeholder="Enter your phone number" required></label>
-      <button class="primary">Open account</button>
+
+    <h1>
+      Create your account
+    </h1>
+
+    <p class="muted">
+      Let's get you started.
+    </p>
+
+    <form
+      class="form"
+      id="signupForm"
+    >
+
+      <label>
+        Full name
+
+        <input
+          id="signupName"
+          type="text"
+          placeholder="Enter your full name"
+          required
+        >
+      </label>
+
+      <label>
+        Email address
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+      </label>
+
+      <label>
+        Create password
+
+        <input
+          id="signupPassword"
+          type="password"
+          minlength="6"
+          placeholder="Create a strong password"
+          required
+        >
+      </label>
+
+      <label>
+        Phone number
+
+        <input
+          id="signupPhone"
+          type="tel"
+          placeholder="Enter your phone number"
+          required
+        >
+      </label>
+
+      <button
+        type="submit"
+        class="primary"
+      >
+        Open account
+      </button>
+
     </form>
-    <p class="authSwitch">Already have an account? <button class="link" onclick="show('login')">Log in</button></p>
-    <div class="security">🛡️ <span>Your data is protected with<br><b>bank-grade security</b>.</span></div>
+
+    <p class="authSwitch">
+
+      Already have an account?
+
+      <button
+        type="button"
+        class="link"
+        data-page="login"
+      >
+        Log in
+      </button>
+
+    </p>
+
+    <div class="security">
+      🛡️ Your data is protected with
+      <b>bank-grade security</b>.
+    </div>
+
   </div>
+
 </section>
 
-<!-- DASHBOARD -->
-<section id="dashboard" class="page">
-<main>
-<div class="top">
-  <div class="avatar">A</div>
-  <div class="greeting"><small>Good morning,</small><h3>Hi Alex 👋</h3></div>
-  <div class="topIcons">
-    <button onclick="toast('Favorites')">♧</button>
-    <button onclick="toast('QR Scanner')">⌾</button>
-    <button onclick="toast('2 Notifications')"><i class="badge">2</i>♧</button>
+
+<!-- =========================
+     VERIFICATION
+========================= -->
+
+<section
+  id="verification"
+  class="page verifyPage"
+>
+
+  <div class="authTop">
+
+    <button
+      class="iconBtn"
+      data-page="signup"
+    >
+      ←
+    </button>
+
+    <button
+      class="iconBtn"
+      data-action="security"
+    >
+      🛡️
+    </button>
+
   </div>
+
+  <div class="verifyBox">
+
+    <div class="verifyIcon">
+      ✉
+    </div>
+
+    <h1>
+      Verify your account
+    </h1>
+
+    <p>
+      Enter the 6-digit verification code
+      to finish creating your account.
+    </p>
+
+    <p id="verificationDestination">
+      Code sent to your email.
+    </p>
+
+    <!--
+      DEMO ONLY:
+      The code is displayed here so you can
+      test the website without an SMS/email backend.
+    -->
+
+    <div class="demoCode">
+
+      Demo verification code:
+
+      <br>
+
+      <strong id="demoCode">
+        ------
+      </strong>
+
+    </div>
+
+    <div
+      class="codeInputs"
+      id="codeInputs"
+    >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+      >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+      >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+      >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+      >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+      >
+
+      <input
+        class="codeInput"
+        maxlength="1"
+        inputmode="numeric"
+      >
+
+    </div>
+
+    <div
+      id="codeMessage"
+      class="codeMessage"
+    ></div>
+
+    <button
+      id="verifyCodeButton"
+      class="primary"
+    >
+      Verify code
+    </button>
+
+    <button
+      id="resendCode"
+      class="link resend"
+    >
+      Resend code
+    </button>
+
+    <p class="security">
+      For this demo, the verification code is generated
+      locally in your browser.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+  id="dashboard"
+  class="page"
+>
+
+<main>
+
+  <div class="top">
+
+    <div
+      class="avatar"
+      id="avatar"
+    >
+      A
+    </div>
+
+    <div class="greeting">
+
+      <small>
+        Good morning,
+      </small>
+
+      <h3>
+        Hi
+        <span id="greetingName">
+          Alex
+        </span>
+        👋
+      </h3>
+
+    </div>
+
+    <div class="topIcons">
+
+      <button data-action="support">
+        ♧
+      </button>
+
+      <button data-action="scan">
+        ⌾
+      </button>
+
+      <button data-action="notifications">
+        ♧
+        <i
+          class="badge"
+          id="notifBadge"
+        >
+          2
+        </i>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="notice">
+
+    🔊
+
+    <span>
+      <strong>System Update:</strong>
+      CashFlow is fully operational with all services.
+    </span>
+
+  </div>
+
+
+  <!-- BALANCE -->
+
+  <section class="balance">
+
+    <div class="balanceTop">
+
+      <div>
+
+        <span class="balanceLabel">
+
+          Available Balance
+
+          <button
+            id="balanceEye"
+            class="link"
+            data-action="toggleBalance"
+          >
+            👁
+          </button>
+
+        </span>
+
+        <strong
+          class="balanceAmount"
+          id="balance"
+        >
+          $8,542.68
+        </strong>
+
+      </div>
+
+      <button
+        class="addMoney"
+        data-page="deposit"
+      >
+        ＋ Add Money
+      </button>
+
+    </div>
+
+    <div class="earnings">
+
+      Today's Earnings
+
+      <strong>
+        +$12.45
+      </strong>
+
+    </div>
+
+    <button
+      class="history"
+      data-page="transactions"
+    >
+
+      <span>
+        ▣ Transaction History
+      </span>
+
+      <span>
+        View All ›
+      </span>
+
+    </button>
+
+  </section>
+
+
+  <!-- QUICK ACTIONS -->
+
+  <div class="quick">
+
+    <button data-page="transfer">
+
+      <span class="quickIcon">
+        ↗
+      </span>
+
+      <b>
+        Transfer
+      </b>
+
+    </button>
+
+    <button data-page="bills">
+
+      <span class="quickIcon">
+        ▤
+      </span>
+
+      <b>
+        Pay Bills
+      </b>
+
+    </button>
+
+    <button data-page="deposit">
+
+      <span class="quickIcon">
+        ↓
+      </span>
+
+      <b>
+        Deposit
+      </b>
+
+    </button>
+
+    <button data-page="more">
+
+      <span class="quickIcon">
+        •••
+      </span>
+
+      <b>
+        More
+      </b>
+
+    </button>
+
+  </div>
+
+
+  <!-- SPENDING -->
+
+  <section class="card">
+
+    <div class="cardTitle">
+
+      <b>
+        Spending Overview
+      </b>
+
+      <button data-action="period">
+        This Month⌄
+      </button>
+
+    </div>
+
+    <div class="spendingBody">
+
+      <div class="donut">
+
+        <div class="donutInner">
+
+          <b>
+            $2,832
+          </b>
+
+          <small>
+            Total Spent
+          </small>
+
+        </div>
+
+      </div>
+
+      <div class="legend">
+
+        <div>
+          <i class="dot blue"></i>
+          Shopping
+          <b>$962</b>
+        </div>
+
+        <div>
+          <i class="dot green"></i>
+          Food & Dining
+          <b>$584</b>
+        </div>
+
+        <div>
+          <i class="dot yellow"></i>
+          Transport
+          <b>$448</b>
+        </div>
+
+        <div>
+          <i class="dot red"></i>
+          Bills
+          <b>$420</b>
+        </div>
+
+        <div>
+          <i class="dot purple"></i>
+          Entertainment
+          <b>$418</b>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RECENT TRANSACTIONS -->
+
+  <section class="card">
+
+    <div class="cardTitle">
+
+      <b>
+        Recent Transactions
+      </b>
+
+      <button data-page="transactions">
+        View All
+      </button>
+
+    </div>
+
+    <div id="recentList"></div>
+
+  </section>
+
+
+  <!-- SECURITY -->
+
+  <div class="securityBanner">
+
+    <div class="secCircle">
+      🔒
+    </div>
+
+    <div class="secText">
+
+      <b>
+        Secure Your Account
+      </b>
+
+      <small>
+        Complete your profile verification
+      </small>
+
+    </div>
+
+    <button
+      class="verify"
+      data-action="verify"
+    >
+      Verify Now
+    </button>
+
+  </div>
+
+
+  <!-- SERVICES -->
+
+  <section class="card">
+
+    <div class="cardTitle">
+
+      <b>
+        Services
+      </b>
+
+      <button data-page="more">
+        View All ›
+      </button>
+
+    </div>
+
+    <div class="servicesGrid">
+
+      <button
+        class="service"
+        data-action="airtime"
+      >
+        <span class="serviceIcon">
+          ▣
+        </span>
+        <b>Airtime</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="data"
+      >
+        <span class="serviceIcon">
+          ⌁
+        </span>
+        <b>Data</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="electricity"
+      >
+        <span class="serviceIcon">
+          ϟ
+        </span>
+        <b>Electricity</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="tv"
+      >
+        <span class="serviceIcon">
+          ▤
+        </span>
+        <b>TV</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="internet"
+      >
+        <span class="serviceIcon">
+          ⌁
+        </span>
+        <b>Internet</b>
+      </button>
+
+      <button
+        class="service"
+        data-page="savings"
+      >
+        <span class="serviceIcon">
+          🐷
+        </span>
+        <b>Savings</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="loan"
+      >
+        <span class="serviceIcon">
+          🏦
+        </span>
+        <b>Loan Center</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="insurance"
+      >
+        <span class="serviceIcon">
+          ♢
+        </span>
+        <b>Insurance</b>
+      </button>
+
+      <button
+        class="service"
+        data-action="gift"
+      >
+        <span class="serviceIcon">
+          ▣
+        </span>
+        <b>Gift Card</b>
+      </button>
+
+      <button
+        class="service"
+        data-page="more"
+      >
+        <span class="serviceIcon">
+          •••
+        </span>
+        <b>More</b>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <div class="savingsBanner">
+
+    <div class="pig">
+      🐷
+    </div>
+
+    <div class="savingText">
+
+      <b>
+        Start Fixed Savings with CashFlow
+      </b>
+
+      <small>
+        Earn up to
+        <strong style="color:#16d49c">
+          10%
+        </strong>
+        interest on your savings.
+      </small>
+
+    </div>
+
+    <button
+      class="start"
+      data-page="savings"
+    >
+      Start Saving ›
+    </button>
+
+  </div>
+
+</main>
+
+</section>
+
+
+<!-- =========================
+     TRANSFER
+========================= -->
+
+<section
+  id="transfer"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Transfer Money
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="tabs">
+
+    <button class="selected">
+      Send Money
+    </button>
+
+    <button>
+      Request
+    </button>
+
+    <button>
+      Scheduled
+    </button>
+
+  </div>
+
+  <div class="transferBox">
+
+    <label>
+      From account
+
+      <select id="transferAccount">
+        <option>Cashflow Checking — $8,542.68</option>
+        <option>Cashflow Savings — $2,450.00</option>
+      </select>
+
+    </label>
+
+    <label>
+      Recipient
+
+      <input
+        id="transferRecipient"
+        placeholder="Name or email"
+      >
+
+    </label>
+
+    <label>
+      Amount
+
+      <input
+        id="transferAmount"
+        type="number"
+        min="1"
+        step="0.01"
+        placeholder="$0.00"
+      >
+
+    </label>
+
+    <label>
+      Note
+
+      <input
+        id="transferNote"
+        placeholder="Optional note"
+      >
+
+    </label>
+
+    <button
+      class="primary"
+      data-action="sendTransfer"
+    >
+      Continue
+    </button>
+
+  </div>
+
+
+  <div class="card recipients">
+
+    <div class="cardTitle">
+      <b>
+        Recent recipients
+      </b>
+    </div>
+
+    <button
+      class="recipient"
+      data-action="recipient"
+      data-name="Jordan Smith"
+    >
+
+      <span class="recipientAvatar">
+        JS
+      </span>
+
+      <span class="recipientInfo">
+
+        <b>
+          Jordan Smith
+        </b>
+
+        <small>
+          jordan@example.com
+        </small>
+
+      </span>
+
+      <span class="recipientArrow">
+        ›
+      </span>
+
+    </button>
+
+    <button
+      class="recipient"
+      data-action="recipient"
+      data-name="Maria Johnson"
+    >
+
+      <span class="recipientAvatar">
+        MJ
+      </span>
+
+      <span class="recipientInfo">
+
+        <b>
+          Maria Johnson
+        </b>
+
+        <small>
+          maria@example.com
+        </small>
+
+      </span>
+
+      <span class="recipientArrow">
+        ›
+      </span>
+
+    </button>
+
+  </div>
+
 </div>
 
-<div class="notice" onclick="toast('System is fully operational')"><span><strong>System Update:</strong> CashFlow is fully operational with all services.</span> ›</div>
+</section>
 
-<!-- BALANCE -->
-<section class="balance">
-  <div class="balanceTop">
-    <div><span class="balanceLabel">Available Balance 👁</span><strong class="balanceAmount">$8,542.68</strong></div>
-    <button class="addMoney" onclick="show('deposit')">＋ Add Money</button>
+
+<!-- =========================
+     DEPOSIT
+========================= -->
+
+<section
+  id="deposit"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Add Money
+    </h2>
+
+    <span></span>
+
   </div>
-  <div class="earnings">Today's Earnings <strong>+$12.45</strong></div>
-  <button class="history" onclick="show('transactions')"><span>▣ Transaction History</span><span>View All ›</span></button>
-</section>
 
-<!-- QUICK ACTIONS -->
-<div class="quick">
-<button onclick="show('transfer')"><span class="quickIcon">↗</span><b>Transfer</b></button>
-<button onclick="show('bills')"><span class="quickIcon">▤</span><b>Pay Bills</b></button>
-<button onclick="show('deposit')"><span class="quickIcon">↓</span><b>Deposit</b></button>
-<button onclick="show('more')"><span class="quickIcon">•••</span><b>More</b></button>
+  <div class="account">
+
+    <span>
+      Available Balance
+    </span>
+
+    <strong id="depositBalance">
+      $8,542.68
+    </strong>
+
+    <small>
+      Cashflow Checking
+    </small>
+
+  </div>
+
+  <label>
+    Deposit amount
+
+    <input
+      id="depositAmount"
+      type="number"
+      min="1"
+      step="0.01"
+      placeholder="$0.00"
+    >
+  </label>
+
+  <label>
+    Deposit method
+
+    <select id="depositMethod">
+      <option>Bank transfer</option>
+      <option>Debit card</option>
+      <option>Mobile deposit</option>
+    </select>
+
+  </label>
+
+  <button
+    class="primary"
+    data-action="makeDeposit"
+  >
+    Add Money
+  </button>
+
 </div>
 
-</main>
 </section>
 
-<!-- TRANSFER -->
-<section id="transfer" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Pay & Transfer</h2><button onclick="toast('Transfer Settings')">⚙</button></div>
-<form onsubmit="transfer(event)">
-<div class="transferBox"><label>Recipient</label><div class="inputRow">👥<select required><option value="">Select recipient</option><option>Junior McHenry</option><option>Sophie Okoro</option><option>Alex Cooper</option></select></div></div>
-<div class="transferBox"><label>Amount</label><div class="inputRow">$<input type="number" placeholder="Enter amount" min="1" required><small>USD</small></div></div>
-<button class="primary">Send Money</button>
-</form>
-</main>
-</section>
 
-<!-- ACCOUNTS -->
-<section id="accounts" class="page">
-<main>
-<div class="pageHeader"><h2>Accounts</h2><button onclick="toast('Add New Account')">＋</button></div>
-<div class="account"><span>Cashflow Checking</span><strong>$8,542.68</strong><small>•••• 4821</small></div>
-<div class="account secondary"><span>Cashflow Savings</span><strong>$3,210.00</strong><small>•••• 9044</small></div>
-</main>
-</section>
+<!-- =========================
+     BILLS
+========================= -->
 
-<!-- TRANSACTIONS -->
-<section id="transactions" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Transactions</h2></div>
-<section class="card">
-<div class="transaction"><div class="transactionIcon">🛒</div><div class="transactionInfo"><b>Whole Foods Market</b><small>Groceries · Today</small></div><strong style="color:#ff6871">-$68.24</strong></div>
-<div class="transaction"><div class="transactionIcon">💵</div><div class="transactionInfo"><b>Direct Deposit</b><small>Salary · Yesterday</small></div><strong style="color:#16d49c">+$2,500.00</strong></div>
-</section>
-</main>
-</section>
+<section
+  id="bills"
+  class="page"
+>
 
-<!-- PROFILE -->
-<section id="profile" class="page">
-<main>
-<div class="pageHeader"><h2>Profile</h2><button onclick="toast('Profile Settings')">⚙</button></div>
-<div class="profile"><div class="bigAvatar">A</div><h2>Alex Johnson</h2><p>alex@example.com</p></div>
-<button class="menu" onclick="toast('Personal Information')"><span>Personal information</span><b>›</b></button>
-<button class="menu" onclick="toast('Security & Privacy')"><span>Security & privacy</span><b>›</b></button>
-</main>
-</section>
+<div class="pageContent">
 
-<!-- DEPOSIT -->
-<section id="deposit" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Deposit</h2></div>
-<div class="simpleIcon">💰</div>
-<h2 class="center">Add Money</h2>
-<p class="muted center">Choose how you'd like to add money to your Cashflowbank account.</p><br>
-<button class="menu" onclick="toast('Bank Transfer selected')"><span>🏦 Bank Transfer</span><b>›</b></button>
-<button class="menu" onclick="toast('Debit Card selected')"><span>💳 Debit Card</span><b>›</b></button>
-</main>
-</section>
+  <div class="pageHeader">
 
-<!-- BILLS -->
-<section id="bills" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Pay Bills</h2></div>
-<div class="quick">
-<button onclick="toast('Pay Electricity')"><span class="quickIcon">ϟ</span><b>Electricity</b></button>
-<button onclick="toast('Pay TV')"><span class="quickIcon">▣</span><b>TV</b></button>
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Pay Bills
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="card">
+
+    <div class="cardTitle">
+      <b>
+        Select biller
+      </b>
+    </div>
+
+    <div style="padding:15px">
+
+      <label>
+        Biller
+
+        <select id="biller">
+          <option>Electricity</option>
+          <option>Internet</option>
+          <option>Mobile Phone</option>
+          <option>TV Subscription</option>
+          <option>Water</option>
+        </select>
+
+      </label>
+
+      <label>
+        Account number
+
+        <input
+          id="billAccount"
+          placeholder="Enter account number"
+        >
+
+      </label>
+
+      <label>
+        Amount
+
+        <input
+          id="billAmount"
+          type="number"
+          min="1"
+          step="0.01"
+          placeholder="$0.00"
+        >
+
+      </label>
+
+      <button
+        class="primary"
+        data-action="payBill"
+      >
+        Pay Bill
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
-</main>
+
 </section>
 
-<!-- MORE -->
-<section id="more" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>More</h2></div>
-<button class="menu" onclick="toast('Cards')"><span>Cards</span><b>›</b></button>
-<button class="menu" onclick="toast('Loans')"><span>Loans</span><b>›</b></button>
-<button class="menu" onclick="toast('Help Center')"><span>Help Center</span><b>›</b></button>
-</main>
+
+<!-- =========================
+     TRANSACTIONS
+========================= -->
+
+<section
+  id="transactions"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Transactions
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div
+    class="card"
+    id="transactionList"
+  ></div>
+
+</div>
+
 </section>
 
-<!-- SAVINGS -->
-<section id="savings" class="page">
-<main>
-<div class="pageHeader"><button onclick="show('dashboard')">←</button><h2>Savings</h2></div>
-<div class="account"><span>Cashflow Savings</span><strong>$3,210.00</strong><small>•••• 9044</small></div>
-</main>
+
+<!-- =========================
+     ACCOUNTS
+========================= -->
+
+<section
+  id="accounts"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Accounts
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="account">
+
+    <span>
+      Checking Account
+    </span>
+
+    <strong id="checkingAccountBalance">
+      $8,542.68
+    </strong>
+
+    <small>
+      •••• 4286
+    </small>
+
+  </div>
+
+  <div class="account secondary">
+
+    <span>
+      Savings Account
+    </span>
+
+    <strong>
+      $2,450.00
+    </strong>
+
+    <small>
+      •••• 9031
+    </small>
+
+  </div>
+
+  <button
+    class="outline"
+    data-action="addAccount"
+  >
+    ＋ Add another account
+  </button>
+
+</div>
+
 </section>
 
-<!-- BOTTOM NAV -->
+
+<!-- =========================
+     BUDGET
+========================= -->
+
+<section
+  id="budget"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Budget
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="card">
+
+    <div class="cardTitle">
+      <b>
+        Monthly budget
+      </b>
+
+      <b>
+        $4,000
+      </b>
+    </div>
+
+    <div style="padding:15px">
+
+      <div
+        style="
+          height:12px;
+          border-radius:20px;
+          background:#132941;
+          overflow:hidden;
+        "
+      >
+
+        <div
+          style="
+            width:71%;
+            height:100%;
+            background:#1687ff;
+          "
+        ></div>
+
+      </div>
+
+      <p class="muted">
+        $2,832 spent of $4,000
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="cardTitle">
+      <b>
+        Categories
+      </b>
+    </div>
+
+    <div class="transaction">
+      <span>🛍️</span>
+      <div class="transactionInfo">
+        <b>Shopping</b>
+        <small>$962 / $1,200</small>
+      </div>
+      <span class="transactionAmount">$238 left</span>
+    </div>
+
+    <div class="transaction">
+      <span>🍔</span>
+      <div class="transactionInfo">
+        <b>Food & Dining</b>
+        <small>$584 / $800</small>
+      </div>
+      <span class="transactionAmount">$216 left</span>
+    </div>
+
+    <div class="transaction">
+      <span>🚗</span>
+      <div class="transactionInfo">
+        <b>Transport</b>
+        <small>$448 / $600</small>
+      </div>
+      <span class="transactionAmount">$152 left</span>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SAVINGS
+========================= -->
+
+<section
+  id="savings"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      Savings
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="account">
+
+    <span>
+      Savings balance
+    </span>
+
+    <strong>
+      $2,450.00
+    </strong>
+
+    <small>
+      Demo APY: 10%
+    </small>
+
+  </div>
+
+  <label>
+    Savings goal
+
+    <input
+      id="savingGoal"
+      placeholder="e.g. Emergency Fund"
+    >
+
+  </label>
+
+  <label>
+    Goal amount
+
+    <input
+      id="savingAmount"
+      type="number"
+      placeholder="$0.00"
+    >
+
+  </label>
+
+  <button
+    class="primary"
+    data-action="createSaving"
+  >
+    Create savings goal
+  </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MORE
+========================= -->
+
+<section
+  id="more"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="dashboard"
+    >
+      ←
+    </button>
+
+    <h2>
+      More
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <button
+    class="menu"
+    data-page="profile"
+  >
+    <span>
+      👤 Profile
+    </span>
+    <span>›</span>
+  </button>
+
+  <button
+    class="menu"
+    data-action="notifications"
+  >
+    <span>
+      🔔 Notifications
+    </span>
+    <span>›</span>
+  </button>
+
+  <button
+    class="menu"
+    data-action="security"
+  >
+    <span>
+      🔐 Security
+    </span>
+    <span>›</span>
+  </button>
+
+  <button
+    class="menu"
+    data-action="support"
+  >
+    <span>
+      💬 Support
+    </span>
+    <span>›</span>
+  </button>
+
+  <button
+    class="menu"
+    data-action="terms"
+  >
+    <span>
+      📄 Terms & Privacy
+    </span>
+    <span>›</span>
+  </button>
+
+  <button
+    class="menu"
+    data-action="logout"
+  >
+    <span>
+      🚪 Log out
+    </span>
+    <span>›</span>
+  </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section
+  id="profile"
+  class="page"
+>
+
+<div class="pageContent">
+
+  <div class="pageHeader">
+
+    <button
+      class="back"
+      data-page="more"
+    >
+      ←
+    </button>
+
+    <h2>
+      Profile
+    </h2>
+
+    <span></span>
+
+  </div>
+
+  <div class="profile">
+
+    <div
+      class="bigAvatar"
+      id="profileAvatar"
+    >
+      A
+    </div>
+
+    <h2 id="profileName">
+      Alex
+    </h2>
+
+    <p id="profileEmail">
+      alex@example.com
+    </p>
+
+  </div>
+
+  <label>
+    Full name
+
+    <input
+      id="profileNameInput"
+      placeholder="Full name"
+    >
+
+  </label>
+
+  <label>
+    Email
+
+    <input
+      id="profileEmailInput"
+      type="email"
+      placeholder="Email"
+    >
+
+  </label>
+
+  <label>
+    Phone
+
+    <input
+      id="profilePhoneInput"
+      type="tel"
+      placeholder="Phone"
+    >
+
+  </label>
+
+  <button
+    class="primary"
+    data-action="saveProfile"
+  >
+    Save Changes
+  </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
 <nav class="nav">
-<button id="navHome" onclick="show('dashboard')" class="active"><span class="navIcon">⌂</span>Home</button>
-<button onclick="show('accounts')"><span class="navIcon">▣</span>Accounts</button>
-<button onclick="show('transfer')"><span class="navIcon">↗</span>Pay</button>
-<button onclick="show('savings')"><span class="navIcon">▱</span>Budget</button>
-<button onclick="show('more')"><span class="navIcon">☰</span>More</button>
+
+  <button
+    data-page="dashboard"
+    class="active"
+  >
+    <span class="navIcon">
+      ⌂
+    </span>
+    Home
+  </button>
+
+  <button
+    data-page="accounts"
+  >
+    <span class="navIcon">
+      ▣
+    </span>
+    Accounts
+  </button>
+
+  <button
+    data-page="transfer"
+  >
+    <span class="navIcon">
+      ⇄
+    </span>
+    Pay & Transfer
+  </button>
+
+  <button
+    data-page="budget"
+  >
+    <span class="navIcon">
+      ◉
+    </span>
+    Budget
+  </button>
+
+  <button
+    data-page="more"
+  >
+    <span class="navIcon">
+      •••
+    </span>
+    More
+  </button>
+
 </nav>
 
 </div>
 
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="modalBox">
+
+    <button
+      class="modalClose"
+      data-action="closeModal"
+    >
+      ×
+    </button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
 <script>
-/* LOADING SCREEN */
+
+/* =====================================================
+   CASHFLOWBANK DEMO JAVASCRIPT
+===================================================== */
+
+const state = {
+
+  balance: 8542.68,
+
+  balanceHidden:false,
+
+  user:{
+    name:"Alex",
+    email:"alex@example.com",
+    phone:""
+  },
+
+  transactions:[
+
+    {
+      merchant:"Whole Foods",
+      icon:"🛒",
+      date:"Today",
+      amount:-84.26
+    },
+
+    {
+      merchant:"Direct Deposit",
+      icon:"💵",
+      date:"Today",
+      amount:2500
+    },
+
+    {
+      merchant:"Starbucks",
+      icon:"☕",
+      date:"Yesterday",
+      amount:-8.45
+    },
+
+    {
+      merchant:"Uber",
+      icon:"🚗",
+      date:"Yesterday",
+      amount:-24.60
+    },
+
+    {
+      merchant:"Netflix",
+      icon:"▶",
+      date:"Sep 2",
+      amount:-15.49
+    }
+
+  ],
+
+  verificationCode:"",
+
+  verificationExpires:0,
+
+  signupPending:false
+
+};
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page=>{
+      page.classList.remove("active");
+    });
+
+  const page =
+    document.getElementById(pageId);
+
+  if(page){
+    page.classList.add("active");
+  }
+
+  updateNav(pageId);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function updateNav(pageId){
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(button=>{
+      button.classList.remove("active");
+
+      if(button.dataset.page===pageId){
+        button.classList.add("active");
+      }
+
+      if(
+        pageId==="transactions" &&
+        button.dataset.page==="dashboard"
+      ){
+        button.classList.add("active");
+      }
+    });
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+function toast(message){
+
+  const el =
+    document.getElementById("toast");
+
+  el.textContent=message;
+
+  el.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    el.classList.remove("show");
+  },2800);
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(title,content){
+
+  const modal =
+    document.getElementById("modal");
+
+  const body =
+    document.getElementById("modalContent");
+
+  body.innerHTML=
+    "<h3>"+title+"</h3>"+
+    content;
+
+  modal.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   BALANCE
+===================================================== */
+
+function formatMoney(amount){
+
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      style:"currency",
+      currency:"USD"
+    }
+  ).format(amount);
+
+}
+
+
+function updateBalance(){
+
+  const balance =
+    document.getElementById("balance");
+
+  const depositBalance =
+    document.getElementById("depositBalance");
+
+  const checking =
+    document.getElementById("checkingAccountBalance");
+
+  if(state.balanceHidden){
+
+    balance.textContent="••••••";
+
+  }else{
+
+    balance.textContent=
+      formatMoney(state.balance);
+
+  }
+
+  if(depositBalance){
+    depositBalance.textContent=
+      formatMoney(state.balance);
+  }
+
+  if(checking){
+    checking.textContent=
+      formatMoney(state.balance);
+  }
+
+}
+
+
+function toggleBalance(){
+
+  state.balanceHidden =
+    !state.balanceHidden;
+
+  updateBalance();
+
+}
+
+
+/* =====================================================
+   TRANSACTIONS
+===================================================== */
+
+function renderTransactions(){
+
+  const recent =
+    document.getElementById("recentList");
+
+  const all =
+    document.getElementById("transactionList");
+
+  const createRow = tx => {
+
+    const sign =
+      tx.amount>=0 ? "+" : "";
+
+    const cls =
+      tx.amount>=0
+      ? "positive"
+      : "negative";
+
+    return `
+      <div class="transaction">
+
+        <div class="transactionIcon">
+          ${tx.icon}
+        </div>
+
+        <div class="transactionInfo">
+
+          <b>
+            ${escapeHtml(tx.merchant)}
+          </b>
+
+          <small>
+            ${escapeHtml(tx.date)}
+          </small>
+
+        </div>
+
+        <div class="transactionAmount ${cls}">
+          ${sign}${formatMoney(tx.amount)}
+        </div>
+
+      </div>
+    `;
+
+  };
+
+  if(recent){
+
+    recent.innerHTML =
+      state.transactions
+      .slice(0,3)
+      .map(createRow)
+      .join("");
+
+  }
+
+  if(all){
+
+    all.innerHTML =
+      state.transactions
+      .map(createRow)
+      .join("");
+
+  }
+
+}
+
+
+/* =====================================================
+   ESCAPE TEXT
+===================================================== */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   VERIFICATION CODE
+===================================================== */
+
+function generateVerificationCode(){
+
+  state.verificationCode =
+    Math.floor(
+      100000 +
+      Math.random()*900000
+    ).toString();
+
+  state.verificationExpires =
+    Date.now() +
+    5*60*1000;
+
+  document
+    .getElementById("demoCode")
+    .textContent=
+      state.verificationCode;
+
+  clearCodeInputs();
+
+  setCodeMessage(
+    "A verification code has been generated.",
+    "success"
+  );
+
+}
+
+
+function clearCodeInputs(){
+
+  document
+    .querySelectorAll(".codeInput")
+    .forEach(input=>{
+      input.value="";
+    });
+
+}
+
+
+function getEnteredCode(){
+
+  return [...document.querySelectorAll(".codeInput")]
+    .map(input=>input.value)
+    .join("");
+
+}
+
+
+function setCodeMessage(message,type){
+
+  const el =
+    document.getElementById("codeMessage");
+
+  el.textContent=message;
+
+  el.className=
+    "codeMessage "+
+    (type || "");
+
+}
+
+
+/* =====================================================
+   SIGN UP
+===================================================== */
+
+function handleSignup(event){
+
+  event.preventDefault();
+
+  const name =
+    document.getElementById("signupName")
+      .value.trim();
+
+  const email =
+    document.getElementById("signupEmail")
+      .value.trim();
+
+  const phone =
+    document.getElementById("signupPhone")
+      .value.trim();
+
+  if(!name || !email || !phone){
+    toast("Please complete all required fields.");
+    return;
+  }
+
+  state.user.name=name;
+  state.user.email=email;
+  state.user.phone=phone;
+
+  state.signupPending=true;
+
+  document
+    .getElementById("verificationDestination")
+    .textContent=
+      "Verification required for "+email;
+
+  generateVerificationCode();
+
+  showPage("verification");
+
+}
+
+
+/* =====================================================
+   VERIFY ACCOUNT
+===================================================== */
+
+function verifyAccount(){
+
+  if(!state.signupPending){
+
+    toast("No account is waiting for verification.");
+
+    return;
+
+  }
+
+  const code =
+    getEnteredCode();
+
+  if(code.length!==6){
+
+    setCodeMessage(
+      "Please enter all 6 digits.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(Date.now()>state.verificationExpires){
+
+    setCodeMessage(
+      "This code has expired. Please request a new code.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(code!==state.verificationCode){
+
+    setCodeMessage(
+      "Incorrect verification code. Please try again.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  state.signupPending=false;
+
+  localStorage.setItem(
+    "cashflowDemoUser",
+    JSON.stringify(state.user)
+  );
+
+  updateUserUI();
+
+  setCodeMessage(
+    "Account verified successfully!",
+    "success"
+  );
+
+  toast("Account verified successfully.");
+
+  setTimeout(()=>{
+    showPage("dashboard");
+  },700);
+
+}
+
+
+/* =====================================================
+   RESEND CODE
+===================================================== */
+
+function resendCode(){
+
+  generateVerificationCode();
+
+  toast("A new demo verification code was generated.");
+
+}
+
+
+/* =====================================================
+   CODE INPUT BEHAVIOR
+===================================================== */
+
+document
+  .querySelectorAll(".codeInput")
+  .forEach((input,index,inputs)=>{
+
+    input.addEventListener(
+      "input",
+      ()=>{
+
+        input.value =
+          input.value.replace(/\D/g,"");
+
+        if(
+          input.value &&
+          inputs[index+1]
+        ){
+
+          inputs[index+1].focus();
+
+        }
+
+      }
+    );
+
+    input.addEventListener(
+      "keydown",
+      event=>{
+
+        if(
+          event.key==="Backspace" &&
+          !input.value &&
+          inputs[index-1]
+        ){
+
+          inputs[index-1].focus();
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function handleLogin(event){
+
+  event.preventDefault();
+
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value.trim();
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+  if(!email || !password){
+
+    toast("Enter your email and password.");
+
+    return;
+
+  }
+
+  state.user.email=email;
+
+  localStorage.setItem(
+    "cashflowDemoUser",
+    JSON.stringify(state.user)
+  );
+
+  updateUserUI();
+
+  toast("Demo login successful.");
+
+  setTimeout(()=>{
+    showPage("dashboard");
+  },400);
+
+}
+
+
+/* =====================================================
+   USER UI
+===================================================== */
+
+function updateUserUI(){
+
+  const name =
+    state.user.name || "Alex";
+
+  const firstName =
+    name.split(" ")[0] || "Alex";
+
+  const initial =
+    firstName.charAt(0).toUpperCase();
+
+  const greeting =
+    document.getElementById("greetingName");
+
+  const avatar =
+    document.getElementById("avatar");
+
+  const profileAvatar =
+    document.getElementById("profileAvatar");
+
+  const profileName =
+    document.getElementById("profileName");
+
+  const profileEmail =
+    document.getElementById("profileEmail");
+
+  if(greeting){
+    greeting.textContent=firstName;
+  }
+
+  if(avatar){
+    avatar.textContent=initial;
+  }
+
+  if(profileAvatar){
+    profileAvatar.textContent=initial;
+  }
+
+  if(profileName){
+    profileName.textContent=name;
+  }
+
+  if(profileEmail){
+    profileEmail.textContent=
+      state.user.email || "";
+  }
+
+  const nameInput =
+    document.getElementById("profileNameInput");
+
+  const emailInput =
+    document.getElementById("profileEmailInput");
+
+  const phoneInput =
+    document.getElementById("profilePhoneInput");
+
+  if(nameInput){
+    nameInput.value=name;
+  }
+
+  if(emailInput){
+    emailInput.value=
+      state.user.email || "";
+  }
+
+  if(phoneInput){
+    phoneInput.value=
+      state.user.phone || "";
+  }
+
+}
+
+
+/* =====================================================
+   TRANSFER
+===================================================== */
+
+function sendTransfer(){
+
+  const recipient =
+    document
+      .getElementById("transferRecipient")
+      .value.trim();
+
+  const amount =
+    Number(
+      document
+        .getElementById("transferAmount")
+        .value
+    );
+
+  const note =
+    document
+      .getElementById("transferNote")
+      .value.trim();
+
+  if(!recipient){
+
+    toast("Enter a recipient.");
+
+    return;
+
+  }
+
+  if(!amount || amount<=0){
+
+    toast("Enter a valid amount.");
+
+    return;
+
+  }
+
+  if(amount>state.balance){
+
+    toast("Demo balance is insufficient.");
+
+    return;
+
+  }
+
+  openModal(
+    "Confirm transfer",
+    `
+      <p class="muted">
+        You are about to send
+        <strong style="color:#fff">
+          ${formatMoney(amount)}
+        </strong>
+        to
+        <strong style="color:#fff">
+          ${escapeHtml(recipient)}
+        </strong>.
+      </p>
+
+      <p class="muted">
+        ${note ? escapeHtml(note) : "No note added."}
+      </p>
+
+      <button
+        class="primary"
+        id="confirmTransfer"
+      >
+        Confirm Transfer
+      </button>
+    `
+  );
+
+  document
+    .getElementById("confirmTransfer")
+    .onclick=()=>{
+
+      state.balance-=amount;
+
+      state.transactions.unshift({
+        merchant:"Transfer to "+recipient,
+        icon:"↗",
+        date:"Just now",
+        amount:-amount
+      });
+
+      updateBalance();
+      renderTransactions();
+      closeModal();
+
+      toast(
+        "Demo transfer completed."
+      );
+
+      document
+        .getElementById("transferRecipient")
+        .value="";
+
+      document
+        .getElementById("transferAmount")
+        .value="";
+
+      document
+        .getElementById("transferNote")
+        .value="";
+
+      showPage("dashboard");
+
+    };
+
+}
+
+
+/* =====================================================
+   DEPOSIT
+===================================================== */
+
+function makeDeposit(){
+
+  const amount =
+    Number(
+      document
+        .getElementById("depositAmount")
+        .value
+    );
+
+  if(!amount || amount<=0){
+
+    toast("Enter a valid deposit amount.");
+
+    return;
+
+  }
+
+  state.balance+=amount;
+
+  state.transactions.unshift({
+    merchant:"Demo Deposit",
+    icon:"↓",
+    date:"Just now",
+    amount:amount
+  });
+
+  updateBalance();
+  renderTransactions();
+
+  document
+    .getElementById("depositAmount")
+    .value="";
+
+  toast(
+    formatMoney(amount)+
+    " added to your demo balance."
+  );
+
+  showPage("dashboard");
+
+}
+
+
+/* =====================================================
+   BILL PAYMENT
+===================================================== */
+
+function payBill(){
+
+  const biller =
+    document
+      .getElementById("biller")
+      .value;
+
+  const account =
+    document
+      .getElementById("billAccount")
+      .value.trim();
+
+  const amount =
+    Number(
+      document
+        .getElementById("billAmount")
+        .value
+    );
+
+  if(!account){
+
+    toast("Enter the bill account number.");
+
+    return;
+
+  }
+
+  if(!amount || amount<=0){
+
+    toast("Enter a valid amount.");
+
+    return;
+
+  }
+
+  if(amount>state.balance){
+
+    toast("Demo balance is insufficient.");
+
+    return;
+
+  }
+
+  state.balance-=amount;
+
+  state.transactions.unshift({
+    merchant:biller+" Bill",
+    icon:"▤",
+    date:"Just now",
+    amount:-amount
+  });
+
+  updateBalance();
+  renderTransactions();
+
+  document
+    .getElementById("billAccount")
+    .value="";
+
+  document
+    .getElementById("billAmount")
+    .value="";
+
+  toast(
+    "Demo bill payment completed."
+  );
+
+  showPage("dashboard");
+
+}
+
+
+/* =====================================================
+   RECIPIENT
+===================================================== */
+
+function selectRecipient(name){
+
+  document
+    .getElementById("transferRecipient")
+    .value=name;
+
+  showPage("transfer");
+
+  toast(
+    name+" selected."
+  );
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function saveProfile(){
+
+  const name =
+    document
+      .getElementById("profileNameInput")
+      .value.trim();
+
+  const email =
+    document
+      .getElementById("profileEmailInput")
+      .value.trim();
+
+  const phone =
+    document
+      .getElementById("profilePhoneInput")
+      .value.trim();
+
+  if(!name || !email){
+
+    toast("Name and email are required.");
+
+    return;
+
+  }
+
+  state.user.name=name;
+  state.user.email=email;
+  state.user.phone=phone;
+
+  localStorage.setItem(
+    "cashflowDemoUser",
+    JSON.stringify(state.user)
+  );
+
+  updateUserUI();
+
+  toast("Profile updated.");
+
+}
+
+
+/* =====================================================
+   OTHER ACTIONS
+===================================================== */
+
+function forgotPassword(){
+
+  openModal(
+    "Forgot password",
+    `
+      <p class="muted">
+        Enter your email address and this demo
+        will show a simulated password-reset message.
+      </p>
+
+      <input
+        id="resetEmail"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <br><br>
+
+      <button
+        class="primary"
+        id="resetButton"
+      >
+        Send reset link
+      </button>
+    `
+  );
+
+  document
+    .getElementById("resetButton")
+    .onclick=()=>{
+
+      const email =
+        document
+          .getElementById("resetEmail")
+          .value.trim();
+
+      if(!email){
+
+        toast("Enter your email.");
+
+        return;
+
+      }
+
+      closeModal();
+
+      toast(
+        "Demo password-reset message created."
+      );
+
+    };
+
+}
+
+
+function security(){
+
+  openModal(
+    "Security",
+    `
+      <p class="muted">
+        This Cashflowbank interface is a front-end demo.
+      </p>
+
+      <div class="securityBanner">
+
+        <div class="secCircle">
+          🔒
+        </div>
+
+        <div class="secText">
+          <b>Demo security status</b>
+          <small>
+            Verification and interface protections enabled.
+          </small>
+        </div>
+
+      </div>
+
+      <p class="muted">
+        A production banking application would need
+        a secure backend, authentication provider,
+        encrypted data storage, fraud controls,
+        and regulated banking infrastructure.
+      </p>
+    `
+  );
+
+}
+
+
+function support(){
+
+  openModal(
+    "Cashflow Support",
+    `
+      <p class="muted">
+        How can we help?
+      </p>
+
+      <button
+        class="menu"
+        onclick="toast('Demo support chat opened.');closeModal();"
+      >
+        <span>💬 Live support</span>
+        <span>›</span>
+      </button>
+
+      <button
+        class="menu"
+        onclick="toast('Demo help center opened.');closeModal();"
+      >
+        <span>❓ Help Center</span>
+        <span>›</span>
+      </button>
+    `
+  );
+
+}
+
+
+function notifications(){
+
+  document
+    .getElementById("notifBadge")
+    .style.display="none";
+
+  openModal(
+    "Notifications",
+    `
+      <div class="transaction">
+        <span class="transactionIcon">🔐</span>
+        <div class="transactionInfo">
+          <b>Security check</b>
+          <small>Your demo account is protected.</small>
+        </div>
+      </div>
+
+      <div class="transaction">
+        <span class="transactionIcon">💰</span>
+        <div class="transactionInfo">
+          <b>Balance update</b>
+          <small>Your demo balance is available.</small>
+        </div>
+      </div>
+    `
+  );
+
+}
+
+
+function scan(){
+
+  openModal(
+    "Scan",
+    `
+      <div class="center">
+        <div class="simpleIcon">
+          ▣
+        </div>
+
+        <p class="muted">
+          QR scanning is available as a
+          front-end demo feature.
+        </p>
+
+        <button
+          class="primary"
+          onclick="toast('Demo scanner activated.');closeModal();"
+        >
+          Start Scanner
+        </button>
+      </div>
+    `
+  );
+
+}
+
+
+function period(){
+
+  openModal(
+    "Spending period",
+    `
+      <button
+        class="menu"
+        onclick="toast('This month selected.');closeModal();"
+      >
+        <span>This Month</span>
+        <span>✓</span>
+      </button>
+
+      <button
+        class="menu"
+        onclick="toast('Last month selected.');closeModal();"
+      >
+        <span>Last Month</span>
+        <span>›</span>
+      </button>
+
+      <button
+        class="menu"
+        onclick="toast('This year selected.');closeModal();"
+      >
+        <span>This Year</span>
+        <span>›</span>
+      </button>
+    `
+  );
+
+}
+
+
+function verify(){
+
+  openModal(
+    "Account verification",
+    `
+      <p class="muted">
+        Your account verification status is currently
+        simulated for this demo.
+      </p>
+
+      <button
+        class="primary"
+        onclick="toast('Demo verification complete.');closeModal();"
+      >
+        Complete Demo Verification
+      </button>
+    `
+  );
+
+}
+
+
+function serviceAction(service){
+
+  openModal(
+    service,
+    `
+      <p class="muted">
+        ${service} is available as a
+        front-end demo feature.
+      </p>
+
+      <button
+        class="primary"
+        onclick="toast('${service} demo opened.');closeModal();"
+      >
+        Continue
+      </button>
+    `
+  );
+
+}
+
+
+function addAccount(){
+
+  openModal(
+    "Add account",
+    `
+      <p class="muted">
+        Choose an account type for this demo.
+      </p>
+
+      <button
+        class="menu"
+        onclick="toast('Demo checking account selected.');closeModal();"
+      >
+        <span>Checking</span>
+        <span>›</span>
+      </button>
+
+      <button
+        class="menu"
+        onclick="toast('Demo savings account selected.');closeModal();"
+      >
+        <span>Savings</span>
+        <span>›</span>
+      </button>
+    `
+  );
+
+}
+
+
+function createSaving(){
+
+  const goal =
+    document
+      .getElementById("savingGoal")
+      .value.trim();
+
+  const amount =
+    Number(
+      document
+        .getElementById("savingAmount")
+        .value
+    );
+
+  if(!goal || !amount || amount<=0){
+
+    toast(
+      "Enter a savings goal and amount."
+    );
+
+    return;
+
+  }
+
+  toast(
+    "Demo savings goal created: "+goal
+  );
+
+  document
+    .getElementById("savingGoal")
+    .value="";
+
+  document
+    .getElementById("savingAmount")
+    .value="";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+  openModal(
+    "Log out",
+    `
+      <p class="muted">
+        Are you sure you want to log out of this demo?
+      </p>
+
+      <button
+        class="primary"
+        id="logoutConfirm"
+      >
+        Log out
+      </button>
+    `
+  );
+
+  document
+    .getElementById("logoutConfirm")
+    .onclick=()=>{
+
+      closeModal();
+
+      showPage("login");
+
+      toast("You have been logged out.");
+
+    };
+
+}
+
+
+/* =====================================================
+   EVENT DELEGATION
+===================================================== */
+
+document.addEventListener(
+  "click",
+  event=>{
+
+    const pageButton =
+      event.target.closest("[data-page]");
+
+    if(pageButton){
+
+      const page =
+        pageButton.dataset.page;
+
+      if(page){
+        showPage(page);
+      }
+
+      return;
+
+    }
+
+
+    const actionButton =
+      event.target.closest("[data-action]");
+
+    if(!actionButton){
+      return;
+    }
+
+    const action =
+      actionButton.dataset.action;
+
+    switch(action){
+
+      case "toggleBalance":
+        toggleBalance();
+        break;
+
+      case "forgot":
+        forgotPassword();
+        break;
+
+      case "security":
+        security();
+        break;
+
+      case "support":
+        support();
+        break;
+
+      case "scan":
+        scan();
+        break;
+
+      case "notifications":
+        notifications();
+        break;
+
+      case "period":
+        period();
+        break;
+
+      case "verify":
+        verify();
+        break;
+
+      case "sendTransfer":
+        sendTransfer();
+        break;
+
+      case "makeDeposit":
+        makeDeposit();
+        break;
+
+      case "payBill":
+        payBill();
+        break;
+
+      case "recipient":
+        selectRecipient(
+          actionButton.dataset.name
+        );
+        break;
+
+      case "saveProfile":
+        saveProfile();
+        break;
+
+      case "addAccount":
+        addAccount();
+        break;
+
+      case "createSaving":
+        createSaving();
+        break;
+
+      case "logout":
+        logout();
+        break;
+
+      case "closeModal":
+        closeModal();
+        break;
+
+      case "airtime":
+        serviceAction("Airtime");
+        break;
+
+      case "data":
+        serviceAction("Data");
+        break;
+
+      case "electricity":
+        serviceAction("Electricity");
+        break;
+
+      case "tv":
+        serviceAction("TV Subscription");
+        break;
+
+      case "internet":
+        serviceAction("Internet");
+        break;
+
+      case "loan":
+        serviceAction("Loan Center");
+        break;
+
+      case "insurance":
+        serviceAction("Insurance");
+        break;
+
+      case "gift":
+        serviceAction("Gift Cards");
+        break;
+
+      case "terms":
+
+        openModal(
+          "Terms & Privacy",
+          `
+            <p class="muted">
+              This is a demonstration interface.
+              No real financial services are provided.
+            </p>
+          `
+        );
+
+        break;
+
+      case "back":
+        showPage("login");
+        break;
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+document
+  .getElementById("signupForm")
+  .addEventListener(
+    "submit",
+    handleSignup
+  );
+
+
+document
+  .getElementById("loginForm")
+  .addEventListener(
+    "submit",
+    handleLogin
+  );
+
+
+document
+  .getElementById("verifyCodeButton")
+  .addEventListener(
+    "click",
+    verifyAccount
+  );
+
+
+document
+  .getElementById("resendCode")
+  .addEventListener(
+    "click",
+    resendCode
+  );
+
+
+/* =====================================================
+   CLOSE MODAL BY BACKDROP
+===================================================== */
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    event=>{
+
+      if(
+        event.target.id==="modal"
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   LOAD SAVED DEMO USER
+===================================================== */
+
+try{
+
+  const saved =
+    localStorage.getItem(
+      "cashflowDemoUser"
+    );
+
+  if(saved){
+
+    const parsed =
+      JSON.parse(saved);
+
+    if(parsed){
+
+      state.user={
+        ...state.user,
+        ...parsed
+      };
+
+    }
+
+  }
+
+}catch(error){
+
+  console.warn(
+    "Could not load demo user."
+  );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateUserUI();
+
+updateBalance();
+
+renderTransactions();
+
+
+/* =====================================================
+   LOADING ANIMATION
+===================================================== */
+
 let progress=0;
-const loadingTimer=setInterval(()=>{
-progress+=2;
-document.getElementById("progressBar").style.width=progress+"%";
-document.getElementById("percent").innerText=progress+"%";
-if(progress>=100){
-clearInterval(loadingTimer);
-setTimeout(()=>{
-document.getElementById("loading").style.display="none";
-show("login");
-},400);
-}
-},30);
 
-/* PAGE NAVIGATION */
-function show(page){
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-document.getElementById(page).classList.add("active");
-window.scrollTo({top:0,behavior:"smooth"});
-document.querySelectorAll(".nav button").forEach(b=>{
-b.classList.remove("active");
-});
-if(page==="dashboard"){
-document.getElementById("navHome").classList.add("active");
-}
-}
+const loadingInterval =
+  setInterval(()=>{
 
-/* TOAST FUNCTION */
-function toast(msg){
-alert(msg);
-}
+    progress+=2;
 
-/* LOGIN */
-function login(event){
-event.preventDefault();
-show("dashboard");
-}
+    document
+      .getElementById("progressBar")
+      .style.width=
+        progress+"%";
 
-/* SIGNUP */
-function signup(event){
-event.preventDefault();
-show("dashboard");
-}
+    document
+      .getElementById("percent")
+      .textContent=
+        progress+"%";
 
-/* TRANSFER */
-function transfer(event){
-event.preventDefault();
-toast("Transfer Successful");
-}
+    if(progress>=100){
 
-document.addEventListener("DOMContentLoaded",()=>{
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-});
+      clearInterval(loadingInterval);
+
+      setTimeout(()=>{
+
+        document
+          .getElementById("loading")
+          .style.display="none";
+
+        showPage("login");
+
+      },350);
+
+    }
+
+  },35);
+
 </script>
+
 </body>
 </html>
