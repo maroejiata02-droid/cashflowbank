@@ -50,7 +50,6 @@ header{
   gap:10px;
   font-size:24px;
   font-weight:800;
-  letter-spacing:-.5px;
 }
 
 .logo-icon{
@@ -358,9 +357,127 @@ header{
   color:#ff8585;
 }
 
-.loading{
-  color:#8fa4bc;
-  padding:20px 0;
+/* SETTINGS */
+
+.settings-page{
+  max-width:700px;
+  margin:0 auto;
+  padding:35px 18px 60px;
+}
+
+.settings-header{
+  margin-bottom:22px;
+}
+
+.settings-header h1{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.settings-header p{
+  color:#8499b2;
+  line-height:1.5;
+}
+
+.settings-card{
+  background:#0d1b2d;
+  border:1px solid #1c344f;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.settings-section{
+  padding:22px;
+  border-bottom:1px solid #1b3048;
+}
+
+.settings-section:last-child{
+  border-bottom:none;
+}
+
+.settings-section h2{
+  font-size:17px;
+  margin-bottom:16px;
+}
+
+.profile-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:12px 0;
+}
+
+.profile-icon{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#1768ed;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+  font-size:18px;
+}
+
+.profile-info{
+  min-width:0;
+}
+
+.profile-info strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.profile-info span{
+  color:#8195ad;
+  font-size:13px;
+  word-break:break-word;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:13px 0;
+  border-bottom:1px solid #172b42;
+}
+
+.info-row:last-child{
+  border-bottom:none;
+}
+
+.info-label{
+  color:#8195ad;
+  font-size:13px;
+}
+
+.info-value{
+  text-align:right;
+  font-size:13px;
+  word-break:break-all;
+}
+
+.security-note{
+  background:#102744;
+  border:1px solid #27558d;
+  padding:13px;
+  border-radius:12px;
+  color:#a9c9f7;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.back-btn{
+  border:1px solid #29415e;
+  background:transparent;
+  color:#dce8f7;
+  padding:11px 17px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-bottom:20px;
+}
+
+.back-btn:hover{
+  border-color:#3986ff;
 }
 
 /* MODAL */
@@ -405,7 +522,7 @@ header{
   flex:1;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:760px){
 
@@ -436,6 +553,19 @@ header{
   .auth-card{
     padding:25px 20px;
   }
+
+  .action-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .info-row{
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .info-value{
+    text-align:left;
+  }
 }
 </style>
 </head>
@@ -457,7 +587,7 @@ header{
 </header>
 
 
-<!-- AUTH -->
+<!-- LOGIN / SIGNUP -->
 
 <section id="authSection" class="auth-wrapper">
 
@@ -473,24 +603,20 @@ header{
 
       <div class="field">
         <label>Email address</label>
-
         <input
           id="loginEmail"
           type="email"
           placeholder="you@example.com"
-          autocomplete="email"
-        >
+          autocomplete="email">
       </div>
 
       <div class="field">
         <label>Password</label>
-
         <input
           id="loginPassword"
           type="password"
           placeholder="Enter your password"
-          autocomplete="current-password"
-        >
+          autocomplete="current-password">
       </div>
 
       <button id="loginBtn" class="primary-btn">
@@ -507,8 +633,6 @@ header{
     </div>
 
 
-    <!-- SIGN UP -->
-
     <div id="signupForm" class="hidden">
 
       <h1>Create account</h1>
@@ -519,35 +643,29 @@ header{
 
       <div class="field">
         <label>Your name</label>
-
         <input
           id="signupName"
           type="text"
           placeholder="Your name"
-          autocomplete="name"
-        >
+          autocomplete="name">
       </div>
 
       <div class="field">
         <label>Email address</label>
-
         <input
           id="signupEmail"
           type="email"
           placeholder="you@example.com"
-          autocomplete="email"
-        >
+          autocomplete="email">
       </div>
 
       <div class="field">
         <label>Password</label>
-
         <input
           id="signupPassword"
           type="password"
           placeholder="At least 6 characters"
-          autocomplete="new-password"
-        >
+          autocomplete="new-password">
       </div>
 
       <button id="signupBtn" class="primary-btn">
@@ -618,9 +736,6 @@ header{
 
   <div class="dashboard-grid">
 
-
-    <!-- QUICK ACTIONS -->
-
     <div class="panel">
 
       <h2>Quick actions</h2>
@@ -629,68 +744,44 @@ header{
 
         <button class="action" id="sendMoneyBtn">
 
-          <div class="action-icon">
-            ↗
-          </div>
+          <div class="action-icon">↗</div>
 
-          <strong>
-            Send money
-          </strong>
+          <strong>Send money</strong>
 
-          <span>
-            Simulated transfer
-          </span>
+          <span>Simulated transfer</span>
 
         </button>
 
 
         <button class="action" id="addMoneyBtn">
 
-          <div class="action-icon">
-            ＋
-          </div>
+          <div class="action-icon">＋</div>
 
-          <strong>
-            Add money
-          </strong>
+          <strong>Add money</strong>
 
-          <span>
-            Simulated deposit
-          </span>
+          <span>Simulated deposit</span>
 
         </button>
 
 
         <button class="action" id="transactionsBtn">
 
-          <div class="action-icon">
-            ▣
-          </div>
+          <div class="action-icon">▣</div>
 
-          <strong>
-            Transactions
-          </strong>
+          <strong>Transactions</strong>
 
-          <span>
-            View simulated activity
-          </span>
+          <span>View activity</span>
 
         </button>
 
 
         <button class="action" id="settingsBtn">
 
-          <div class="action-icon">
-            ⚙
-          </div>
+          <div class="action-icon">⚙</div>
 
-          <strong>
-            Settings
-          </strong>
+          <strong>Settings</strong>
 
-          <span>
-            Account settings
-          </span>
+          <span>Account information</span>
 
         </button>
 
@@ -699,13 +790,9 @@ header{
     </div>
 
 
-    <!-- ACTIVITY -->
-
     <div class="panel">
 
-      <h2>
-        Recent activity
-      </h2>
+      <h2>Recent activity</h2>
 
       <div id="transactions">
 
@@ -738,7 +825,159 @@ header{
 </section>
 
 
-<!-- ACTION MODAL -->
+<!-- SETTINGS -->
+
+<section id="settingsSection" class="settings-page hidden">
+
+  <button id="backDashboard" class="back-btn">
+    ← Back to dashboard
+  </button>
+
+  <div class="settings-header">
+
+    <h1>Account settings</h1>
+
+    <p>
+      View information associated with your
+      Cashflowbank simulation account.
+    </p>
+
+  </div>
+
+
+  <div class="settings-card">
+
+
+    <!-- PROFILE -->
+
+    <div class="settings-section">
+
+      <h2>Profile</h2>
+
+      <div class="profile-row">
+
+        <div id="profileIcon" class="profile-icon">
+          U
+        </div>
+
+        <div class="profile-info">
+
+          <strong id="settingsName">
+            User
+          </strong>
+
+          <span id="settingsEmail">
+            —
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="settings-section">
+
+      <h2>Account information</h2>
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Account type
+        </span>
+
+        <span class="info-value">
+          Simulation account
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Email
+        </span>
+
+        <span
+          id="infoEmail"
+          class="info-value">
+          —
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Firebase user ID
+        </span>
+
+        <span
+          id="firebaseUid"
+          class="info-value">
+          —
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Account created
+        </span>
+
+        <span
+          id="createdDate"
+          class="info-value">
+          —
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="settings-section">
+
+      <h2>Security</h2>
+
+      <div class="security-note">
+
+        🔐 Your password is managed securely by
+        Firebase Authentication and is never displayed
+        inside this application.
+
+      </div>
+
+    </div>
+
+
+    <!-- LOGOUT -->
+
+    <div class="settings-section">
+
+      <button
+        id="settingsLogout"
+        class="primary-btn">
+        Log out
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MODAL -->
 
 <div id="modal" class="modal hidden">
 
@@ -807,7 +1046,7 @@ import {
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyAJeV24OolnuW6HQA7W9n9keD9V8O_4qPI",
+    "AIzaSyAJeV24OolnuW6HQA7W9n9keD9V8O8_4qPI",
 
   authDomain:
     "cashflowbank-c9f4a.firebaseapp.com",
@@ -854,6 +1093,9 @@ const authSection =
 const dashboardSection =
   document.getElementById("dashboardSection");
 
+const settingsSection =
+  document.getElementById("settingsSection");
+
 const loginForm =
   document.getElementById("loginForm");
 
@@ -866,6 +1108,9 @@ const authMessage =
 const logoutBtn =
   document.getElementById("logoutBtn");
 
+const settingsLogout =
+  document.getElementById("settingsLogout");
+
 const userName =
   document.getElementById("userName");
 
@@ -875,20 +1120,23 @@ const accountEmail =
 const balance =
   document.getElementById("balance");
 
-const transactions =
-  document.getElementById("transactions");
+const settingsName =
+  document.getElementById("settingsName");
 
-const modal =
-  document.getElementById("modal");
+const settingsEmail =
+  document.getElementById("settingsEmail");
 
-const modalTitle =
-  document.getElementById("modalTitle");
+const infoEmail =
+  document.getElementById("infoEmail");
 
-const modalText =
-  document.getElementById("modalText");
+const firebaseUid =
+  document.getElementById("firebaseUid");
 
-const confirmModal =
-  document.getElementById("confirmModal");
+const createdDate =
+  document.getElementById("createdDate");
+
+const profileIcon =
+  document.getElementById("profileIcon");
 
 
 /* =========================
@@ -913,28 +1161,46 @@ function showMessage(message){
 
 document
   .getElementById("showSignup")
-  .addEventListener("click", () => {
+  .addEventListener(
+    "click",
+    () => {
 
-    loginForm.classList.add("hidden");
+      loginForm.classList.add(
+        "hidden"
+      );
 
-    signupForm.classList.remove("hidden");
+      signupForm.classList.remove(
+        "hidden"
+      );
 
-    authMessage.classList.add("hidden");
+      authMessage.classList.add(
+        "hidden"
+      );
 
-  });
+    }
+  );
 
 
 document
   .getElementById("showLogin")
-  .addEventListener("click", () => {
+  .addEventListener(
+    "click",
+    () => {
 
-    signupForm.classList.add("hidden");
+      signupForm.classList.add(
+        "hidden"
+      );
 
-    loginForm.classList.remove("hidden");
+      loginForm.classList.remove(
+        "hidden"
+      );
 
-    authMessage.classList.add("hidden");
+      authMessage.classList.add(
+        "hidden"
+      );
 
-  });
+    }
+  );
 
 
 /* =========================
@@ -1024,7 +1290,10 @@ document
             balance:0,
 
             accountType:
-              "simulation"
+              "simulation",
+
+            createdAt:
+              new Date().toISOString()
 
           }
         );
@@ -1123,53 +1392,108 @@ async function loadUserData(user){
       await getDoc(userRef);
 
 
+    let data = {};
+
     if(snapshot.exists()){
 
-      const data =
+      data =
         snapshot.data();
 
-
-      userName.textContent =
-        data.name ||
-        user.displayName ||
-        "User";
+    }
 
 
-      accountEmail.textContent =
-        data.email ||
-        user.email ||
-        "—";
+    const name =
+      data.name ||
+      user.displayName ||
+      "User";
 
 
-      const userBalance =
-        Number(
-          data.balance || 0
-        );
+    const email =
+      data.email ||
+      user.email ||
+      "—";
 
 
-      balance.textContent =
-        new Intl.NumberFormat(
+    userName.textContent =
+      name;
+
+    accountEmail.textContent =
+      email;
+
+
+    settingsName.textContent =
+      name;
+
+    settingsEmail.textContent =
+      email;
+
+    infoEmail.textContent =
+      email;
+
+    firebaseUid.textContent =
+      user.uid;
+
+
+    const firstLetter =
+      name.charAt(0).toUpperCase() ||
+      "U";
+
+    profileIcon.textContent =
+      firstLetter;
+
+
+    let created =
+      data.createdAt;
+
+
+    if(!created &&
+       user.metadata &&
+       user.metadata.creationTime){
+
+      created =
+        user.metadata.creationTime;
+
+    }
+
+
+    if(created){
+
+      const date =
+        new Date(created);
+
+      createdDate.textContent =
+        date.toLocaleDateString(
           "en-US",
           {
-            style:"currency",
-            currency:"USD"
+            year:"numeric",
+            month:"long",
+            day:"numeric"
           }
-        ).format(userBalance);
+        );
 
     }else{
 
-      userName.textContent =
-        user.displayName ||
-        "User";
-
-      accountEmail.textContent =
-        user.email ||
-        "—";
-
-      balance.textContent =
-        "$0.00";
+      createdDate.textContent =
+        "Not available";
 
     }
+
+
+    const userBalance =
+      Number(
+        data.balance || 0
+      );
+
+
+    balance.textContent =
+      new Intl.NumberFormat(
+        "en-US",
+        {
+          style:"currency",
+          currency:"USD"
+        }
+      ).format(userBalance);
+
 
   }catch(error){
 
@@ -1184,13 +1508,65 @@ async function loadUserData(user){
 
 
 /* =========================
+   SETTINGS PAGE
+========================= */
+
+document
+  .getElementById("settingsBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      dashboardSection.classList.add(
+        "hidden"
+      );
+
+      settingsSection.classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("backDashboard")
+  .addEventListener(
+    "click",
+    () => {
+
+      settingsSection.classList.add(
+        "hidden"
+      );
+
+      dashboardSection.classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+/* =========================
    MODAL
 ========================= */
 
+const modal =
+  document.getElementById("modal");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalText =
+  document.getElementById("modalText");
+
+const confirmModal =
+  document.getElementById("confirmModal");
+
+
 function openModal(
   title,
-  text,
-  buttonText = "Continue"
+  text
 ){
 
   modalTitle.textContent =
@@ -1198,9 +1574,6 @@ function openModal(
 
   modalText.textContent =
     text;
-
-  confirmModal.textContent =
-    buttonText;
 
   modal.classList.remove(
     "hidden"
@@ -1220,6 +1593,13 @@ function closeModal(){
 
 document
   .getElementById("closeModal")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+confirmModal
   .addEventListener(
     "click",
     closeModal
@@ -1253,7 +1633,7 @@ document
 
       openModal(
         "Add money",
-        "Deposits in this Cashflowbank simulation are fictional and do not add real money to an account."
+        "Deposits in this Cashflowbank simulation are fictional and do not add real money."
       );
 
     }
@@ -1275,31 +1655,6 @@ document
   );
 
 
-document
-  .getElementById("settingsBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      openModal(
-        "Account settings",
-        "Account settings for this fictional simulation will be added here."
-      );
-
-    }
-  );
-
-
-confirmModal.addEventListener(
-  "click",
-  () => {
-
-    closeModal();
-
-  }
-);
-
-
 /* =========================
    AUTH STATE
 ========================= */
@@ -1315,6 +1670,10 @@ onAuthStateChanged(
       );
 
       dashboardSection.classList.remove(
+        "hidden"
+      );
+
+      settingsSection.classList.add(
         "hidden"
       );
 
@@ -1334,6 +1693,10 @@ onAuthStateChanged(
         "hidden"
       );
 
+      settingsSection.classList.add(
+        "hidden"
+      );
+
       logoutBtn.classList.add(
         "hidden"
       );
@@ -1345,16 +1708,33 @@ onAuthStateChanged(
 
 
 /* =========================
-   LOG OUT
+   LOGOUT
 ========================= */
 
-logoutBtn.addEventListener(
-  "click",
-  async () => {
+async function logout(){
+
+  try{
 
     await signOut(auth);
 
+  }catch(error){
+
+    console.error(error);
+
   }
+
+}
+
+
+logoutBtn.addEventListener(
+  "click",
+  logout
+);
+
+
+settingsLogout.addEventListener(
+  "click",
+  logout
 );
 
 </script>
